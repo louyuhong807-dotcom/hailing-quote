@@ -1,0 +1,6738 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0d5963" />
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>海陵岛查房报价</title>
+    <style>
+:root {
+  color-scheme: light;
+  --ink: #14212a;
+  --muted: #627380;
+  --line: #d6e2e6;
+  --panel: #ffffff;
+  --wash: #eef6f5;
+  --aqua: #147d89;
+  --aqua-dark: #0d5963;
+  --sun: #f0a14a;
+  --leaf: #3f7d55;
+  --coral: #c96346;
+  --danger: #b84d35;
+  --sand: #f6eddc;
+  --shadow: 0 18px 46px rgba(17, 39, 51, 0.13);
+  --soft-shadow: 0 10px 24px rgba(22, 48, 60, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  color: var(--ink);
+  font-family:
+    Inter, "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0 150px, transparent 151px),
+    linear-gradient(135deg, #edf7f6 0%, #f8f5ed 45%, #eef5f7 100%);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button,
+a,
+select,
+input {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.shell {
+  width: min(1440px, 100%);
+  margin: 0 auto;
+  padding: 22px 24px 32px;
+}
+
+.topbar {
+  position: relative;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 176px;
+  margin-bottom: 18px;
+  padding: 30px 32px;
+  border: 1px solid rgba(255, 255, 255, 0.68);
+  border-radius: 8px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 82% 28%, rgba(255, 230, 182, 0.56) 0 11%, transparent 12%),
+    radial-gradient(ellipse at 76% 78%, rgba(255, 255, 255, 0.42) 0 9%, transparent 10%),
+    linear-gradient(170deg, rgba(255, 255, 255, 0.18) 0 20%, transparent 21% 100%),
+    linear-gradient(90deg, rgba(9, 63, 72, 0.94) 0%, rgba(20, 125, 137, 0.82) 50%, rgba(240, 161, 74, 0.42) 100%),
+    linear-gradient(135deg, #0c5b68, #69b7bd 55%, #f2c68c);
+  box-shadow: var(--shadow);
+  isolation: isolate;
+}
+
+.topbar::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 56px;
+  background:
+    linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.22)),
+    repeating-linear-gradient(175deg, rgba(255, 255, 255, 0.3) 0 2px, transparent 2px 18px);
+  z-index: -1;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: #d7f5f2;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 0;
+  font-size: 56px;
+  line-height: 1;
+  letter-spacing: 0;
+  color: #fff;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.18);
+}
+
+.source-note {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+  max-width: 640px;
+  color: #e8fffb;
+}
+
+.source-note span {
+  padding: 9px 11px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 8px;
+  background: rgba(13, 55, 64, 0.32);
+  backdrop-filter: blur(12px);
+}
+
+.workbench {
+  display: grid;
+  grid-template-columns: 312px minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.filters {
+  position: sticky;
+  top: 16px;
+  display: grid;
+  gap: 15px;
+  padding: 18px;
+  border: 1px solid rgba(205, 222, 228, 0.86);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(12px);
+}
+
+label {
+  display: grid;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+input,
+select {
+  width: 100%;
+  min-height: 44px;
+  font-size: 16px;
+  padding: 0 12px;
+  border: 1px solid #c8d8de;
+  border-radius: 8px;
+  color: var(--ink);
+  background: linear-gradient(180deg, #fff, #fbfdfd);
+  outline: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+select {
+  appearance: none;
+  padding-right: 34px;
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--aqua-dark) 50%),
+    linear-gradient(135deg, var(--aqua-dark) 50%, transparent 50%),
+    linear-gradient(180deg, #fff, #fbfdfd);
+  background-position:
+    calc(100% - 18px) 19px,
+    calc(100% - 12px) 19px,
+    0 0;
+  background-size:
+    6px 6px,
+    6px 6px,
+    100% 100%;
+  background-repeat: no-repeat;
+}
+
+input:focus,
+select:focus,
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid rgba(20, 124, 134, 0.25);
+  outline-offset: 2px;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.stat-grid div {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid #dbe8e8;
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(239, 248, 247, 0.92)),
+    var(--wash);
+}
+
+.stat-grid strong {
+  display: block;
+  min-height: 30px;
+  color: var(--aqua-dark);
+  font-size: 25px;
+  line-height: 1.1;
+}
+
+.stat-grid span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.results {
+  min-width: 0;
+}
+
+.map {
+  position: relative;
+  height: 376px;
+  border: 1px solid rgba(204, 220, 226, 0.92);
+  border-radius: 8px;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(20, 124, 134, 0.14), rgba(240, 161, 74, 0.15)),
+    #dfeaed;
+  box-shadow: var(--shadow);
+}
+
+.fallback-map {
+  padding: 14px;
+}
+
+.fallback-canvas {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 308px;
+  border-radius: 8px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 54% 48%, rgba(250, 247, 229, 0.98) 0 18%, transparent 19%),
+    radial-gradient(ellipse at 62% 55%, rgba(205, 226, 185, 0.92) 0 20%, transparent 21%),
+    radial-gradient(ellipse at 42% 59%, rgba(207, 228, 188, 0.9) 0 26%, transparent 27%),
+    linear-gradient(135deg, #8ac2d0 0%, #d7eff2 46%, #98c8d7 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.42);
+}
+
+.fallback-canvas::before {
+  content: "海陵岛片区";
+  position: absolute;
+  left: 18px;
+  top: 16px;
+  color: #2d6170;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.56);
+  font-weight: 900;
+}
+
+.fallback-canvas::after {
+  content: "";
+  position: absolute;
+  left: 22%;
+  top: 18%;
+  width: 54%;
+  height: 62%;
+  border: 2px solid rgba(255, 255, 255, 0.52);
+  border-left-color: transparent;
+  border-bottom-color: rgba(255, 255, 255, 0.28);
+  border-radius: 52% 48% 45% 55%;
+  transform: rotate(-10deg);
+  pointer-events: none;
+}
+
+.fallback-pin {
+  position: absolute;
+  display: grid;
+  justify-items: center;
+  gap: 5px;
+  min-width: 96px;
+  color: var(--ink);
+  text-decoration: none;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.fallback-pin strong {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  color: #fff;
+  background: linear-gradient(180deg, #d26f4d, var(--danger));
+  box-shadow: 0 10px 22px rgba(54, 72, 80, 0.32);
+}
+
+.fallback-pin span {
+  max-width: 124px;
+  padding: 5px 8px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: var(--soft-shadow);
+  font-size: 12px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.fallback-note {
+  position: absolute;
+  right: 18px;
+  bottom: 14px;
+  max-width: min(420px, calc(100% - 36px));
+  padding: 8px 10px;
+  border-radius: 8px;
+  color: #31535b;
+  background: rgba(255, 255, 255, 0.88);
+  font-size: 12px;
+  font-weight: 700;
+  box-shadow: var(--soft-shadow);
+}
+
+.result-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: center;
+  margin: 22px 0 15px;
+}
+
+.result-head h2 {
+  margin: 0 0 4px;
+  font-size: 26px;
+}
+
+.result-head p {
+  margin: 0;
+  color: var(--muted);
+}
+
+button {
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--aqua);
+  border-radius: 8px;
+  color: #fff;
+  background: linear-gradient(180deg, #18909a, var(--aqua-dark));
+  box-shadow: 0 10px 20px rgba(20, 125, 137, 0.22);
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--aqua-dark);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.room-card {
+  position: relative;
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid rgba(210, 225, 230, 0.92);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(250, 253, 253, 0.98)),
+    var(--panel);
+  box-shadow: var(--soft-shadow);
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    border-color 160ms ease;
+}
+
+.room-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  border-radius: 8px 0 0 8px;
+  background: linear-gradient(180deg, var(--aqua), var(--sun));
+  opacity: 0.72;
+}
+
+.room-card:hover {
+  border-color: rgba(20, 125, 137, 0.38);
+  box-shadow: 0 18px 36px rgba(18, 42, 54, 0.13);
+  transform: translateY(-2px);
+}
+
+.room-card.active {
+  border-color: var(--sun);
+  box-shadow: 0 16px 34px rgba(180, 104, 28, 0.18);
+}
+
+.card-main {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: start;
+}
+
+.project {
+  margin-bottom: 7px;
+  color: var(--aqua-dark);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+h3 {
+  margin-bottom: 8px;
+  font-size: 20px;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.meta,
+.description {
+  margin-bottom: 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.description {
+  display: -webkit-box;
+  overflow: hidden;
+  min-height: 0;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.price-pill {
+  flex: 0 0 auto;
+  max-width: 150px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: #fff;
+  background: linear-gradient(180deg, #176f78, var(--aqua-dark));
+  font-weight: 800;
+  line-height: 1.25;
+  text-align: right;
+  box-shadow: 0 10px 22px rgba(13, 89, 99, 0.24);
+}
+
+.price-pill small {
+  display: block;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.tag {
+  padding: 5px 9px;
+  border-radius: 999px;
+  color: #285263;
+  background: #e8f5f4;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.tag.sea {
+  color: #174d31;
+  background: #e7f2e8;
+}
+
+.price-table {
+  display: grid;
+  gap: 6px;
+  max-height: 210px;
+  overflow: auto;
+  padding-right: 3px;
+  scrollbar-color: #b8d0d5 transparent;
+  scrollbar-width: thin;
+}
+
+.price-row {
+  display: grid;
+  grid-template-columns: minmax(96px, 1.1fr) minmax(80px, 0.9fr) 76px;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 11px;
+  border: 1px solid #dfebee;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #ffffff, #fbfdfd);
+  font-size: 13px;
+}
+
+.price-row strong {
+  text-align: right;
+  color: var(--coral);
+}
+
+.card-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.card-actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 13px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 800;
+  transition:
+    transform 140ms ease,
+    box-shadow 140ms ease,
+    background 140ms ease;
+}
+
+.card-actions a:hover {
+  transform: translateY(-1px);
+}
+
+.map-link {
+  color: #fff;
+  background: linear-gradient(180deg, #4d9363, var(--leaf));
+  box-shadow: 0 9px 18px rgba(63, 125, 85, 0.18);
+}
+
+.detail-link {
+  color: var(--aqua-dark);
+  border: 1px solid var(--aqua);
+  background: linear-gradient(180deg, #fff, #f8fcfc);
+}
+
+.empty {
+  grid-column: 1 / -1;
+  padding: 42px;
+  border: 1px dashed #b9c8ce;
+  border-radius: 8px;
+  color: var(--muted);
+  text-align: center;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+@media (max-width: 1080px) {
+  .workbench {
+    grid-template-columns: 1fr;
+  }
+
+  .filters {
+    position: static;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .stat-grid {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 760px) {
+  .shell {
+    padding:
+      max(14px, env(safe-area-inset-top))
+      max(14px, env(safe-area-inset-right))
+      max(22px, env(safe-area-inset-bottom))
+      max(14px, env(safe-area-inset-left));
+  }
+
+  .topbar,
+  .result-head {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .topbar {
+    min-height: 188px;
+    margin-bottom: 14px;
+    padding: 22px;
+    background-position: center;
+  }
+
+  h1 {
+    font-size: 42px;
+  }
+
+  .eyebrow {
+    font-size: 12px;
+  }
+
+  .source-note {
+    justify-content: flex-start;
+    gap: 7px;
+  }
+
+  .source-note span {
+    max-width: 100%;
+    padding: 8px 10px;
+    font-size: 13px;
+    line-height: 1.35;
+  }
+
+  .workbench {
+    gap: 16px;
+  }
+
+  .filters {
+    gap: 12px;
+    padding: 14px;
+    box-shadow: 0 12px 28px rgba(17, 39, 51, 0.11);
+  }
+
+  label {
+    gap: 7px;
+    font-size: 12px;
+  }
+
+  input,
+  select {
+    min-height: 46px;
+    border-radius: 8px;
+  }
+
+  .filters,
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-grid {
+    gap: 8px;
+  }
+
+  .stat-grid div {
+    padding: 12px;
+  }
+
+  .stat-grid strong {
+    min-height: 28px;
+    font-size: 24px;
+  }
+
+  .map {
+    height: 286px;
+  }
+
+  .fallback-canvas {
+    min-height: 220px;
+  }
+
+  .fallback-pin {
+    min-width: 44px;
+  }
+
+  .fallback-pin strong {
+    width: 40px;
+    height: 40px;
+  }
+
+  .fallback-pin span {
+    display: none;
+  }
+
+  .fallback-note {
+    left: 14px;
+    right: 14px;
+    bottom: 12px;
+    max-width: none;
+    font-size: 11px;
+    line-height: 1.35;
+    text-align: center;
+  }
+
+  .result-head {
+    gap: 12px;
+    margin: 18px 0 12px;
+  }
+
+  .result-head h2 {
+    font-size: 24px;
+  }
+
+  .result-head p {
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  button {
+    width: 100%;
+    min-height: 46px;
+  }
+
+  .card-main {
+    display: grid;
+    gap: 12px;
+  }
+
+  .price-pill {
+    max-width: none;
+    text-align: left;
+  }
+
+  .room-card {
+    gap: 11px;
+    padding: 16px;
+  }
+
+  .room-card:hover {
+    transform: none;
+  }
+
+  h3 {
+    font-size: 19px;
+    line-height: 1.32;
+    overflow-wrap: anywhere;
+  }
+
+  .project,
+  .meta,
+  .description {
+    overflow-wrap: anywhere;
+  }
+
+  .description {
+    -webkit-line-clamp: 3;
+  }
+
+  .price-table {
+    max-height: none;
+    overflow: visible;
+    padding-right: 0;
+  }
+
+  .price-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    padding: 9px 10px;
+  }
+
+  .price-row strong {
+    text-align: left;
+    font-size: 15px;
+  }
+
+  .card-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .card-actions a {
+    min-height: 44px;
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 430px) {
+  body {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.78) 0 120px, transparent 121px),
+      linear-gradient(145deg, #eef8f6 0%, #f8f4ea 50%, #eef5f7 100%);
+  }
+
+  .topbar {
+    min-height: 174px;
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 38px;
+  }
+
+  .source-note {
+    display: grid;
+  }
+
+  .filters {
+    padding: 12px;
+  }
+
+  .stat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-grid strong {
+    font-size: 23px;
+  }
+
+  .map {
+    height: 264px;
+  }
+
+  .fallback-map {
+    padding: 10px;
+  }
+
+  .fallback-canvas {
+    min-height: 206px;
+  }
+
+  .fallback-canvas::before {
+    left: 14px;
+    top: 12px;
+    font-size: 14px;
+  }
+
+  .fallback-pin strong {
+    width: 36px;
+    height: 36px;
+    border-width: 2px;
+    font-size: 13px;
+  }
+
+  .room-card {
+    padding: 15px;
+  }
+
+  .price-pill {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 360px) {
+  .shell {
+    padding:
+      max(10px, env(safe-area-inset-top))
+      max(10px, env(safe-area-inset-right))
+      max(18px, env(safe-area-inset-bottom))
+      max(10px, env(safe-area-inset-left));
+  }
+
+  .topbar {
+    min-height: 160px;
+    padding: 18px;
+  }
+
+  h1 {
+    font-size: 34px;
+  }
+
+  .source-note span {
+    font-size: 12px;
+  }
+
+  .map {
+    height: 244px;
+  }
+
+  .fallback-canvas {
+    min-height: 186px;
+  }
+
+  .card-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+</style>
+  </head>
+  <body>
+    <main class="shell">
+      <section class="topbar" aria-label="海陵岛报价概览">
+        <div>
+          <p class="eyebrow">海陵岛房源报价</p>
+          <h1>查房报价</h1>
+        </div>
+        <div class="source-note">
+          <span id="sourceSummary">正在读取报价表...</span>
+          <span>地图按项目片区定位</span>
+        </div>
+      </section>
+
+      <section class="workbench">
+        <aside class="filters" aria-label="筛选条件">
+          <label>
+            关键词
+            <input id="keywordInput" type="search" placeholder="房号、房型、泳池、KTV..." />
+          </label>
+
+          <label>
+            项目
+            <select id="projectSelect"></select>
+          </label>
+
+          <label>
+            片区
+            <select id="areaSelect"></select>
+          </label>
+
+          <label>
+            靠海
+            <select id="seaSelect">
+              <option value="">全部</option>
+              <option value="beach">海边/一线海边</option>
+              <option value="near">近海</option>
+              <option value="area">片区近海</option>
+            </select>
+          </label>
+
+          <label>
+            房间数
+            <select id="roomSelect"></select>
+          </label>
+
+          <label>
+            排序
+            <select id="sortSelect">
+              <option value="priceAsc">低价优先</option>
+              <option value="priceDesc">高价优先</option>
+              <option value="roomsDesc">房间数多优先</option>
+              <option value="project">项目分组</option>
+            </select>
+          </label>
+
+          <div class="stat-grid">
+            <div>
+              <strong id="matchCount">0</strong>
+              <span>匹配房源</span>
+            </div>
+            <div>
+              <strong id="priceRange">-</strong>
+              <span>报价区间</span>
+            </div>
+          </div>
+        </aside>
+
+        <section class="results" aria-label="房源报价结果">
+          <div id="map" class="map" aria-label="海陵岛房源地图"></div>
+          <div class="result-head">
+            <div>
+              <h2>房型与价格</h2>
+              <p>价格、房型、房号、链接均绑定源表；位置为项目片区定位。</p>
+            </div>
+            <button id="resetButton" type="button">重置</button>
+          </div>
+          <div id="cards" class="cards"></div>
+        </section>
+      </section>
+    </main>
+
+    <template id="cardTemplate">
+      <article class="room-card">
+        <div class="card-main">
+          <div>
+            <p class="project"></p>
+            <h3></h3>
+            <p class="meta"></p>
+          </div>
+          <div class="price-pill"></div>
+        </div>
+        <div class="tags"></div>
+        <p class="description"></p>
+        <div class="price-table"></div>
+        <div class="card-actions">
+          <a class="map-link" target="_blank" rel="noreferrer">地图</a>
+          <a class="detail-link" target="_blank" rel="noreferrer">房型链接</a>
+        </div>
+      </article>
+    </template>
+
+    <script>
+window.HAILING_QUOTE_DATA = {
+  "meta": {
+    "sourceFile": "海陵岛报价.xlsx",
+    "generatedAt": "2026-07-08 18:11:27",
+    "totalUnits": 99,
+    "binding": "房型、房号、说明、链接和价格均从源 Excel 抽取；地图坐标按项目片区补充。"
+  },
+  "units": [
+    {
+      "id": "敏捷黄金海岸-802-2",
+      "sourceSheet": "敏捷",
+      "project": "敏捷黄金海岸",
+      "area": "十里银滩片区",
+      "nearSea": "近海/海岸度假区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛敏捷黄金海岸",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6259,
+      "lng": 111.9565,
+      "roomType": "4房6床别墅",
+      "productName": "",
+      "roomNo": "802",
+      "rooms": 4,
+      "beds": 6,
+      "description": "【敏捷黄金海岸802栋4房6床】【敏捷黄金海岸802栋4房 6床】",
+      "link": "https://www.jianpian.cn/a/1jau8kbj",
+      "features": [],
+      "prices": [
+        {
+          "period": "7月1日-7月10日",
+          "dayType": "平日",
+          "price": 1300
+        },
+        {
+          "period": "7月1日-7月10日",
+          "dayType": "周五/周日",
+          "price": 1300
+        },
+        {
+          "period": "7月1日-7月10日",
+          "dayType": "周六",
+          "price": 1500
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "平日",
+          "price": 1500
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周五/周日",
+          "price": 1800
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周六",
+          "price": 2600
+        }
+      ],
+      "minPrice": 1300,
+      "maxPrice": 2600
+    },
+    {
+      "id": "敏捷黄金海岸-6804-3",
+      "sourceSheet": "敏捷",
+      "project": "敏捷黄金海岸",
+      "area": "十里银滩片区",
+      "nearSea": "近海/海岸度假区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛敏捷黄金海岸",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6259,
+      "lng": 111.9565,
+      "roomType": "5房7床别墅",
+      "productName": "",
+      "roomNo": "6804",
+      "rooms": 5,
+      "beds": 7,
+      "description": "【敏捷黄金海岸6804号5房7床】【敏捷黄金海岸6804号5房7床】",
+      "link": "https://www.jianpian.cn/a/1jau7sgq",
+      "features": [],
+      "prices": [],
+      "minPrice": null,
+      "maxPrice": null
+    },
+    {
+      "id": "敏捷黄金海岸-6803-4",
+      "sourceSheet": "敏捷",
+      "project": "敏捷黄金海岸",
+      "area": "十里银滩片区",
+      "nearSea": "近海/海岸度假区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛敏捷黄金海岸",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6259,
+      "lng": 111.9565,
+      "roomType": "6房9床别墅",
+      "productName": "",
+      "roomNo": "6803",
+      "rooms": 6,
+      "beds": 9,
+      "description": "【敏捷黄金海岸6803号6房9床】【敏捷黄金海岸6803号6房9床】",
+      "link": "https://www.jianpian.cn/a/1j4kvqmo",
+      "features": [],
+      "prices": [
+        {
+          "period": "7月1日-7月10日",
+          "dayType": "平日",
+          "price": 1300
+        },
+        {
+          "period": "7月1日-7月10日",
+          "dayType": "周五/周日",
+          "price": 1300
+        },
+        {
+          "period": "7月1日-7月10日",
+          "dayType": "周六",
+          "price": 1500
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "平日",
+          "price": 1800
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周五/周日",
+          "price": 2200
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周六",
+          "price": 3000
+        }
+      ],
+      "minPrice": 1300,
+      "maxPrice": 3000
+    },
+    {
+      "id": "敏捷黄金海岸-6501-5",
+      "sourceSheet": "敏捷",
+      "project": "敏捷黄金海岸",
+      "area": "十里银滩片区",
+      "nearSea": "近海/海岸度假区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛敏捷黄金海岸",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6259,
+      "lng": 111.9565,
+      "roomType": "6房10床别墅",
+      "productName": "",
+      "roomNo": "6501",
+      "rooms": 6,
+      "beds": 10,
+      "description": "【敏捷黄金海岸6501号6房10床】【敏捷黄金海岸6501号6房10床】",
+      "link": "https://www.jianpian.cn/a/1j4ktkb6",
+      "features": [],
+      "prices": [],
+      "minPrice": null,
+      "maxPrice": null
+    },
+    {
+      "id": "敏捷黄金海岸-7402-6",
+      "sourceSheet": "敏捷",
+      "project": "敏捷黄金海岸",
+      "area": "十里银滩片区",
+      "nearSea": "近海/海岸度假区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛敏捷黄金海岸",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6259,
+      "lng": 111.9565,
+      "roomType": "7房10床别墅",
+      "productName": "",
+      "roomNo": "7402",
+      "rooms": 7,
+      "beds": 10,
+      "description": "【敏捷黄金海岸7402号7房10床】【敏捷黄金海岸7402号7房10床】",
+      "link": "https://www.jianpian.cn/a/1j4kujvs",
+      "features": [],
+      "prices": [
+        {
+          "period": "7月1日-7月10日",
+          "dayType": "平日",
+          "price": 1300
+        },
+        {
+          "period": "7月1日-7月10日",
+          "dayType": "周五/周日",
+          "price": 1300
+        },
+        {
+          "period": "7月1日-7月10日",
+          "dayType": "周六",
+          "price": 1500
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "平日",
+          "price": 2000
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周五/周日",
+          "price": 2400
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周六",
+          "price": 3100
+        }
+      ],
+      "minPrice": 1300,
+      "maxPrice": 3100
+    },
+    {
+      "id": "敏捷黄金海岸-7403-7",
+      "sourceSheet": "敏捷",
+      "project": "敏捷黄金海岸",
+      "area": "十里银滩片区",
+      "nearSea": "近海/海岸度假区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛敏捷黄金海岸",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6259,
+      "lng": 111.9565,
+      "roomType": "7房11床别墅",
+      "productName": "",
+      "roomNo": "7403",
+      "rooms": 7,
+      "beds": 11,
+      "description": "【敏捷黄金海岸7403号7房11床】【敏捷黄金海岸7403号7房11床】",
+      "link": "https://www.jianpian.cn/a/1j4kx6tx",
+      "features": [],
+      "prices": [],
+      "minPrice": null,
+      "maxPrice": null
+    },
+    {
+      "id": "敏捷黄金海岸-6201-8",
+      "sourceSheet": "敏捷",
+      "project": "敏捷黄金海岸",
+      "area": "十里银滩片区",
+      "nearSea": "近海/海岸度假区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛敏捷黄金海岸",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6259,
+      "lng": 111.9565,
+      "roomType": "8房10床别墅",
+      "productName": "",
+      "roomNo": "6201",
+      "rooms": 8,
+      "beds": 10,
+      "description": "【敏捷黄金海岸6201号8房10床】【敏捷黄金海岸6201号8房10床】",
+      "link": "https://www.jianpian.cn/a/1j4l3870",
+      "features": [],
+      "prices": [
+        {
+          "period": "7月1日-7月10日",
+          "dayType": "平日",
+          "price": 1300
+        },
+        {
+          "period": "7月1日-7月10日",
+          "dayType": "周五/周日",
+          "price": 1300
+        },
+        {
+          "period": "7月1日-7月10日",
+          "dayType": "周六",
+          "price": 1500
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "平日",
+          "price": 2000
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周五/周日",
+          "price": 2400
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周六",
+          "price": 3100
+        }
+      ],
+      "minPrice": 1300,
+      "maxPrice": 3100
+    },
+    {
+      "id": "敏捷黄金海岸-5602-9",
+      "sourceSheet": "敏捷",
+      "project": "敏捷黄金海岸",
+      "area": "十里银滩片区",
+      "nearSea": "近海/海岸度假区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛敏捷黄金海岸",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6259,
+      "lng": 111.9565,
+      "roomType": "8房12床别墅",
+      "productName": "",
+      "roomNo": "5602",
+      "rooms": 8,
+      "beds": 12,
+      "description": "【敏捷黄金海岸5602号8房12床】【敏捷黄金海岸5602号8房12床】",
+      "link": "https://www.jianpian.cn/a/1j4l2f0k",
+      "features": [],
+      "prices": [],
+      "minPrice": null,
+      "maxPrice": null
+    },
+    {
+      "id": "恒大御景湾-6房9床KTV泡池双拼花园别墅7001-2",
+      "sourceSheet": "恒大御景湾",
+      "project": "恒大御景湾",
+      "area": "南湾/闸坡片区",
+      "nearSea": "近海度假社区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛恒大御景湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.5863,
+      "lng": 111.8492,
+      "roomType": "6房9床KTV泡池双拼花园别墅7001",
+      "productName": "",
+      "roomNo": "",
+      "rooms": 6,
+      "beds": 9,
+      "description": "【 恒大御景湾70栋01房6房9床】恒大御景湾70栋01房6房9床泡池别墅",
+      "link": "https://www.jianpian.cn/a/1jtm2ktr",
+      "features": [
+        "泡池",
+        "KTV",
+        "双拼",
+        "花园"
+      ],
+      "prices": [
+        {
+          "period": "7月5日-7月11日",
+          "dayType": "周日至周五",
+          "price": 1300
+        },
+        {
+          "period": "7月5日-7月11日",
+          "dayType": "周六",
+          "price": 2800
+        },
+        {
+          "period": "7月12日-8月23日",
+          "dayType": "周日至周五",
+          "price": 2200
+        },
+        {
+          "period": "7月12日-8月23日",
+          "dayType": "周六",
+          "price": 3500
+        },
+        {
+          "period": "8月24日-8月29日",
+          "dayType": "周日至周五",
+          "price": 1200
+        },
+        {
+          "period": "8月24日-8月29日",
+          "dayType": "周六",
+          "price": 1200
+        },
+        {
+          "period": "8月30日-9月24日",
+          "dayType": "周日至周五",
+          "price": 1150
+        },
+        {
+          "period": "8月30日-9月24日",
+          "dayType": "周六",
+          "price": 1400
+        }
+      ],
+      "minPrice": 1150,
+      "maxPrice": 3500
+    },
+    {
+      "id": "恒大御景湾-5房8床KTV泳池花园别墅4901-3",
+      "sourceSheet": "恒大御景湾",
+      "project": "恒大御景湾",
+      "area": "南湾/闸坡片区",
+      "nearSea": "近海度假社区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛恒大御景湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.5863,
+      "lng": 111.8492,
+      "roomType": "5房8床KTV泳池花园别墅4901",
+      "productName": "",
+      "roomNo": "",
+      "rooms": 5,
+      "beds": 8,
+      "description": "【 恒大御景湾49-01栋5房8床】恒大御景湾49-01栋5房8床泳池别墅",
+      "link": "https://www.jianpian.cn/a/1jtm02gx",
+      "features": [
+        "泳池",
+        "KTV",
+        "花园"
+      ],
+      "prices": [
+        {
+          "period": "7月5日-7月11日",
+          "dayType": "周日至周五",
+          "price": 1300
+        },
+        {
+          "period": "7月5日-7月11日",
+          "dayType": "周六",
+          "price": 3000
+        },
+        {
+          "period": "7月12日-8月23日",
+          "dayType": "周日至周五",
+          "price": 2300
+        },
+        {
+          "period": "7月12日-8月23日",
+          "dayType": "周六",
+          "price": 3700
+        },
+        {
+          "period": "8月24日-8月29日",
+          "dayType": "周日至周五",
+          "price": 1300
+        },
+        {
+          "period": "8月24日-8月29日",
+          "dayType": "周六",
+          "price": 1300
+        },
+        {
+          "period": "8月30日-9月24日",
+          "dayType": "周日至周五",
+          "price": 1200
+        },
+        {
+          "period": "8月30日-9月24日",
+          "dayType": "周六",
+          "price": 1500
+        }
+      ],
+      "minPrice": 1200,
+      "maxPrice": 3700
+    },
+    {
+      "id": "恒大御景湾-6房9床KTV泳池双拼花园别墅7002-4",
+      "sourceSheet": "恒大御景湾",
+      "project": "恒大御景湾",
+      "area": "南湾/闸坡片区",
+      "nearSea": "近海度假社区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛恒大御景湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.5863,
+      "lng": 111.8492,
+      "roomType": "6房9床KTV泳池双拼花园别墅7002",
+      "productName": "",
+      "roomNo": "",
+      "rooms": 6,
+      "beds": 9,
+      "description": "【恒大御景湾70栋02房6房9床】恒大御景湾70栋02房6房9床泳池别墅",
+      "link": "https://www.jianpian.cn/a/1jtm3fex",
+      "features": [
+        "泳池",
+        "KTV",
+        "双拼",
+        "花园"
+      ],
+      "prices": [
+        {
+          "period": "7月5日-7月11日",
+          "dayType": "周日至周五",
+          "price": 1400
+        },
+        {
+          "period": "7月5日-7月11日",
+          "dayType": "周六",
+          "price": 3200
+        },
+        {
+          "period": "7月12日-8月23日",
+          "dayType": "周日至周五",
+          "price": 2500
+        },
+        {
+          "period": "7月12日-8月23日",
+          "dayType": "周六",
+          "price": 3900
+        },
+        {
+          "period": "8月24日-8月29日",
+          "dayType": "周日至周五",
+          "price": 1400
+        },
+        {
+          "period": "8月24日-8月29日",
+          "dayType": "周六",
+          "price": 1400
+        },
+        {
+          "period": "8月30日-9月24日",
+          "dayType": "周日至周五",
+          "price": 1300
+        },
+        {
+          "period": "8月30日-9月24日",
+          "dayType": "周六",
+          "price": 1700
+        }
+      ],
+      "minPrice": 1300,
+      "maxPrice": 3900
+    },
+    {
+      "id": "恒大御景湾-8房13床KTV泡池双拼花园别墅4601-5",
+      "sourceSheet": "恒大御景湾",
+      "project": "恒大御景湾",
+      "area": "南湾/闸坡片区",
+      "nearSea": "近海度假社区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛恒大御景湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.5863,
+      "lng": 111.8492,
+      "roomType": "8房13床KTV泡池双拼花园别墅4601",
+      "productName": "",
+      "roomNo": "",
+      "rooms": 8,
+      "beds": 13,
+      "description": "【恒大御景湾46-01栋8房13床】恒大御景湾46-01栋8房13床",
+      "link": "https://www.jianpian.cn/a/1jtlygpa",
+      "features": [
+        "泡池",
+        "KTV",
+        "双拼",
+        "花园"
+      ],
+      "prices": [
+        {
+          "period": "7月5日-7月11日",
+          "dayType": "周日至周五",
+          "price": 1500
+        },
+        {
+          "period": "7月5日-7月11日",
+          "dayType": "周六",
+          "price": 3400
+        },
+        {
+          "period": "7月12日-8月23日",
+          "dayType": "周日至周五",
+          "price": 2600
+        },
+        {
+          "period": "7月12日-8月23日",
+          "dayType": "周六",
+          "price": 4100
+        },
+        {
+          "period": "8月24日-8月29日",
+          "dayType": "周日至周五",
+          "price": 1500
+        },
+        {
+          "period": "8月24日-8月29日",
+          "dayType": "周六",
+          "price": 1500
+        },
+        {
+          "period": "8月30日-9月24日",
+          "dayType": "周日至周五",
+          "price": 1350
+        },
+        {
+          "period": "8月30日-9月24日",
+          "dayType": "周六",
+          "price": 1800
+        }
+      ],
+      "minPrice": 1350,
+      "maxPrice": 4100
+    },
+    {
+      "id": "恒大御景湾-8房11床KTV双拼花园别墅1802-6",
+      "sourceSheet": "恒大御景湾",
+      "project": "恒大御景湾",
+      "area": "南湾/闸坡片区",
+      "nearSea": "近海度假社区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛恒大御景湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.5863,
+      "lng": 111.8492,
+      "roomType": "8房11床KTV双拼花园别墅1802",
+      "productName": "",
+      "roomNo": "",
+      "rooms": 8,
+      "beds": 11,
+      "description": "【恒大御景湾18-02栋8房11床】恒大御景湾18-02栋8房11床",
+      "link": "https://www.jianpian.cn/a/1jtlx4di",
+      "features": [
+        "KTV",
+        "双拼",
+        "花园"
+      ],
+      "prices": [
+        {
+          "period": "7月5日-7月11日",
+          "dayType": "周日至周五",
+          "price": 1500
+        },
+        {
+          "period": "7月5日-7月11日",
+          "dayType": "周六",
+          "price": 3600
+        },
+        {
+          "period": "7月12日-8月23日",
+          "dayType": "周日至周五",
+          "price": 2700
+        },
+        {
+          "period": "7月12日-8月23日",
+          "dayType": "周六",
+          "price": 4300
+        },
+        {
+          "period": "8月24日-8月29日",
+          "dayType": "周日至周五",
+          "price": 1600
+        },
+        {
+          "period": "8月24日-8月29日",
+          "dayType": "周六",
+          "price": 1600
+        },
+        {
+          "period": "8月30日-9月24日",
+          "dayType": "周日至周五",
+          "price": 1400
+        },
+        {
+          "period": "8月30日-9月24日",
+          "dayType": "周六",
+          "price": 1900
+        }
+      ],
+      "minPrice": 1400,
+      "maxPrice": 4300
+    },
+    {
+      "id": "恒大御景湾-7房9床KTV泳池双拼花园别墅8001-7",
+      "sourceSheet": "恒大御景湾",
+      "project": "恒大御景湾",
+      "area": "南湾/闸坡片区",
+      "nearSea": "近海度假社区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛恒大御景湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.5863,
+      "lng": 111.8492,
+      "roomType": "7房9床KTV泳池双拼花园别墅8001",
+      "productName": "",
+      "roomNo": "",
+      "rooms": 7,
+      "beds": 9,
+      "description": "【恒大80-01栋7房9床】恒大80-01栋7房9床泳池别墅",
+      "link": "https://www.jianpian.cn/a/1jtm8zrq",
+      "features": [
+        "泳池",
+        "KTV",
+        "双拼",
+        "花园"
+      ],
+      "prices": [
+        {
+          "period": "7月5日-7月11日",
+          "dayType": "周日至周五",
+          "price": 1700
+        },
+        {
+          "period": "7月5日-7月11日",
+          "dayType": "周六",
+          "price": 3800
+        },
+        {
+          "period": "7月12日-8月23日",
+          "dayType": "周日至周五",
+          "price": 2800
+        },
+        {
+          "period": "7月12日-8月23日",
+          "dayType": "周六",
+          "price": 4500
+        },
+        {
+          "period": "8月24日-8月29日",
+          "dayType": "周日至周五",
+          "price": 1700
+        },
+        {
+          "period": "8月24日-8月29日",
+          "dayType": "周六",
+          "price": 1700
+        },
+        {
+          "period": "8月30日-9月24日",
+          "dayType": "周日至周五",
+          "price": 1450
+        },
+        {
+          "period": "8月30日-9月24日",
+          "dayType": "周六",
+          "price": 2100
+        }
+      ],
+      "minPrice": 1450,
+      "maxPrice": 4500
+    },
+    {
+      "id": "恒大御景湾-8房9床KTV泳池双拼花园别墅7501-8",
+      "sourceSheet": "恒大御景湾",
+      "project": "恒大御景湾",
+      "area": "南湾/闸坡片区",
+      "nearSea": "近海度假社区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛恒大御景湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.5863,
+      "lng": 111.8492,
+      "roomType": "8房9床KTV泳池双拼花园别墅7501",
+      "productName": "",
+      "roomNo": "",
+      "rooms": 8,
+      "beds": 9,
+      "description": "【恒大御景湾75-01房8房9床】恒大御景湾75-01房8房9床泳池别墅",
+      "link": "https://www.jianpian.cn/a/1jtm6euv",
+      "features": [
+        "泳池",
+        "KTV",
+        "双拼",
+        "花园"
+      ],
+      "prices": [
+        {
+          "period": "7月5日-7月11日",
+          "dayType": "周日至周五",
+          "price": 1800
+        },
+        {
+          "period": "7月5日-7月11日",
+          "dayType": "周六",
+          "price": 4000
+        },
+        {
+          "period": "7月12日-8月23日",
+          "dayType": "周日至周五",
+          "price": 2900
+        },
+        {
+          "period": "7月12日-8月23日",
+          "dayType": "周六",
+          "price": 4700
+        },
+        {
+          "period": "8月24日-8月29日",
+          "dayType": "周日至周五",
+          "price": 1800
+        },
+        {
+          "period": "8月24日-8月29日",
+          "dayType": "周六",
+          "price": 1800
+        },
+        {
+          "period": "8月30日-9月24日",
+          "dayType": "周日至周五",
+          "price": 1500
+        },
+        {
+          "period": "8月30日-9月24日",
+          "dayType": "周六",
+          "price": 2200
+        }
+      ],
+      "minPrice": 1500,
+      "maxPrice": 4700
+    },
+    {
+      "id": "恒大御景湾-7房11床KTV泳池双拼别墅6102-9",
+      "sourceSheet": "恒大御景湾",
+      "project": "恒大御景湾",
+      "area": "南湾/闸坡片区",
+      "nearSea": "近海度假社区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛恒大御景湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.5863,
+      "lng": 111.8492,
+      "roomType": "7房11床KTV泳池双拼别墅6102",
+      "productName": "",
+      "roomNo": "",
+      "rooms": 7,
+      "beds": 11,
+      "description": "【恒大御景湾61-02号7房11床】恒大御景湾61-02号7房11床泳池别墅",
+      "link": "https://www.jianpian.cn/a/1jtm24hr",
+      "features": [
+        "泳池",
+        "KTV",
+        "双拼"
+      ],
+      "prices": [
+        {
+          "period": "7月5日-7月11日",
+          "dayType": "周日至周五",
+          "price": 1900
+        },
+        {
+          "period": "7月5日-7月11日",
+          "dayType": "周六",
+          "price": 4300
+        },
+        {
+          "period": "7月12日-8月23日",
+          "dayType": "周日至周五",
+          "price": 3300
+        },
+        {
+          "period": "7月12日-8月23日",
+          "dayType": "周六",
+          "price": 5100
+        },
+        {
+          "period": "8月24日-8月29日",
+          "dayType": "周日至周五",
+          "price": 1900
+        },
+        {
+          "period": "8月24日-8月29日",
+          "dayType": "周六",
+          "price": 1900
+        },
+        {
+          "period": "8月30日-9月24日",
+          "dayType": "周日至周五",
+          "price": 1600
+        },
+        {
+          "period": "8月30日-9月24日",
+          "dayType": "周六",
+          "price": 2300
+        }
+      ],
+      "minPrice": 1600,
+      "maxPrice": 5100
+    },
+    {
+      "id": "恒大御景湾-8房12床KTV泳池双拼花园别墅8402-10",
+      "sourceSheet": "恒大御景湾",
+      "project": "恒大御景湾",
+      "area": "南湾/闸坡片区",
+      "nearSea": "近海度假社区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛恒大御景湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.5863,
+      "lng": 111.8492,
+      "roomType": "8房12床KTV泳池双拼花园别墅8402",
+      "productName": "",
+      "roomNo": "",
+      "rooms": 8,
+      "beds": 12,
+      "description": "【恒大御景湾84-02号8房12床】恒大御景湾84-02号8房12床泳池别墅",
+      "link": "https://www.jianpian.cn/a/1jtm9zvi",
+      "features": [
+        "泳池",
+        "KTV",
+        "双拼",
+        "花园"
+      ],
+      "prices": [
+        {
+          "period": "7月5日-7月11日",
+          "dayType": "周日至周五",
+          "price": 2000
+        },
+        {
+          "period": "7月5日-7月11日",
+          "dayType": "周六",
+          "price": 4500
+        },
+        {
+          "period": "7月12日-8月23日",
+          "dayType": "周日至周五",
+          "price": 3500
+        },
+        {
+          "period": "7月12日-8月23日",
+          "dayType": "周六",
+          "price": 5500
+        },
+        {
+          "period": "8月24日-8月29日",
+          "dayType": "周日至周五",
+          "price": 2100
+        },
+        {
+          "period": "8月24日-8月29日",
+          "dayType": "周六",
+          "price": 2100
+        },
+        {
+          "period": "8月30日-9月24日",
+          "dayType": "周日至周五",
+          "price": 1700
+        },
+        {
+          "period": "8月30日-9月24日",
+          "dayType": "周六",
+          "price": 2500
+        }
+      ],
+      "minPrice": 1700,
+      "maxPrice": 5500
+    },
+    {
+      "id": "恒大御景湾-9房13床KTV泳池双拼花园别墅8002-11",
+      "sourceSheet": "恒大御景湾",
+      "project": "恒大御景湾",
+      "area": "南湾/闸坡片区",
+      "nearSea": "近海度假社区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛恒大御景湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.5863,
+      "lng": 111.8492,
+      "roomType": "9房13床KTV泳池双拼花园别墅8002",
+      "productName": "",
+      "roomNo": "",
+      "rooms": 9,
+      "beds": 13,
+      "description": "【恒大御景湾80-02号9房13床】恒大御景湾80-02号9房13床泳池别墅",
+      "link": "https://www.jianpian.cn/a/1jtm9k7e",
+      "features": [
+        "泳池",
+        "KTV",
+        "双拼",
+        "花园"
+      ],
+      "prices": [
+        {
+          "period": "7月5日-7月11日",
+          "dayType": "周日至周五",
+          "price": 2100
+        },
+        {
+          "period": "7月5日-7月11日",
+          "dayType": "周六",
+          "price": 4700
+        },
+        {
+          "period": "7月12日-8月23日",
+          "dayType": "周日至周五",
+          "price": 3700
+        },
+        {
+          "period": "7月12日-8月23日",
+          "dayType": "周六",
+          "price": 5700
+        },
+        {
+          "period": "8月24日-8月29日",
+          "dayType": "周日至周五",
+          "price": 2300
+        },
+        {
+          "period": "8月24日-8月29日",
+          "dayType": "周六",
+          "price": 2300
+        },
+        {
+          "period": "8月30日-9月24日",
+          "dayType": "周日至周五",
+          "price": 1800
+        },
+        {
+          "period": "8月30日-9月24日",
+          "dayType": "周六",
+          "price": 2700
+        }
+      ],
+      "minPrice": 1800,
+      "maxPrice": 5700
+    },
+    {
+      "id": "保利银滩玛瑙湾-四合院-含公用泳池-3",
+      "sourceSheet": "玛瑙湾七月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "5房9床",
+      "productName": "",
+      "roomNo": "四合院(含公用泳池)",
+      "rooms": 5,
+      "beds": 9,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jk0sn52",
+      "features": [
+        "泳池"
+      ],
+      "prices": [
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "平日/5号",
+          "price": 2500
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周五/周日",
+          "price": 3500
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周六",
+          "price": 6300
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "平日",
+          "price": 4300
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周五/周日",
+          "price": 5600
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周六",
+          "price": 6800
+        }
+      ],
+      "minPrice": 2500,
+      "maxPrice": 6800
+    },
+    {
+      "id": "保利银滩玛瑙湾-Q61-4",
+      "sourceSheet": "玛瑙湾七月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "Q61-5房8床",
+      "productName": "",
+      "roomNo": "Q61",
+      "rooms": 5,
+      "beds": 8,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jk0l3n9",
+      "features": [],
+      "prices": [
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "平日/5号",
+          "price": 2300
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周五/周日",
+          "price": 3200
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周六",
+          "price": 6000
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "平日",
+          "price": 4000
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周五/周日",
+          "price": 5300
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周六",
+          "price": 6500
+        }
+      ],
+      "minPrice": 2300,
+      "maxPrice": 6500
+    },
+    {
+      "id": "保利银滩玛瑙湾-Q15-5",
+      "sourceSheet": "玛瑙湾七月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "Q15-6房9床",
+      "productName": "",
+      "roomNo": "Q15",
+      "rooms": 6,
+      "beds": 9,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jk0rtsv",
+      "features": [],
+      "prices": [
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "平日/5号",
+          "price": 2300
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周五/周日",
+          "price": 3200
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周六",
+          "price": 6000
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "平日",
+          "price": 4000
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周五/周日",
+          "price": 5300
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周六",
+          "price": 6500
+        }
+      ],
+      "minPrice": 2300,
+      "maxPrice": 6500
+    },
+    {
+      "id": "保利银滩玛瑙湾-Q78-6",
+      "sourceSheet": "玛瑙湾七月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "Q78-6房11床",
+      "productName": "",
+      "roomNo": "Q78",
+      "rooms": 6,
+      "beds": 11,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jk0jmn5",
+      "features": [],
+      "prices": [
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "平日/5号",
+          "price": 2300
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周五/周日",
+          "price": 3200
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周六",
+          "price": 6000
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "平日",
+          "price": 4000
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周五/周日",
+          "price": 5300
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周六",
+          "price": 6500
+        }
+      ],
+      "minPrice": 2300,
+      "maxPrice": 6500
+    },
+    {
+      "id": "保利银滩玛瑙湾-Q25-7",
+      "sourceSheet": "玛瑙湾七月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "Q25-7房10床",
+      "productName": "",
+      "roomNo": "Q25",
+      "rooms": 7,
+      "beds": 10,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jk0mbgi",
+      "features": [],
+      "prices": [
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "平日/5号",
+          "price": 2000
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周五/周日",
+          "price": 3000
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周六",
+          "price": 5800
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "平日",
+          "price": 4300
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周五/周日",
+          "price": 5600
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周六",
+          "price": 6800
+        }
+      ],
+      "minPrice": 2000,
+      "maxPrice": 6800
+    },
+    {
+      "id": "保利银滩玛瑙湾-Q16-8",
+      "sourceSheet": "玛瑙湾七月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "Q16-7房11床",
+      "productName": "",
+      "roomNo": "Q16",
+      "rooms": 7,
+      "beds": 11,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jk0r80u",
+      "features": [],
+      "prices": [
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "平日/5号",
+          "price": 2500
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周五/周日",
+          "price": 3500
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周六",
+          "price": 6300
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "平日",
+          "price": 4300
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周五/周日",
+          "price": 5600
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周六",
+          "price": 6800
+        }
+      ],
+      "minPrice": 2500,
+      "maxPrice": 6800
+    },
+    {
+      "id": "保利银滩玛瑙湾-Q23-9",
+      "sourceSheet": "玛瑙湾七月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "Q23-7房10床",
+      "productName": "",
+      "roomNo": "Q23",
+      "rooms": 7,
+      "beds": 10,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jk0qy3z",
+      "features": [],
+      "prices": [
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "平日/5号",
+          "price": 2500
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周五/周日",
+          "price": 3500
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周六",
+          "price": 6300
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "平日",
+          "price": 4300
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周五/周日",
+          "price": 5600
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周六",
+          "price": 6800
+        }
+      ],
+      "minPrice": 2500,
+      "maxPrice": 6800
+    },
+    {
+      "id": "保利银滩玛瑙湾-Q55-10",
+      "sourceSheet": "玛瑙湾七月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "Q55-5房7床",
+      "productName": "",
+      "roomNo": "Q55",
+      "rooms": 5,
+      "beds": 7,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jk0lskd",
+      "features": [],
+      "prices": [
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "平日/5号",
+          "price": 2500
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周五/周日",
+          "price": 3500
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周六",
+          "price": 6300
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "平日",
+          "price": 4300
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周五/周日",
+          "price": 5600
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周六",
+          "price": 6800
+        }
+      ],
+      "minPrice": 2500,
+      "maxPrice": 6800
+    },
+    {
+      "id": "保利银滩玛瑙湾-Q47-11",
+      "sourceSheet": "玛瑙湾七月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "Q47-6房9床",
+      "productName": "",
+      "roomNo": "Q47",
+      "rooms": 6,
+      "beds": 9,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jk0khkz",
+      "features": [],
+      "prices": [
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "平日/5号",
+          "price": 2500
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周五/周日",
+          "price": 3500
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周六",
+          "price": 6300
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "平日",
+          "price": 4300
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周五/周日",
+          "price": 5600
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周六",
+          "price": 6800
+        }
+      ],
+      "minPrice": 2500,
+      "maxPrice": 6800
+    },
+    {
+      "id": "保利银滩玛瑙湾-Q87-12",
+      "sourceSheet": "玛瑙湾七月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "Q87-7房11床",
+      "productName": "",
+      "roomNo": "Q87",
+      "rooms": 7,
+      "beds": 11,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jk0h84k",
+      "features": [],
+      "prices": [
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "平日/5号",
+          "price": 2700
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周五/周日",
+          "price": 3700
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周六",
+          "price": 6500
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "平日",
+          "price": 4500
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周五/周日",
+          "price": 5800
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周六",
+          "price": 7000
+        }
+      ],
+      "minPrice": 2700,
+      "maxPrice": 7000
+    },
+    {
+      "id": "保利银滩玛瑙湾-Q72-13",
+      "sourceSheet": "玛瑙湾七月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "Q72-7房10床",
+      "productName": "",
+      "roomNo": "Q72",
+      "rooms": 7,
+      "beds": 10,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jk0fnlq",
+      "features": [],
+      "prices": [
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "平日/5号",
+          "price": 3000
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周五/周日",
+          "price": 3500
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周六",
+          "price": 6500
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "平日",
+          "price": 5000
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周五/周日",
+          "price": 6300
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周六",
+          "price": 7800
+        }
+      ],
+      "minPrice": 3000,
+      "maxPrice": 7800
+    },
+    {
+      "id": "保利银滩玛瑙湾-Q76-14",
+      "sourceSheet": "玛瑙湾七月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "Q76-8房12床",
+      "productName": "",
+      "roomNo": "Q76",
+      "rooms": 8,
+      "beds": 12,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jk0bge3",
+      "features": [],
+      "prices": [
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "平日/5号",
+          "price": 3000
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周五/周日",
+          "price": 4000
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周六",
+          "price": 7000
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "平日",
+          "price": 5000
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周五/周日",
+          "price": 6300
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周六",
+          "price": 7800
+        }
+      ],
+      "minPrice": 3000,
+      "maxPrice": 7800
+    },
+    {
+      "id": "保利银滩玛瑙湾-Q75-15",
+      "sourceSheet": "玛瑙湾七月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "Q75-8房12床",
+      "productName": "",
+      "roomNo": "Q75",
+      "rooms": 8,
+      "beds": 12,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jk0d138",
+      "features": [],
+      "prices": [
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "平日/5号",
+          "price": 3800
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周五/周日",
+          "price": 4300
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周六",
+          "price": 7500
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "平日",
+          "price": 5500
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周五/周日",
+          "price": 6800
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周六",
+          "price": 8300
+        }
+      ],
+      "minPrice": 3800,
+      "maxPrice": 8300
+    },
+    {
+      "id": "保利银滩玛瑙湾-Q29-16",
+      "sourceSheet": "玛瑙湾七月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "Q70-9房15床",
+      "productName": "",
+      "roomNo": "Q29",
+      "rooms": 9,
+      "beds": 15,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jk0gx09",
+      "features": [],
+      "prices": [
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "平日/5号",
+          "price": 3300
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周五/周日",
+          "price": 4300
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周六",
+          "price": 7500
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "平日",
+          "price": 5500
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周五/周日",
+          "price": 6800
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周六",
+          "price": 8300
+        }
+      ],
+      "minPrice": 3300,
+      "maxPrice": 8300
+    },
+    {
+      "id": "保利银滩玛瑙湾-Q70-17",
+      "sourceSheet": "玛瑙湾七月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "Q29-10房13床",
+      "productName": "",
+      "roomNo": "Q70",
+      "rooms": 10,
+      "beds": 13,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jk09ofa",
+      "features": [],
+      "prices": [
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "平日/5号",
+          "price": 3300
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周五/周日",
+          "price": 4300
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周六",
+          "price": 7500
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "平日",
+          "price": 5500
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周五/周日",
+          "price": 6800
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周六",
+          "price": 8300
+        }
+      ],
+      "minPrice": 3300,
+      "maxPrice": 8300
+    },
+    {
+      "id": "保利银滩玛瑙湾-Q74-18",
+      "sourceSheet": "玛瑙湾七月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "Q74-9房13床",
+      "productName": "",
+      "roomNo": "Q74",
+      "rooms": 9,
+      "beds": 13,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jk0ay9g",
+      "features": [],
+      "prices": [
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "平日/5号",
+          "price": 3500
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周五/周日",
+          "price": 4500
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周六",
+          "price": 8000
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "平日",
+          "price": 6000
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周五/周日",
+          "price": 7300
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周六",
+          "price": 8800
+        }
+      ],
+      "minPrice": 3500,
+      "maxPrice": 8800
+    },
+    {
+      "id": "保利银滩玛瑙湾-Q46-19",
+      "sourceSheet": "玛瑙湾七月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "Q46-9房16床",
+      "productName": "",
+      "roomNo": "Q46",
+      "rooms": 9,
+      "beds": 16,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jk0ibsr",
+      "features": [],
+      "prices": [
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "平日/5号",
+          "price": 3500
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周五/周日",
+          "price": 4500
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周六",
+          "price": 8000
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "平日",
+          "price": 6000
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周五/周日",
+          "price": 7300
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周六",
+          "price": 8800
+        }
+      ],
+      "minPrice": 3500,
+      "maxPrice": 8800
+    },
+    {
+      "id": "保利银滩玛瑙湾-Q34-20",
+      "sourceSheet": "玛瑙湾七月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "Q34-11房16床",
+      "productName": "",
+      "roomNo": "Q34",
+      "rooms": 11,
+      "beds": 16,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jjzwp40",
+      "features": [],
+      "prices": [
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "平日/5号",
+          "price": 3500
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周五/周日",
+          "price": 4500
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周六",
+          "price": 8000
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "平日",
+          "price": 6000
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周五/周日",
+          "price": 7300
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周六",
+          "price": 8800
+        }
+      ],
+      "minPrice": 3500,
+      "maxPrice": 8800
+    },
+    {
+      "id": "保利银滩玛瑙湾-安宿一号别墅-21",
+      "sourceSheet": "玛瑙湾七月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "17房24床",
+      "productName": "",
+      "roomNo": "安宿一号别墅",
+      "rooms": 17,
+      "beds": 24,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jjzw46x",
+      "features": [],
+      "prices": [
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "平日/5号",
+          "price": 8500
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周五/周日",
+          "price": 10500
+        },
+        {
+          "period": "7月6日-7月11日",
+          "dayType": "周六",
+          "price": 13500
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "平日",
+          "price": 9500
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周五/周日",
+          "price": 11500
+        },
+        {
+          "period": "7月12日-7月31日",
+          "dayType": "周六",
+          "price": 13500
+        }
+      ],
+      "minPrice": 8500,
+      "maxPrice": 13500
+    },
+    {
+      "id": "保利银滩玛瑙湾-四合院-含公用泳池-3-2",
+      "sourceSheet": "玛瑙湾八月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "5房9床",
+      "productName": "",
+      "roomNo": "四合院(含公用泳池)",
+      "rooms": 5,
+      "beds": 9,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jk0sn52",
+      "features": [
+        "泳池"
+      ],
+      "prices": [
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "平日",
+          "price": 4800
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周五/周日",
+          "price": 5800
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周六",
+          "price": 7000
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周五/周日/周六",
+          "price": 3500
+        }
+      ],
+      "minPrice": 3500,
+      "maxPrice": 7000
+    },
+    {
+      "id": "保利银滩玛瑙湾-Q61-4-2",
+      "sourceSheet": "玛瑙湾八月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "Q61-5房8床",
+      "productName": "",
+      "roomNo": "Q61",
+      "rooms": 5,
+      "beds": 8,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jk0l3n9",
+      "features": [],
+      "prices": [
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "平日",
+          "price": 4500
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周五/周日",
+          "price": 5500
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周六",
+          "price": 6700
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周五/周日/周六",
+          "price": 3300
+        }
+      ],
+      "minPrice": 3300,
+      "maxPrice": 6700
+    },
+    {
+      "id": "保利银滩玛瑙湾-Q15-5-2",
+      "sourceSheet": "玛瑙湾八月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "Q15-6房9床",
+      "productName": "",
+      "roomNo": "Q15",
+      "rooms": 6,
+      "beds": 9,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jk0rtsv",
+      "features": [],
+      "prices": [
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "平日",
+          "price": 4500
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周五/周日",
+          "price": 5500
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周六",
+          "price": 6700
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周五/周日/周六",
+          "price": 3300
+        }
+      ],
+      "minPrice": 3300,
+      "maxPrice": 6700
+    },
+    {
+      "id": "保利银滩玛瑙湾-Q78-6-2",
+      "sourceSheet": "玛瑙湾八月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "Q78-6房11床",
+      "productName": "",
+      "roomNo": "Q78",
+      "rooms": 6,
+      "beds": 11,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jk0jmn5",
+      "features": [],
+      "prices": [
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "平日",
+          "price": 4500
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周五/周日",
+          "price": 5500
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周六",
+          "price": 6700
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周五/周日/周六",
+          "price": 3300
+        }
+      ],
+      "minPrice": 3300,
+      "maxPrice": 6700
+    },
+    {
+      "id": "保利银滩玛瑙湾-Q25-7-2",
+      "sourceSheet": "玛瑙湾八月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "Q25-7房10床",
+      "productName": "",
+      "roomNo": "Q25",
+      "rooms": 7,
+      "beds": 10,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jk0mbgi",
+      "features": [],
+      "prices": [
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "平日",
+          "price": 4800
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周五/周日",
+          "price": 5800
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周六",
+          "price": 7000
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周五/周日/周六",
+          "price": 3500
+        }
+      ],
+      "minPrice": 3500,
+      "maxPrice": 7000
+    },
+    {
+      "id": "保利银滩玛瑙湾-Q16-8-2",
+      "sourceSheet": "玛瑙湾八月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "Q16-7房11床",
+      "productName": "",
+      "roomNo": "Q16",
+      "rooms": 7,
+      "beds": 11,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jk0r80u",
+      "features": [],
+      "prices": [
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "平日",
+          "price": 4800
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周五/周日",
+          "price": 5800
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周六",
+          "price": 7000
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周五/周日/周六",
+          "price": 3800
+        }
+      ],
+      "minPrice": 3800,
+      "maxPrice": 7000
+    },
+    {
+      "id": "保利银滩玛瑙湾-Q23-9-2",
+      "sourceSheet": "玛瑙湾八月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "Q23-7房10床",
+      "productName": "",
+      "roomNo": "Q23",
+      "rooms": 7,
+      "beds": 10,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jk0qy3z",
+      "features": [],
+      "prices": [
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "平日",
+          "price": 4800
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周五/周日",
+          "price": 5800
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周六",
+          "price": 7000
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周五/周日/周六",
+          "price": 3800
+        }
+      ],
+      "minPrice": 3800,
+      "maxPrice": 7000
+    },
+    {
+      "id": "保利银滩玛瑙湾-Q55-10-2",
+      "sourceSheet": "玛瑙湾八月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "Q55-5房7床",
+      "productName": "",
+      "roomNo": "Q55",
+      "rooms": 5,
+      "beds": 7,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jk0lskd",
+      "features": [],
+      "prices": [
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "平日",
+          "price": 4800
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周五/周日",
+          "price": 5800
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周六",
+          "price": 7000
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周五/周日/周六",
+          "price": 3800
+        }
+      ],
+      "minPrice": 3800,
+      "maxPrice": 7000
+    },
+    {
+      "id": "保利银滩玛瑙湾-Q47-11-2",
+      "sourceSheet": "玛瑙湾八月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "Q47-6房9床",
+      "productName": "",
+      "roomNo": "Q47",
+      "rooms": 6,
+      "beds": 9,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jk0khkz",
+      "features": [],
+      "prices": [
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "平日",
+          "price": 4800
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周五/周日",
+          "price": 5800
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周六",
+          "price": 7000
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周五/周日/周六",
+          "price": 3800
+        }
+      ],
+      "minPrice": 3800,
+      "maxPrice": 7000
+    },
+    {
+      "id": "保利银滩玛瑙湾-Q87-12-2",
+      "sourceSheet": "玛瑙湾八月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "Q87-7房11床",
+      "productName": "",
+      "roomNo": "Q87",
+      "rooms": 7,
+      "beds": 11,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jk0h84k",
+      "features": [],
+      "prices": [
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "平日",
+          "price": 5000
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周五/周日",
+          "price": 6000
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周六",
+          "price": 6200
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周五/周日/周六",
+          "price": 4000
+        }
+      ],
+      "minPrice": 4000,
+      "maxPrice": 6200
+    },
+    {
+      "id": "保利银滩玛瑙湾-Q72-13-2",
+      "sourceSheet": "玛瑙湾八月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "Q72-7房10床",
+      "productName": "",
+      "roomNo": "Q72",
+      "rooms": 7,
+      "beds": 10,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jk0fnlq",
+      "features": [],
+      "prices": [
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "平日",
+          "price": 5500
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周五/周日",
+          "price": 6500
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周六",
+          "price": 8000
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周五/周日/周六",
+          "price": 4300
+        }
+      ],
+      "minPrice": 4300,
+      "maxPrice": 8000
+    },
+    {
+      "id": "保利银滩玛瑙湾-Q76-14-2",
+      "sourceSheet": "玛瑙湾八月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "Q76-8房12床",
+      "productName": "",
+      "roomNo": "Q76",
+      "rooms": 8,
+      "beds": 12,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jk0bge3",
+      "features": [],
+      "prices": [
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "平日",
+          "price": 5500
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周五/周日",
+          "price": 6500
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周六",
+          "price": 8000
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周五/周日/周六",
+          "price": 4300
+        }
+      ],
+      "minPrice": 4300,
+      "maxPrice": 8000
+    },
+    {
+      "id": "保利银滩玛瑙湾-Q75-Q29-Q70-15",
+      "sourceSheet": "玛瑙湾八月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "Q75-8房12床 Q70-9房15床 Q29-10房13床",
+      "productName": "",
+      "roomNo": "Q75 Q29 Q70",
+      "rooms": 8,
+      "beds": 12,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jk0d138",
+      "features": [],
+      "prices": [
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "平日",
+          "price": 6000
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周五/周日",
+          "price": 7000
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周六",
+          "price": 8500
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周五/周日/周六",
+          "price": 4500
+        }
+      ],
+      "minPrice": 4500,
+      "maxPrice": 8500
+    },
+    {
+      "id": "保利银滩玛瑙湾-Q29-16-2",
+      "sourceSheet": "玛瑙湾八月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "Q70-9房15床",
+      "productName": "",
+      "roomNo": "Q29",
+      "rooms": 9,
+      "beds": 15,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jk0gx09",
+      "features": [],
+      "prices": [
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "平日",
+          "price": 6000
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周五/周日",
+          "price": 7000
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周六",
+          "price": 8500
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周五/周日/周六",
+          "price": 4500
+        }
+      ],
+      "minPrice": 4500,
+      "maxPrice": 8500
+    },
+    {
+      "id": "保利银滩玛瑙湾-Q70-17-2",
+      "sourceSheet": "玛瑙湾八月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "Q29-10房13床",
+      "productName": "",
+      "roomNo": "Q70",
+      "rooms": 10,
+      "beds": 13,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jk09ofa",
+      "features": [],
+      "prices": [
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "平日",
+          "price": 6000
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周五/周日",
+          "price": 7000
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周六",
+          "price": 8500
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周五/周日/周六",
+          "price": 4500
+        }
+      ],
+      "minPrice": 4500,
+      "maxPrice": 8500
+    },
+    {
+      "id": "保利银滩玛瑙湾-Q74-18-2",
+      "sourceSheet": "玛瑙湾八月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "Q74-9房13床",
+      "productName": "",
+      "roomNo": "Q74",
+      "rooms": 9,
+      "beds": 13,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jk0ay9g",
+      "features": [],
+      "prices": [
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "平日",
+          "price": 6300
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周五/周日",
+          "price": 7300
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周六",
+          "price": 8800
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周五/周日/周六",
+          "price": 4800
+        }
+      ],
+      "minPrice": 4800,
+      "maxPrice": 8800
+    },
+    {
+      "id": "保利银滩玛瑙湾-Q46-19-2",
+      "sourceSheet": "玛瑙湾八月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "Q46-9房16床",
+      "productName": "",
+      "roomNo": "Q46",
+      "rooms": 9,
+      "beds": 16,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jk0ibsr",
+      "features": [],
+      "prices": [
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "平日",
+          "price": 6300
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周五/周日",
+          "price": 7300
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周六",
+          "price": 8800
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周五/周日/周六",
+          "price": 4800
+        }
+      ],
+      "minPrice": 4800,
+      "maxPrice": 8800
+    },
+    {
+      "id": "保利银滩玛瑙湾-Q34-20-2",
+      "sourceSheet": "玛瑙湾八月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "Q34-11房16床",
+      "productName": "",
+      "roomNo": "Q34",
+      "rooms": 11,
+      "beds": 16,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jjzwp40",
+      "features": [],
+      "prices": [
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "平日",
+          "price": 6300
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周五/周日",
+          "price": 7300
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周六",
+          "price": 8800
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周五/周日/周六",
+          "price": 4800
+        }
+      ],
+      "minPrice": 4800,
+      "maxPrice": 8800
+    },
+    {
+      "id": "保利银滩玛瑙湾-安宿一号别墅-21-2",
+      "sourceSheet": "玛瑙湾八月",
+      "project": "保利银滩玛瑙湾",
+      "area": "保利银滩片区",
+      "nearSea": "靠近海/银滩片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛保利银滩玛瑙湾",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6122,
+      "lng": 111.9012,
+      "roomType": "17房24床",
+      "productName": "",
+      "roomNo": "安宿一号别墅",
+      "rooms": 17,
+      "beds": 24,
+      "description": "",
+      "link": "https://www.jianpian.cn/a/1jjzw46x",
+      "features": [],
+      "prices": [
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "平日",
+          "price": 9500
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周五/周日",
+          "price": 11500
+        },
+        {
+          "period": "8月1日-8月25日",
+          "dayType": "周六",
+          "price": 13500
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周五/周日/周六",
+          "price": 7500
+        }
+      ],
+      "minPrice": 7500,
+      "maxPrice": 13500
+    },
+    {
+      "id": "保利忘情谷-星空墅-E5303-3",
+      "sourceSheet": "忘情谷",
+      "project": "保利忘情谷/星空墅",
+      "area": "保利银滩片区",
+      "nearSea": "银滩片区，非一线海标注",
+      "seaLevel": "area",
+      "address": "阳江海陵岛保利银滩忘情谷",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6091,
+      "lng": 111.897,
+      "roomType": "4房6床",
+      "productName": "星空4房别墅",
+      "roomNo": "E5303",
+      "rooms": 4,
+      "beds": 6,
+      "description": "【保利星空E5303号4房6床】【保利星空E5303号4房6床】",
+      "link": "https://www.jianpian.cn/a/1j4p4kxg",
+      "features": [],
+      "prices": [
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "平日/周五/周日",
+          "price": 1058
+        },
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "周六",
+          "price": 1778
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "平日",
+          "price": 1298
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "周五",
+          "price": 1538
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "平日",
+          "price": 2578
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周五/周日",
+          "price": 2818
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周六",
+          "price": 3458
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周末",
+          "price": 1858
+        }
+      ],
+      "minPrice": 1058,
+      "maxPrice": 3458
+    },
+    {
+      "id": "保利忘情谷-星空墅-E6201-4",
+      "sourceSheet": "忘情谷",
+      "project": "保利忘情谷/星空墅",
+      "area": "保利银滩片区",
+      "nearSea": "银滩片区，非一线海标注",
+      "seaLevel": "area",
+      "address": "阳江海陵岛保利银滩忘情谷",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6091,
+      "lng": 111.897,
+      "roomType": "5房6床",
+      "productName": "星空5房别墅",
+      "roomNo": "E6201",
+      "rooms": 5,
+      "beds": 6,
+      "description": "【保利星空E6201号5房6床】【保利星空E6201号5房6床 】",
+      "link": "https://www.jianpian.cn/a/1j4p5vvz",
+      "features": [],
+      "prices": [
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "平日/周五/周日",
+          "price": 1058
+        },
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "周六",
+          "price": 1778
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "平日",
+          "price": 1298
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "周五",
+          "price": 1538
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "平日",
+          "price": 2578
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周五/周日",
+          "price": 2818
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周六",
+          "price": 3458
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周末",
+          "price": 1858
+        }
+      ],
+      "minPrice": 1058,
+      "maxPrice": 3458
+    },
+    {
+      "id": "保利忘情谷-星空墅-E4901-5",
+      "sourceSheet": "忘情谷",
+      "project": "保利忘情谷/星空墅",
+      "area": "保利银滩片区",
+      "nearSea": "银滩片区，非一线海标注",
+      "seaLevel": "area",
+      "address": "阳江海陵岛保利银滩忘情谷",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6091,
+      "lng": 111.897,
+      "roomType": "4房6床",
+      "productName": "星空4房泳池别墅",
+      "roomNo": "E4901",
+      "rooms": 4,
+      "beds": 6,
+      "description": "【保利星空E4901号泳池4房6床】【保利星空E4901号泳池4房6床】",
+      "link": "https://www.jianpian.cn/a/1j4p6q5i",
+      "features": [
+        "泳池"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "平日/周五/周日",
+          "price": 1218
+        },
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "周六",
+          "price": 1938
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "平日",
+          "price": 1458
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "周五",
+          "price": 1698
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "平日",
+          "price": 2738
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周五/周日",
+          "price": 2978
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周六",
+          "price": 3618
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周末",
+          "price": 2018
+        }
+      ],
+      "minPrice": 1218,
+      "maxPrice": 3618
+    },
+    {
+      "id": "保利忘情谷-星空墅-E6002-6",
+      "sourceSheet": "忘情谷",
+      "project": "保利忘情谷/星空墅",
+      "area": "保利银滩片区",
+      "nearSea": "银滩片区，非一线海标注",
+      "seaLevel": "area",
+      "address": "阳江海陵岛保利银滩忘情谷",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6091,
+      "lng": 111.897,
+      "roomType": "5房7床",
+      "productName": "星空5房别墅",
+      "roomNo": "E6002",
+      "rooms": 5,
+      "beds": 7,
+      "description": "【保利星空E6002号5房7床】【保利星空E6002号5房7床】",
+      "link": "https://www.jianpian.cn/a/1j4p8m0i",
+      "features": [],
+      "prices": [
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "平日/周五/周日",
+          "price": 1218
+        },
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "周六",
+          "price": 1938
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "平日",
+          "price": 1458
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "周五",
+          "price": 1698
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "平日",
+          "price": 2658
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周五/周日",
+          "price": 2898
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周六",
+          "price": 3538
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周末",
+          "price": 1938
+        }
+      ],
+      "minPrice": 1218,
+      "maxPrice": 3538
+    },
+    {
+      "id": "保利忘情谷-星空墅-E6102-7",
+      "sourceSheet": "忘情谷",
+      "project": "保利忘情谷/星空墅",
+      "area": "保利银滩片区",
+      "nearSea": "银滩片区，非一线海标注",
+      "seaLevel": "area",
+      "address": "阳江海陵岛保利银滩忘情谷",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6091,
+      "lng": 111.897,
+      "roomType": "5房7床",
+      "productName": "星空5房别墅",
+      "roomNo": "E6102",
+      "rooms": 5,
+      "beds": 7,
+      "description": "【保利星空E6102号5房7床】【保利星空E6102号5房7床】",
+      "link": "https://www.jianpian.cn/a/1j4p9uui",
+      "features": [],
+      "prices": [
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "平日/周五/周日",
+          "price": 1218
+        },
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "周六",
+          "price": 1938
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "平日",
+          "price": 1458
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "周五",
+          "price": 1698
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "平日",
+          "price": 2658
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周五/周日",
+          "price": 2898
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周六",
+          "price": 3538
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周末",
+          "price": 1938
+        }
+      ],
+      "minPrice": 1218,
+      "maxPrice": 3538
+    },
+    {
+      "id": "保利忘情谷-星空墅-E4101-8",
+      "sourceSheet": "忘情谷",
+      "project": "保利忘情谷/星空墅",
+      "area": "保利银滩片区",
+      "nearSea": "银滩片区，非一线海标注",
+      "seaLevel": "area",
+      "address": "阳江海陵岛保利银滩忘情谷",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6091,
+      "lng": 111.897,
+      "roomType": "5房9床",
+      "productName": "星空5房泳池别墅",
+      "roomNo": "E4101",
+      "rooms": 5,
+      "beds": 9,
+      "description": "【保利星空E4101号泳池5房9床】【保利星空E4101号泳池5房9床 】",
+      "link": "https://www.jianpian.cn/a/1j4pbqqh",
+      "features": [
+        "泳池"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "平日/周五/周日",
+          "price": 1378
+        },
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "周六",
+          "price": 2098
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "平日",
+          "price": 1618
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "周五",
+          "price": 1858
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "平日",
+          "price": 2898
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周五/周日",
+          "price": 3138
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周六",
+          "price": 3778
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周末",
+          "price": 2178
+        }
+      ],
+      "minPrice": 1378,
+      "maxPrice": 3778
+    },
+    {
+      "id": "保利忘情谷-星空墅-E4701-9",
+      "sourceSheet": "忘情谷",
+      "project": "保利忘情谷/星空墅",
+      "area": "保利银滩片区",
+      "nearSea": "银滩片区，非一线海标注",
+      "seaLevel": "area",
+      "address": "阳江海陵岛保利银滩忘情谷",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6091,
+      "lng": 111.897,
+      "roomType": "5房8床",
+      "productName": "星空5房泳池别墅",
+      "roomNo": "E4701",
+      "rooms": 5,
+      "beds": 8,
+      "description": "【保利E4701号泳池5房8床】保利星空E4701号泳池5房8床",
+      "link": "https://www.jianpian.cn/a/1j4pcfr9",
+      "features": [
+        "泳池"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "平日/周五/周日",
+          "price": 1378
+        },
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "周六",
+          "price": 2098
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "平日",
+          "price": 1618
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "周五",
+          "price": 1858
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "平日",
+          "price": 2898
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周五/周日",
+          "price": 3138
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周六",
+          "price": 3778
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周末",
+          "price": 2178
+        }
+      ],
+      "minPrice": 1378,
+      "maxPrice": 3778
+    },
+    {
+      "id": "保利忘情谷-星空墅-E1-10",
+      "sourceSheet": "忘情谷",
+      "project": "保利忘情谷/星空墅",
+      "area": "保利银滩片区",
+      "nearSea": "银滩片区，非一线海标注",
+      "seaLevel": "area",
+      "address": "阳江海陵岛保利银滩忘情谷",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6091,
+      "lng": 111.897,
+      "roomType": "5房7床",
+      "productName": "星梦墅5房独栋 别墅",
+      "roomNo": "E1",
+      "rooms": 5,
+      "beds": 7,
+      "description": "【保利星空E1号独栋5房7床】保利星空E1号独栋5房7床",
+      "link": "https://www.jianpian.cn/a/1j4pcp2r",
+      "features": [
+        "独栋"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "平日/周五/周日",
+          "price": 1378
+        },
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "周六",
+          "price": 2098
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "平日",
+          "price": 1618
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "周五",
+          "price": 1858
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "平日",
+          "price": 2898
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周五/周日",
+          "price": 3138
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周六",
+          "price": 3778
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周末",
+          "price": 2178
+        }
+      ],
+      "minPrice": 1378,
+      "maxPrice": 3778
+    },
+    {
+      "id": "保利忘情谷-星空墅-E7-11",
+      "sourceSheet": "忘情谷",
+      "project": "保利忘情谷/星空墅",
+      "area": "保利银滩片区",
+      "nearSea": "银滩片区，非一线海标注",
+      "seaLevel": "area",
+      "address": "阳江海陵岛保利银滩忘情谷",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6091,
+      "lng": 111.897,
+      "roomType": "5房6床",
+      "productName": "星空5房独栋泳池 别墅",
+      "roomNo": "E7",
+      "rooms": 5,
+      "beds": 6,
+      "description": "【保利星空E7号独栋泳池5房6床】保利星空E7号独栋泳池5房6床",
+      "link": "https://www.jianpian.cn/a/1j4pemuv",
+      "features": [
+        "泳池",
+        "独栋"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "平日/周五/周日",
+          "price": 1538
+        },
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "周六",
+          "price": 2258
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "平日",
+          "price": 2038
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "周五",
+          "price": 2338
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "平日",
+          "price": 3298
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周五/周日",
+          "price": 3458
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周六",
+          "price": 4658
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周末",
+          "price": 2578
+        }
+      ],
+      "minPrice": 1538,
+      "maxPrice": 4658
+    },
+    {
+      "id": "保利忘情谷-星空墅-E16-12",
+      "sourceSheet": "忘情谷",
+      "project": "保利忘情谷/星空墅",
+      "area": "保利银滩片区",
+      "nearSea": "银滩片区，非一线海标注",
+      "seaLevel": "area",
+      "address": "阳江海陵岛保利银滩忘情谷",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6091,
+      "lng": 111.897,
+      "roomType": "5房6床",
+      "productName": "星空5房独栋泳池 别墅",
+      "roomNo": "E16",
+      "rooms": 5,
+      "beds": 6,
+      "description": "【保利星空E16号独栋泳池5房6床】保利星空E16号独栋泳池5房6床",
+      "link": "https://www.jianpian.cn/a/1j4pf541",
+      "features": [
+        "泳池",
+        "独栋"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "平日/周五/周日",
+          "price": 1538
+        },
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "周六",
+          "price": 2258
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "平日",
+          "price": 2038
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "周五",
+          "price": 2338
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "平日",
+          "price": 3298
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周五/周日",
+          "price": 3458
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周六",
+          "price": 4658
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周末",
+          "price": 2578
+        }
+      ],
+      "minPrice": 1538,
+      "maxPrice": 4658
+    },
+    {
+      "id": "保利忘情谷-星空墅-E4102-13",
+      "sourceSheet": "忘情谷",
+      "project": "保利忘情谷/星空墅",
+      "area": "保利银滩片区",
+      "nearSea": "银滩片区，非一线海标注",
+      "seaLevel": "area",
+      "address": "阳江海陵岛保利银滩忘情谷",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6091,
+      "lng": 111.897,
+      "roomType": "6房9床",
+      "productName": "多巴胺6房泳池 别墅",
+      "roomNo": "E4102",
+      "rooms": 6,
+      "beds": 9,
+      "description": "【保利星空E4102号泳池6房9床】保利星空E4102号大泳池6房9床",
+      "link": "https://www.jianpian.cn/a/1j4pfysf",
+      "features": [
+        "泳池"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "平日/周五/周日",
+          "price": 1538
+        },
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "周六",
+          "price": 2498
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "平日",
+          "price": 1938
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "周五",
+          "price": 2338
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "平日",
+          "price": 3858
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周五/周日",
+          "price": 4258
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周六",
+          "price": 5218
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周末",
+          "price": 2738
+        }
+      ],
+      "minPrice": 1538,
+      "maxPrice": 5218
+    },
+    {
+      "id": "保利忘情谷-星空墅-E4103-14",
+      "sourceSheet": "忘情谷",
+      "project": "保利忘情谷/星空墅",
+      "area": "保利银滩片区",
+      "nearSea": "银滩片区，非一线海标注",
+      "seaLevel": "area",
+      "address": "阳江海陵岛保利银滩忘情谷",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6091,
+      "lng": 111.897,
+      "roomType": "6房9床",
+      "productName": "多巴胺6房泳池 别墅",
+      "roomNo": "E4103",
+      "rooms": 6,
+      "beds": 9,
+      "description": "【保利星空E4103号泳池6房9床】保利星空E4103号泳池6房9床",
+      "link": "https://www.jianpian.cn/a/1j4pgfqg",
+      "features": [
+        "泳池"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "平日/周五/周日",
+          "price": 1538
+        },
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "周六",
+          "price": 2498
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "平日",
+          "price": 1938
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "周五",
+          "price": 2338
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "平日",
+          "price": 3858
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周五/周日",
+          "price": 4258
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周六",
+          "price": 5218
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周末",
+          "price": 2738
+        }
+      ],
+      "minPrice": 1538,
+      "maxPrice": 5218
+    },
+    {
+      "id": "保利忘情谷-星空墅-E4202-15",
+      "sourceSheet": "忘情谷",
+      "project": "保利忘情谷/星空墅",
+      "area": "保利银滩片区",
+      "nearSea": "银滩片区，非一线海标注",
+      "seaLevel": "area",
+      "address": "阳江海陵岛保利银滩忘情谷",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6091,
+      "lng": 111.897,
+      "roomType": "6房9床",
+      "productName": "美宁娜6房滑梯泳池 别墅",
+      "roomNo": "E4202",
+      "rooms": 6,
+      "beds": 9,
+      "description": "【保利星空E4202滑梯6房9床】保利星空E4202泳池滑梯6房9床",
+      "link": "https://www.jianpian.cn/a/1j4ph12j",
+      "features": [
+        "泳池",
+        "滑梯"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "平日/周五/周日",
+          "price": 1538
+        },
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "周六",
+          "price": 2498
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "平日",
+          "price": 1938
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "周五",
+          "price": 2338
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "平日",
+          "price": 3858
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周五/周日",
+          "price": 4258
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周六",
+          "price": 5218
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周末",
+          "price": 2738
+        }
+      ],
+      "minPrice": 1538,
+      "maxPrice": 5218
+    },
+    {
+      "id": "保利忘情谷-星空墅-E4502-16",
+      "sourceSheet": "忘情谷",
+      "project": "保利忘情谷/星空墅",
+      "area": "保利银滩片区",
+      "nearSea": "银滩片区，非一线海标注",
+      "seaLevel": "area",
+      "address": "阳江海陵岛保利银滩忘情谷",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6091,
+      "lng": 111.897,
+      "roomType": "6房10床",
+      "productName": "勃艮第ins风6房泳池别墅",
+      "roomNo": "E4502",
+      "rooms": 6,
+      "beds": 10,
+      "description": "【保利星空E4502泳池6房10床】保利星空E4502号泳池6房10床",
+      "link": "https://www.jianpian.cn/a/1j4pho9r",
+      "features": [
+        "泳池"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "平日/周五/周日",
+          "price": 1538
+        },
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "周六",
+          "price": 2498
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "平日",
+          "price": 1938
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "周五",
+          "price": 2338
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "平日",
+          "price": 3858
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周五/周日",
+          "price": 4258
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周六",
+          "price": 5218
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周末",
+          "price": 2738
+        }
+      ],
+      "minPrice": 1538,
+      "maxPrice": 5218
+    },
+    {
+      "id": "保利忘情谷-星空墅-E30-17",
+      "sourceSheet": "忘情谷",
+      "project": "保利忘情谷/星空墅",
+      "area": "保利银滩片区",
+      "nearSea": "银滩片区，非一线海标注",
+      "seaLevel": "area",
+      "address": "阳江海陵岛保利银滩忘情谷",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6091,
+      "lng": 111.897,
+      "roomType": "6房9床",
+      "productName": "星空6房独栋泳池别墅",
+      "roomNo": "E30",
+      "rooms": 6,
+      "beds": 9,
+      "description": "【保利星空E30独栋泳池6房9床】保利星空E30独栋泳池6房9床",
+      "link": "https://www.jianpian.cn/a/1j4piwwo",
+      "features": [
+        "泳池",
+        "独栋"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "平日/周五/周日",
+          "price": 1538
+        },
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "周六",
+          "price": 2498
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "平日",
+          "price": 1938
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "周五",
+          "price": 2338
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "平日",
+          "price": 3858
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周五/周日",
+          "price": 4258
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周六",
+          "price": 5218
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周末",
+          "price": 2738
+        }
+      ],
+      "minPrice": 1538,
+      "maxPrice": 5218
+    },
+    {
+      "id": "保利忘情谷-星空墅-E5501-18",
+      "sourceSheet": "忘情谷",
+      "project": "保利忘情谷/星空墅",
+      "area": "保利银滩片区",
+      "nearSea": "银滩片区，非一线海标注",
+      "seaLevel": "area",
+      "address": "阳江海陵岛保利银滩忘情谷",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6091,
+      "lng": 111.897,
+      "roomType": "6房10床",
+      "productName": "巴厘很6房泳池滑梯别墅",
+      "roomNo": "E5501",
+      "rooms": 6,
+      "beds": 10,
+      "description": "【保利星空E5501滑梯6房10床】保利星空E5501号滑梯泳池6房10床",
+      "link": "https://www.jianpian.cn/a/1j4pjdn7",
+      "features": [
+        "泳池",
+        "滑梯"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "平日/周五/周日",
+          "price": 1698
+        },
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "周六",
+          "price": 2658
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "平日",
+          "price": 2098
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "周五",
+          "price": 2498
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "平日",
+          "price": 4098
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周五/周日",
+          "price": 4498
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周六",
+          "price": 5458
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周末",
+          "price": 2978
+        }
+      ],
+      "minPrice": 1698,
+      "maxPrice": 5458
+    },
+    {
+      "id": "保利忘情谷-星空墅-E24-19",
+      "sourceSheet": "忘情谷",
+      "project": "保利忘情谷/星空墅",
+      "area": "保利银滩片区",
+      "nearSea": "银滩片区，非一线海标注",
+      "seaLevel": "area",
+      "address": "阳江海陵岛保利银滩忘情谷",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6091,
+      "lng": 111.897,
+      "roomType": "6房10床",
+      "productName": "星空8房豪华独栋泳池别墅",
+      "roomNo": "E24",
+      "rooms": 6,
+      "beds": 10,
+      "description": "【保利星空E24独栋泳池6房10床】保利星空E24独栋泳池6房10床",
+      "link": "https://www.jianpian.cn/a/1j4pjurd",
+      "features": [
+        "泳池",
+        "独栋"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "平日/周五/周日",
+          "price": 1698
+        },
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "周六",
+          "price": 2658
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "平日",
+          "price": 2098
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "周五",
+          "price": 2498
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "平日",
+          "price": 4098
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周五/周日",
+          "price": 4498
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周六",
+          "price": 5458
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周末",
+          "price": 2978
+        }
+      ],
+      "minPrice": 1698,
+      "maxPrice": 5458
+    },
+    {
+      "id": "保利忘情谷-星空墅-E32-20",
+      "sourceSheet": "忘情谷",
+      "project": "保利忘情谷/星空墅",
+      "area": "保利银滩片区",
+      "nearSea": "银滩片区，非一线海标注",
+      "seaLevel": "area",
+      "address": "阳江海陵岛保利银滩忘情谷",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6091,
+      "lng": 111.897,
+      "roomType": "6房10床",
+      "productName": "星空8房豪华独栋泳池别墅",
+      "roomNo": "E32",
+      "rooms": 6,
+      "beds": 10,
+      "description": "【保利星E32独栋泳池6房10床】保利星E32独栋泳池6房10床",
+      "link": "https://www.jianpian.cn/a/1j4pk16h",
+      "features": [
+        "泳池",
+        "独栋"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "平日/周五/周日",
+          "price": 1698
+        },
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "周六",
+          "price": 2658
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "平日",
+          "price": 2098
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "周五",
+          "price": 2498
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "平日",
+          "price": 4098
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周五/周日",
+          "price": 4498
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周六",
+          "price": 5458
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周末",
+          "price": 2978
+        }
+      ],
+      "minPrice": 1698,
+      "maxPrice": 5458
+    },
+    {
+      "id": "保利忘情谷-星空墅-E6004-21",
+      "sourceSheet": "忘情谷",
+      "project": "保利忘情谷/星空墅",
+      "area": "保利银滩片区",
+      "nearSea": "银滩片区，非一线海标注",
+      "seaLevel": "area",
+      "address": "阳江海陵岛保利银滩忘情谷",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6091,
+      "lng": 111.897,
+      "roomType": "7房10床",
+      "productName": "满星墅7房泳池别墅",
+      "roomNo": "E6004",
+      "rooms": 7,
+      "beds": 10,
+      "description": "【保利E6004-7房10床】E6004-7房10床丨泳池+KTV+碳烤炉+麻将+厨房",
+      "link": "https://www.jianpian.cn/a/1k0d2fxb",
+      "features": [
+        "泳池",
+        "KTV",
+        "麻将"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "平日/周五/周日",
+          "price": 1698
+        },
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "周六",
+          "price": 2658
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "平日",
+          "price": 2098
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "周五",
+          "price": 2498
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "平日",
+          "price": 4098
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周五/周日",
+          "price": 4498
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周六",
+          "price": 5458
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周末",
+          "price": 2978
+        }
+      ],
+      "minPrice": 1698,
+      "maxPrice": 5458
+    },
+    {
+      "id": "保利忘情谷-星空墅-E33-22",
+      "sourceSheet": "忘情谷",
+      "project": "保利忘情谷/星空墅",
+      "area": "保利银滩片区",
+      "nearSea": "银滩片区，非一线海标注",
+      "seaLevel": "area",
+      "address": "阳江海陵岛保利银滩忘情谷",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6091,
+      "lng": 111.897,
+      "roomType": "8房12床",
+      "productName": "顶奢8房独栋泳池滑梯别墅",
+      "roomNo": "E33",
+      "rooms": 8,
+      "beds": 12,
+      "description": "【保利E33-独栋8房12床 】保利E33-独栋8房12床 （全套间）",
+      "link": "https://www.jianpian.cn/a/1k0d2l0f",
+      "features": [
+        "泳池",
+        "滑梯",
+        "独栋"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "平日/周五/周日",
+          "price": 2338
+        },
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "周六",
+          "price": 3298
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "平日",
+          "price": 2738
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "周五",
+          "price": 3538
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "平日",
+          "price": 5138
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周五/周日",
+          "price": 5538
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周六",
+          "price": 6498
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周末",
+          "price": 4018
+        }
+      ],
+      "minPrice": 2338,
+      "maxPrice": 6498
+    },
+    {
+      "id": "保利忘情谷-星空墅-E31-23",
+      "sourceSheet": "忘情谷",
+      "project": "保利忘情谷/星空墅",
+      "area": "保利银滩片区",
+      "nearSea": "银滩片区，非一线海标注",
+      "seaLevel": "area",
+      "address": "阳江海陵岛保利银滩忘情谷",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6091,
+      "lng": 111.897,
+      "roomType": "8房12床",
+      "productName": "顶奢8房独栋泳池滑梯别墅",
+      "roomNo": "E31",
+      "rooms": 8,
+      "beds": 12,
+      "description": "【保利E31独栋8房12床】保利E31独栋8房12床 （全套间）| 私家花园泳池+KTV+碳烤炉+麻将+厨房",
+      "link": "https://www.jianpian.cn/a/1k0d2neb",
+      "features": [
+        "泳池",
+        "KTV",
+        "滑梯",
+        "独栋",
+        "花园",
+        "麻将"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "平日/周五/周日",
+          "price": 2338
+        },
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "周六",
+          "price": 3298
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "平日",
+          "price": 2738
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "周五",
+          "price": 3538
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "平日",
+          "price": 5138
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周五/周日",
+          "price": 5538
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周六",
+          "price": 6498
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周末",
+          "price": 4018
+        }
+      ],
+      "minPrice": 2338,
+      "maxPrice": 6498
+    },
+    {
+      "id": "保利山海梦泽度假村-Q35-特价-3",
+      "sourceSheet": "山海梦泽度假村",
+      "project": "保利山海梦泽度假村",
+      "area": "保利Q区/山海梦泽片区",
+      "nearSea": "海边/一线海边房源较多",
+      "seaLevel": "beach",
+      "address": "阳江海陵岛保利山海梦泽度假村",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6052,
+      "lng": 111.9047,
+      "roomType": "6房10床",
+      "productName": "未时，6房海边独栋泳池别墅（特价）",
+      "roomNo": "Q35（特价）",
+      "rooms": 6,
+      "beds": 10,
+      "description": "【保利Q区Q35独栋泳池6房10床】保利Q区Q35独栋泳池6房10床",
+      "link": "https://www.jianpian.cn/a/1j4pn15b",
+      "features": [
+        "泳池",
+        "独栋",
+        "海边",
+        "特价"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "平日/周五/周日",
+          "price": 2098
+        },
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "周六",
+          "price": 3778
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "平日",
+          "price": 2738
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "周五",
+          "price": 3378
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "平日",
+          "price": 4338
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周五/周日",
+          "price": 5218
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周六",
+          "price": 6978
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周末",
+          "price": 3538
+        }
+      ],
+      "minPrice": 2098,
+      "maxPrice": 6978
+    },
+    {
+      "id": "保利山海梦泽度假村-Q53-4",
+      "sourceSheet": "山海梦泽度假村",
+      "project": "保利山海梦泽度假村",
+      "area": "保利Q区/山海梦泽片区",
+      "nearSea": "海边/一线海边房源较多",
+      "seaLevel": "beach",
+      "address": "阳江海陵岛保利山海梦泽度假村",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6052,
+      "lng": 111.9047,
+      "roomType": "6房9床",
+      "productName": "不渝,6房海边独栋泳池别墅",
+      "roomNo": "Q53",
+      "rooms": 6,
+      "beds": 9,
+      "description": "【保利Q区Q53泳池滑梯6房9床】保利Q区Q53泳池滑梯6房9床",
+      "link": "https://www.jianpian.cn/a/1j4pnbxe",
+      "features": [
+        "泳池",
+        "滑梯",
+        "独栋",
+        "海边"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "平日/周五/周日",
+          "price": 2098
+        },
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "周六",
+          "price": 3778
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "平日",
+          "price": 2738
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "周五",
+          "price": 3378
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "平日",
+          "price": 4338
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周五/周日",
+          "price": 5218
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周六",
+          "price": 6978
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周末",
+          "price": 3538
+        }
+      ],
+      "minPrice": 2098,
+      "maxPrice": 6978
+    },
+    {
+      "id": "保利山海梦泽度假村-Q39-5",
+      "sourceSheet": "山海梦泽度假村",
+      "project": "保利山海梦泽度假村",
+      "area": "保利Q区/山海梦泽片区",
+      "nearSea": "海边/一线海边房源较多",
+      "seaLevel": "beach",
+      "address": "阳江海陵岛保利山海梦泽度假村",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6052,
+      "lng": 111.9047,
+      "roomType": "6房9床",
+      "productName": "和乐,6房海边独栋泳池别墅",
+      "roomNo": "Q39",
+      "rooms": 6,
+      "beds": 9,
+      "description": "【保利Q区Q39泳池6房9床】保利Q区Q39泳池6房9床",
+      "link": "https://www.jianpian.cn/a/1j4pnsbb",
+      "features": [
+        "泳池",
+        "独栋",
+        "海边"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "平日/周五/周日",
+          "price": 2258
+        },
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "周六",
+          "price": 3778
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "平日",
+          "price": 3058
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "周五",
+          "price": 3538
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "平日",
+          "price": 4658
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周五/周日",
+          "price": 5538
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周六",
+          "price": 7218
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周末",
+          "price": 3858
+        }
+      ],
+      "minPrice": 2258,
+      "maxPrice": 7218
+    },
+    {
+      "id": "保利山海梦泽度假村-Q63-6",
+      "sourceSheet": "山海梦泽度假村",
+      "project": "保利山海梦泽度假村",
+      "area": "保利Q区/山海梦泽片区",
+      "nearSea": "海边/一线海边房源较多",
+      "seaLevel": "beach",
+      "address": "阳江海陵岛保利山海梦泽度假村",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6052,
+      "lng": 111.9047,
+      "roomType": "7房11床",
+      "productName": "觅庭,7房海边独栋泳池别墅",
+      "roomNo": "Q63",
+      "rooms": 7,
+      "beds": 11,
+      "description": "【保利Q区Q63独栋泳池7房11床】保利Q区Q63独栋泳池7房11床",
+      "link": "https://www.jianpian.cn/a/1j4poa02",
+      "features": [
+        "泳池",
+        "独栋",
+        "海边"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "平日/周五/周日",
+          "price": 2418
+        },
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "周六",
+          "price": 4018
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "平日",
+          "price": 3218
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "周五",
+          "price": 3858
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "平日",
+          "price": 5078
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周五/周日",
+          "price": 5778
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周六",
+          "price": 7938
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周末",
+          "price": 3938
+        }
+      ],
+      "minPrice": 2418,
+      "maxPrice": 7938
+    },
+    {
+      "id": "保利山海梦泽度假村-Q71-7",
+      "sourceSheet": "山海梦泽度假村",
+      "project": "保利山海梦泽度假村",
+      "area": "保利Q区/山海梦泽片区",
+      "nearSea": "海边/一线海边房源较多",
+      "seaLevel": "beach",
+      "address": "阳江海陵岛保利山海梦泽度假村",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6052,
+      "lng": 111.9047,
+      "roomType": "7房11床",
+      "productName": "怡茗,7房海边独栋泳池别墅",
+      "roomNo": "Q71",
+      "rooms": 7,
+      "beds": 11,
+      "description": "【保利Q区Q71独栋泳池7房11床】保利Q区Q71独栋泳池7房11床",
+      "link": "https://www.jianpian.cn/a/1j4pof9z",
+      "features": [
+        "泳池",
+        "独栋",
+        "海边"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "平日/周五/周日",
+          "price": 2418
+        },
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "周六",
+          "price": 4018
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "平日",
+          "price": 3218
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "周五",
+          "price": 3858
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "平日",
+          "price": 5078
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周五/周日",
+          "price": 5778
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周六",
+          "price": 7938
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周末",
+          "price": 3938
+        }
+      ],
+      "minPrice": 2418,
+      "maxPrice": 7938
+    },
+    {
+      "id": "保利山海梦泽度假村-Q59-10房-8",
+      "sourceSheet": "山海梦泽度假村",
+      "project": "保利山海梦泽度假村",
+      "area": "保利Q区/山海梦泽片区",
+      "nearSea": "海边/一线海边房源较多",
+      "seaLevel": "beach",
+      "address": "阳江海陵岛保利山海梦泽度假村",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6052,
+      "lng": 111.9047,
+      "roomType": "10房13床",
+      "productName": "斯巴卡10房一线海边独栋泳池别墅（新品）",
+      "roomNo": "Q59（10房）",
+      "rooms": 10,
+      "beds": 13,
+      "description": "【保利Q区Q59独栋泳池别墅】保利Q区Q59独栋泳池别墅 |10房13床| 篮球场 蜿蜒泳池 独立KTV房&桌球房&麻将房 儿童波波池 彩虹长道 求婚平台 宴会长桌",
+      "link": "https://www.jianpian.cn/a/1j4por5h",
+      "features": [
+        "泳池",
+        "KTV",
+        "独栋",
+        "桌球",
+        "麻将",
+        "篮球场",
+        "儿童",
+        "海边",
+        "一线海边",
+        "新品"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "平日/周五/周日",
+          "price": 3698
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "平日",
+          "price": 5058
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "周五",
+          "price": 5778
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "平日",
+          "price": 6978
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周五/周日",
+          "price": 7858
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周六",
+          "price": 9999
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周末",
+          "price": 5298
+        }
+      ],
+      "minPrice": 3698,
+      "maxPrice": 9999
+    },
+    {
+      "id": "保利山海梦泽度假村-Q60-10房-9",
+      "sourceSheet": "山海梦泽度假村",
+      "project": "保利山海梦泽度假村",
+      "area": "保利Q区/山海梦泽片区",
+      "nearSea": "海边/一线海边房源较多",
+      "seaLevel": "beach",
+      "address": "阳江海陵岛保利山海梦泽度假村",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.6052,
+      "lng": 111.9047,
+      "roomType": "10房13床",
+      "productName": "香奈儿10房一线海边独栋泳池别墅（新品）",
+      "roomNo": "Q60(10房）",
+      "rooms": 10,
+      "beds": 13,
+      "description": "【保利Q区Q60独栋泳池10房13】保利Q区Q60独栋泳池10房13床+儿童嬉戏池+蜿蜒泳池+独立KTV房&桌球房&麻将房+儿童波波池+彩虹长道+求婚平台+宴会长桌",
+      "link": "https://www.jianpian.cn/a/1j4pp2jr",
+      "features": [
+        "泳池",
+        "KTV",
+        "独栋",
+        "桌球",
+        "麻将",
+        "儿童",
+        "海边",
+        "一线海边",
+        "新品"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "平日/周五/周日",
+          "price": 3698
+        },
+        {
+          "period": "7月1日-7月5日",
+          "dayType": "周六",
+          "price": 5778
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "平日",
+          "price": 5058
+        },
+        {
+          "period": "7月6日-7月10日",
+          "dayType": "周五",
+          "price": 5778
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "平日",
+          "price": 6978
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周五/周日",
+          "price": 7858
+        },
+        {
+          "period": "7月11日-8月25日",
+          "dayType": "周六",
+          "price": 9999
+        },
+        {
+          "period": "8月26日-8月31日",
+          "dayType": "平日/周末",
+          "price": 5298
+        }
+      ],
+      "minPrice": 3698,
+      "maxPrice": 9999
+    },
+    {
+      "id": "北洛秘景-13-03-4",
+      "sourceSheet": "北洛秘景",
+      "project": "北洛秘景",
+      "area": "北洛湾片区",
+      "nearSea": "近海/北洛湾片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛北洛秘景",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.5706,
+      "lng": 111.8399,
+      "roomType": "7房11床",
+      "productName": "北洛秘景近海泳池6房别墅",
+      "roomNo": "13-03",
+      "rooms": 7,
+      "beds": 11,
+      "description": "【北洛秘境13-03号7房11床】【北洛秘境13-03号7房11床】",
+      "link": "https://www.jianpian.cn/a/1j4ndm7c",
+      "features": [
+        "泳池",
+        "近海"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月10日",
+          "dayType": "平日/周六",
+          "price": 3000
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "平日",
+          "price": 5999
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "周五/周日",
+          "price": 6800
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "周六",
+          "price": 7500
+        }
+      ],
+      "minPrice": 3000,
+      "maxPrice": 7500
+    },
+    {
+      "id": "北洛秘景-12-06-5",
+      "sourceSheet": "北洛秘景",
+      "project": "北洛秘景",
+      "area": "北洛湾片区",
+      "nearSea": "近海/北洛湾片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛北洛秘景",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.5706,
+      "lng": 111.8399,
+      "roomType": "7房9床",
+      "productName": "北洛秘景近海泳池6房别墅",
+      "roomNo": "12-06",
+      "rooms": 7,
+      "beds": 9,
+      "description": "【北洛秘境12-06号7房9床】【北洛秘境12-06号7房9床】",
+      "link": "https://www.jianpian.cn/a/1j4nc8m6",
+      "features": [
+        "泳池",
+        "近海"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月10日",
+          "dayType": "平日/周六",
+          "price": 3000
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "平日",
+          "price": 5999
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "周五/周日",
+          "price": 6800
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "周六",
+          "price": 7500
+        }
+      ],
+      "minPrice": 3000,
+      "maxPrice": 7500
+    },
+    {
+      "id": "北洛秘景-12-03-6",
+      "sourceSheet": "北洛秘景",
+      "project": "北洛秘景",
+      "area": "北洛湾片区",
+      "nearSea": "近海/北洛湾片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛北洛秘景",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.5706,
+      "lng": 111.8399,
+      "roomType": "5房7床",
+      "productName": "北洛秘景近海泳池6房别墅",
+      "roomNo": "12-03",
+      "rooms": 5,
+      "beds": 7,
+      "description": "【北洛秘境12-06号7房9床】【北洛秘境12-06号7房9床】",
+      "link": "https://www.jianpian.cn/a/1j4nc8m6",
+      "features": [
+        "泳池",
+        "近海"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月10日",
+          "dayType": "平日/周六",
+          "price": 2700
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "平日",
+          "price": 5500
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "周五/周日",
+          "price": 6300
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "周六",
+          "price": 7000
+        }
+      ],
+      "minPrice": 2700,
+      "maxPrice": 7000
+    },
+    {
+      "id": "北洛秘景-10-02-7",
+      "sourceSheet": "北洛秘景",
+      "project": "北洛秘景",
+      "area": "北洛湾片区",
+      "nearSea": "近海/北洛湾片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛北洛秘景",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.5706,
+      "lng": 111.8399,
+      "roomType": "6房8床",
+      "productName": "北洛秘景近海泳池6房别墅",
+      "roomNo": "10-02",
+      "rooms": 6,
+      "beds": 8,
+      "description": "【北洛秘境10-02号6房8床】【北洛秘境10-02号 6房8床】",
+      "link": "https://www.jianpian.cn/a/1j4ncezy",
+      "features": [
+        "泳池",
+        "近海"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月10日",
+          "dayType": "平日/周六",
+          "price": 2500
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "平日",
+          "price": 5500
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "周五/周日",
+          "price": 6300
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "周六",
+          "price": 7000
+        }
+      ],
+      "minPrice": 2500,
+      "maxPrice": 7000
+    },
+    {
+      "id": "北洛秘景-10-06-8",
+      "sourceSheet": "北洛秘景",
+      "project": "北洛秘景",
+      "area": "北洛湾片区",
+      "nearSea": "近海/北洛湾片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛北洛秘景",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.5706,
+      "lng": 111.8399,
+      "roomType": "6房7床",
+      "productName": "北洛秘景近海泳池6房别墅",
+      "roomNo": "10-06",
+      "rooms": 6,
+      "beds": 7,
+      "description": "【北洛秘境10-06号6房7床】【北洛秘境10-06号6房7床】",
+      "link": "https://www.jianpian.cn/a/1j4nd782",
+      "features": [
+        "泳池",
+        "近海"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月10日",
+          "dayType": "平日/周六",
+          "price": 2100
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "平日",
+          "price": 5000
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "周五/周日",
+          "price": 5800
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "周六",
+          "price": 6500
+        }
+      ],
+      "minPrice": 2100,
+      "maxPrice": 6500
+    },
+    {
+      "id": "北洛秘景-11-01-9",
+      "sourceSheet": "北洛秘景",
+      "project": "北洛秘景",
+      "area": "北洛湾片区",
+      "nearSea": "近海/北洛湾片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛北洛秘景",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.5706,
+      "lng": 111.8399,
+      "roomType": "6房7床",
+      "productName": "北洛秘景近海泳池6房别墅",
+      "roomNo": "11-01",
+      "rooms": 6,
+      "beds": 7,
+      "description": "【北洛秘境11-01号6房7床】【北洛秘境11-01号6房7床】",
+      "link": "https://www.jianpian.cn/a/1j4ndcxo",
+      "features": [
+        "泳池",
+        "近海"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月10日",
+          "dayType": "平日/周六",
+          "price": 2100
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "平日",
+          "price": 5000
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "周五/周日",
+          "price": 5800
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "周六",
+          "price": 6500
+        }
+      ],
+      "minPrice": 2100,
+      "maxPrice": 6500
+    },
+    {
+      "id": "北洛秘景-9-03-10",
+      "sourceSheet": "北洛秘景",
+      "project": "北洛秘景",
+      "area": "北洛湾片区",
+      "nearSea": "近海/北洛湾片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛北洛秘景",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.5706,
+      "lng": 111.8399,
+      "roomType": "5房8床",
+      "productName": "北洛秘景近海泳池5房别墅",
+      "roomNo": "9-03",
+      "rooms": 5,
+      "beds": 8,
+      "description": "【北洛秘境9-03号5房8床】【北洛秘境9-03号5房8床】",
+      "link": "https://www.jianpian.cn/a/1j4ndg90",
+      "features": [
+        "泳池",
+        "近海"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月10日",
+          "dayType": "平日/周六",
+          "price": 2300
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "平日",
+          "price": 5000
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "周五/周日",
+          "price": 5800
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "周六",
+          "price": 6500
+        }
+      ],
+      "minPrice": 2300,
+      "maxPrice": 6500
+    },
+    {
+      "id": "北洛秘景-13-04-11",
+      "sourceSheet": "北洛秘景",
+      "project": "北洛秘景",
+      "area": "北洛湾片区",
+      "nearSea": "近海/北洛湾片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛北洛秘景",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.5706,
+      "lng": 111.8399,
+      "roomType": "4房7床",
+      "productName": "北洛秘景近海泳池4房别墅",
+      "roomNo": "13-04",
+      "rooms": 4,
+      "beds": 7,
+      "description": "【北洛秘境13-04号4房7床】【北洛秘境13-04号4房7床】",
+      "link": "https://www.jianpian.cn/a/1j4ndqlq",
+      "features": [
+        "泳池",
+        "近海"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月10日",
+          "dayType": "平日/周六",
+          "price": 2500
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "平日",
+          "price": 5000
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "周五/周日",
+          "price": 5800
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "周六",
+          "price": 6500
+        }
+      ],
+      "minPrice": 2500,
+      "maxPrice": 6500
+    },
+    {
+      "id": "北洛秘景-14-04-12",
+      "sourceSheet": "北洛秘景",
+      "project": "北洛秘景",
+      "area": "北洛湾片区",
+      "nearSea": "近海/北洛湾片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛北洛秘景",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.5706,
+      "lng": 111.8399,
+      "roomType": "4房6床",
+      "productName": "北洛秘景近海泳池4房别墅",
+      "roomNo": "14-04",
+      "rooms": 4,
+      "beds": 6,
+      "description": "【北洛秘境14-04号4房6床】【北洛秘境14-04号4房6床】",
+      "link": "https://www.jianpian.cn/a/1j4ndsrs",
+      "features": [
+        "泳池",
+        "近海"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月10日",
+          "dayType": "平日/周六",
+          "price": 2500
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "平日",
+          "price": 5000
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "周五/周日",
+          "price": 5800
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "周六",
+          "price": 6500
+        }
+      ],
+      "minPrice": 2500,
+      "maxPrice": 6500
+    },
+    {
+      "id": "北洛秘景-11-02-13",
+      "sourceSheet": "北洛秘景",
+      "project": "北洛秘景",
+      "area": "北洛湾片区",
+      "nearSea": "近海/北洛湾片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛北洛秘景",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.5706,
+      "lng": 111.8399,
+      "roomType": "5房7床",
+      "productName": "北洛秘景近海泳池5房别墅",
+      "roomNo": "11-02",
+      "rooms": 5,
+      "beds": 7,
+      "description": "【北洛秘境11-02号5房7床】【北洛秘境11-02号5房7床】",
+      "link": "https://www.jianpian.cn/a/1j4ndx4z",
+      "features": [
+        "泳池",
+        "近海"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月10日",
+          "dayType": "平日/周六",
+          "price": 2100
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "平日",
+          "price": 4500
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "周五/周日",
+          "price": 5300
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "周六",
+          "price": 6000
+        }
+      ],
+      "minPrice": 2100,
+      "maxPrice": 6000
+    },
+    {
+      "id": "北洛秘景-10-03-14",
+      "sourceSheet": "北洛秘景",
+      "project": "北洛秘景",
+      "area": "北洛湾片区",
+      "nearSea": "近海/北洛湾片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛北洛秘景",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.5706,
+      "lng": 111.8399,
+      "roomType": "5房7床",
+      "productName": "北洛秘景近海泳池5房别墅",
+      "roomNo": "10-03",
+      "rooms": 5,
+      "beds": 7,
+      "description": "【北洛秘境10-03号5房7床】【北洛秘境10-03号5房7床】",
+      "link": "https://www.jianpian.cn/a/1j4ne4vz",
+      "features": [
+        "泳池",
+        "近海"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月10日",
+          "dayType": "平日/周六",
+          "price": 2100
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "平日",
+          "price": 4500
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "周五/周日",
+          "price": 5300
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "周六",
+          "price": 6000
+        }
+      ],
+      "minPrice": 2100,
+      "maxPrice": 6000
+    },
+    {
+      "id": "北洛秘景-09-01-15",
+      "sourceSheet": "北洛秘景",
+      "project": "北洛秘景",
+      "area": "北洛湾片区",
+      "nearSea": "近海/北洛湾片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛北洛秘景",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.5706,
+      "lng": 111.8399,
+      "roomType": "5房6床",
+      "productName": "北洛秘景近海泳池5房别墅",
+      "roomNo": "09-01",
+      "rooms": 5,
+      "beds": 6,
+      "description": "【北洛秘境09-01号5房6床】【北洛秘境09-01号5房6床】",
+      "link": "https://www.jianpian.cn/a/1j4ne5u5",
+      "features": [
+        "泳池",
+        "近海"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月10日",
+          "dayType": "平日/周六",
+          "price": 2100
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "平日",
+          "price": 4500
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "周五/周日",
+          "price": 5300
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "周六",
+          "price": 6000
+        }
+      ],
+      "minPrice": 2100,
+      "maxPrice": 6000
+    },
+    {
+      "id": "北洛秘景-11-03-16",
+      "sourceSheet": "北洛秘景",
+      "project": "北洛秘景",
+      "area": "北洛湾片区",
+      "nearSea": "近海/北洛湾片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛北洛秘景",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.5706,
+      "lng": 111.8399,
+      "roomType": "5房8床",
+      "productName": "北洛秘景近海泳池5房别墅",
+      "roomNo": "11-03",
+      "rooms": 5,
+      "beds": 8,
+      "description": "【北洛秘境11-03 号5房8床】【北洛秘境11-03 号5房8床】",
+      "link": "https://www.jianpian.cn/a/1j4ndtjq",
+      "features": [
+        "泳池",
+        "近海"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月10日",
+          "dayType": "平日/周六",
+          "price": 2100
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "平日",
+          "price": 4500
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "周五/周日",
+          "price": 5300
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "周六",
+          "price": 6000
+        }
+      ],
+      "minPrice": 2100,
+      "maxPrice": 6000
+    },
+    {
+      "id": "北洛秘景-10-07-17",
+      "sourceSheet": "北洛秘景",
+      "project": "北洛秘景",
+      "area": "北洛湾片区",
+      "nearSea": "近海/北洛湾片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛北洛秘景",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.5706,
+      "lng": 111.8399,
+      "roomType": "5房8床",
+      "productName": "北洛秘景近海泳池5房别墅",
+      "roomNo": "10-07",
+      "rooms": 5,
+      "beds": 8,
+      "description": "【北洛秘境10-07号5房8床】【北洛秘境10-07号5房8床】",
+      "link": "https://www.jianpian.cn/a/1j4ne8wk",
+      "features": [
+        "泳池",
+        "近海"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月10日",
+          "dayType": "平日/周六",
+          "price": 2100
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "平日",
+          "price": 4500
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "周五/周日",
+          "price": 5300
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "周六",
+          "price": 6000
+        }
+      ],
+      "minPrice": 2100,
+      "maxPrice": 6000
+    },
+    {
+      "id": "北洛秘景-10-01-18",
+      "sourceSheet": "北洛秘景",
+      "project": "北洛秘景",
+      "area": "北洛湾片区",
+      "nearSea": "近海/北洛湾片区",
+      "seaLevel": "near",
+      "address": "阳江海陵岛北洛秘景",
+      "locationNote": "按项目片区定位，表格未提供单栋经纬度",
+      "lat": 21.5706,
+      "lng": 111.8399,
+      "roomType": "4房7床",
+      "productName": "北洛秘景近海泳池4房别墅",
+      "roomNo": "10-01",
+      "rooms": 4,
+      "beds": 7,
+      "description": "【北洛秘境10-01号4房7床】【北洛秘境10-01号4房7床】",
+      "link": "https://www.jianpian.cn/a/1j4necxj",
+      "features": [
+        "泳池",
+        "近海"
+      ],
+      "prices": [
+        {
+          "period": "7月1日-7月10日",
+          "dayType": "平日/周六",
+          "price": 1900
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "平日",
+          "price": 3999
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "周五/周日",
+          "price": 4800
+        },
+        {
+          "period": "7月11日-7月31日",
+          "dayType": "周六",
+          "price": 5500
+        }
+      ],
+      "minPrice": 1900,
+      "maxPrice": 5500
+    }
+  ]
+};
+
+    </script>
+    <script>
+const dataset = window.HAILING_QUOTE_DATA || { meta: {}, units: [] };
+const units = dataset.units;
+
+const els = {
+  sourceSummary: document.querySelector("#sourceSummary"),
+  keyword: document.querySelector("#keywordInput"),
+  project: document.querySelector("#projectSelect"),
+  area: document.querySelector("#areaSelect"),
+  sea: document.querySelector("#seaSelect"),
+  room: document.querySelector("#roomSelect"),
+  sort: document.querySelector("#sortSelect"),
+  reset: document.querySelector("#resetButton"),
+  cards: document.querySelector("#cards"),
+  template: document.querySelector("#cardTemplate"),
+  matchCount: document.querySelector("#matchCount"),
+  priceRange: document.querySelector("#priceRange"),
+};
+
+let map;
+let markerLayer;
+let useFallbackMap = false;
+let activeId = "";
+const isWeChat = /MicroMessenger/i.test(navigator.userAgent || "");
+
+const yuan =
+  typeof Intl !== "undefined" && Intl.NumberFormat
+    ? new Intl.NumberFormat("zh-CN", {
+        style: "currency",
+        currency: "CNY",
+        maximumFractionDigits: 0,
+      })
+    : {
+        format(value) {
+          return `¥${String(Math.round(Number(value) || 0)).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
+        },
+      };
+
+function unique(values) {
+  return [...new Set(values.filter(Boolean))].sort((a, b) => String(a).localeCompare(String(b), "zh-CN"));
+}
+
+function fillSelect(select, values, label) {
+  select.innerHTML = "";
+  select.append(new Option(label, ""));
+  values.forEach((value) => select.append(new Option(value, value)));
+}
+
+function priceText(unit) {
+  if (unit.minPrice == null) return "待询价";
+  if (unit.minPrice === unit.maxPrice) return yuan.format(unit.minPrice);
+  return `${yuan.format(unit.minPrice)}-${yuan.format(unit.maxPrice)}`;
+}
+
+function amapLink(unit) {
+  const keyword = encodeURIComponent(`${unit.address} ${unit.roomNo || unit.roomType}`);
+  return `https://uri.amap.com/search?keyword=${keyword}&center=${unit.lng},${unit.lat}&city=阳江`;
+}
+
+function initFilters() {
+  fillSelect(els.project, unique(units.map((unit) => unit.project)), "全部项目");
+  fillSelect(els.area, unique(units.map((unit) => unit.area)), "全部片区");
+  fillSelect(
+    els.room,
+    unique(units.map((unit) => unit.rooms).filter((value) => Number.isFinite(value))).map((value) => `${value}房`),
+    "全部房间数",
+  );
+  els.sourceSummary.textContent = `${dataset.meta.sourceFile || "源表"}：${dataset.meta.totalUnits || units.length}套房源，${dataset.meta.generatedAt || ""}`;
+}
+
+function currentFilters() {
+  return {
+    keyword: els.keyword.value.trim().toLowerCase(),
+    project: els.project.value,
+    area: els.area.value,
+    sea: els.sea.value,
+    rooms: els.room.value ? Number.parseInt(els.room.value, 10) : null,
+    sort: els.sort.value,
+  };
+}
+
+function matchUnit(unit, filters) {
+  if (filters.project && unit.project !== filters.project) return false;
+  if (filters.area && unit.area !== filters.area) return false;
+  if (filters.sea && unit.seaLevel !== filters.sea) return false;
+  if (filters.rooms && unit.rooms !== filters.rooms) return false;
+  if (!filters.keyword) return true;
+
+  const haystack = [
+    unit.project,
+    unit.area,
+    unit.roomType,
+    unit.productName,
+    unit.roomNo,
+    unit.description,
+    unit.nearSea,
+    unit.features.join(" "),
+    unit.sourceSheet,
+  ]
+    .join(" ")
+    .toLowerCase();
+  return haystack.includes(filters.keyword);
+}
+
+function sortUnits(list, mode) {
+  const copy = [...list];
+  copy.sort((a, b) => {
+    const aMin = a.minPrice == null ? 999999 : a.minPrice;
+    const bMin = b.minPrice == null ? 999999 : b.minPrice;
+    const aMax = a.maxPrice == null ? -1 : a.maxPrice;
+    const bMax = b.maxPrice == null ? -1 : b.maxPrice;
+    const aRooms = a.rooms == null ? 0 : a.rooms;
+    const bRooms = b.rooms == null ? 0 : b.rooms;
+    if (mode === "priceDesc") return bMax - aMax;
+    if (mode === "roomsDesc") return bRooms - aRooms || aMin - bMin;
+    if (mode === "project") return a.project.localeCompare(b.project, "zh-CN") || aMin - bMin;
+    return aMin - bMin;
+  });
+  return copy;
+}
+
+function renderStats(list) {
+  els.matchCount.textContent = list.length;
+  const prices = list.reduce((all, unit) => all.concat(unit.prices.map((price) => price.price)), []);
+  if (!prices.length) {
+    els.priceRange.textContent = "-";
+    return;
+  }
+  els.priceRange.textContent = `${yuan.format(Math.min(...prices))}-${yuan.format(Math.max(...prices))}`;
+}
+
+function renderCards(list) {
+  els.cards.innerHTML = "";
+  if (!list.length) {
+    const empty = document.createElement("div");
+    empty.className = "empty";
+    empty.textContent = "没有匹配的房源，换个片区、项目或关键词试试。";
+    els.cards.append(empty);
+    return;
+  }
+
+  const fragment = document.createDocumentFragment();
+  list.forEach((unit) => {
+    const card = els.template.content.firstElementChild.cloneNode(true);
+    card.dataset.id = unit.id;
+    if (unit.id === activeId) card.classList.add("active");
+    card.querySelector(".project").textContent = `${unit.project} · ${unit.area}`;
+    card.querySelector("h3").textContent = unit.roomNo ? `${unit.roomType} · ${unit.roomNo}` : unit.roomType;
+    card.querySelector(".meta").textContent = `${unit.nearSea} · ${unit.rooms || "-"}房${unit.beds ? ` · ${unit.beds}床` : ""} · ${unit.sourceSheet}`;
+
+    const pill = card.querySelector(".price-pill");
+    pill.innerHTML = `<small>报价区间</small>${priceText(unit)}`;
+
+    const tags = card.querySelector(".tags");
+    [unit.seaLevel === "beach" ? "海边" : unit.seaLevel === "near" ? "近海" : "片区近海", ...unit.features]
+      .slice(0, 7)
+      .forEach((tag) => {
+        const span = document.createElement("span");
+        span.className = `tag${tag.includes("海") ? " sea" : ""}`;
+        span.textContent = tag;
+        tags.append(span);
+      });
+
+    card.querySelector(".description").textContent = unit.description || unit.productName || unit.locationNote;
+
+    const table = card.querySelector(".price-table");
+    if (unit.prices.length) {
+      unit.prices.forEach((row) => {
+        const div = document.createElement("div");
+        div.className = "price-row";
+        div.innerHTML = `<span>${row.period}</span><span>${row.dayType}</span><strong>${yuan.format(row.price)}</strong>`;
+        table.append(div);
+      });
+    } else {
+      const div = document.createElement("div");
+      div.className = "price-row";
+      div.innerHTML = "<span>源表未填写价格</span><span>需要人工确认</span><strong>待询价</strong>";
+      table.append(div);
+    }
+
+    const mapLink = card.querySelector(".map-link");
+    mapLink.href = amapLink(unit);
+    if (isWeChat) mapLink.removeAttribute("target");
+    mapLink.addEventListener("click", () => setActive(unit.id, false));
+
+    const detailLink = card.querySelector(".detail-link");
+    detailLink.href = unit.link || amapLink(unit);
+    detailLink.textContent = unit.link ? "房型链接" : "地图搜索";
+    if (isWeChat) detailLink.removeAttribute("target");
+
+    card.addEventListener("mouseenter", () => setActive(unit.id, true));
+    fragment.append(card);
+  });
+  els.cards.append(fragment);
+}
+
+function setActive(id, panMap) {
+  activeId = id;
+  document.querySelectorAll(".room-card").forEach((card) => card.classList.toggle("active", card.dataset.id === id));
+  const unit = units.find((item) => item.id === id);
+  if (panMap && unit && map) map.setView([unit.lat, unit.lng], Math.max(map.getZoom(), 13), { animate: true });
+}
+
+function initMap() {
+  useFallbackMap = true;
+  document.querySelector("#map").classList.add("fallback-map");
+}
+
+function renderFallbackMap(list) {
+  const container = document.querySelector("#map");
+  container.innerHTML = "";
+  container.classList.add("fallback-map");
+
+  const grouped = new Map();
+  list.forEach((unit) => {
+    const key = `${unit.project}-${unit.lat}-${unit.lng}`;
+    if (!grouped.has(key)) grouped.set(key, []);
+    grouped.get(key).push(unit);
+  });
+
+  const groups = [...grouped.values()].map((group) => group[0]);
+  const canvas = document.createElement("div");
+  canvas.className = "fallback-canvas";
+  const lngs = units.map((unit) => unit.lng);
+  const lats = units.map((unit) => unit.lat);
+  const minLng = Math.min(...lngs) - 0.02;
+  const maxLng = Math.max(...lngs) + 0.02;
+  const minLat = Math.min(...lats) - 0.015;
+  const maxLat = Math.max(...lats) + 0.015;
+
+  groups.forEach((unit) => {
+    const count = grouped.get(`${unit.project}-${unit.lat}-${unit.lng}`).length;
+    const pin = document.createElement("a");
+    pin.className = "fallback-pin";
+    pin.href = amapLink(unit);
+    pin.target = "_blank";
+    pin.rel = "noreferrer";
+    if (isWeChat) pin.removeAttribute("target");
+    pin.title = `${unit.project}：${count}套匹配房源，点击打开高德实时地图`;
+    pin.style.left = `${((unit.lng - minLng) / (maxLng - minLng)) * 100}%`;
+    pin.style.top = `${(1 - (unit.lat - minLat) / (maxLat - minLat)) * 100}%`;
+    pin.innerHTML = `<strong>${count}</strong><span>${unit.project}</span>`;
+    canvas.append(pin);
+  });
+
+  const note = document.createElement("div");
+  note.className = "fallback-note";
+  note.textContent = "点位按项目片区定位；点击点位打开高德实时地图。";
+  container.append(canvas, note);
+}
+
+function renderMap(list) {
+  if (useFallbackMap) {
+    renderFallbackMap(list);
+    return;
+  }
+}
+
+function render() {
+  const filters = currentFilters();
+  const list = sortUnits(units.filter((unit) => matchUnit(unit, filters)), filters.sort);
+  renderStats(list);
+  renderCards(list);
+  renderMap(list);
+}
+
+function reset() {
+  els.keyword.value = "";
+  els.project.value = "";
+  els.area.value = "";
+  els.sea.value = "";
+  els.room.value = "";
+  els.sort.value = "priceAsc";
+  activeId = "";
+  render();
+}
+
+initFilters();
+initMap();
+render();
+
+[els.keyword, els.project, els.area, els.sea, els.room, els.sort].forEach((el) => el.addEventListener("input", render));
+els.reset.addEventListener("click", reset);
+
+    </script>
+  </body>
+</html>
