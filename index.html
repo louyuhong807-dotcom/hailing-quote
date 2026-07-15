@@ -219,6 +219,30 @@ h1 {
   background: #fff;
 }
 
+.need-panel {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 18px;
+  padding: 16px 18px;
+  border: 1px solid rgba(205, 222, 228, 0.86);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: var(--soft-shadow);
+}
+
+.need-panel label {
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.need-panel p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.5;
+}
+
 .workbench {
   display: grid;
   grid-template-columns: 312px minmax(0, 1fr);
@@ -248,7 +272,8 @@ label {
 }
 
 input,
-select {
+select,
+textarea {
   width: 100%;
   min-height: 44px;
   font-size: 16px;
@@ -259,6 +284,13 @@ select {
   background: linear-gradient(180deg, #fff, #fbfdfd);
   outline: none;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+textarea {
+  min-height: 82px;
+  resize: vertical;
+  padding: 11px 12px;
+  line-height: 1.5;
 }
 
 select {
@@ -281,6 +313,7 @@ select {
 
 input:focus,
 select:focus,
+textarea:focus,
 button:focus-visible,
 a:focus-visible {
   outline: 3px solid rgba(20, 124, 134, 0.25);
@@ -843,6 +876,11 @@ h3 {
     padding: 16px;
   }
 
+  .need-panel {
+    margin-bottom: 16px;
+    padding: 14px;
+  }
+
   .availability-panel h2 {
     font-size: 20px;
   }
@@ -1177,6 +1215,18 @@ h3 {
             趣墅后台
           </a>
         </div>
+      </section>
+
+      <section class="need-panel" aria-label="客户需求话术生成">
+        <label>
+          客户需求
+          <textarea
+            id="customerNeedInput"
+            rows="3"
+            placeholder="例：12个人，预算3000左右，想要泳池、KTV，最好近海，适合家庭亲子。"
+          ></textarea>
+        </label>
+        <p id="needHint">填写客户人数、预算、想要的配套或出游场景后，每套房会自动生成更贴合客户的推荐话术。</p>
       </section>
 
       <section class="workbench">
@@ -13331,6 +13381,8 @@ const qushuDataset = window.QUSHU_AVAILABILITY_DATA || { meta: {}, rooms: [] };
 const els = {
   sourceSummary: document.querySelector("#sourceSummary"),
   keyword: document.querySelector("#keywordInput"),
+  customerNeed: document.querySelector("#customerNeedInput"),
+  needHint: document.querySelector("#needHint"),
   project: document.querySelector("#projectSelect"),
   area: document.querySelector("#areaSelect"),
   sea: document.querySelector("#seaSelect"),
@@ -13568,6 +13620,74 @@ function hasAny(text, words) {
   return words.some((word) => text.includes(word));
 }
 
+function parseCustomerNeed(value) {
+  const text = String(value || "").trim();
+  const normalized = text.toLowerCase();
+  const peopleMatch = normalized.match(/(\d{1,3})\s*(人|位|大|个)/);
+  const budgetMatch = normalized.match(/(?:预算|价格|价位|左右|以内|不超|控制在|大概)?\s*(\d{3,6})\s*(元|块|左右|以内|以下)?/);
+  const wanted = [];
+  [
+    ["泳池", ["泳池", "私家池", "游泳"]],
+    ["泡池", ["泡池", "温泉"]],
+    ["KTV", ["ktv", "唱歌", "k歌"]],
+    ["麻将", ["麻将", "打牌"]],
+    ["厨房", ["厨房", "做饭", "煮饭"]],
+    ["烧烤", ["烧烤", "烤肉", "烤炉", "碳烤"]],
+    ["近海", ["近海", "靠海", "海边", "一线海", "看海"]],
+    ["亲子", ["亲子", "小孩", "孩子", "家庭"]],
+    ["团建", ["团建", "公司", "团队"]],
+    ["拍照", ["拍照", "出片", "好看"]],
+    ["安静", ["安静", "休息", "睡觉"]],
+  ].forEach(([label, words]) => {
+    if (hasAny(normalized, words)) wanted.push(label);
+  });
+  return {
+    raw: text,
+    people: peopleMatch ? Number(peopleMatch[1]) : null,
+    budget: budgetMatch ? Number(budgetMatch[1]) : null,
+    wanted: unique(wanted),
+  };
+}
+
+function unitCapacity(unit) {
+  const beds = Number(unit.beds) || 0;
+  const rooms = Number(unit.rooms) || 0;
+  return Math.max(beds * 2, rooms * 2, beds || rooms || 0);
+}
+
+function customerNeedSummary(need) {
+  if (!need.raw) return "";
+  const parts = [];
+  if (need.people) parts.push(`${need.people}人`);
+  if (need.budget) parts.push(`预算${yuan.format(need.budget)}左右`);
+  if (need.wanted.length) parts.push(`偏好${need.wanted.join("、")}`);
+  return parts.length ? `客户需求：${parts.join("，")}。` : `客户需求：${need.raw}。`;
+}
+
+function matchNeedReasons(unit, need, text) {
+  const reasons = [];
+  const capacity = unitCapacity(unit);
+  if (need.people) {
+    if (capacity >= need.people) reasons.push(`床位和空间能覆盖约${need.people}人入住`);
+    else reasons.push(`人数偏满，建议作为备选或确认是否可加床`);
+  }
+  if (need.budget && unit.minPrice) {
+    if (unit.minPrice <= need.budget) reasons.push(`最低报价在客户预算内`);
+    else reasons.push(`价格高于预算，适合客户愿意升级体验时推荐`);
+  }
+  need.wanted.forEach((want) => {
+    const matched =
+      (want === "近海" && hasAny(text, ["近海", "海边", "海景", "一线海", "北洛", "银滩", "黄金海岸"])) ||
+      (want === "亲子" && Number(unit.rooms) >= 4) ||
+      (want === "团建" && Number(unit.rooms) >= 6) ||
+      (want === "拍照" && hasAny(text, ["北洛", "星空", "泳池", "海景", "山海梦泽"])) ||
+      (want === "安静" && hasAny(text, ["恒大", "北洛", "度假社区"])) ||
+      hasAny(text, [want.toLowerCase()]);
+    if (matched) reasons.push(`符合${want}需求`);
+  });
+  return unique(reasons).slice(0, 4);
+}
+
 function audienceText(unit) {
   const rooms = Number(unit.rooms) || 0;
   if (rooms >= 8) return "很适合公司团建、几家人包栋或朋友多人局";
@@ -13597,7 +13717,7 @@ function featureHighlights(unit, text) {
   return unique(highlights).slice(0, 4);
 }
 
-function composeSalesCopy(unit) {
+function composeSalesCopy(unit, need = parseCustomerNeed("")) {
   const text = [
     unit.project,
     unit.area,
@@ -13613,6 +13733,11 @@ function composeSalesCopy(unit) {
   const highlights = featureHighlights(unit, text);
   const highlightText = highlights.length ? `，亮点是${highlights.join("、")}` : "";
   const priceHint = unit.minPrice ? `，当前报价从${yuan.format(unit.minPrice)}起` : "";
+  if (need.raw) {
+    const needReasons = matchNeedReasons(unit, need, text);
+    const reasonText = needReasons.length ? `这套匹配点：${needReasons.join("、")}。` : "";
+    return `${customerNeedSummary(need)}推荐这套${unit.project}${unit.roomNo ? ` ${unit.roomNo}` : ""}：${roomBed}${highlightText}${priceHint}。${reasonText}${sceneText(unit, text)}，可以跟客户说“这套不是单纯便宜，而是人数、玩法和位置都比较稳”。`;
+  }
   return `推荐给${audienceText(unit)}：${roomBed}空间更好分配${highlightText}。${sceneText(unit, text)}${priceHint}，客户对比时可以主推“住得下、玩得开、位置省心”。`;
 }
 
@@ -13709,6 +13834,7 @@ function renderCards(list) {
     return;
   }
 
+  const customerNeed = parseCustomerNeed(els.customerNeed?.value || "");
   const fragment = document.createDocumentFragment();
   list.forEach((unit) => {
     const card = els.template.content.firstElementChild.cloneNode(true);
@@ -13732,7 +13858,7 @@ function renderCards(list) {
       });
 
     card.querySelector(".description").textContent = unit.description || unit.productName || unit.locationNote;
-    card.querySelector(".sales-copy").textContent = composeSalesCopy(unit);
+    card.querySelector(".sales-copy").textContent = composeSalesCopy(unit, customerNeed);
     renderRoomAvailability(unit, card.querySelector(".availability-card"));
 
     const table = card.querySelector(".price-table");
@@ -13836,6 +13962,12 @@ function render() {
   const filters = currentFilters();
   const list = sortUnits(units.filter((unit) => matchUnit(unit, filters)), filters.sort);
   renderStats(list);
+  if (els.needHint) {
+    const need = parseCustomerNeed(els.customerNeed?.value || "");
+    els.needHint.textContent = need.raw
+      ? `${customerNeedSummary(need)}已按当前房型、价格、配套生成推荐话术。`
+      : "填写客户人数、预算、想要的配套或出游场景后，每套房会自动生成更贴合客户的推荐话术。";
+  }
   renderAvailabilityPanel();
   renderCards(list);
   renderMap(list);
@@ -13848,6 +13980,7 @@ function reset() {
   els.sea.value = "";
   els.room.value = "";
   els.sort.value = "priceAsc";
+  if (els.customerNeed) els.customerNeed.value = "";
   activeId = "";
   render();
 }
@@ -13945,7 +14078,9 @@ async function syncBeiluoAvailability() {
   }
 }
 
-[els.keyword, els.project, els.area, els.sea, els.room, els.sort].forEach((el) => el.addEventListener("input", render));
+[els.keyword, els.customerNeed, els.project, els.area, els.sea, els.room, els.sort]
+  .filter(Boolean)
+  .forEach((el) => el.addEventListener("input", render));
 els.reset.addEventListener("click", reset);
 if (els.availabilityRefresh) els.availabilityRefresh.addEventListener("click", syncBeiluoAvailability);
 syncBeiluoAvailability();
