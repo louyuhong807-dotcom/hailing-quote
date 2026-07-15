@@ -506,29 +506,56 @@ h3 {
 
 .price-table {
   display: grid;
-  gap: 6px;
-  max-height: 210px;
+  gap: 9px;
+  max-height: 240px;
   overflow: auto;
   padding-right: 3px;
   scrollbar-color: #b8d0d5 transparent;
   scrollbar-width: thin;
 }
 
-.price-row {
+.price-period {
   display: grid;
-  grid-template-columns: minmax(96px, 1.1fr) minmax(80px, 0.9fr) 76px;
   gap: 8px;
-  align-items: center;
-  padding: 8px 11px;
+  padding: 10px;
   border: 1px solid #dfebee;
   border-radius: 8px;
   background: linear-gradient(180deg, #ffffff, #fbfdfd);
   font-size: 13px;
 }
 
-.price-row strong {
-  text-align: right;
+.period-title {
+  color: var(--aqua-dark);
+  font-weight: 900;
+}
+
+.period-prices {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+  gap: 7px;
+}
+
+.price-chip {
+  display: grid;
+  gap: 3px;
+  min-height: 52px;
+  padding: 8px 9px;
+  border: 1px solid #e5eef0;
+  border-radius: 8px;
+  background: #f7fbfb;
+}
+
+.price-chip em {
+  color: var(--muted);
+  font-style: normal;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.price-chip strong {
   color: var(--coral);
+  font-size: 15px;
+  line-height: 1.1;
 }
 
 .card-actions {
@@ -764,15 +791,21 @@ h3 {
     padding-right: 0;
   }
 
-  .price-row {
-    grid-template-columns: 1fr;
-    gap: 4px;
-    padding: 9px 10px;
+  .price-period {
+    gap: 9px;
+    padding: 10px;
   }
 
-  .price-row strong {
-    text-align: left;
-    font-size: 15px;
+  .period-prices {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .price-chip {
+    min-height: 56px;
+  }
+
+  .price-chip strong {
+    font-size: 16px;
   }
 
   .card-actions {
@@ -883,6 +916,10 @@ h3 {
   }
 
   .card-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .period-prices {
     grid-template-columns: 1fr;
   }
 }
@@ -6411,6 +6448,14 @@ function renderStats(list) {
   els.priceRange.textContent = `${yuan.format(Math.min(...prices))}-${yuan.format(Math.max(...prices))}`;
 }
 
+function groupPricesByPeriod(prices) {
+  return prices.reduce((groups, row) => {
+    if (!groups[row.period]) groups[row.period] = [];
+    groups[row.period].push(row);
+    return groups;
+  }, {});
+}
+
 function renderCards(list) {
   els.cards.innerHTML = "";
   if (!list.length) {
@@ -6447,15 +6492,19 @@ function renderCards(list) {
 
     const table = card.querySelector(".price-table");
     if (unit.prices.length) {
-      unit.prices.forEach((row) => {
-        const div = document.createElement("div");
-        div.className = "price-row";
-        div.innerHTML = `<span>${row.period}</span><span>${row.dayType}</span><strong>${yuan.format(row.price)}</strong>`;
-        table.append(div);
+      const groupedPrices = groupPricesByPeriod(unit.prices);
+      Object.keys(groupedPrices).forEach((period) => {
+        const group = document.createElement("div");
+        group.className = "price-period";
+        const rows = groupedPrices[period]
+          .map((row) => `<span class="price-chip"><em>${row.dayType}</em><strong>${yuan.format(row.price)}</strong></span>`)
+          .join("");
+        group.innerHTML = `<div class="period-title">${period}</div><div class="period-prices">${rows}</div>`;
+        table.append(group);
       });
     } else {
       const div = document.createElement("div");
-      div.className = "price-row";
+      div.className = "price-period";
       div.innerHTML = "<span>源表未填写价格</span><span>需要人工确认</span><strong>待询价</strong>";
       table.append(div);
     }
