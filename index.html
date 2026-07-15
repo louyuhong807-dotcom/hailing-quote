@@ -539,6 +539,18 @@ h3 {
   -webkit-box-orient: vertical;
 }
 
+.sales-copy {
+  margin: 0;
+  padding: 10px 11px;
+  border: 1px solid rgba(225, 152, 70, 0.22);
+  border-radius: 8px;
+  color: #6e4a21;
+  background: linear-gradient(180deg, #fff8ed, #fffdf8);
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.65;
+}
+
 .availability-card {
   display: none;
 }
@@ -968,12 +980,19 @@ h3 {
 
   .project,
   .meta,
-  .description {
+  .description,
+  .sales-copy {
     overflow-wrap: anywhere;
   }
 
   .description {
     -webkit-line-clamp: 3;
+  }
+
+  .sales-copy {
+    padding: 9px 10px;
+    font-size: 12px;
+    line-height: 1.6;
   }
 
   .price-table {
@@ -1240,6 +1259,7 @@ h3 {
         </div>
         <div class="tags"></div>
         <p class="description"></p>
+        <p class="sales-copy"></p>
         <div class="availability-card"></div>
         <div class="price-table"></div>
         <div class="card-actions">
@@ -13544,6 +13564,58 @@ function groupPricesByPeriod(prices) {
   }, {});
 }
 
+function hasAny(text, words) {
+  return words.some((word) => text.includes(word));
+}
+
+function audienceText(unit) {
+  const rooms = Number(unit.rooms) || 0;
+  if (rooms >= 8) return "很适合公司团建、几家人包栋或朋友多人局";
+  if (rooms >= 6) return "适合三四个家庭、朋友聚会或小团队出游";
+  if (rooms >= 4) return "适合家庭亲子、两三家朋友轻松度假";
+  return "适合小家庭或情侣朋友短住放松";
+}
+
+function sceneText(unit, text) {
+  if (hasAny(text, ["北洛"])) return "北洛湾片区本身度假感强，拍照、看海和安排行程都比较省心";
+  if (hasAny(text, ["敏捷"])) return "敏捷黄金海岸生活配套成熟，去海边和周边吃喝都方便";
+  if (hasAny(text, ["恒大"])) return "恒大御景湾社区感更安静，适合想住得舒服、晚上好好休息的客人";
+  if (hasAny(text, ["保利", "星空", "忘情谷", "山海梦泽", "玛瑙湾"])) return "保利银滩片区别墅氛围更明显，聚会、拍照和度假仪式感都比较好";
+  return unit.nearSea || unit.area || "位置适合海陵岛度假";
+}
+
+function featureHighlights(unit, text) {
+  const highlights = [];
+  if (hasAny(text, ["泳池", "私家池"])) highlights.push("私享泳池");
+  if (hasAny(text, ["泡池"])) highlights.push("泡池放松");
+  if (hasAny(text, ["ktv", "KTV"])) highlights.push("KTV欢唱");
+  if (hasAny(text, ["麻将"])) highlights.push("麻将娱乐");
+  if (hasAny(text, ["厨房"])) highlights.push("厨房可做饭");
+  if (hasAny(text, ["烧烤", "碳烤", "烤炉"])) highlights.push("烧烤聚餐");
+  if (hasAny(text, ["滑梯"])) highlights.push("滑梯泳池");
+  if (hasAny(text, ["海景", "一线海", "海边"])) highlights.push("看海更方便");
+  return unique(highlights).slice(0, 4);
+}
+
+function composeSalesCopy(unit) {
+  const text = [
+    unit.project,
+    unit.area,
+    unit.nearSea,
+    unit.roomType,
+    unit.productName,
+    unit.description,
+    ...(unit.features || []),
+  ]
+    .join(" ")
+    .toLowerCase();
+  const roomBed = `${unit.rooms || "-"}房${unit.beds ? `${unit.beds}床` : ""}`;
+  const highlights = featureHighlights(unit, text);
+  const highlightText = highlights.length ? `，亮点是${highlights.join("、")}` : "";
+  const priceHint = unit.minPrice ? `，当前报价从${yuan.format(unit.minPrice)}起` : "";
+  return `推荐给${audienceText(unit)}：${roomBed}空间更好分配${highlightText}。${sceneText(unit, text)}${priceHint}，客户对比时可以主推“住得下、玩得开、位置省心”。`;
+}
+
 function availabilityForUnit(unit) {
   if (isBeiluo(unit)) {
     const keys = roomLookupKeys(unit);
@@ -13660,6 +13732,7 @@ function renderCards(list) {
       });
 
     card.querySelector(".description").textContent = unit.description || unit.productName || unit.locationNote;
+    card.querySelector(".sales-copy").textContent = composeSalesCopy(unit);
     renderRoomAvailability(unit, card.querySelector(".availability-card"));
 
     const table = card.querySelector(".price-table");
