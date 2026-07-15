@@ -713,6 +713,11 @@ h3 {
   background: #e7f2e8;
 }
 
+.tag.match {
+  color: #fff;
+  background: linear-gradient(180deg, #176f78, var(--aqua-dark));
+}
+
 .price-table {
   display: grid;
   gap: 9px;
@@ -13599,6 +13604,16 @@ function sortUnits(list, mode) {
   return copy;
 }
 
+function sortUnitsForNeed(list, need, mode) {
+  if (!need.raw) return sortUnits(list, mode);
+  return [...list].sort((a, b) => {
+    const aMatch = scoreUnitForNeed(a, need);
+    const bMatch = scoreUnitForNeed(b, need);
+    const priceGap = (a.minPrice || 999999) - (b.minPrice || 999999);
+    return bMatch.score - aMatch.score || priceGap || (b.rooms || 0) - (a.rooms || 0);
+  });
+}
+
 function renderStats(list) {
   els.matchCount.textContent = list.length;
   const prices = list.reduce((all, unit) => all.concat(unit.prices.map((price) => price.price)), []);
@@ -13625,7 +13640,13 @@ function parseCustomerNeed(value) {
   const text = String(value || "").trim();
   const normalized = text.toLowerCase();
   const peopleMatch = normalized.match(/(\d{1,3})\s*(人|位|大|个)/);
-  const budgetMatch = normalized.match(/(?:预算|价格|价位|左右|以内|不超|控制在|大概)?\s*(\d{3,6})\s*(元|块|左右|以内|以下)?/);
+  const roomMatch = normalized.match(/(\d{1,2})\s*房/);
+  const bedMatch = normalized.match(/(\d{1,2})\s*床/);
+  const budgetMatches = [...normalized.matchAll(/(\d{3,6})\s*(元|块|预算|左右|以内|以下|封顶|不超)?/g)]
+    .map((match) => Number(match[1]))
+    .filter((value) => value >= 300);
+  const budget = budgetMatches.length ? Math.max(...budgetMatches) : null;
+  const mustHave = /必须|一定要|硬性|只要|不要低于|不能少/.test(normalized);
   const wanted = [];
   [
     ["泳池", ["泳池", "私家池", "游泳"]],
@@ -13639,13 +13660,20 @@ function parseCustomerNeed(value) {
     ["团建", ["团建", "公司", "团队"]],
     ["拍照", ["拍照", "出片", "好看"]],
     ["安静", ["安静", "休息", "睡觉"]],
+    ["保利", ["保利", "银滩", "星空", "忘情谷", "山海梦泽", "玛瑙湾"]],
+    ["敏捷", ["敏捷", "黄金海岸"]],
+    ["恒大", ["恒大", "御景湾"]],
+    ["北洛", ["北洛", "秘境", "秘景"]],
   ].forEach(([label, words]) => {
     if (hasAny(normalized, words)) wanted.push(label);
   });
   return {
     raw: text,
     people: peopleMatch ? Number(peopleMatch[1]) : null,
-    budget: budgetMatch ? Number(budgetMatch[1]) : null,
+    rooms: roomMatch ? Number(roomMatch[1]) : null,
+    beds: bedMatch ? Number(bedMatch[1]) : null,
+    budget,
+    mustHave,
     wanted: unique(wanted),
   };
 }
@@ -13660,33 +13688,106 @@ function customerNeedSummary(need) {
   if (!need.raw) return "";
   const parts = [];
   if (need.people) parts.push(`${need.people}人`);
+  if (need.rooms) parts.push(`${need.rooms}房`);
+  if (need.beds) parts.push(`${need.beds}床`);
   if (need.budget) parts.push(`预算${yuan.format(need.budget)}左右`);
   if (need.wanted.length) parts.push(`偏好${need.wanted.join("、")}`);
   return parts.length ? `客户需求：${parts.join("，")}。` : `客户需求：${need.raw}。`;
 }
 
-function matchNeedReasons(unit, need, text) {
+function wantedMatched(unit, want, text) {
+  const rooms = Number(unit.rooms) || 0;
+  if (want === "近海") return hasAny(text, ["近海", "海边", "海景", "一线海", "北洛", "银滩", "黄金海岸"]);
+  if (want === "亲子") return rooms >= 4 || hasAny(text, ["亲子", "滑梯", "泡池", "厨房"]);
+  if (want === "团建") return rooms >= 6 || hasAny(text, ["ktv", "泳池", "烧烤", "麻将"]);
+  if (want === "拍照") return hasAny(text, ["北洛", "星空", "泳池", "海景", "山海梦泽", "法式", "ins"]);
+  if (want === "安静") return hasAny(text, ["恒大", "北洛", "度假社区", "山海梦泽"]);
+  if (want === "保利") return hasAny(text, ["保利", "银滩", "星空", "忘情谷", "山海梦泽", "玛瑙湾"]);
+  if (want === "敏捷") return hasAny(text, ["敏捷", "黄金海岸"]);
+  if (want === "恒大") return hasAny(text, ["恒大", "御景湾"]);
+  if (want === "北洛") return hasAny(text, ["北洛", "秘境", "秘景"]);
+  return hasAny(text, [want.toLowerCase()]);
+}
+
+function scoreUnitForNeed(unit, need) {
+  if (!need.raw) return { score: 0, level: "", reasons: [], cautions: [] };
+  const text = [
+    unit.project,
+    unit.area,
+    unit.nearSea,
+    unit.roomType,
+    unit.productName,
+    unit.description,
+    ...(unit.features || []),
+  ]
+    .join(" ")
+    .toLowerCase();
   const reasons = [];
+  const cautions = [];
+  let score = 0;
   const capacity = unitCapacity(unit);
   if (need.people) {
-    if (capacity >= need.people) reasons.push(`床位和空间能覆盖约${need.people}人入住`);
-    else reasons.push(`人数偏满，建议作为备选或确认是否可加床`);
+    if (capacity >= need.people && capacity <= need.people + 8) {
+      score += 26;
+      reasons.push(`人数匹配，约${need.people}人入住不紧张`);
+    } else if (capacity > need.people + 8) {
+      score += 14;
+      reasons.push("空间充足，适合想住宽松的客人");
+    } else {
+      score -= 30;
+      cautions.push(`人数偏满，${unit.beds || "-"}床可能不够${need.people}人舒服入住`);
+    }
+  }
+  if (need.rooms) {
+    if (Number(unit.rooms) === need.rooms) {
+      score += 22;
+      reasons.push(`${need.rooms}房精准匹配`);
+    } else if (Number(unit.rooms) > need.rooms) {
+      score += 8;
+      reasons.push(`房间数多于需求，住得更宽松`);
+    } else {
+      score -= 24;
+      cautions.push(`只有${unit.rooms || "-"}房，低于客户想要的${need.rooms}房`);
+    }
+  }
+  if (need.beds) {
+    if (Number(unit.beds) >= need.beds) {
+      score += Number(unit.beds) === need.beds ? 18 : 10;
+      reasons.push(`${unit.beds}床满足客户床位要求`);
+    } else {
+      score -= 24;
+      cautions.push(`${unit.beds || "-"}床低于客户想要的${need.beds}床`);
+    }
   }
   if (need.budget && unit.minPrice) {
-    if (unit.minPrice <= need.budget) reasons.push(`最低报价在客户预算内`);
-    else reasons.push(`价格高于预算，适合客户愿意升级体验时推荐`);
+    const gap = unit.minPrice - need.budget;
+    if (gap <= 0) {
+      score += 24;
+      reasons.push(`报价从${yuan.format(unit.minPrice)}起，在预算内`);
+    } else if (gap <= 300) {
+      score += 6;
+      cautions.push(`比预算高${yuan.format(gap)}，但差距不大`);
+    } else {
+      score -= 22;
+      cautions.push(`起价比预算高${yuan.format(gap)}`);
+    }
   }
   need.wanted.forEach((want) => {
-    const matched =
-      (want === "近海" && hasAny(text, ["近海", "海边", "海景", "一线海", "北洛", "银滩", "黄金海岸"])) ||
-      (want === "亲子" && Number(unit.rooms) >= 4) ||
-      (want === "团建" && Number(unit.rooms) >= 6) ||
-      (want === "拍照" && hasAny(text, ["北洛", "星空", "泳池", "海景", "山海梦泽"])) ||
-      (want === "安静" && hasAny(text, ["恒大", "北洛", "度假社区"])) ||
-      hasAny(text, [want.toLowerCase()]);
-    if (matched) reasons.push(`符合${want}需求`);
+    if (wantedMatched(unit, want, text)) {
+      score += 10;
+      reasons.push(`符合${want}需求`);
+    } else if (["泳池", "KTV", "近海", "保利", "敏捷", "恒大", "北洛"].includes(want)) {
+      score -= need.mustHave ? 18 : 8;
+      cautions.push(`未明显匹配${want}`);
+    }
   });
-  return unique(reasons).slice(0, 4);
+  const level = score >= 70 ? "高匹配" : score >= 40 ? "较匹配" : score >= 15 ? "可备选" : "谨慎推荐";
+  return { score, level, reasons: unique(reasons).slice(0, 5), cautions: unique(cautions).slice(0, 3) };
+}
+
+function matchNeedReasons(unit, need) {
+  const result = scoreUnitForNeed(unit, need);
+  return result.reasons.concat(result.cautions.map((item) => `需确认：${item}`)).slice(0, 5);
 }
 
 function audienceText(unit) {
@@ -13735,9 +13836,14 @@ function composeSalesCopy(unit, need = parseCustomerNeed("")) {
   const highlightText = highlights.length ? `，亮点是${highlights.join("、")}` : "";
   const priceHint = unit.minPrice ? `，当前报价从${yuan.format(unit.minPrice)}起` : "";
   if (need.raw) {
-    const needReasons = matchNeedReasons(unit, need, text);
-    const reasonText = needReasons.length ? `这套匹配点：${needReasons.join("、")}。` : "";
-    return `${customerNeedSummary(need)}推荐这套${unit.project}${unit.roomNo ? ` ${unit.roomNo}` : ""}：${roomBed}${highlightText}${priceHint}。${reasonText}${sceneText(unit, text)}，可以跟客户说“这套不是单纯便宜，而是人数、玩法和位置都比较稳”。`;
+    const match = scoreUnitForNeed(unit, need);
+    const reasonText = match.reasons.length ? `核心匹配点：${match.reasons.join("、")}。` : "";
+    const cautionText = match.cautions.length ? `需要提前跟客户确认：${match.cautions.join("、")}。` : "";
+    const closeText =
+      match.score >= 40
+        ? "可以主推“这套在人数组合、预算和玩法上比较贴合，客户决策成本低”。"
+        : "更适合作为备选，先确认客户能否接受价格、床位或配套差异。";
+    return `${customerNeedSummary(need)}${match.level}推荐：${unit.project}${unit.roomNo ? ` ${unit.roomNo}` : ""}，${roomBed}${highlightText}${priceHint}。${reasonText}${cautionText}${sceneText(unit, text)}，${closeText}`;
   }
   return `推荐给${audienceText(unit)}：${roomBed}空间更好分配${highlightText}。${sceneText(unit, text)}${priceHint}，客户对比时可以主推“住得下、玩得开、位置省心”。`;
 }
@@ -13838,6 +13944,7 @@ function renderCards(list) {
   const customerNeed = parseCustomerNeed(els.customerNeed?.value || "");
   const fragment = document.createDocumentFragment();
   list.forEach((unit) => {
+    const needMatch = scoreUnitForNeed(unit, customerNeed);
     const card = els.template.content.firstElementChild.cloneNode(true);
     card.dataset.id = unit.id;
     if (unit.id === activeId) card.classList.add("active");
@@ -13849,11 +13956,16 @@ function renderCards(list) {
     pill.innerHTML = `<small>报价区间</small>${priceText(unit)}`;
 
     const tags = card.querySelector(".tags");
-    [unit.seaLevel === "beach" ? "海边" : unit.seaLevel === "near" ? "近海" : "片区近海", ...unit.features]
+    [
+      customerNeed.raw ? `${needMatch.level} ${Math.max(0, needMatch.score)}分` : "",
+      unit.seaLevel === "beach" ? "海边" : unit.seaLevel === "near" ? "近海" : "片区近海",
+      ...unit.features,
+    ]
       .slice(0, 7)
+      .filter(Boolean)
       .forEach((tag) => {
         const span = document.createElement("span");
-        span.className = `tag${tag.includes("海") ? " sea" : ""}`;
+        span.className = `tag${tag.includes("海") ? " sea" : ""}${tag.includes("匹配") || tag.includes("备选") || tag.includes("谨慎") ? " match" : ""}`;
         span.textContent = tag;
         tags.append(span);
       });
@@ -13961,12 +14073,13 @@ function renderMap(list) {
 
 function render() {
   const filters = currentFilters();
-  const list = sortUnits(units.filter((unit) => matchUnit(unit, filters)), filters.sort);
+  const need = parseCustomerNeed(els.customerNeed?.value || "");
+  const list = sortUnitsForNeed(units.filter((unit) => matchUnit(unit, filters)), need, filters.sort);
   renderStats(list);
   if (els.needHint) {
-    const need = parseCustomerNeed(els.customerNeed?.value || "");
+    const top = need.raw && list.length ? scoreUnitForNeed(list[0], need) : null;
     els.needHint.textContent = need.raw
-      ? `${customerNeedSummary(need)}已按当前房型、价格、配套生成推荐话术。`
+      ? `${customerNeedSummary(need)}已按匹配度自动排序，当前最前面是${top?.level || "可推荐"}房源。`
       : "填写客户人数、预算、想要的配套或出游场景后，每套房会自动生成更贴合客户的推荐话术。";
   }
   renderAvailabilityPanel();
