@@ -13673,7 +13673,9 @@ function sortUnitsForNeed(list, need, mode) {
   return [...list].sort((a, b) => {
     const aMatch = scoreUnitForNeed(a, need);
     const bMatch = scoreUnitForNeed(b, need);
-    const priceGap = (a.minPrice || 999999) - (b.minPrice || 999999);
+    const aPrice = datePriceForUnit(a, need.date)?.price || a.minPrice || 999999;
+    const bPrice = datePriceForUnit(b, need.date)?.price || b.minPrice || 999999;
+    const priceGap = aPrice - bPrice;
     return bMatch.score - aMatch.score || priceGap || (b.rooms || 0) - (a.rooms || 0);
   });
 }
@@ -13706,9 +13708,42 @@ function hasAny(text, words) {
   return words.some((word) => text.includes(word));
 }
 
+function dateText(year, month, day) {
+  return `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+}
+
+function parseNeedDate(text) {
+  const normalized = String(text || "");
+  const range = normalized.match(/(\d{1,2})\s*[月./-]\s*(\d{1,2})\s*(?:日)?\s*[-到至~]\s*(?:(\d{1,2})\s*[月./-])?\s*(\d{1,2})\s*(?:日)?/);
+  const single = normalized.match(/(\d{1,2})\s*[月./-]\s*(\d{1,2})\s*(?:日|号)?/);
+  const year = Number(dataset.meta?.year || 2026);
+  if (range) {
+    const startMonth = Number(range[1]);
+    const startDay = Number(range[2]);
+    const endMonth = Number(range[3] || range[1]);
+    const endDay = Number(range[4]);
+    return {
+      date: dateText(year, startMonth, startDay),
+      endDate: dateText(year, endMonth, endDay),
+      label: `${startMonth}月${startDay}日-${endMonth}月${endDay}日`,
+    };
+  }
+  if (single) {
+    const month = Number(single[1]);
+    const day = Number(single[2]);
+    return {
+      date: dateText(year, month, day),
+      endDate: "",
+      label: `${month}月${day}日`,
+    };
+  }
+  return { date: "", endDate: "", label: "" };
+}
+
 function parseCustomerNeed(value) {
   const text = String(value || "").trim();
   const normalized = text.toLowerCase();
+  const date = parseNeedDate(text);
   const peopleMatch = normalized.match(/(\d{1,3})\s*(人|位|大|个)/);
   const roomMatch = normalized.match(/(\d{1,2})\s*房/);
   const bedMatch = normalized.match(/(\d{1,2})\s*床/);
@@ -13742,10 +13777,53 @@ function parseCustomerNeed(value) {
     people: peopleMatch ? Number(peopleMatch[1]) : null,
     rooms: roomMatch ? Number(roomMatch[1]) : null,
     beds: bedMatch ? Number(bedMatch[1]) : null,
+    date: date.date,
+    endDate: date.endDate,
+    dateLabel: date.label,
     budget,
     mustHave,
     wanted: unique(wanted),
   };
+}
+
+function parsePeriodDate(value) {
+  const match = String(value || "").match(/(\d{1,2})月(\d{1,2})日/);
+  if (!match) return "";
+  return dateText(Number(dataset.meta?.year || 2026), Number(match[1]), Number(match[2]));
+}
+
+function pricePeriodContains(period, targetDate) {
+  const [startText, endText] = String(period || "").split("-");
+  const start = parsePeriodDate(startText);
+  const end = parsePeriodDate(endText || startText);
+  return start && end && targetDate >= start && targetDate <= end;
+}
+
+function dayTypeForDate(targetDate) {
+  const [, month, day] = targetDate.match(/^\d{4}-(\d{2})-(\d{2})$/) || [];
+  if (!month || !day) return "";
+  const weekday = new Date(Number(dataset.meta?.year || 2026), Number(month) - 1, Number(day)).getDay();
+  if (weekday === 6) return "周六";
+  if (weekday === 5) return "周五";
+  if (weekday === 0) return "周日";
+  return "平日";
+}
+
+function rowMatchesDayType(row, dayType) {
+  const text = String(row.dayType || "");
+  if (dayType === "周六") return text.includes("周六") || text.includes("星期六");
+  if (dayType === "周五") return text.includes("周五") || text.includes("星期五");
+  if (dayType === "周日") return text.includes("周日") || text.includes("星期日");
+  return text.includes("平日") || text.includes("周一") || text.includes("周四") || text.includes("周日至周五");
+}
+
+function datePriceForUnit(unit, targetDate) {
+  if (!targetDate) return null;
+  const candidates = (unit.prices || []).filter((row) => pricePeriodContains(row.period, targetDate));
+  if (!candidates.length) return null;
+  const dayType = dayTypeForDate(targetDate);
+  const row = candidates.find((item) => rowMatchesDayType(item, dayType)) || candidates[0];
+  return row ? { price: row.price, period: row.period, dayType: row.dayType, dateLabel: formatDateShort(targetDate) } : null;
 }
 
 function unitCapacity(unit) {
@@ -13760,6 +13838,7 @@ function customerNeedSummary(need) {
   if (need.people) parts.push(`${need.people}人`);
   if (need.rooms) parts.push(`${need.rooms}房`);
   if (need.beds) parts.push(`${need.beds}床`);
+  if (need.dateLabel) parts.push(`入住${need.dateLabel}`);
   if (need.budget) parts.push(`预算${yuan.format(need.budget)}左右`);
   if (need.wanted.length) parts.push(`偏好${need.wanted.join("、")}`);
   return parts.length ? `客户需求：${parts.join("，")}。` : `客户需求：${need.raw}。`;
@@ -13796,6 +13875,7 @@ function scoreUnitForNeed(unit, need) {
   const cautions = [];
   let score = 0;
   const capacity = unitCapacity(unit);
+  const datePrice = datePriceForUnit(unit, need.date);
   if (need.people) {
     if (capacity >= need.people && capacity <= need.people + 8) {
       score += 26;
@@ -13829,11 +13909,21 @@ function scoreUnitForNeed(unit, need) {
       cautions.push(`${unit.beds || "-"}床低于客户想要的${need.beds}床`);
     }
   }
-  if (need.budget && unit.minPrice) {
-    const gap = unit.minPrice - need.budget;
+  if (need.date) {
+    if (datePrice) {
+      score += 8;
+      reasons.push(`${formatDateShort(need.date)}有对应日期报价`);
+    } else {
+      score -= 18;
+      cautions.push(`${formatDateShort(need.date)}未找到明确报价档`);
+    }
+  }
+  if (need.budget && (datePrice?.price || unit.minPrice)) {
+    const comparePrice = datePrice?.price || unit.minPrice;
+    const gap = comparePrice - need.budget;
     if (gap <= 0) {
       score += 24;
-      reasons.push(`报价从${yuan.format(unit.minPrice)}起，在预算内`);
+      reasons.push(`${datePrice ? "入住日期报价" : "起价"}${yuan.format(comparePrice)}在预算内`);
     } else if (gap <= 300) {
       score += 6;
       cautions.push(`比预算高${yuan.format(gap)}，但差距不大`);
@@ -13904,7 +13994,12 @@ function composeSalesCopy(unit, need = parseCustomerNeed("")) {
   const roomBed = `${unit.rooms || "-"}房${unit.beds ? `${unit.beds}床` : ""}`;
   const highlights = featureHighlights(unit, text);
   const highlightText = highlights.length ? `，亮点是${highlights.join("、")}` : "";
-  const priceHint = unit.minPrice ? `，当前报价从${yuan.format(unit.minPrice)}起` : "";
+  const datePrice = datePriceForUnit(unit, need.date);
+  const priceHint = datePrice
+    ? `，${formatDateShort(need.date)}按${datePrice.dayType}报价${yuan.format(datePrice.price)}`
+    : unit.minPrice
+      ? `，当前报价从${yuan.format(unit.minPrice)}起`
+      : "";
   if (need.raw) {
     const match = scoreUnitForNeed(unit, need);
     const reasonText = match.reasons.length ? `核心匹配点：${match.reasons.join("、")}。` : "";
@@ -13930,13 +14025,19 @@ function customerReplyForUnit(unit, need, index) {
   const match = scoreUnitForNeed(unit, need);
   const reasons = match.reasons.length ? match.reasons.join("、") : "房型、位置和价格综合比较稳";
   const cautions = match.cautions.length ? `需要确认：${match.cautions.join("、")}。` : "";
+  const datePrice = datePriceForUnit(unit, need.date);
+  const priceLine = datePrice
+    ? `${need.dateLabel || formatDateShort(need.date)} ${datePrice.dayType}：${yuan.format(datePrice.price)}（${datePrice.period}）`
+    : need.date
+      ? `${need.dateLabel || formatDateShort(need.date)}未匹配到明确日期价，先按区间参考：${priceText(unit)}`
+      : priceText(unit);
   const features = featureHighlights(
     unit,
     [unit.project, unit.roomType, unit.productName, unit.description, ...(unit.features || [])].join(" ").toLowerCase(),
   );
   const featureText = features.length ? `，带${features.join("、")}` : "";
   return `${index}. ${shortRoomTitle(unit)}
-价格：${priceText(unit)}
+价格：${priceLine}
 推荐理由：${unit.rooms || "-"}房${unit.beds ? `${unit.beds}床` : ""}${featureText}，${reasons}。${cautions}
 房型链接：${unitLink(unit)}`;
 }
@@ -13957,7 +14058,8 @@ function generateCustomerReply() {
     .filter((unit) => scoreUnitForNeed(unit, need).score >= 15)
     .slice(0, 3);
   const picked = topList.length ? topList : list.slice(0, 3);
-  const opener = `您好，我按您的需求帮您先筛了一轮：${customerNeedSummary(need).replace("客户需求：", "").replace("。", "")}。比较建议优先看下面这${picked.length}套，都是按人数、预算、配套和位置综合匹配出来的：`;
+  const dateNote = need.date ? "价格已优先按您写的入住日期匹配对应报价档。" : "您还没写入住日期，价格先按报价区间参考；确定日期后我再按当天价格精确核一遍。";
+  const opener = `您好，我按您的需求帮您先筛了一轮：${customerNeedSummary(need).replace("客户需求：", "").replace("。", "")}。${dateNote}比较建议优先看下面这${picked.length}套：`;
   const body = picked.map((unit, index) => customerReplyForUnit(unit, need, index + 1)).join("\n\n");
   const closer = "您可以先看下哪套感觉更合适，我这边再帮您核实时段房态和最终到手价。";
   els.customerReply.value = `${opener}\n\n${body}\n\n${closer}`;
