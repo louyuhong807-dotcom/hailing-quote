@@ -144,6 +144,81 @@ h1 {
   backdrop-filter: blur(12px);
 }
 
+.availability-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 18px;
+  padding: 18px 20px;
+  border: 1px solid rgba(20, 125, 137, 0.18);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(244, 250, 250, 0.9)),
+    linear-gradient(90deg, rgba(20, 125, 137, 0.08), rgba(240, 161, 74, 0.08));
+  box-shadow: var(--soft-shadow);
+}
+
+.availability-panel h2 {
+  margin: 3px 0 5px;
+  color: var(--ink);
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.availability-panel p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.availability-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.availability-actions span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.availability-actions button,
+.availability-actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0 13px;
+  border-radius: 8px;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.availability-actions button {
+  border: 0;
+  color: #fff;
+  background: linear-gradient(180deg, #176f78, var(--aqua-dark));
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(13, 89, 99, 0.16);
+}
+
+.availability-actions button:disabled {
+  cursor: progress;
+  opacity: 0.68;
+}
+
+.availability-actions a {
+  color: var(--aqua-dark);
+  border: 1px solid rgba(20, 125, 137, 0.34);
+  background: #fff;
+}
+
 .workbench {
   display: grid;
   grid-template-columns: 312px minmax(0, 1fr);
@@ -464,6 +539,79 @@ h3 {
   -webkit-box-orient: vertical;
 }
 
+.availability-card {
+  display: none;
+}
+
+.availability-card.show {
+  display: grid;
+  gap: 9px;
+  padding: 10px;
+  border: 1px solid rgba(20, 125, 137, 0.18);
+  border-radius: 8px;
+  background: linear-gradient(180deg, #f8fcfc, #ffffff);
+}
+
+.availability-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.availability-card-head strong {
+  color: var(--aqua-dark);
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+.availability-card-head span {
+  flex: 0 0 auto;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.availability-days {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(58px, 1fr));
+  gap: 6px;
+}
+
+.availability-day {
+  display: grid;
+  gap: 3px;
+  min-height: 46px;
+  padding: 7px 5px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.availability-day em {
+  color: inherit;
+  font-style: normal;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.availability-day strong {
+  color: inherit;
+  font-size: 12px;
+  line-height: 1.15;
+}
+
+.availability-day.open {
+  color: #19613a;
+  border: 1px solid rgba(63, 125, 85, 0.18);
+  background: #edf8ef;
+}
+
+.availability-day.full {
+  color: #9a3d2b;
+  border: 1px solid rgba(184, 77, 53, 0.16);
+  background: #fff0ed;
+}
+
 .price-pill {
   flex: 0 0 auto;
   max-width: 150px;
@@ -629,6 +777,7 @@ h3 {
   }
 
   .topbar,
+  .availability-panel,
   .result-head {
     align-items: stretch;
     flex-direction: column;
@@ -659,6 +808,28 @@ h3 {
     padding: 8px 10px;
     font-size: 13px;
     line-height: 1.35;
+  }
+
+  .availability-panel {
+    gap: 14px;
+    padding: 16px;
+  }
+
+  .availability-panel h2 {
+    font-size: 20px;
+  }
+
+  .availability-actions {
+    justify-content: stretch;
+  }
+
+  .availability-actions span {
+    width: 100%;
+  }
+
+  .availability-actions button,
+  .availability-actions a {
+    flex: 1 1 120px;
   }
 
   .workbench {
@@ -750,6 +921,10 @@ h3 {
     min-height: 46px;
   }
 
+  .availability-actions button {
+    width: auto;
+  }
+
   .card-main {
     display: grid;
     gap: 12px;
@@ -789,6 +964,14 @@ h3 {
     max-height: none;
     overflow: visible;
     padding-right: 0;
+  }
+
+  .availability-card-head {
+    display: grid;
+  }
+
+  .availability-days {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 
   .price-period {
@@ -939,6 +1122,25 @@ h3 {
         </div>
       </section>
 
+      <section class="availability-panel" aria-label="北洛秘境实时房态">
+        <div>
+          <p class="eyebrow">北洛秘境房态</p>
+          <h2>实时同步云掌柜房态</h2>
+          <p id="availabilitySummary">正在同步北洛秘境房态...</p>
+        </div>
+        <div class="availability-actions">
+          <span id="availabilityUpdated">同步中</span>
+          <button id="availabilityRefresh" type="button">刷新房态</button>
+          <a
+            href="https://uni-pms.yunzhanggui.com/roomShare?share_id=f95a367296605dd7a992601fd5855270"
+            target="_blank"
+            rel="noreferrer"
+          >
+            原房态
+          </a>
+        </div>
+      </section>
+
       <section class="workbench">
         <aside class="filters" aria-label="筛选条件">
           <label>
@@ -1019,6 +1221,7 @@ h3 {
         </div>
         <div class="tags"></div>
         <p class="description"></p>
+        <div class="availability-card"></div>
         <div class="price-table"></div>
         <div class="card-actions">
           <a class="map-link" target="_blank" rel="noreferrer">地图</a>
@@ -6334,6 +6537,9 @@ const els = {
   template: document.querySelector("#cardTemplate"),
   matchCount: document.querySelector("#matchCount"),
   priceRange: document.querySelector("#priceRange"),
+  availabilitySummary: document.querySelector("#availabilitySummary"),
+  availabilityUpdated: document.querySelector("#availabilityUpdated"),
+  availabilityRefresh: document.querySelector("#availabilityRefresh"),
 };
 
 let map;
@@ -6341,6 +6547,18 @@ let markerLayer;
 let useFallbackMap = false;
 let activeId = "";
 const isWeChat = /MicroMessenger/i.test(navigator.userAgent || "");
+const BEILUO_SHARE_ID = "f95a367296605dd7a992601fd5855270";
+const BEILUO_STATUS_API = "https://api.yunzhanggui.net/api/v2/hotel_room_share/get_room_status";
+const availabilityState = {
+  loading: false,
+  error: "",
+  innName: "北洛秘境",
+  startDate: "",
+  endDate: "",
+  updatedAt: "",
+  rows: [],
+  byRoom: new Map(),
+};
 
 const yuan =
   typeof Intl !== "undefined" && Intl.NumberFormat
@@ -6369,6 +6587,40 @@ function priceText(unit) {
   if (unit.minPrice == null) return "待询价";
   if (unit.minPrice === unit.maxPrice) return yuan.format(unit.minPrice);
   return `${yuan.format(unit.minPrice)}-${yuan.format(unit.maxPrice)}`;
+}
+
+function isBeiluo(unit) {
+  return [unit.project, unit.sourceSheet, unit.address, unit.description].join(" ").includes("北洛");
+}
+
+function normalizeRoomKey(value) {
+  return String(value || "")
+    .replace(/[（）()号\s]/g, "")
+    .replace(/-/g, "")
+    .replace(/^0+/, "")
+    .toLowerCase();
+}
+
+function roomKeyVariants(value) {
+  const text = String(value || "").trim();
+  const segmentTrimmed = text.replace(/\d+/g, (part) => String(Number(part)));
+  return unique([text, segmentTrimmed, normalizeRoomKey(text), normalizeRoomKey(segmentTrimmed)]);
+}
+
+function formatDateShort(dateText) {
+  const [, month, day] = String(dateText).match(/^\d{4}-(\d{2})-(\d{2})$/) || [];
+  return month && day ? `${Number(month)}/${Number(day)}` : dateText;
+}
+
+function roomDayLabel(day) {
+  if (!day) return "未知";
+  if (day.has_order_state === 2) return "可订";
+  if (day.has_order_state === 1) return day.room_order_state || "满房";
+  return day.room_order_state || "未知";
+}
+
+function isRoomAvailable(day) {
+  return day && day.has_order_state === 2;
 }
 
 function amapLink(unit) {
@@ -6456,6 +6708,73 @@ function groupPricesByPeriod(prices) {
   }, {});
 }
 
+function availabilityForUnit(unit) {
+  if (!isBeiluo(unit)) return null;
+  const keys = roomKeyVariants(unit.roomNo || unit.roomType);
+  return keys.map((key) => availabilityState.byRoom.get(key)).find(Boolean) || null;
+}
+
+function renderAvailabilityPanel() {
+  if (!els.availabilitySummary || !els.availabilityUpdated) return;
+  if (availabilityState.loading && !availabilityState.rows.length) {
+    els.availabilitySummary.textContent = "正在同步北洛秘境房态...";
+    els.availabilityUpdated.textContent = "同步中";
+    return;
+  }
+  if (availabilityState.error && !availabilityState.rows.length) {
+    els.availabilitySummary.textContent = "北洛秘境房态暂时同步失败，可点击原房态查看。";
+    els.availabilityUpdated.textContent = "同步失败";
+    return;
+  }
+
+  const rooms = availabilityState.rows.length;
+  const availableToday = availabilityState.rows.filter((row) => isRoomAvailable(row.days[0])).length;
+  const range =
+    availabilityState.startDate && availabilityState.endDate
+      ? `${formatDateShort(availabilityState.startDate)}-${formatDateShort(availabilityState.endDate)}`
+      : "未来房态";
+  els.availabilitySummary.textContent = `${availabilityState.innName}：已同步 ${rooms} 间房，${range}，首日可订 ${availableToday} 间。`;
+  els.availabilityUpdated.textContent = availabilityState.updatedAt
+    ? `更新 ${availabilityState.updatedAt}`
+    : availabilityState.loading
+      ? "同步中"
+      : "已同步";
+}
+
+function renderRoomAvailability(unit, container) {
+  container.innerHTML = "";
+  if (!isBeiluo(unit)) return;
+
+  const row = availabilityForUnit(unit);
+  container.classList.add("show");
+  if (availabilityState.error && !row) {
+    container.innerHTML = '<div class="availability-card-head"><strong>实时房态</strong><span>同步失败</span></div>';
+    return;
+  }
+  if (!row) {
+    container.innerHTML = availabilityState.loading
+      ? '<div class="availability-card-head"><strong>实时房态</strong><span>同步中</span></div>'
+      : '<div class="availability-card-head"><strong>实时房态</strong><span>未匹配到房号</span></div>';
+    return;
+  }
+
+  const openDays = row.days.filter(isRoomAvailable).length;
+  const cells = row.days
+    .slice(0, 15)
+    .map((day) => {
+      const available = isRoomAvailable(day);
+      return `<span class="availability-day ${available ? "open" : "full"}"><em>${formatDateShort(day.date)}</em><strong>${roomDayLabel(day)}</strong></span>`;
+    })
+    .join("");
+  container.innerHTML = `
+    <div class="availability-card-head">
+      <strong>实时房态 · ${row.roomName}</strong>
+      <span>${openDays}/${row.days.length} 天可订</span>
+    </div>
+    <div class="availability-days">${cells}</div>
+  `;
+}
+
 function renderCards(list) {
   els.cards.innerHTML = "";
   if (!list.length) {
@@ -6489,6 +6808,7 @@ function renderCards(list) {
       });
 
     card.querySelector(".description").textContent = unit.description || unit.productName || unit.locationNote;
+    renderRoomAvailability(unit, card.querySelector(".availability-card"));
 
     const table = card.querySelector(".price-table");
     if (unit.prices.length) {
@@ -6591,6 +6911,7 @@ function render() {
   const filters = currentFilters();
   const list = sortUnits(units.filter((unit) => matchUnit(unit, filters)), filters.sort);
   renderStats(list);
+  renderAvailabilityPanel();
   renderCards(list);
   renderMap(list);
 }
@@ -6610,8 +6931,76 @@ initFilters();
 initMap();
 render();
 
+function buildAvailabilityRows(roomStatus) {
+  const rows = [];
+  Object.values(roomStatus || {}).forEach((roomType) => {
+    Object.values(roomType.room_list || {}).forEach((room) => {
+      const days = Object.values(room.screen_list || {}).sort((a, b) => String(a.date).localeCompare(String(b.date)));
+      rows.push({
+        roomTypeName: roomType.room_type_name,
+        roomName: room.room_name,
+        cleanStatus: room.clean_status,
+        days,
+      });
+    });
+  });
+  return rows;
+}
+
+function indexAvailabilityRows(rows) {
+  availabilityState.byRoom = new Map();
+  rows.forEach((row) => {
+    roomKeyVariants(row.roomName).forEach((key) => availabilityState.byRoom.set(key, row));
+  });
+}
+
+async function syncBeiluoAvailability() {
+  availabilityState.loading = true;
+  availabilityState.error = "";
+  renderAvailabilityPanel();
+  if (els.availabilityRefresh) els.availabilityRefresh.disabled = true;
+
+  try {
+    const response = await fetch(BEILUO_STATUS_API, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=UTF-8",
+        "X-Requested-With": "XMLHttpRequest",
+        ua: "oms_h5",
+        timestamp: String(Date.now()),
+      },
+      body: JSON.stringify({
+        share_id: BEILUO_SHARE_ID,
+        start_date: "",
+        end_date: "",
+      }),
+    });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const data = await response.json();
+    if (data.ret_code !== 0) throw new Error(data.ret_msg || "房态接口返回异常");
+
+    const info = data.ret_data || {};
+    const rows = buildAvailabilityRows(info.room_status);
+    availabilityState.innName = info.inn_name || "北洛秘境";
+    availabilityState.startDate = info.current_date?.start_date || "";
+    availabilityState.endDate = info.current_date?.end_date || "";
+    availabilityState.updatedAt = new Date().toLocaleTimeString("zh-CN", { hour: "2-digit", minute: "2-digit" });
+    availabilityState.rows = rows;
+    indexAvailabilityRows(rows);
+  } catch (error) {
+    availabilityState.error = error.message || "同步失败";
+  } finally {
+    availabilityState.loading = false;
+    if (els.availabilityRefresh) els.availabilityRefresh.disabled = false;
+    render();
+  }
+}
+
 [els.keyword, els.project, els.area, els.sea, els.room, els.sort].forEach((el) => el.addEventListener("input", render));
 els.reset.addEventListener("click", reset);
+if (els.availabilityRefresh) els.availabilityRefresh.addEventListener("click", syncBeiluoAvailability);
+syncBeiluoAvailability();
+setInterval(syncBeiluoAvailability, 5 * 60 * 1000);
 
     </script>
   </body>
