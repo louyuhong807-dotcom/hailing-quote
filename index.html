@@ -14042,18 +14042,9 @@ function customerReplyForUnit(unit, need, index) {
 房型链接：${unitLink(unit)}`;
 }
 
-function generateCustomerReply() {
+function buildCustomerReplyData() {
   const need = parseCustomerNeed(els.customerNeed?.value || "");
   const list = currentResultList();
-  if (!els.customerReply) return;
-  if (!need.raw) {
-    els.customerReply.value = "先在左边写一下客户需求，例如：12个人，预算3000左右，想要泳池、KTV，最好近海。";
-    return;
-  }
-  if (!list.length) {
-    els.customerReply.value = "按这个需求暂时没有筛到合适房源，可以放宽片区、房间数或预算后再试。";
-    return;
-  }
   const topList = list
     .filter((unit) => scoreUnitForNeed(unit, need).score >= 15)
     .slice(0, 3);
@@ -14062,12 +14053,90 @@ function generateCustomerReply() {
   const opener = `您好，我按您的需求帮您先筛了一轮：${customerNeedSummary(need).replace("客户需求：", "").replace("。", "")}。${dateNote}比较建议优先看下面这${picked.length}套：`;
   const body = picked.map((unit, index) => customerReplyForUnit(unit, need, index + 1)).join("\n\n");
   const closer = "您可以先看下哪套感觉更合适，我这边再帮您核实时段房态和最终到手价。";
-  els.customerReply.value = `${opener}\n\n${body}\n\n${closer}`;
+  return {
+    need,
+    picked,
+    localReply: `${opener}\n\n${body}\n\n${closer}`,
+    rooms: picked.map((unit) => {
+      const match = scoreUnitForNeed(unit, need);
+      const datePrice = datePriceForUnit(unit, need.date);
+      return {
+        id: unit.id,
+        title: shortRoomTitle(unit),
+        project: unit.project,
+        area: unit.area,
+        rooms: unit.rooms,
+        beds: unit.beds,
+        nearSea: unit.nearSea,
+        features: featureHighlights(
+          unit,
+          [unit.project, unit.roomType, unit.productName, unit.description, ...(unit.features || [])].join(" ").toLowerCase(),
+        ),
+        exactDate: need.date || "",
+        exactPrice: datePrice?.price ?? null,
+        priceDayType: datePrice?.dayType || "",
+        pricePeriod: datePrice?.period || "",
+        priceRange: priceText(unit),
+        matchLevel: match.level,
+        reasons: match.reasons,
+        cautions: match.cautions,
+        link: unitLink(unit),
+      };
+    }),
+  };
+}
+
+async function generateCustomerReply() {
+  if (!els.customerReply) return;
+  const need = parseCustomerNeed(els.customerNeed?.value || "");
+  if (!need.raw) {
+    els.customerReply.value = "先在左边写一下客户需求，例如：12个人，预算3000左右，想要泳池、KTV，最好近海。";
+    return;
+  }
+  const result = buildCustomerReplyData();
+  if (!result.picked.length) {
+    els.customerReply.value = "按这个需求暂时没有筛到合适房源，可以放宽片区、房间数或预算后再试。";
+    return;
+  }
+
+  const endpoint = window.HAILING_AI_ENDPOINT || "/api/sales-copy";
+  const originalText = els.needGenerate?.textContent || "确认生成";
+  if (els.needGenerate) {
+    els.needGenerate.disabled = true;
+    els.needGenerate.textContent = "正在生成...";
+  }
+  if (els.needHint) els.needHint.textContent = "已锁定匹配房型、日期和价格，正在生成真人回复话术...";
+
+  try {
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        customerNeed: result.need.raw,
+        parsedNeed: result.need,
+        rooms: result.rooms,
+        fallbackReply: result.localReply,
+      }),
+    });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const payload = await response.json();
+    if (!payload.reply) throw new Error("AI 未返回有效话术");
+    els.customerReply.value = payload.reply;
+    if (els.needHint) els.needHint.textContent = "已按报价表生成，可直接复制发给客户。日期、价格和链接均来自系统匹配结果。";
+  } catch {
+    els.customerReply.value = result.localReply;
+    if (els.needHint) els.needHint.textContent = "AI 服务尚未配置，已使用系统精准话术生成；房型、日期和价格不受影响。";
+  } finally {
+    if (els.needGenerate) {
+      els.needGenerate.disabled = false;
+      els.needGenerate.textContent = originalText;
+    }
+  }
 }
 
 async function copyCustomerReply() {
   if (!els.customerReply) return;
-  if (!els.customerReply.value.trim()) generateCustomerReply();
+  if (!els.customerReply.value.trim()) await generateCustomerReply();
   els.customerReply.select();
   try {
     await navigator.clipboard.writeText(els.customerReply.value);
