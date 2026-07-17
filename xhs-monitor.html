@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="format-detection" content="telephone=no">
+  <title>小红书评论监控</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f4ef;
+      --ink: #243032;
+      --muted: #718084;
+      --line: #e1d8ca;
+      --panel: #fffdf9;
+      --accent: #c95235;
+      --accent-soft: #fff0e8;
+      --green: #1f7a5c;
+      --shadow: 0 16px 38px rgba(79, 55, 35, .12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.74), rgba(247,244,239,.96)),
+        var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      width: min(760px, 100%);
+      margin: 0 auto;
+      padding: max(16px, env(safe-area-inset-top)) 14px max(26px, env(safe-area-inset-bottom));
+    }
+
+    .hero {
+      padding: 20px 4px 14px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 28px;
+      padding: 0 10px;
+      border: 1px solid rgba(201,82,53,.22);
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--green);
+      box-shadow: 0 0 0 5px rgba(31,122,92,.12);
+    }
+
+    h1 {
+      margin: 14px 0 8px;
+      font-size: clamp(28px, 8vw, 44px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .sub {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 10px 0 14px;
+    }
+
+    .metric, .card {
+      border: 1px solid var(--line);
+      background: rgba(255,253,249,.9);
+      box-shadow: var(--shadow);
+      border-radius: 8px;
+    }
+
+    .metric {
+      padding: 13px 14px;
+      min-height: 78px;
+    }
+
+    .label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .value {
+      margin-top: 7px;
+      color: var(--ink);
+      font-size: 18px;
+      font-weight: 800;
+      word-break: break-word;
+    }
+
+    .section-title {
+      margin: 22px 4px 10px;
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .card {
+      padding: 15px;
+      margin: 10px 0;
+    }
+
+    .alert-card {
+      border-color: rgba(201,82,53,.26);
+      background: linear-gradient(180deg, #fff9f5, #fffdf9);
+    }
+
+    .post-title {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.45;
+      font-weight: 900;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      padding: 0 9px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      white-space: nowrap;
+    }
+
+    .comment {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 8px;
+      background: #f7faf8;
+      border: 1px solid #dbe9e1;
+    }
+
+    .comment strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+
+    .comment p {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .link-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 13px;
+    }
+
+    a.button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 0 13px;
+      border-radius: 8px;
+      background: var(--ink);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .ghost {
+      background: #fff !important;
+      color: var(--ink) !important;
+      border: 1px solid var(--line);
+    }
+
+    .empty {
+      padding: 18px;
+      border: 1px dashed var(--line);
+      border-radius: 8px;
+      color: var(--muted);
+      background: rgba(255,255,255,.62);
+      line-height: 1.7;
+    }
+
+    .footer {
+      margin-top: 22px;
+      padding: 12px 4px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 430px) {
+      .summary { grid-template-columns: 1fr; }
+      .link-row { flex-direction: column; }
+      a.button { width: 100%; }
+      .page { padding-left: 12px; padding-right: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="eyebrow"><span class="dot"></span><span>小红书评论监控</span></div>
+      <h1>新客户评论提醒</h1>
+      <p class="sub">手机微信可打开查看。页面显示最近一次监控结果，发现新评论时会在“最新提醒”里置顶。</p>
+    </section>
+
+    <section class="summary">
+      <div class="metric">
+        <div class="label">最近检查</div>
+        <div class="value" id="checkedAt">读取中</div>
+      </div>
+      <div class="metric">
+        <div class="label">监控帖子</div>
+        <div class="value" id="postCount">读取中</div>
+      </div>
+    </section>
+
+    <h2 class="section-title">最新提醒</h2>
+    <section id="alerts"></section>
+
+    <h2 class="section-title">监控列表</h2>
+    <section id="posts"></section>
+
+    <div class="footer">
+      说明：微信网页本身不能直接绕过小红书限制抓评论，数据来自本地监控脚本的最近一次检查。要让页面持续刷新，需要监控脚本定时运行并发布数据。
+    </div>
+  </main>
+
+  <script src="./xhs-monitor-data.js"></script>
+  <script>
+    const data = window.XHS_MONITOR_DATA || {};
+    const fmt = (value) => {
+      if (!value) return "暂无记录";
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return value;
+      return date.toLocaleString("zh-CN", { hour12: false });
+    };
+    const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (ch) => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+    }[ch]));
+    const renderComment = (comment) => `
+      <div class="comment">
+        <strong>${escapeHtml(comment.nickname || "未知用户")}</strong>
+        <p>${escapeHtml(comment.content || "")}</p>
+        <div class="meta">
+          <span class="pill">时间：${escapeHtml(comment.time || "未知")}</span>
+          <span class="pill">小红书号：${escapeHtml(comment.xhs_user_id || "页面未提供")}</span>
+        </div>
+      </div>
+    `;
+
+    document.getElementById("checkedAt").textContent = fmt(data.checked_at);
+    document.getElementById("postCount").textContent = `${(data.posts || []).length} 条`;
+
+    const alerts = data.new_comments?.length ? data.new_comments : (data.alert_history || []).slice(0, 3);
+    document.getElementById("alerts").innerHTML = alerts.length ? alerts.map((item) => `
+      <article class="card alert-card">
+        <h3 class="post-title">${escapeHtml(item.title || "小红书帖子")}</h3>
+        ${renderComment(item)}
+        <div class="link-row">
+          <a class="button" href="${escapeHtml(item.url || "#")}">打开帖子</a>
+        </div>
+      </article>
+    `).join("") : `<div class="empty">当前没有新的客户评论。页面会保留最近一次检查状态，等有新评论时这里会置顶显示。</div>`;
+
+    document.getElementById("posts").innerHTML = (data.posts || []).map((post) => `
+      <article class="card">
+        <h3 class="post-title">${escapeHtml(post.title)}</h3>
+        <div class="meta">
+          <span class="pill">评论数：${escapeHtml(post.last_count ?? 0)}</span>
+          <span class="pill">检查：${escapeHtml(fmt(post.last_checked))}</span>
+        </div>
+        ${(post.latest_comments || []).slice(0, 2).map(renderComment).join("") || `<div class="comment"><p>暂无可显示评论</p></div>`}
+        <div class="link-row">
+          <a class="button" href="${escapeHtml(post.url)}">打开帖子</a>
+          <a class="button ghost" href="${escapeHtml(post.final_url || post.url)}">原始链接</a>
+        </div>
+      </article>
+    `).join("");
+  </script>
+</body>
+</html>
