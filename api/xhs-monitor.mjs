@@ -102,12 +102,15 @@ async function fetchComments(url) {
     const content = decodeText(item.content);
     if (!content || OWNER_REPLY_TEXTS.has(content)) return [];
     const user = item.user || {};
+    const userProfileId = decodeText(user.userId);
     const timeMs = Number(item.time || 0);
     return [{
       id,
       content,
       nickname: decodeText(user.nickname) || "未知用户",
-      xhs_user_id: decodeText(user.userId) || "页面未提供",
+      xhs_user_id: "页面未提供",
+      user_profile_id: userProfileId || "页面未提供",
+      user_profile_url: userProfileId ? `https://www.xiaohongshu.com/user/profile/${userProfileId}` : "",
       time_ms: timeMs,
       time: formatTime(timeMs),
     }];

@@ -391,7 +391,9 @@
         <div class="meta">
           <span class="pill">时间：${escapeHtml(comment.time || "未知")}</span>
           <span class="pill">小红书号：${escapeHtml(comment.xhs_user_id || "页面未提供")}</span>
+          <span class="pill">用户主页ID：${escapeHtml(comment.user_profile_id || comment.xhs_user_id || "页面未提供")}</span>
         </div>
+        ${comment.user_profile_url ? `<div class="link-row"><a class="button ghost" href="${escapeHtml(comment.user_profile_url)}">打开用户主页</a></div>` : ""}
       </div>
     `;
     const normalizeLink = (value) => {
