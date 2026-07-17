@@ -343,6 +343,10 @@
         <div class="label">监控帖子</div>
         <div class="value" id="postCount">读取中</div>
       </div>
+      <div class="metric">
+        <div class="label">本轮覆盖</div>
+        <div class="value" id="coverageCount">读取中</div>
+      </div>
     </section>
 
     <section id="categoryTabs" class="category-tabs" aria-label="监控分组"></section>
@@ -451,6 +455,7 @@
       renderCategoryTabs();
       document.getElementById("checkedAt").textContent = fmt(data.checked_at);
       document.getElementById("postCount").textContent = `${currentPosts.length} 条`;
+      document.getElementById("coverageCount").textContent = `${data.checked_count ?? (data.posts || []).length}/${data.configured_count ?? (data.posts || []).length} 条`;
       document.querySelector(".add-panel .post-title").textContent = `新增${selectedCategory}监控链接`;
       document.getElementById("alerts").innerHTML = currentAlerts.length ? currentAlerts.map((item) => `
         <article class="card alert-card">
