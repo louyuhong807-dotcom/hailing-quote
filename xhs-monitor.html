@@ -117,6 +117,81 @@
       font-weight: 900;
     }
 
+    .add-panel {
+      padding: 15px;
+      margin: 14px 0 6px;
+      border: 1px solid rgba(201,82,53,.22);
+      background: linear-gradient(180deg, #fff9f5, #fffdf9);
+      box-shadow: var(--shadow);
+      border-radius: 8px;
+    }
+
+    .input-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    input[type="url"] {
+      width: 100%;
+      min-height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0 12px;
+      background: #fff;
+      color: var(--ink);
+      font: inherit;
+      font-size: 15px;
+      outline: none;
+    }
+
+    input[type="url"]:focus {
+      border-color: rgba(201,82,53,.72);
+      box-shadow: 0 0 0 4px rgba(201,82,53,.12);
+    }
+
+    button {
+      min-height: 44px;
+      border: 0;
+      border-radius: 8px;
+      padding: 0 16px;
+      background: var(--accent);
+      color: #fff;
+      font: inherit;
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+    .form-message {
+      margin-top: 10px;
+      min-height: 22px;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .form-message.error { color: #b3261e; font-weight: 800; }
+    .form-message.ok { color: var(--green); font-weight: 800; }
+
+    .pending-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .pending-item {
+      display: grid;
+      gap: 5px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      font-size: 13px;
+      line-height: 1.45;
+      word-break: break-all;
+    }
+
     .card {
       padding: 15px;
       margin: 10px 0;
@@ -219,6 +294,7 @@
 
     @media (max-width: 430px) {
       .summary { grid-template-columns: 1fr; }
+      .input-row { grid-template-columns: 1fr; }
       .link-row { flex-direction: column; }
       a.button { width: 100%; }
       .page { padding-left: 12px; padding-right: 12px; }
@@ -244,6 +320,16 @@
       </div>
     </section>
 
+    <section class="add-panel">
+      <h2 class="post-title">新增监控链接</h2>
+      <div class="input-row">
+        <input id="newLinkInput" type="url" inputmode="url" placeholder="粘贴小红书笔记链接">
+        <button id="addLinkButton" type="button">确认</button>
+      </div>
+      <div id="linkMessage" class="form-message"></div>
+      <div id="pendingLinks" class="pending-list"></div>
+    </section>
+
     <h2 class="section-title">最新提醒</h2>
     <section id="alerts"></section>
 
@@ -258,6 +344,7 @@
   <script src="./xhs-monitor-data.js"></script>
   <script>
     const data = window.XHS_MONITOR_DATA || {};
+    const pendingKey = "xhs-monitor-pending-links";
     const fmt = (value) => {
       if (!value) return "暂无记录";
       const date = new Date(value);
@@ -277,9 +364,64 @@
         </div>
       </div>
     `;
+    const normalizeLink = (value) => {
+      const raw = String(value || "").trim();
+      const match = raw.match(/https?:\/\/[^\s，,。]+/i);
+      if (!match) return "";
+      try {
+        const url = new URL(match[0]);
+        url.hash = "";
+        return url.toString().replace(/\/$/, "");
+      } catch {
+        return "";
+      }
+    };
+    const knownLinks = () => [
+      ...(data.posts || []).flatMap((post) => [post.url, post.final_url]),
+      ...JSON.parse(localStorage.getItem(pendingKey) || "[]").map((item) => item.url)
+    ].filter(Boolean).map((url) => normalizeLink(url).toLowerCase());
+    const setMessage = (text, type = "") => {
+      const node = document.getElementById("linkMessage");
+      node.textContent = text;
+      node.className = `form-message ${type}`;
+    };
+    const renderPendingLinks = () => {
+      const pending = JSON.parse(localStorage.getItem(pendingKey) || "[]");
+      document.getElementById("pendingLinks").innerHTML = pending.length ? pending.map((item) => `
+        <div class="pending-item">
+          <strong>待接入后台监控</strong>
+          <span>${escapeHtml(item.url)}</span>
+          <span>提交时间：${escapeHtml(fmt(item.createdAt))}</span>
+        </div>
+      `).join("") : "";
+    };
 
     document.getElementById("checkedAt").textContent = fmt(data.checked_at);
     document.getElementById("postCount").textContent = `${(data.posts || []).length} 条`;
+    document.getElementById("addLinkButton").addEventListener("click", () => {
+      const input = document.getElementById("newLinkInput");
+      const url = normalizeLink(input.value);
+      if (!url) {
+        setMessage("链接格式不对，请粘贴完整的小红书链接。", "error");
+        return;
+      }
+      const hostOk = /(^|\.)xiaohongshu\.com$/i.test(new URL(url).hostname) || /(^|\.)xhslink\.com$/i.test(new URL(url).hostname);
+      if (!hostOk) {
+        setMessage("只支持小红书或 xhslink 链接。", "error");
+        return;
+      }
+      if (knownLinks().includes(url.toLowerCase())) {
+        setMessage("这个链接已经在监控列表或待接入列表里，不能重复添加。", "error");
+        return;
+      }
+      const pending = JSON.parse(localStorage.getItem(pendingKey) || "[]");
+      pending.unshift({ url, createdAt: new Date().toISOString() });
+      localStorage.setItem(pendingKey, JSON.stringify(pending.slice(0, 20)));
+      input.value = "";
+      setMessage("已通过格式和重复校验，当前网页已记录。正式实时监控需要后台同步接入。", "ok");
+      renderPendingLinks();
+    });
+    renderPendingLinks();
 
     const alerts = data.new_comments?.length ? data.new_comments : (data.alert_history || []).slice(0, 3);
     document.getElementById("alerts").innerHTML = alerts.length ? alerts.map((item) => `
