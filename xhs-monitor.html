@@ -163,6 +163,10 @@
       font-weight: 900;
     }
 
+    button:disabled {
+      opacity: .68;
+    }
+
     .form-message {
       margin-top: 10px;
       min-height: 22px;
@@ -389,7 +393,7 @@
       const pending = JSON.parse(localStorage.getItem(pendingKey) || "[]");
       document.getElementById("pendingLinks").innerHTML = pending.length ? pending.map((item) => `
         <div class="pending-item">
-          <strong>待接入后台监控</strong>
+          <strong>${escapeHtml(item.status || "待接入后台监控")}</strong>
           <span>${escapeHtml(item.url)}</span>
           <span>提交时间：${escapeHtml(fmt(item.createdAt))}</span>
         </div>
@@ -398,8 +402,9 @@
 
     document.getElementById("checkedAt").textContent = fmt(data.checked_at);
     document.getElementById("postCount").textContent = `${(data.posts || []).length} 条`;
-    document.getElementById("addLinkButton").addEventListener("click", () => {
+    document.getElementById("addLinkButton").addEventListener("click", async () => {
       const input = document.getElementById("newLinkInput");
+      const button = document.getElementById("addLinkButton");
       const url = normalizeLink(input.value);
       if (!url) {
         setMessage("链接格式不对，请粘贴完整的小红书链接。", "error");
@@ -414,12 +419,32 @@
         setMessage("这个链接已经在监控列表或待接入列表里，不能重复添加。", "error");
         return;
       }
-      const pending = JSON.parse(localStorage.getItem(pendingKey) || "[]");
-      pending.unshift({ url, createdAt: new Date().toISOString() });
-      localStorage.setItem(pendingKey, JSON.stringify(pending.slice(0, 20)));
-      input.value = "";
-      setMessage("已通过格式和重复校验，当前网页已记录。正式实时监控需要后台同步接入。", "ok");
-      renderPendingLinks();
+      button.disabled = true;
+      button.textContent = "检查中";
+      setMessage("正在后台打开链接并校验重复，请稍等。", "");
+      try {
+        const response = await fetch("/api/xhs-monitor", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ url })
+        });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          setMessage(result.error || "后台接入失败，请稍后再试。", "error");
+          return;
+        }
+        const pending = JSON.parse(localStorage.getItem(pendingKey) || "[]");
+        pending.unshift({ url, createdAt: new Date().toISOString(), status: "已接入后台监控" });
+        localStorage.setItem(pendingKey, JSON.stringify(pending.slice(0, 20)));
+        input.value = "";
+        setMessage(result.message || "已接入后台监控。", "ok");
+        renderPendingLinks();
+      } catch {
+        setMessage("后台接口暂时不可用：当前链接如果是 GitHub Pages 打开，只能展示数据；要实时上传请使用部署到 Vercel 后的链接。", "error");
+      } finally {
+        button.disabled = false;
+        button.textContent = "确认";
+      }
     });
     renderPendingLinks();
 
