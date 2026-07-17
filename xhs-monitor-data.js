@@ -1,5 +1,5 @@
 window.XHS_MONITOR_DATA = {
-  "checked_at": "2026-07-17T13:58:00.650949+00:00",
+  "checked_at": "2026-07-17T14:05:48.838548+00:00",
   "categories": [
     "海陵岛",
     "鼎龙湾"
@@ -10,7 +10,7 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/3nIIPuJHoTU",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/69e057ae000000001b023ee5?app_platform=android&ignoreEngage=true&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBKjGdZjJ8b1rKNhzBg-kFZ8t3xEPm-4RYDGeb97XeTOs%3D&author_share=1&shareRedId=OD9INzk4OkI2NzUyOTgwNjY1OTc1NTY5&apptime=1784193787&share_id=87b224485dc94dfaa5be281d0093c86b&share_channel=copy_link&appuid=69f763690000000002001000&xhsshare=CopyLink",
-      "last_checked": "2026-07-17T13:58:00.650949+00:00",
+      "last_checked": "2026-07-17T14:05:48.838548+00:00",
       "last_count": 7,
       "latest_comments": [
         {
@@ -60,7 +60,7 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/nIGivy4HIG",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/6985facc000000001a01eed6?app_platform=android&ignoreEngage=true&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBdIHw2OXFxKPIRFmGCe-jBlfgZDvC9u7QCbVzXP6WmDU%3D&author_share=1&shareRedId=OD9INzk4OkI2NzUyOTgwNjY1OTc1NTY5&apptime=1784193932&share_id=a2692baad3614ef28d9692adb574e9ae&share_channel=copy_link&appuid=69f763690000000002001000&xhsshare=CopyLink",
-      "last_checked": "2026-07-17T13:58:00.650949+00:00",
+      "last_checked": "2026-07-17T14:05:48.838548+00:00",
       "last_count": 12,
       "latest_comments": [
         {
@@ -110,7 +110,7 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/Wc3e1Mw4ue",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/69c0f555000000001f000995?app_platform=android&ignoreEngage=true&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBgLm3SG0WJClIoJL2lkmJGnruvxmQeBtoMX0VUnw4nhM%3D&author_share=1&shareRedId=OD9INzk4OkI2NzUyOTgwNjY1OTc1NTY5&apptime=1784193994&share_id=b143d38854084066814360a1dfdbc8c2&share_channel=copy_link&appuid=69f763690000000002001000&xhsshare=CopyLink",
-      "last_checked": "2026-07-17T13:58:00.650949+00:00",
+      "last_checked": "2026-07-17T14:05:48.838548+00:00",
       "last_count": 6,
       "latest_comments": [
         {
@@ -160,7 +160,7 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/52MdMkGiitF",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/69c4f2300000000021039ff6?app_platform=android&ignoreEngage=true&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBgb-LPcin1CtAlKmtQbkKUHLOM3VEW-Cd0-WgidH7VAM%3D&author_share=1&shareRedId=OD9INzk4OkI2NzUyOTgwNjY1OTc1NTY5&apptime=1784194127&share_id=1a6ceaedc41a46a8bba4694f47f27193&share_channel=copy_link&appuid=69f763690000000002001000&xhsshare=CopyLink",
-      "last_checked": "2026-07-17T13:58:00.650949+00:00",
+      "last_checked": "2026-07-17T14:05:48.838548+00:00",
       "last_count": 8,
       "latest_comments": [
         {
@@ -210,7 +210,7 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/1dqExFsf8dW",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/691d8f08000000001e004cc4?app_platform=android&ignoreEngage=true&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBQWIbkKpWMwrjfkvaAw7CNMAnITM8ly_wZ1OobQrKfi8%3D&author_share=1&shareRedId=OD9INzk4OkI2NzUyOTgwNjY1OTc1NTY5&apptime=1784194210&share_id=6cae60846bac4fa2b5b503015a607ad0&share_channel=copy_link&appuid=69f763690000000002001000&xhsshare=CopyLink",
-      "last_checked": "2026-07-17T13:58:00.650949+00:00",
+      "last_checked": "2026-07-17T14:05:48.838548+00:00",
       "last_count": 6,
       "latest_comments": [
         {
@@ -260,7 +260,7 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/21m6uIhTKaO",
       "category": "海陵岛",
       "final_url": "https://www.xiaohongshu.com/discovery/item/69e5cae70000000023006e76?app_platform=ios&app_version=9.38.1&share_from_user_hidden=true&xsec_source=app_share&type=normal&noteAttributes=goods&xsec_token=CBpnJe_i8CmMeNJLn0makvt_BpYXi1tGbxlaeUXzIhubA=&author_share=1&back_chain_id=goods_note_share&xhsshare=CopyLink&shareRedId=ODc0NzU-OUw2NzUyOTgwNjY0OTc9PEo6&apptime=1784296193&share_id=4c26c653f20542d4b2018f514c8cc8b7",
-      "last_checked": "2026-07-17T13:58:00.650949+00:00",
+      "last_checked": "2026-07-17T14:05:48.838548+00:00",
       "last_count": 10,
       "latest_comments": [
         {
@@ -302,6 +302,256 @@ window.XHS_MONITOR_DATA = {
           "xhs_user_id": "69b63863000000003301ec60",
           "time_ms": 1783849596000,
           "time": "2026-07-12 17:46:36"
+        }
+      ]
+    },
+    {
+      "title": "不敢相信！阳江海边整栋居然这么便宜",
+      "url": "http://xhslink.com/o/2cbh7sBFx2P",
+      "category": "海陵岛",
+      "final_url": "https://www.xiaohongshu.com/discovery/item/6a06e9cc000000003700d23a?app_platform=ios&app_version=9.38.1&share_from_user_hidden=true&xsec_source=app_share&type=normal&noteAttributes=goods&xsec_token=CBrft0c4I4NR45z08btwtDqaSIzoyNZZaWQdyrgKgQsPw=&author_share=1&back_chain_id=goods_note_share&xhsshare=CopyLink&shareRedId=ODc0NzU-OUw2NzUyOTgwNjY0OTc9PEo6&apptime=1784296894&share_id=c35a2ce17151420b921022731e2ed3d2",
+      "last_checked": "2026-07-17T14:05:48.838548+00:00",
+      "last_count": 10,
+      "latest_comments": [
+        {
+          "id": "6a598d490000000029027ccd",
+          "content": "斯你啦",
+          "nickname": "洛瑶壹墅壹聚",
+          "xhs_user_id": "69d8a878000000003402e67f",
+          "time_ms": 1784253769000,
+          "time": "2026-07-17 10:02:49"
+        },
+        {
+          "id": "6a590fca0000000029024d3d",
+          "content": "明天有房么差不多要6房",
+          "nickname": "火星人",
+          "xhs_user_id": "5db2bf630000000001001d97",
+          "time_ms": 1784221642000,
+          "time": "2026-07-17 01:07:22"
+        },
+        {
+          "id": "6a5596bc000000002a02f068",
+          "content": "斯你啦",
+          "nickname": "洛瑶壹墅壹聚",
+          "xhs_user_id": "69d8a878000000003402e67f",
+          "time_ms": 1783994044000,
+          "time": "2026-07-14 09:54:04"
+        },
+        {
+          "id": "6a55453e000000002a024669",
+          "content": "多少钱",
+          "nickname": "MISSQIZI",
+          "xhs_user_id": "60eac131000000002002f6a3",
+          "time_ms": 1783973183000,
+          "time": "2026-07-14 04:06:23"
+        },
+        {
+          "id": "6a54b33b00000000290342f2",
+          "content": "斯你啦",
+          "nickname": "洛瑶壹墅壹聚",
+          "xhs_user_id": "69d8a878000000003402e67f",
+          "time_ms": 1783935803000,
+          "time": "2026-07-13 17:43:23"
+        }
+      ]
+    },
+    {
+      "title": "阳江📍出门就是海，就在沙滩边上",
+      "url": "http://xhslink.com/o/828sbFz2jag",
+      "category": "海陵岛",
+      "final_url": "https://www.xiaohongshu.com/discovery/item/69e9c9d7000000001f002b94?app_platform=ios&app_version=9.38.1&share_from_user_hidden=true&xsec_source=app_share&type=normal&noteAttributes=goods&xsec_token=CBaEvEolwNyMtrL0i2GyLPG8yN-pmBhWxO2YPV2KHgiec=&author_share=1&back_chain_id=goods_note_share&xhsshare=CopyLink&shareRedId=ODc0NzU-OUw2NzUyOTgwNjY0OTc9PEo6&apptime=1784296915&share_id=51b1ee6c837441f5a1ee05de6ef9bfa5",
+      "last_checked": "2026-07-17T14:05:48.838548+00:00",
+      "last_count": 14,
+      "latest_comments": [
+        {
+          "id": "6a575897000000002b0296bb",
+          "content": "斯你啦",
+          "nickname": "绮玄丨玩乐无忧",
+          "xhs_user_id": "69cde3db000000003202ae87",
+          "time_ms": 1784109208000,
+          "time": "2026-07-15 17:53:28"
+        },
+        {
+          "id": "6a571f890000000015003aec",
+          "content": "怎么订？",
+          "nickname": "MeimEi💕",
+          "xhs_user_id": "58282fe650c4b4082d646a21",
+          "time_ms": 1784094602000,
+          "time": "2026-07-15 13:50:02"
+        },
+        {
+          "id": "6a5606a70000000029027f2a",
+          "content": "斯你啦",
+          "nickname": "绮玄丨玩乐无忧",
+          "xhs_user_id": "69cde3db000000003202ae87",
+          "time_ms": 1784022696000,
+          "time": "2026-07-14 17:51:36"
+        },
+        {
+          "id": "6a55d79f000000002902cff8",
+          "content": "多少钱",
+          "nickname": "雨渐亭",
+          "xhs_user_id": "5cdd8563000000000502a7c5",
+          "time_ms": 1784010656000,
+          "time": "2026-07-14 14:30:56"
+        },
+        {
+          "id": "6a5595be000000002a033082",
+          "content": "斯你啦",
+          "nickname": "绮玄丨玩乐无忧",
+          "xhs_user_id": "69cde3db000000003202ae87",
+          "time_ms": 1783993791000,
+          "time": "2026-07-14 09:49:51"
+        }
+      ]
+    },
+    {
+      "title": "阳江！连住3晚的独栋海边小院～7🈷️有房",
+      "url": "http://xhslink.com/o/5RChcA3aynh",
+      "category": "海陵岛",
+      "final_url": "https://www.xiaohongshu.com/discovery/item/6a44d71e000000000702b657?app_platform=ios&app_version=9.38.1&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBffLWXOQeE7sSR_ijkP-z2cfcGyB1JU0q0cEVeVs-Pec=&author_share=1&xhsshare=CopyLink&shareRedId=ODc0NzU-OUw2NzUyOTgwNjY0OTc9PEo6&apptime=1784296954&share_id=a8f9a08722bc407e92d4fddbadf4d7aa",
+      "last_checked": "2026-07-17T14:05:48.838548+00:00",
+      "last_count": 10,
+      "latest_comments": [
+        {
+          "id": "6a587622000000002a030b79",
+          "content": "发你",
+          "nickname": "嘉嘉环游记（屿夏）",
+          "xhs_user_id": "6683d857000000000d025b8f",
+          "time_ms": 1784182307000,
+          "time": "2026-07-16 14:11:47"
+        },
+        {
+          "id": "6a58682d000000000403b6d2",
+          "content": "位置怎么定价格？",
+          "nickname": "潼潼小哭包",
+          "xhs_user_id": "5e97c1b60000000001008618",
+          "time_ms": 1784178733000,
+          "time": "2026-07-16 13:12:13"
+        },
+        {
+          "id": "6a57a821000000002a033705",
+          "content": "发你",
+          "nickname": "嘉嘉环游记（屿夏）",
+          "xhs_user_id": "6683d857000000000d025b8f",
+          "time_ms": 1784129570000,
+          "time": "2026-07-15 23:32:50"
+        },
+        {
+          "id": "6a5798680000000029025c48",
+          "content": "这个酒店叫什么呢？哪里订购？",
+          "nickname": "曹小主🍵🍃",
+          "xhs_user_id": "5df67bd10000000001007e0c",
+          "time_ms": 1784125545000,
+          "time": "2026-07-15 22:25:45"
+        },
+        {
+          "id": "6a4ca4a2000000002a031de0",
+          "content": "发你",
+          "nickname": "嘉嘉环游记（屿夏）",
+          "xhs_user_id": "6683d857000000000d025b8f",
+          "time_ms": 1783407778000,
+          "time": "2026-07-07 15:02:58"
+        }
+      ]
+    },
+    {
+      "title": "阳江📍泳池滑梯别墅娃住到不想走🔥",
+      "url": "http://xhslink.com/o/XMqglvWCn9",
+      "category": "海陵岛",
+      "final_url": "https://www.xiaohongshu.com/discovery/item/69c36b02000000001d018790?app_platform=ios&app_version=9.38.1&share_from_user_hidden=true&xsec_source=app_share&type=normal&noteAttributes=goods&xsec_token=CBdwKBlV2nAaOpQshySd1BPxARRrI-U0UEbPv3jCyI0e0=&author_share=1&back_chain_id=goods_note_share&xhsshare=CopyLink&shareRedId=ODc0NzU-OUw2NzUyOTgwNjY0OTc9PEo6&apptime=1784297001&share_id=9d6bbfb693f94f99b032f9f63c46d990",
+      "last_checked": "2026-07-17T14:05:48.838548+00:00",
+      "last_count": 14,
+      "latest_comments": [
+        {
+          "id": "6a59bf3800000000150167f4",
+          "content": "斯你啦",
+          "nickname": "花海民宿2a5",
+          "xhs_user_id": "69b67b130000000034021348",
+          "time_ms": 1784266552000,
+          "time": "2026-07-17 13:35:52"
+        },
+        {
+          "id": "6a59b8f40000000015005747",
+          "content": "怎么订",
+          "nickname": "葫芦丝",
+          "xhs_user_id": "59d5fe0ade5fb476eb05d02c",
+          "time_ms": 1784264948000,
+          "time": "2026-07-17 13:09:08"
+        },
+        {
+          "id": "6a3ceabb00000000150106f0",
+          "content": "斯你啦",
+          "nickname": "花海民宿2a5",
+          "xhs_user_id": "69b67b130000000034021348",
+          "time_ms": 1782377147000,
+          "time": "2026-06-25 16:45:47"
+        },
+        {
+          "id": "6a3caacb00000000150062ce",
+          "content": "怎么联系",
+          "nickname": "weili",
+          "xhs_user_id": "63cc11b200000000260102c7",
+          "time_ms": 1782360779000,
+          "time": "2026-06-25 12:12:59"
+        },
+        {
+          "id": "6a3b364000000000150138df",
+          "content": "斯你啦",
+          "nickname": "花海民宿2a5",
+          "xhs_user_id": "69b67b130000000034021348",
+          "time_ms": 1782265408000,
+          "time": "2026-06-24 09:43:28"
+        }
+      ]
+    },
+    {
+      "title": "阳江海陵岛📍终于住到了4房6床海边小别墅",
+      "url": "http://xhslink.com/o/9wPrhq817IL",
+      "category": "海陵岛",
+      "final_url": "https://www.xiaohongshu.com/discovery/item/6a39f690000000000702244b?app_platform=ios&app_version=9.38.1&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBB94AyhkoiU7aK-0jB0h-xdzBd6lKp2Q47MUwOiHNKvQ=&author_share=1&xhsshare=CopyLink&shareRedId=ODc0NzU-OUw2NzUyOTgwNjY0OTc9PEo6&apptime=1784297041&share_id=1098d8c4174b4622b856852498498592",
+      "last_checked": "2026-07-17T14:05:48.838548+00:00",
+      "last_count": 5,
+      "latest_comments": [
+        {
+          "id": "6a59f3db000000002b029faf",
+          "content": "请问3房什么价呢！",
+          "nickname": "刘晓晓🔅💫",
+          "xhs_user_id": "5a742a0511be1006929c6ccb",
+          "time_ms": 1784280028000,
+          "time": "2026-07-17 17:20:28"
+        },
+        {
+          "id": "6a59f3d4000000002902e577",
+          "content": "2房有吗？",
+          "nickname": "暖吉",
+          "xhs_user_id": "6428ea870000000012013433",
+          "time_ms": 1784280021000,
+          "time": "2026-07-17 17:20:21"
+        },
+        {
+          "id": "6a51bc600000000029025560",
+          "content": "3床是什么价格",
+          "nickname": "可乐不加冰",
+          "xhs_user_id": "6603941a000000000600c0a4",
+          "time_ms": 1783741536000,
+          "time": "2026-07-11 11:45:36"
+        },
+        {
+          "id": "6a4b66cd000000001403a2ca",
+          "content": "2房和3房什么价格？",
+          "nickname": "灵魂",
+          "xhs_user_id": "6088afb600000000010034b7",
+          "time_ms": 1783326414000,
+          "time": "2026-07-06 16:26:54"
+        },
+        {
+          "id": "6a4b5d1b000000000802f92f",
+          "content": "7.18号三房价格",
+          "nickname": "🌟Allison",
+          "xhs_user_id": "5dfc9d77000000000100776e",
+          "time_ms": 1783323932000,
+          "time": "2026-07-06 15:45:32"
         }
       ]
     }
