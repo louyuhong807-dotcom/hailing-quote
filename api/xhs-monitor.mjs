@@ -192,10 +192,30 @@ async function loadStore() {
   };
 }
 
-function makePost(title, url, finalUrl, comments, now) {
+function cleanCategory(value) {
+  const category = decodeText(value);
+  return category === "海陵岛" ? "海陵岛" : "鼎龙湾";
+}
+
+function collectCategories(posts) {
+  const categories = [];
+  for (const post of posts || []) {
+    const category = cleanCategory(post.category);
+    if (!categories.includes(category)) categories.push(category);
+  }
+  const preferred = ["海陵岛", "鼎龙湾"];
+  const ordered = [
+    ...preferred.filter((category) => categories.includes(category)),
+    ...categories.filter((category) => !preferred.includes(category)),
+  ];
+  return ordered.length ? ordered : preferred;
+}
+
+function makePost(title, url, category, finalUrl, comments, now) {
   return {
     title,
     url,
+    category,
     final_url: finalUrl,
     last_checked: now,
     last_count: comments.length,
@@ -209,6 +229,7 @@ async function addLink(req, res) {
   const url = normalizeUrl(body.url);
   if (!url || !isXhsUrl(url)) return jsonResponse(res, 400, { error: "请提交有效的小红书链接" });
   const title = decodeText(body.title) || "新监控小红书帖子";
+  const category = cleanCategory(body.category);
   const { finalUrl, comments } = await fetchComments(url);
   const store = await loadStore();
   const inputKey = url.toLowerCase();
@@ -220,11 +241,12 @@ async function addLink(req, res) {
   if (duplicate) return jsonResponse(res, 409, { error: "这个链接已经在监控列表里，不能重复添加" });
 
   const now = new Date().toISOString();
-  store.links.push({ title, url });
+  store.links.push({ title, url, category });
   store.data.checked_at = now;
+  store.data.categories = collectCategories([...(store.data.posts || []), { category }]);
   store.data.new_comments = [];
   store.data.errors = [];
-  store.data.posts = [...(store.data.posts || []), makePost(title, url, finalUrl, comments, now)];
+  store.data.posts = [...(store.data.posts || []), makePost(title, url, category, finalUrl, comments, now)];
 
   await writeRepoFile("xhs-monitor-links.json", store.linksFile.sha, JSON.stringify(store.links, null, 2) + "\n", `Add XHS monitor link: ${title}`);
   await writeRepoFile("xhs-monitor-data.js", store.dataFile.sha, renderDataJs(store.data), `Initialize XHS monitor data: ${title}`);
@@ -242,11 +264,12 @@ async function syncLinks(res) {
   for (const [index, item] of (store.links || []).entries()) {
     const title = decodeText(item.title) || `小红书帖子 ${index + 1}`;
     const url = normalizeUrl(item.url);
+    const category = cleanCategory(item.category);
     try {
       const { finalUrl, comments } = await fetchComments(url);
       const finalKey = normalizeUrl(finalUrl).toLowerCase();
       if (finalUrlSeen.has(finalKey)) {
-        errors.push({ title, url, error: `重复帖子，已和「${finalUrlSeen.get(finalKey)}」指向同一篇小红书笔记` });
+        errors.push({ title, url, category, error: `重复帖子，已和「${finalUrlSeen.get(finalKey)}」指向同一篇小红书笔记` });
         continue;
       }
       finalUrlSeen.set(finalKey, title);
@@ -255,16 +278,17 @@ async function syncLinks(res) {
       const previousCheck = Date.parse(previous.last_checked || 0);
       const threshold = Number.isNaN(previousCheck) ? 0 : previousCheck - 120000;
       const fresh = comments.filter((comment) => oldIds.size && !oldIds.has(comment.id) && Number(comment.time_ms || 0) >= threshold);
-      for (const comment of fresh) newComments.push({ title, url, ...comment });
-      posts.push(makePost(title, url, finalUrl, comments, now));
+      for (const comment of fresh) newComments.push({ title, url, category, ...comment });
+      posts.push(makePost(title, url, category, finalUrl, comments, now));
     } catch (error) {
-      errors.push({ title, url, error: String(error.message || error).slice(0, 220) });
+      errors.push({ title, url, category, error: String(error.message || error).slice(0, 220) });
       const previous = previousByUrl.get(url.toLowerCase());
-      if (previous) posts.push({ ...previous, last_checked: now });
+      if (previous) posts.push({ ...previous, category, last_checked: now });
     }
   }
   store.data = {
     checked_at: now,
+    categories: collectCategories(posts),
     posts,
     new_comments: newComments,
     alert_history: [...newComments, ...(store.data.alert_history || [])].slice(0, 30),
