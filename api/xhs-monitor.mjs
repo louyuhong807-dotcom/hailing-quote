@@ -7,6 +7,7 @@ const OWNER_REPLY_TEXTS = new Set([
   "私信你了",
   "私您啦[飞吻R]",
 ]);
+const COMMENT_RETENTION_MS = 24 * 60 * 60 * 1000;
 
 function jsonResponse(res, status, body) {
   res.status(status).setHeader("Content-Type", "application/json; charset=utf-8");
@@ -182,6 +183,11 @@ function renderDataJs(data) {
   return `window.XHS_MONITOR_DATA = ${JSON.stringify(data, null, 2)};\n`;
 }
 
+function recentComments(comments, nowMs) {
+  const cutoff = Math.max(0, nowMs - COMMENT_RETENTION_MS);
+  return (comments || []).filter((comment) => Number(comment.time_ms || 0) >= cutoff);
+}
+
 async function loadStore() {
   const [linksFile, dataFile] = await Promise.all([
     readRepoFile("xhs-monitor-links.json"),
@@ -215,6 +221,7 @@ function collectCategories(posts) {
 }
 
 function makePost(title, url, category, finalUrl, comments, now) {
+  const nowMs = Date.parse(now);
   return {
     title,
     url,
@@ -222,7 +229,7 @@ function makePost(title, url, category, finalUrl, comments, now) {
     final_url: finalUrl,
     last_checked: now,
     last_count: comments.length,
-    latest_comments: comments.slice(0, 5),
+    latest_comments: recentComments(comments, nowMs).slice(0, 5),
     seen_ids: comments.map((item) => item.id),
   };
 }
@@ -244,10 +251,15 @@ async function addLink(req, res) {
   if (duplicate) return jsonResponse(res, 409, { error: "这个链接已经在监控列表里，不能重复添加" });
 
   const now = new Date().toISOString();
+  const nowMs = Date.parse(now);
   store.links.push({ title, url, category });
   store.data.checked_at = now;
   store.data.categories = collectCategories([...(store.data.posts || []), { category }]);
+  store.data.configured_count = store.links.length;
+  store.data.checked_count = store.links.length;
+  store.data.comment_retention_hours = 24;
   store.data.new_comments = [];
+  store.data.alert_history = recentComments(store.data.alert_history || [], nowMs).slice(0, 30);
   store.data.errors = [];
   store.data.posts = [...(store.data.posts || []), makePost(title, url, category, finalUrl, comments, now)];
 
@@ -261,6 +273,7 @@ async function syncLinks(res) {
   const previousByUrl = new Map((store.data.posts || []).map((post) => [normalizeUrl(post.url).toLowerCase(), post]));
   const finalUrlSeen = new Map();
   const now = new Date().toISOString();
+  const nowMs = Date.parse(now);
   const posts = [];
   const newComments = [];
   const errors = [];
@@ -292,9 +305,12 @@ async function syncLinks(res) {
   store.data = {
     checked_at: now,
     categories: collectCategories(posts),
+    configured_count: store.links.length,
+    checked_count: store.links.length - errors.length,
+    comment_retention_hours: 24,
     posts,
-    new_comments: newComments,
-    alert_history: [...newComments, ...(store.data.alert_history || [])].slice(0, 30),
+    new_comments: recentComments(newComments, nowMs),
+    alert_history: recentComments([...newComments, ...(store.data.alert_history || [])], nowMs).slice(0, 30),
     errors,
   };
   await writeRepoFile("xhs-monitor-data.js", store.dataFile.sha, renderDataJs(store.data), "Sync XHS monitor data");
