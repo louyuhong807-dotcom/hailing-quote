@@ -83,8 +83,18 @@ function extractBalancedObject(text, key) {
   return null;
 }
 
-async function fetchComments(url) {
-  const response = await fetch(url, { headers: { "User-Agent": UA }, redirect: "follow" });
+async function fetchComments(url, timeoutMs = 15000) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+  let response;
+  try {
+    response = await fetch(url, { headers: { "User-Agent": UA }, redirect: "follow", signal: controller.signal });
+  } catch (error) {
+    if (error?.name === "AbortError") throw new Error("小红书链接解析超时");
+    throw error;
+  } finally {
+    clearTimeout(timeout);
+  }
   if (!response.ok) throw new Error(`小红书访问失败：${response.status}`);
   const finalUrl = normalizeUrl(response.url || url);
   const html = await response.text();
@@ -240,15 +250,28 @@ async function addLink(req, res) {
   if (!url || !isXhsUrl(url)) return jsonResponse(res, 400, { error: "请提交有效的小红书链接" });
   const title = decodeText(body.title) || "新监控小红书帖子";
   const category = cleanCategory(body.category);
-  const { finalUrl, comments } = await fetchComments(url);
   const store = await loadStore();
   const inputKey = url.toLowerCase();
-  const finalKey = normalizeUrl(finalUrl).toLowerCase();
-  const duplicate = [
+  const knownKeys = [
     ...(store.links || []).map((item) => normalizeUrl(item.url).toLowerCase()),
     ...(store.data.posts || []).flatMap((post) => [normalizeUrl(post.url).toLowerCase(), normalizeUrl(post.final_url).toLowerCase()]),
-  ].filter(Boolean).includes(inputKey) || (store.data.posts || []).some((post) => normalizeUrl(post.final_url).toLowerCase() === finalKey);
-  if (duplicate) return jsonResponse(res, 409, { error: "这个链接已经在监控列表里，不能重复添加" });
+  ].filter(Boolean);
+  if (knownKeys.includes(inputKey)) return jsonResponse(res, 409, { error: "这个链接已经在监控列表里，不能重复添加" });
+
+  let finalUrl = url;
+  let comments = [];
+  let parseWarning = "";
+  try {
+    const fetched = await fetchComments(url, 12000);
+    finalUrl = fetched.finalUrl || url;
+    comments = fetched.comments || [];
+    const finalKey = normalizeUrl(finalUrl).toLowerCase();
+    if (finalKey && knownKeys.includes(finalKey)) {
+      return jsonResponse(res, 409, { error: "这个链接已指向现有监控帖子，不能重复添加" });
+    }
+  } catch (error) {
+    parseWarning = String(error.message || error).slice(0, 120);
+  }
 
   const now = new Date().toISOString();
   const nowMs = Date.parse(now);
@@ -261,11 +284,18 @@ async function addLink(req, res) {
   store.data.new_comments = [];
   store.data.alert_history = recentComments(store.data.alert_history || [], nowMs).slice(0, 30);
   store.data.errors = [];
-  store.data.posts = [...(store.data.posts || []), makePost(title, url, category, finalUrl, comments, now)];
+  store.data.posts = [...(store.data.posts || []), {
+    ...makePost(title, url, category, finalUrl, comments, now),
+    warning: parseWarning,
+  }];
 
   await writeRepoFile("xhs-monitor-links.json", store.linksFile.sha, JSON.stringify(store.links, null, 2) + "\n", `Add XHS monitor link: ${title}`);
   await writeRepoFile("xhs-monitor-data.js", store.dataFile.sha, renderDataJs(store.data), `Initialize XHS monitor data: ${title}`);
-  return jsonResponse(res, 200, { ok: true, post: store.data.posts.at(-1), message: "已接入后台监控，并已建立当前评论基线" });
+  return jsonResponse(res, 200, {
+    ok: true,
+    post: store.data.posts.at(-1),
+    message: parseWarning ? "已接入后台监控。小红书当前解析较慢，下一轮检查会补齐评论基线。" : "已接入后台监控，并已建立当前评论基线",
+  });
 }
 
 async function syncLinks(res) {
