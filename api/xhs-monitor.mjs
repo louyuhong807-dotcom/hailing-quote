@@ -258,21 +258,6 @@ async function addLink(req, res) {
   ].filter(Boolean);
   if (knownKeys.includes(inputKey)) return jsonResponse(res, 409, { error: "这个链接已经在监控列表里，不能重复添加" });
 
-  let finalUrl = url;
-  let comments = [];
-  let parseWarning = "";
-  try {
-    const fetched = await fetchComments(url, 12000);
-    finalUrl = fetched.finalUrl || url;
-    comments = fetched.comments || [];
-    const finalKey = normalizeUrl(finalUrl).toLowerCase();
-    if (finalKey && knownKeys.includes(finalKey)) {
-      return jsonResponse(res, 409, { error: "这个链接已指向现有监控帖子，不能重复添加" });
-    }
-  } catch (error) {
-    parseWarning = String(error.message || error).slice(0, 120);
-  }
-
   const now = new Date().toISOString();
   const nowMs = Date.parse(now);
   store.links.push({ title, url, category });
@@ -285,8 +270,8 @@ async function addLink(req, res) {
   store.data.alert_history = recentComments(store.data.alert_history || [], nowMs).slice(0, 30);
   store.data.errors = [];
   store.data.posts = [...(store.data.posts || []), {
-    ...makePost(title, url, category, finalUrl, comments, now),
-    warning: parseWarning,
+    ...makePost(title, url, category, url, [], now),
+    warning: "已接入后台，下一轮监控会补齐评论基线",
   }];
 
   await writeRepoFile("xhs-monitor-links.json", store.linksFile.sha, JSON.stringify(store.links, null, 2) + "\n", `Add XHS monitor link: ${title}`);
@@ -294,7 +279,7 @@ async function addLink(req, res) {
   return jsonResponse(res, 200, {
     ok: true,
     post: store.data.posts.at(-1),
-    message: parseWarning ? "已接入后台监控。小红书当前解析较慢，下一轮检查会补齐评论基线。" : "已接入后台监控，并已建立当前评论基线",
+    message: "已接入后台监控，下一轮检查会补齐评论基线",
   });
 }
 

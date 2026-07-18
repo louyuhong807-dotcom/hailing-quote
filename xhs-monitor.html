@@ -374,7 +374,7 @@
 
   <script src="./xhs-monitor-data.js"></script>
   <script>
-    const pageVersion = "2026-07-18-1336";
+    const pageVersion = "2026-07-18-1412";
     const data = window.XHS_MONITOR_DATA || {};
     const pendingKey = "xhs-monitor-pending-links";
     const categories = (data.categories?.length ? data.categories : ["海陵岛", "鼎龙湾"]);
@@ -512,7 +512,7 @@
       }
       button.disabled = true;
       button.textContent = "检查中";
-      setMessage(`正在后台打开链接并校验重复，请稍等。版本：${pageVersion}`, "");
+      setMessage(`正在接入后台，请稍等。版本：${pageVersion}`, "");
       try {
         const controller = new AbortController();
         const timeout = setTimeout(() => controller.abort(), 45000);
