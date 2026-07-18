@@ -206,6 +206,13 @@
     .form-message.error { color: #b3261e; font-weight: 800; }
     .form-message.ok { color: var(--green); font-weight: 800; }
 
+    .sync-note {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
     .pending-list {
       display: grid;
       gap: 8px;
@@ -408,6 +415,7 @@
         <button id="addLinkButton" type="button">确认</button>
       </div>
       <div id="linkMessage" class="form-message"></div>
+      <div class="sync-note">手机微信提交会先保存到当前手机列表，避免后台域名被微信拦截造成超时；后台总表由同步服务接入后刷新。</div>
       <div id="pendingLinks" class="pending-list"></div>
     </section>
 
@@ -425,7 +433,7 @@
   <script src="./xhs-monitor-data.js"></script>
   <script src="./douyin-monitor-data.js"></script>
   <script>
-    const pageVersion = "2026-07-18-1605";
+    const pageVersion = "2026-07-18-1625";
     const apiBase = location.hostname === "hailing-quote-x81y.vercel.app"
       ? ""
       : "https://hailing-quote-x81y.vercel.app";
@@ -442,6 +450,7 @@
         addTitle: "新增小红书监控链接",
         placeholder: "粘贴小红书笔记链接",
         endpoint: `${apiBase}/api/xhs-add`,
+        directBackend: location.hostname === "hailing-quote-x81y.vercel.app",
         pendingKey: "xhs-monitor-pending-links",
         linkName: "小红书",
         supportedText: "只支持小红书或 xhslink 链接。",
@@ -455,6 +464,7 @@
         addTitle: "新增抖音截流链接",
         placeholder: "粘贴抖音作品或分享链接",
         endpoint: `${apiBase}/api/douyin-add`,
+        directBackend: location.hostname === "hailing-quote-x81y.vercel.app",
         pendingKey: "douyin-monitor-pending-links",
         linkName: "抖音",
         supportedText: "只支持抖音或 douyin 链接。",
@@ -581,7 +591,7 @@
     const postCategory = (item) => item.category || "鼎龙湾";
     const categoryCode = () => selectedCategory === "海陵岛" ? "hailing" : "dinglong";
     const localPosts = () => pendingLinks()
-      .filter((item) => (item.category || selectedCategory) === selectedCategory && item.status === "已接入后台监控")
+      .filter((item) => (item.category || selectedCategory) === selectedCategory)
       .filter((item) => !remoteKnownLinks().includes(normalizeLink(item.url).toLowerCase()))
       .map((item) => ({
         title: "新增监控帖子",
@@ -662,7 +672,7 @@
           <h3 class="post-title">${escapeHtml(post.title)}</h3>
           <div class="meta">
             <span class="pill">${escapeHtml(postCategory(post))}</span>
-            ${post.local_pending ? `<span class="pill hot-label">已接入，待下一轮检查</span>` : ""}
+            ${post.local_pending ? `<span class="pill hot-label">手机已保存，待后台同步</span>` : ""}
             <span class="pill">评论数：${escapeHtml(post.last_count ?? 0)}</span>
             <span class="pill">检查：${escapeHtml(fmt(post.last_checked))}</span>
           </div>
@@ -693,11 +703,20 @@
         return;
       }
       button.disabled = true;
-      button.textContent = "检查中";
+      button.textContent = "保存中";
+      if (!activeConfig().directBackend) {
+        savePendingLink(url, selectedCategory, "手机已保存，待后台同步");
+        input.value = "";
+        setMessage(`已保存到手机列表，不再等待后台接口，避免微信超时。版本：${pageVersion}`, "ok");
+        renderPage();
+        button.disabled = false;
+        button.textContent = "确认";
+        return;
+      }
       setMessage(`正在接入后台，请稍等。版本：${pageVersion}`, "");
       try {
         const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 45000);
+        const timeout = setTimeout(() => controller.abort(), 10000);
         const response = await fetch(activeConfig().endpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -725,7 +744,7 @@
       } catch (error) {
         savePendingLink(url, selectedCategory, "已保存到手机待接入");
         const message = error && error.name === "AbortError"
-          ? "后台响应超时，链接已先保存到手机待接入；需要检查 Vercel 后台环境变量。"
+          ? "后台响应超时，链接已先保存到手机待同步。"
           : `后台接口暂时不可用：${(error && error.message) || "网络请求失败"}。链接已先保存到手机待接入。`;
         setMessage(message, "error");
         renderPendingLinks();
