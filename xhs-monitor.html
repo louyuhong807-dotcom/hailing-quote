@@ -415,7 +415,7 @@
         <button id="addLinkButton" type="button">确认</button>
       </div>
       <div id="linkMessage" class="form-message"></div>
-      <div class="sync-note">手机微信提交会先保存到当前手机列表，避免后台域名被微信拦截造成超时；后台总表由同步服务接入后刷新。</div>
+      <div class="sync-note">手机微信提交后会立即显示在当前列表；页面会自动刷新最新监控数据，不展示后台错误内容。</div>
       <div id="pendingLinks" class="pending-list"></div>
     </section>
 
@@ -433,7 +433,8 @@
   <script src="./xhs-monitor-data.js"></script>
   <script src="./douyin-monitor-data.js"></script>
   <script>
-    const pageVersion = "2026-07-18-1818";
+    const pageVersion = "2026-07-18-1844";
+    const refreshIntervalMs = 60 * 1000;
     const apiBase = location.hostname === "hailing-quote-x81y.vercel.app"
       ? ""
       : "https://hailing-quote-x81y.vercel.app";
@@ -480,6 +481,10 @@
     const listRetentionMs = 24 * 60 * 60 * 1000;
     const activeConfig = () => platformConfigs[selectedPlatform];
     const activeData = () => dataByPlatform[selectedPlatform] || {};
+    const dataFileByPlatform = {
+      xhs: "./xhs-monitor-data.js",
+      douyin: "./douyin-monitor-data.js",
+    };
     const activeCategories = () => {
       const data = activeData();
       return data.categories?.length ? data.categories : ["海陵岛", "鼎龙湾"];
@@ -604,14 +609,14 @@
     };
     const postCategory = (item) => item.category || "鼎龙湾";
     const categoryCode = () => selectedCategory === "海陵岛" ? "hailing" : "dinglong";
-    const localPosts = () => pendingLinks()
-      .filter((item) => (item.category || selectedCategory) === selectedCategory)
+    const localPosts = (category = selectedCategory) => pendingLinks()
+      .filter((item) => (item.category || category) === category)
       .filter((item) => !remoteKnownLinks().includes(normalizeLink(item.url).toLowerCase()))
       .map((item) => ({
         title: "新增监控帖子",
         url: item.url,
         final_url: item.url,
-        category: item.category || selectedCategory,
+        category: item.category || category,
         last_checked: item.createdAt,
         last_count: 0,
         latest_comments: [],
@@ -645,7 +650,7 @@
       const data = activeData();
       const currentPosts = [
         ...(data.posts || []).filter((post) => postCategory(post) === selectedCategory),
-        ...localPosts(),
+        ...localPosts(selectedCategory),
       ];
       const currentAlerts = alertItems(currentPosts);
       const hotAlerts = currentAlerts.filter(isHotComment);
@@ -656,10 +661,12 @@
       document.getElementById("heroSub").textContent = config.sub;
       document.getElementById("newLinkInput").placeholder = config.placeholder;
       document.getElementById("checkedAt").textContent = fmt(data.checked_at);
-      document.getElementById("postCount").textContent = `${currentPosts.length} 条`;
-      const localCount = localPosts().length;
+      const localCount = pendingLinks()
+        .filter((item) => !remoteKnownLinks().includes(normalizeLink(item.url).toLowerCase()))
+        .length;
       const configuredCount = Number(data.configured_count ?? (data.posts || []).length) + localCount;
       const checkedCount = Number(data.checked_count ?? (data.posts || []).length);
+      document.getElementById("postCount").textContent = `${configuredCount} 条`;
       document.getElementById("coverageCount").textContent = `${checkedCount}/${configuredCount} 条`;
       document.querySelector(".add-panel .post-title").textContent = `${config.addTitle} - ${selectedCategory}`;
       document.getElementById("alerts").innerHTML = currentAlerts.length ? `
@@ -766,7 +773,34 @@
         button.textContent = "确认";
       }
     });
+    const parseMonitorPayload = (platform, text) => {
+      const marker = platform === "xhs" ? "window.XHS_MONITOR_DATA = " : "window.DOUYIN_MONITOR_DATA = ";
+      const start = text.indexOf(marker);
+      if (start < 0) return null;
+      const raw = text.slice(start + marker.length).replace(/;\s*$/, "").trim();
+      return JSON.parse(raw);
+    };
+    const refreshRemoteData = async () => {
+      if (location.protocol === "file:") return;
+      const url = `${dataFileByPlatform[selectedPlatform]}?t=${Date.now()}`;
+      try {
+        const response = await fetch(url, { cache: "no-store" });
+        if (!response.ok) return;
+        const payload = parseMonitorPayload(selectedPlatform, await response.text());
+        if (!payload) return;
+        dataByPlatform[selectedPlatform] = payload;
+        renderPage();
+      } catch {
+        // Keep the current screen stable if the phone network blocks one refresh.
+      }
+    };
+    setInterval(refreshRemoteData, refreshIntervalMs);
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) refreshRemoteData();
+    });
+    window.addEventListener("focus", refreshRemoteData);
     renderPage();
+    refreshRemoteData();
   </script>
 </body>
 </html>
