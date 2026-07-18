@@ -133,7 +133,7 @@ async function fetchComments(url, timeoutMs = 15000) {
 }
 
 function token() {
-  return process.env.XHS_GITHUB_TOKEN || process.env.GITHUB_TOKEN;
+  return String(process.env.XHS_GITHUB_TOKEN || process.env.GITHUB_TOKEN || "").replace(/\s+/g, "");
 }
 
 function repoInfo() {
@@ -143,11 +143,12 @@ function repoInfo() {
 
 async function githubRequest(path, options = {}) {
   if (!token()) throw new Error("后台未配置 XHS_GITHUB_TOKEN");
+  const authToken = token();
   const { owner, repo } = repoInfo();
   const response = await fetch(`https://api.github.com/repos/${owner}/${repo}${path}`, {
     ...options,
     headers: {
-      Authorization: `Bearer ${token()}`,
+      Authorization: `Bearer ${authToken}`,
       Accept: "application/vnd.github+json",
       "X-GitHub-Api-Version": "2022-11-28",
       ...(options.headers || {}),
