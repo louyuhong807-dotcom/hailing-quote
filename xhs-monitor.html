@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="format-detection" content="telephone=no">
-  <title>小红书评论监控</title>
+  <title>评论截流监控</title>
   <style>
     :root {
       color-scheme: light;
@@ -117,6 +117,7 @@
       font-weight: 900;
     }
 
+    .platform-tabs,
     .category-tabs {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -124,6 +125,11 @@
       margin: 12px 0 14px;
     }
 
+    .platform-tabs {
+      margin-top: 0;
+    }
+
+    .platform-button,
     .category-button {
       min-height: 48px;
       background: #fff;
@@ -132,6 +138,7 @@
       box-shadow: 0 8px 20px rgba(79, 55, 35, .08);
     }
 
+    .platform-button.active,
     .category-button.active {
       background: var(--ink);
       border-color: var(--ink);
@@ -370,10 +377,12 @@
 <body>
   <main class="page">
     <section class="hero">
-      <div class="eyebrow"><span class="dot"></span><span>小红书评论监控</span></div>
-      <h1>新客户评论提醒</h1>
-      <p class="sub">手机微信可打开查看。页面显示最近一次监控结果，发现新评论时会在“最新提醒”里置顶。</p>
+      <div class="eyebrow"><span class="dot"></span><span id="eyebrowText">评论截流监控</span></div>
+      <h1 id="heroTitle">新客户评论提醒</h1>
+      <p class="sub" id="heroSub">手机微信可打开查看。页面显示最近一次监控结果，发现新评论时会在“最新提醒”里置顶。</p>
     </section>
+
+    <section id="platformTabs" class="platform-tabs" aria-label="监控平台"></section>
 
     <section class="summary">
       <div class="metric">
@@ -395,7 +404,7 @@
     <section class="add-panel">
       <h2 class="post-title">新增监控链接</h2>
       <div class="input-row">
-        <input id="newLinkInput" type="url" inputmode="url" placeholder="粘贴小红书笔记链接">
+        <input id="newLinkInput" type="url" inputmode="url" placeholder="粘贴监控链接">
         <button id="addLinkButton" type="button">确认</button>
       </div>
       <div id="linkMessage" class="form-message"></div>
@@ -409,22 +418,66 @@
     <section id="posts"></section>
 
     <div class="footer" id="pageFooter">
-      说明：微信网页本身不能直接绕过小红书限制抓评论，数据来自监控服务的最近一次检查。页面只保留最近 24 小时评论，旧评论会自动清除。
+      说明：微信网页本身不能直接绕过平台限制抓评论，数据来自监控服务的最近一次检查。页面只保留最近 24 小时评论，旧评论会自动清除。
     </div>
   </main>
 
   <script src="./xhs-monitor-data.js"></script>
+  <script src="./douyin-monitor-data.js"></script>
   <script>
-    const pageVersion = "2026-07-18-1535";
-    const apiEndpoint = location.hostname === "hailing-quote-x81y.vercel.app"
-      ? "/api/xhs-add"
-      : "https://hailing-quote-x81y.vercel.app/api/xhs-add";
-    const data = window.XHS_MONITOR_DATA || {};
-    const pendingKey = "xhs-monitor-pending-links";
+    const pageVersion = "2026-07-18-1605";
+    const apiBase = location.hostname === "hailing-quote-x81y.vercel.app"
+      ? ""
+      : "https://hailing-quote-x81y.vercel.app";
+    const dataByPlatform = {
+      xhs: window.XHS_MONITOR_DATA || {},
+      douyin: window.DOUYIN_MONITOR_DATA || {},
+    };
+    const platformConfigs = {
+      xhs: {
+        label: "小红书",
+        eyebrow: "小红书评论监控",
+        title: "新客户评论提醒",
+        sub: "手机微信可打开查看。页面显示最近一次小红书监控结果，发现新评论时会在“最新提醒”里置顶。",
+        addTitle: "新增小红书监控链接",
+        placeholder: "粘贴小红书笔记链接",
+        endpoint: `${apiBase}/api/xhs-add`,
+        pendingKey: "xhs-monitor-pending-links",
+        linkName: "小红书",
+        supportedText: "只支持小红书或 xhslink 链接。",
+        hostOk: (host) => /(^|\.)xiaohongshu\.com$/i.test(host) || /(^|\.)xhslink\.com$/i.test(host),
+      },
+      douyin: {
+        label: "抖音截流",
+        eyebrow: "抖音截流监控",
+        title: "抖音客户截流提醒",
+        sub: "手机微信可打开查看。抖音截流链接单独接入，后续提醒和列表会在这里归档。",
+        addTitle: "新增抖音截流链接",
+        placeholder: "粘贴抖音作品或分享链接",
+        endpoint: `${apiBase}/api/douyin-add`,
+        pendingKey: "douyin-monitor-pending-links",
+        linkName: "抖音",
+        supportedText: "只支持抖音或 douyin 链接。",
+        hostOk: (host) => /(^|\.)douyin\.com$/i.test(host) || /(^|\.)iesdouyin\.com$/i.test(host),
+      },
+    };
+    const platformKeys = Object.keys(platformConfigs);
+    const params = new URLSearchParams(location.search);
+    let selectedPlatform = params.get("platform") || "xhs";
+    if (!platformConfigs[selectedPlatform]) selectedPlatform = "xhs";
     const hotAlertMs = 60 * 60 * 1000;
-    const categories = (data.categories?.length ? data.categories : ["海陵岛", "鼎龙湾"]);
-    let selectedCategory = new URLSearchParams(location.search).get("area") || categories[0] || "海陵岛";
-    if (!categories.includes(selectedCategory)) selectedCategory = categories[0] || "海陵岛";
+    const activeConfig = () => platformConfigs[selectedPlatform];
+    const activeData = () => dataByPlatform[selectedPlatform] || {};
+    const activeCategories = () => {
+      const data = activeData();
+      return data.categories?.length ? data.categories : ["海陵岛", "鼎龙湾"];
+    };
+    let selectedCategory = params.get("area") || activeCategories()[0] || "海陵岛";
+    const normalizeSelectedCategory = () => {
+      const categories = activeCategories();
+      if (!categories.includes(selectedCategory)) selectedCategory = categories[0] || "海陵岛";
+    };
+    normalizeSelectedCategory();
     document.getElementById("pageFooter").textContent += ` 当前页面版本：${pageVersion}`;
     const fmt = (value) => {
       if (!value) return "暂无记录";
@@ -463,13 +516,13 @@
       }
     };
     const remoteKnownLinks = () => [
-      ...(data.posts || []).flatMap((post) => [post.url, post.final_url]),
+      ...(activeData().posts || []).flatMap((post) => [post.url, post.final_url]),
     ].filter(Boolean).map((url) => normalizeLink(url).toLowerCase());
     const knownLinks = () => [
-      ...(data.posts || []).flatMap((post) => [post.url, post.final_url]),
-      ...JSON.parse(localStorage.getItem(pendingKey) || "[]").map((item) => item.url)
+      ...(activeData().posts || []).flatMap((post) => [post.url, post.final_url]),
+      ...JSON.parse(localStorage.getItem(activeConfig().pendingKey) || "[]").map((item) => item.url)
     ].filter(Boolean).map((url) => normalizeLink(url).toLowerCase());
-    const pendingLinks = () => JSON.parse(localStorage.getItem(pendingKey) || "[]");
+    const pendingLinks = () => JSON.parse(localStorage.getItem(activeConfig().pendingKey) || "[]");
     const setMessage = (text, type = "") => {
       const node = document.getElementById("linkMessage");
       node.textContent = text;
@@ -481,7 +534,7 @@
         { url, category, createdAt: new Date().toISOString(), status },
         ...pending.filter((item) => normalizeLink(item.url).toLowerCase() !== url.toLowerCase())
       ];
-      localStorage.setItem(pendingKey, JSON.stringify(next.slice(0, 20)));
+      localStorage.setItem(activeConfig().pendingKey, JSON.stringify(next.slice(0, 20)));
     };
     const renderPendingLinks = () => {
       const pending = pendingLinks();
@@ -495,6 +548,7 @@
       `).join("") : "";
     };
     const renderCategoryTabs = () => {
+      const categories = activeCategories();
       document.getElementById("categoryTabs").innerHTML = categories.map((category) => `
         <button class="category-button ${category === selectedCategory ? "active" : ""}" type="button" data-category="${escapeHtml(category)}">${escapeHtml(category)}</button>
       `).join("");
@@ -502,6 +556,22 @@
         button.addEventListener("click", () => {
           selectedCategory = button.dataset.category;
           const url = new URL(location.href);
+          url.searchParams.set("area", selectedCategory);
+          history.replaceState(null, "", url);
+          renderPage();
+        });
+      });
+    };
+    const renderPlatformTabs = () => {
+      document.getElementById("platformTabs").innerHTML = platformKeys.map((key) => `
+        <button class="platform-button ${key === selectedPlatform ? "active" : ""}" type="button" data-platform="${escapeHtml(key)}">${escapeHtml(platformConfigs[key].label)}</button>
+      `).join("");
+      document.querySelectorAll(".platform-button").forEach((button) => {
+        button.addEventListener("click", () => {
+          selectedPlatform = button.dataset.platform;
+          normalizeSelectedCategory();
+          const url = new URL(location.href);
+          url.searchParams.set("platform", selectedPlatform);
           url.searchParams.set("area", selectedCategory);
           history.replaceState(null, "", url);
           renderPage();
@@ -524,6 +594,7 @@
         local_pending: true,
       }));
     const alertItems = (posts) => {
+      const data = activeData();
       const byId = new Map();
       const add = (item) => {
         const id = item.id || `${item.url}-${item.content}-${item.time_ms}`;
@@ -544,20 +615,28 @@
       return [...byId.values()].sort((a, b) => commentMs(b) - commentMs(a));
     };
     const renderPage = () => {
+      normalizeSelectedCategory();
+      const config = activeConfig();
+      const data = activeData();
       const currentPosts = [
         ...(data.posts || []).filter((post) => postCategory(post) === selectedCategory),
         ...localPosts(),
       ];
       const currentAlerts = alertItems(currentPosts);
       const hotAlerts = currentAlerts.filter(isHotComment);
+      renderPlatformTabs();
       renderCategoryTabs();
+      document.getElementById("eyebrowText").textContent = config.eyebrow;
+      document.getElementById("heroTitle").textContent = config.title;
+      document.getElementById("heroSub").textContent = config.sub;
+      document.getElementById("newLinkInput").placeholder = config.placeholder;
       document.getElementById("checkedAt").textContent = fmt(data.checked_at);
       document.getElementById("postCount").textContent = `${currentPosts.length} 条`;
       const localCount = localPosts().length;
       const configuredCount = Number(data.configured_count ?? (data.posts || []).length) + localCount;
       const checkedCount = Number(data.checked_count ?? (data.posts || []).length);
       document.getElementById("coverageCount").textContent = `${checkedCount}/${configuredCount} 条`;
-      document.querySelector(".add-panel .post-title").textContent = `新增${selectedCategory}监控链接`;
+      document.querySelector(".add-panel .post-title").textContent = `${config.addTitle} - ${selectedCategory}`;
       document.getElementById("alerts").innerHTML = currentAlerts.length ? `
         <details class="alerts-panel" ${hotAlerts.length ? "open" : ""}>
           <summary>
@@ -567,7 +646,7 @@
           <div class="alerts-body">
             ${currentAlerts.map((item) => `
               <article class="card alert-card">
-                <h3 class="post-title">${escapeHtml(item.title || "小红书帖子")}</h3>
+                <h3 class="post-title">${escapeHtml(item.title || `${config.linkName}帖子`)}</h3>
                 ${renderComment(item, { hot: isHotComment(item) })}
                 <div class="link-row">
                   <a class="button" href="${escapeHtml(item.url || "#")}">打开帖子</a>
@@ -604,9 +683,9 @@
         setMessage("链接格式不对，请粘贴完整的小红书链接。", "error");
         return;
       }
-      const hostOk = /(^|\.)xiaohongshu\.com$/i.test(new URL(url).hostname) || /(^|\.)xhslink\.com$/i.test(new URL(url).hostname);
+      const hostOk = activeConfig().hostOk(new URL(url).hostname);
       if (!hostOk) {
-        setMessage("只支持小红书或 xhslink 链接。", "error");
+        setMessage(activeConfig().supportedText, "error");
         return;
       }
       if (knownLinks().includes(url.toLowerCase())) {
@@ -619,7 +698,7 @@
       try {
         const controller = new AbortController();
         const timeout = setTimeout(() => controller.abort(), 45000);
-        const response = await fetch(apiEndpoint, {
+        const response = await fetch(activeConfig().endpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ url, category: categoryCode() }),
