@@ -1,5 +1,5 @@
 window.XHS_MONITOR_DATA = {
-  "checked_at": "2026-07-18T09:16:26.959Z",
+  "checked_at": "2026-07-18T10:30:37.703318+00:00",
   "categories": [
     "海陵岛",
     "鼎龙湾"
@@ -13,158 +13,79 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/3nIIPuJHoTU",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/69e057ae000000001b023ee5?app_platform=android&ignoreEngage=true&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBKjGdZjJ8b1rKNhzBg-kFZ8t3xEPm-4RYDGeb97XeTOs%3D&author_share=1&shareRedId=OD9INzk4OkI2NzUyOTgwNjY1OTc1NTY5&apptime=1784193787&share_id=87b224485dc94dfaa5be281d0093c86b&share_channel=copy_link&appuid=69f763690000000002001000&xhsshare=CopyLink",
-      "last_checked": "2026-07-18T09:16:26.959Z",
+      "last_checked": "2026-07-18T10:30:37.703318+00:00",
       "last_count": 7,
-      "latest_comments": [],
-      "seen_ids": [
-        "6a58736000000000090155d8",
-        "6a55ee04000000002a007839",
-        "6a5479ff000000002300c846",
-        "6a53409d0000000015008848",
-        "6a4321fa000000002300eaa0",
-        "6a426471000000001403b5a9",
-        "6a42644d0000000015004264"
-      ]
+      "latest_comments": []
     },
     {
       "title": "鼎龙湾zui美的别墅🏡",
       "url": "http://xhslink.com/o/nIGivy4HIG",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/6985facc000000001a01eed6?app_platform=android&ignoreEngage=true&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBdIHw2OXFxKPIRFmGCe-jBlfgZDvC9u7QCbVzXP6WmDU%3D&author_share=1&shareRedId=OD9INzk4OkI2NzUyOTgwNjY1OTc1NTY5&apptime=1784193932&share_id=a2692baad3614ef28d9692adb574e9ae&share_channel=copy_link&appuid=69f763690000000002001000&xhsshare=CopyLink",
-      "last_checked": "2026-07-18T09:16:26.959Z",
+      "last_checked": "2026-07-18T10:30:37.703318+00:00",
       "last_count": 12,
-      "latest_comments": [],
-      "seen_ids": [
-        "6a5872b1000000002a031216",
-        "6a587223000000002a00620a",
-        "6a509b8b000000002902e3f6",
-        "6a509b6c000000002b02b890",
-        "6a505da2000000002a02d26c",
-        "6a505d95000000002b002a42",
-        "6a505d390000000029026734",
-        "6a5059d00000000029034bc8",
-        "69f0828a0000000029036896",
-        "69f08237000000002701ed63",
-        "69ecc4940000000029018c5f",
-        "69ecc2ed000000002a02df98"
-      ]
+      "latest_comments": []
     },
     {
       "title": "湛江鼎龙湾｜步行直达的海边别墅",
       "url": "http://xhslink.com/o/Wc3e1Mw4ue",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/69c0f555000000001f000995?app_platform=android&ignoreEngage=true&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBgLm3SG0WJClIoJL2lkmJGnruvxmQeBtoMX0VUnw4nhM%3D&author_share=1&shareRedId=OD9INzk4OkI2NzUyOTgwNjY1OTc1NTY5&apptime=1784193994&share_id=b143d38854084066814360a1dfdbc8c2&share_channel=copy_link&appuid=69f763690000000002001000&xhsshare=CopyLink",
-      "last_checked": "2026-07-18T09:16:26.959Z",
+      "last_checked": "2026-07-18T10:30:37.703318+00:00",
       "last_count": 6,
-      "latest_comments": [],
-      "seen_ids": [
-        "6a576e9c00000000150145e4",
-        "6a55ed520000000009014204",
-        "6a5105af000000002b029b55",
-        "6a4b80dd0000000005009aab",
-        "6a43222e000000002300101e",
-        "6a426726000000002b0003fc"
-      ]
+      "latest_comments": []
     },
     {
       "title": "吴川！海边小院（29号开始空）",
       "url": "http://xhslink.com/o/52MdMkGiitF",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/69c4f2300000000021039ff6?app_platform=android&ignoreEngage=true&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBgb-LPcin1CtAlKmtQbkKUHLOM3VEW-Cd0-WgidH7VAM%3D&author_share=1&shareRedId=OD9INzk4OkI2NzUyOTgwNjY1OTc1NTY5&apptime=1784194127&share_id=1a6ceaedc41a46a8bba4694f47f27193&share_channel=copy_link&appuid=69f763690000000002001000&xhsshare=CopyLink",
-      "last_checked": "2026-07-18T09:16:26.959Z",
+      "last_checked": "2026-07-18T10:30:37.703318+00:00",
       "last_count": 8,
-      "latest_comments": [],
-      "seen_ids": [
-        "6a53aeee0000000015005cc8",
-        "6a36a539000000002a02cbf0",
-        "6a335bb0000000002803f0d0",
-        "6a2a0550000000002702bfaa",
-        "69e389ad000000001401bc23",
-        "69e33ee8000000001401c020",
-        "69de36410000000035030875",
-        "69de31fa0000000035019e1c"
-      ]
+      "latest_comments": []
     },
     {
       "title": "湛江团建 / 家庭游！全海景别墅",
       "url": "http://xhslink.com/o/1dqExFsf8dW",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/691d8f08000000001e004cc4?app_platform=android&ignoreEngage=true&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBQWIbkKpWMwrjfkvaAw7CNMAnITM8ly_wZ1OobQrKfi8%3D&author_share=1&shareRedId=OD9INzk4OkI2NzUyOTgwNjY1OTc1NTY5&apptime=1784194210&share_id=6cae60846bac4fa2b5b503015a607ad0&share_channel=copy_link&appuid=69f763690000000002001000&xhsshare=CopyLink",
-      "last_checked": "2026-07-18T09:16:26.959Z",
+      "last_checked": "2026-07-18T10:30:37.703318+00:00",
       "last_count": 6,
-      "latest_comments": [],
-      "seen_ids": [
-        "6a59d8660000000005015154",
-        "6a4f1f11000000002901a2f8",
-        "69da593300000000150036a3",
-        "69d9b95f000000003502006c",
-        "694230b50000000016026ca3",
-        "69400732000000001600ff72"
-      ]
+      "latest_comments": []
     },
     {
       "title": "湛江新开业📍出门即沙滩de小院～明天有房",
       "url": "http://xhslink.com/o/7vybkdSccrh",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/6a2fa1260000000021008b00?app_platform=android&ignoreEngage=true&app_version=9.35.0&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBWbrTgYBiZYijm0Y2dn411eC0raOGw0CAmL20smxZJo4%3D&author_share=1&xhsshare=CopyLink&shareRedId=OD86MUk8ODk2NzUyOTgwNjg0OTk5OD1A&apptime=1784299069&share_id=95251d51c21f4105b2d83257603548ff&share_channel=copy_link",
-      "last_checked": "2026-07-18T09:16:26.959Z",
+      "last_checked": "2026-07-18T10:30:37.703318+00:00",
       "last_count": 10,
-      "latest_comments": [],
-      "seen_ids": [
-        "6a59a339000000002a02d9ca",
-        "6a59a2de000000002902e3f0",
-        "6a59a2ac000000002a033c56",
-        "6a599547000000000b03b8ae",
-        "6a595629000000001500b788",
-        "6a58ee40000000000403ad4b",
-        "6a55a42300000000290274ad",
-        "6a55a3bf000000002b02be01",
-        "6a55950000000000290375cb",
-        "6a549e86000000000500a1a2"
-      ]
+      "latest_comments": []
     },
     {
       "title": "湛江度假✅鼎龙湾6房12床，泳池KTV全配齐！",
       "url": "http://xhslink.com/o/RdlyGfwZFa",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/69e07d25000000002301db02?app_platform=android&ignoreEngage=true&app_version=9.35.0&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CB-xSZq-pYnjFWY9jyO1E3_UZoE1LFYl8TlwzpMUWapsA%3D&author_share=1&xhsshare=CopyLink&shareRedId=OD86MUk8ODk2NzUyOTgwNjg0OTk5OD1A&apptime=1784299156&share_id=7b0374c8a2f4464a8b80357a31d31f42&share_channel=copy_link",
-      "last_checked": "2026-07-18T09:16:26.959Z",
+      "last_checked": "2026-07-18T10:30:37.703318+00:00",
       "last_count": 6,
-      "latest_comments": [],
-      "seen_ids": [
-        "6a54a15100000000150043d3",
-        "6a5454e00000000004039e99",
-        "6a532c9200000000040399de",
-        "6a52678e000000002a006070",
-        "6a17c2f7000000002803fc28",
-        "6a17c2c4000000002803194d"
-      ]
+      "latest_comments": []
     },
     {
       "title": "吴川！海边小院（29号开始空）淡季值哭😭谁懂",
       "url": "http://xhslink.com/o/6DH1XEsnHzj",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/69c4f2300000000021039ff6?app_platform=android&ignoreEngage=true&app_version=9.35.0&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBvBkTzBjX_EXhb39O2QRGnx4vTfqgpFn8ecuE0_h3axg%3D&author_share=1&xhsshare=CopyLink&shareRedId=OD86MUk8ODk2NzUyOTgwNjg0OTk5OD1A&apptime=1784299297&share_id=cad6a0af68b84f72a41727ee9a4c8ed2&share_channel=copy_link",
-      "last_checked": "2026-07-18T09:16:26.959Z",
+      "last_checked": "2026-07-18T10:30:37.703318+00:00",
       "last_count": 8,
-      "latest_comments": [],
-      "seen_ids": [
-        "6a53aeee0000000015005cc8",
-        "6a36a539000000002a02cbf0",
-        "6a335bb0000000002803f0d0",
-        "6a2a0550000000002702bfaa",
-        "69e389ad000000001401bc23",
-        "69e33ee8000000001401c020",
-        "69de36410000000035030875",
-        "69de31fa0000000035019e1c"
-      ]
+      "latest_comments": []
     },
     {
       "title": "湛江鼎龙湾📍7房泳池别墅✅已住不踩雷",
       "url": "http://xhslink.com/o/3QWgOpKlS6f",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/6a5604f3000000002003b2a0?app_platform=android&ignoreEngage=true&app_version=9.35.0&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBcWAZidzWE7H4czg_qBas-E7IZE6f7-n2zNwU5zr17b0%3D&author_share=1&xhsshare=CopyLink&shareRedId=OD86MUk8ODk2NzUyOTgwNjg0OTk5OD1A&apptime=1784299383&share_id=73f82d4f19954a099b351720c6911205&share_channel=copy_link",
-      "last_checked": "2026-07-18T09:16:26.959Z",
+      "last_checked": "2026-07-18T10:30:37.703318+00:00",
       "last_count": 4,
       "latest_comments": [
         {
@@ -177,12 +98,6 @@ window.XHS_MONITOR_DATA = {
           "time_ms": 1784298145000,
           "time": "2026-07-17 22:22:25"
         }
-      ],
-      "seen_ids": [
-        "6a5a3aa000000000050141f7",
-        "6a58d1470000000015013388",
-        "6a5896a00000000009015a40",
-        "6a571d45000000002a0065f1"
       ]
     },
     {
@@ -190,48 +105,52 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/9PWSBIfQeCs",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/69e057ae000000001b023ee5?app_platform=ios&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBNJ4jxaG9EdjV-9hpB0yvXEu6fa1ydxZAXh53av4UDE0=&author_share=1&xhsshare=CopyLink&shareRedId=OD4zRElKOks2NzUyOTgwNjZIOTg0SUk6&apptime=1784357830&share_id=75847adc3b1c49a8b5e1353da170c6db",
-      "last_checked": "2026-07-18T09:16:26.959Z",
+      "last_checked": "2026-07-18T10:30:37.703318+00:00",
       "last_count": 7,
-      "latest_comments": [],
-      "seen_ids": [
-        "6a58736000000000090155d8",
-        "6a55ee04000000002a007839",
-        "6a5479ff000000002300c846",
-        "6a53409d0000000015008848",
-        "6a4321fa000000002300eaa0",
-        "6a426471000000001403b5a9",
-        "6a42644d0000000015004264"
-      ]
+      "latest_comments": []
     },
     {
       "title": "湛江📍新开的!!出门即沙滩的小院!",
       "url": "http://xhslink.com/o/ANHIzFgbCUm",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/6a111fe8000000003503a2bc?app_platform=ios&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&noteAttributes=goods&xsec_token=CBspAoRWlvM24xgO19113KWQ6kZWYhZ-C0qnFPLWa1pp0=&author_share=1&back_chain_id=goods_note_share&xhsshare=CopyLink&shareRedId=OD4zRElKOks2NzUyOTgwNjZIOTg0SUk6&apptime=1784357812&share_id=f488fcd339b245e5a59517c2489b9e1e",
-      "last_checked": "2026-07-18T09:16:26.959Z",
+      "last_checked": "2026-07-18T10:30:37.703318+00:00",
       "last_count": 12,
-      "latest_comments": [],
-      "seen_ids": [
-        "6a598dd80000000029025525",
-        "6a598dd3000000002a0274af",
-        "6a598dca0000000029037f70",
-        "6a58f8470000000005008db3",
-        "6a58ee5d000000002a0259fb",
-        "6a58edf30000000005014f62",
-        "6a56e8fe000000002a027044",
-        "6a56c7fa0000000015007a5a",
-        "6a55fee00000000029019721",
-        "6a55fdaa0000000005016261",
-        "6a5444be000000002901b79b",
-        "6a5391ec000000002901af5c"
-      ]
+      "latest_comments": []
+    },
+    {
+      "title": "鼎龙湾新增监控帖子",
+      "url": "http://xhslink.com/o/5tHhvNAmmwK",
+      "category": "鼎龙湾",
+      "final_url": "https://www.xiaohongshu.com/discovery/item/69ae64e8000000000e00d3a2?app_platform=ios&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CB2C0jzylnWL9PNOFPCbjTqUtGlqXs7NvURKqVTtPhNrQ=&author_share=1&xhsshare=CopyLink&shareRedId=OD4zRElKOks2NzUyOTgwNjZIOTg0SUk6&apptime=1784357900&share_id=9069b854223b473ea2ea566802eaae2e",
+      "last_checked": "2026-07-18T10:30:37.703318+00:00",
+      "last_count": 8,
+      "latest_comments": []
+    },
+    {
+      "title": "阳江海陵岛海景独栋别墅团建聚会",
+      "url": "http://xhslink.com/o/6VN3OAalxaY",
+      "category": "鼎龙湾",
+      "final_url": "https://www.xiaohongshu.com/",
+      "last_checked": "2026-07-18T10:30:37.703318+00:00",
+      "last_count": 0,
+      "latest_comments": []
+    },
+    {
+      "title": "鼎龙湾新增监控帖子",
+      "url": "http://xhslink.com/o/1sQxvNyyo6p",
+      "category": "鼎龙湾",
+      "final_url": "https://www.xiaohongshu.com/discovery/item/6a5b1db6000000000f028d75?app_platform=android&ignoreEngage=true&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=video&xsec_token=CBUrEtTbW42NhA5utYNEINlJO7B2WIWq5J8iXEFCLYabM%3D&author_share=1&shareRedId=OD9INzk4OkI2NzUyOTgwNjY1OTc1NTY5&apptime=1784358227&share_id=de7cb7e8f00e459784b1a874b490d3bb&share_channel=copy_link&appuid=69f763690000000002001000&xhsshare=CopyLink",
+      "last_checked": "2026-07-18T10:30:37.703318+00:00",
+      "last_count": 0,
+      "latest_comments": []
     },
     {
       "title": "阳江海陵岛📍新开！直接锁死这家🔥",
       "url": "http://xhslink.com/o/21m6uIhTKaO",
       "category": "海陵岛",
       "final_url": "https://www.xiaohongshu.com/discovery/item/69e5cae70000000023006e76?app_platform=ios&app_version=9.38.1&share_from_user_hidden=true&xsec_source=app_share&type=normal&noteAttributes=goods&xsec_token=CBpnJe_i8CmMeNJLn0makvt_BpYXi1tGbxlaeUXzIhubA=&author_share=1&back_chain_id=goods_note_share&xhsshare=CopyLink&shareRedId=ODc0NzU-OUw2NzUyOTgwNjY0OTc9PEo6&apptime=1784296193&share_id=4c26c653f20542d4b2018f514c8cc8b7",
-      "last_checked": "2026-07-18T09:16:26.959Z",
+      "last_checked": "2026-07-18T10:30:37.703318+00:00",
       "last_count": 11,
       "latest_comments": [
         {
@@ -263,30 +182,7 @@ window.XHS_MONITOR_DATA = {
           "user_profile_url": "https://www.xiaohongshu.com/user/profile/5ad1cf4511be107e7a049b82",
           "time_ms": 1784287667000,
           "time": "2026-07-17 19:27:47"
-        },
-        {
-          "id": "6a59f3f9000000001500a05e",
-          "content": "斯你啦",
-          "nickname": "尚古度假别墅服务",
-          "xhs_user_id": "页面未提供",
-          "user_profile_id": "69b63863000000003301ec60",
-          "user_profile_url": "https://www.xiaohongshu.com/user/profile/69b63863000000003301ec60",
-          "time_ms": 1784280057000,
-          "time": "2026-07-17 17:20:57"
         }
-      ],
-      "seen_ids": [
-        "6a5ae984000000002901b1a8",
-        "6a5addd3000000001500b400",
-        "6a5a11b3000000002a025c6e",
-        "6a59f3f9000000001500a05e",
-        "6a59dccc0000000005008485",
-        "6a5604e1000000001500ba99",
-        "6a55a5fa0000000015005e4c",
-        "6a53627b00000000150093b2",
-        "6a533d730000000005014e7b",
-        "6a4c5bed0000000015002ceb",
-        "6a4ba2640000000015012f09"
       ]
     },
     {
@@ -294,7 +190,7 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/2cbh7sBFx2P",
       "category": "海陵岛",
       "final_url": "https://www.xiaohongshu.com/discovery/item/6a06e9cc000000003700d23a?app_platform=ios&app_version=9.38.1&share_from_user_hidden=true&xsec_source=app_share&type=normal&noteAttributes=goods&xsec_token=CBrft0c4I4NR45z08btwtDqaSIzoyNZZaWQdyrgKgQsPw=&author_share=1&back_chain_id=goods_note_share&xhsshare=CopyLink&shareRedId=ODc0NzU-OUw2NzUyOTgwNjY0OTc9PEo6&apptime=1784296894&share_id=c35a2ce17151420b921022731e2ed3d2",
-      "last_checked": "2026-07-18T09:16:26.959Z",
+      "last_checked": "2026-07-18T10:30:37.703318+00:00",
       "last_count": 10,
       "latest_comments": [
         {
@@ -347,18 +243,6 @@ window.XHS_MONITOR_DATA = {
           "time_ms": 1784340362000,
           "time": "2026-07-18 10:06:02"
         }
-      ],
-      "seen_ids": [
-        "6a5b0e3b000000002b000e10",
-        "6a5b0e37000000002902f3c4",
-        "6a5b0706000000001500001d",
-        "6a5ae38f000000002a02e652",
-        "6a5adf8a000000002a03240c",
-        "6a5a5a52000000000b03ac96",
-        "6a598d490000000029027ccd",
-        "6a590fca0000000029024d3d",
-        "6a51a3fb000000002b0010f9",
-        "6a50f10d000000002b024145"
       ]
     },
     {
@@ -366,91 +250,57 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/828sbFz2jag",
       "category": "海陵岛",
       "final_url": "https://www.xiaohongshu.com/discovery/item/69e9c9d7000000001f002b94?app_platform=ios&app_version=9.38.1&share_from_user_hidden=true&xsec_source=app_share&type=normal&noteAttributes=goods&xsec_token=CBaEvEolwNyMtrL0i2GyLPG8yN-pmBhWxO2YPV2KHgiec=&author_share=1&back_chain_id=goods_note_share&xhsshare=CopyLink&shareRedId=ODc0NzU-OUw2NzUyOTgwNjY0OTc9PEo6&apptime=1784296915&share_id=51b1ee6c837441f5a1ee05de6ef9bfa5",
-      "last_checked": "2026-07-18T09:16:26.959Z",
+      "last_checked": "2026-07-18T10:30:37.703318+00:00",
       "last_count": 14,
-      "latest_comments": [],
-      "seen_ids": [
-        "6a575897000000002b0296bb",
-        "6a571f890000000015003aec",
-        "6a5606a70000000029027f2a",
-        "6a55d79f000000002902cff8",
-        "6a5595be000000002a033082",
-        "6a54672c000000001403a895",
-        "6a3f28ee0000000029027460",
-        "6a3ed16c000000002901a891",
-        "6a3dd7cf000000002a0314fb",
-        "6a3d3a28000000002b029633",
-        "6a0a7099000000002a030798",
-        "6a08a14d000000002a007603",
-        "69f9a7a80000000029024539",
-        "69f98c55000000002b02bc67"
-      ]
+      "latest_comments": []
     },
     {
       "title": "阳江！连住3晚的独栋海边小院～7🈷️有房",
       "url": "http://xhslink.com/o/5RChcA3aynh",
       "category": "海陵岛",
       "final_url": "https://www.xiaohongshu.com/discovery/item/6a44d71e000000000702b657?app_platform=ios&app_version=9.38.1&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBffLWXOQeE7sSR_ijkP-z2cfcGyB1JU0q0cEVeVs-Pec=&author_share=1&xhsshare=CopyLink&shareRedId=ODc0NzU-OUw2NzUyOTgwNjY0OTc9PEo6&apptime=1784296954&share_id=a8f9a08722bc407e92d4fddbadf4d7aa",
-      "last_checked": "2026-07-18T09:16:26.959Z",
+      "last_checked": "2026-07-18T10:30:37.703318+00:00",
       "last_count": 10,
-      "latest_comments": [],
-      "seen_ids": [
-        "6a587622000000002a030b79",
-        "6a58682d000000000403b6d2",
-        "6a57a821000000002a033705",
-        "6a5798680000000029025c48",
-        "6a4ca4a2000000002a031de0",
-        "6a4ca08b000000002a004c14",
-        "6a4637cc000000002a02d35e",
-        "6a463314000000000802c101",
-        "6a4611ee00000000290241a3",
-        "6a460573000000002901b863"
-      ]
+      "latest_comments": []
     },
     {
       "title": "阳江📍泳池滑梯别墅娃住到不想走🔥",
       "url": "http://xhslink.com/o/XMqglvWCn9",
       "category": "海陵岛",
       "final_url": "https://www.xiaohongshu.com/discovery/item/69c36b02000000001d018790?app_platform=ios&app_version=9.38.1&share_from_user_hidden=true&xsec_source=app_share&type=normal&noteAttributes=goods&xsec_token=CBdwKBlV2nAaOpQshySd1BPxARRrI-U0UEbPv3jCyI0e0=&author_share=1&back_chain_id=goods_note_share&xhsshare=CopyLink&shareRedId=ODc0NzU-OUw2NzUyOTgwNjY0OTc9PEo6&apptime=1784297001&share_id=9d6bbfb693f94f99b032f9f63c46d990",
-      "last_checked": "2026-07-18T09:16:26.959Z",
-      "last_count": 14,
+      "last_checked": "2026-07-18T10:30:37.703318+00:00",
+      "last_count": 15,
       "latest_comments": [
         {
-          "id": "6a5addf60000000015002145",
+          "id": "6a5b44f5000000000500a08e",
+          "content": "你好，想咨询一下房间怎么定",
+          "nickname": "奶奶叫橙子不叫橘子哦！",
+          "xhs_user_id": "页面未提供",
+          "user_profile_id": "62dfa69c000000001f014e27",
+          "user_profile_url": "https://www.xiaohongshu.com/user/profile/62dfa69c000000001f014e27",
+          "time_ms": 1784366325000,
+          "time": "2026-07-18 17:18:45"
+        },
+        {
+          "id": "6a5b448e0000000015009827",
           "content": "斯你啦",
           "nickname": "花海民宿2a5",
           "xhs_user_id": "页面未提供",
           "user_profile_id": "69b67b130000000034021348",
           "user_profile_url": "https://www.xiaohongshu.com/user/profile/69b67b130000000034021348",
-          "time_ms": 1784339959000,
-          "time": "2026-07-18 09:59:19"
+          "time_ms": 1784366222000,
+          "time": "2026-07-18 17:17:02"
         },
         {
-          "id": "6a5a68610000000015001dbc",
-          "content": "明天什么价格",
-          "nickname": "😘ming👑",
+          "id": "6a5b401e000000002902f19c",
+          "content": "酒店名字叫什么，怎么订哦呢",
+          "nickname": "丶Hedy",
           "xhs_user_id": "页面未提供",
-          "user_profile_id": "595fa3f282ec393bec2025b9",
-          "user_profile_url": "https://www.xiaohongshu.com/user/profile/595fa3f282ec393bec2025b9",
-          "time_ms": 1784309858000,
-          "time": "2026-07-18 01:37:38"
+          "user_profile_id": "5fc8b917000000000101e599",
+          "user_profile_url": "https://www.xiaohongshu.com/user/profile/5fc8b917000000000101e599",
+          "time_ms": 1784365087000,
+          "time": "2026-07-18 16:58:07"
         }
-      ],
-      "seen_ids": [
-        "6a5addf60000000015002145",
-        "6a5a68610000000015001dbc",
-        "6a3ceabb00000000150106f0",
-        "6a3caacb00000000150062ce",
-        "6a3b364000000000150138df",
-        "6a3a9edc000000002a02c729",
-        "6a3a5692000000001501349b",
-        "6a3a42c0000000002902449c",
-        "69eec667000000002701c137",
-        "69db99610000000035026ef9",
-        "69d66f88000000001d00962d",
-        "69d1db16000000000d03477b",
-        "69c63f2e000000001400b4ee",
-        "69c5f20d000000001500266f"
       ]
     },
     {
@@ -458,80 +308,39 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/9wPrhq817IL",
       "category": "海陵岛",
       "final_url": "https://www.xiaohongshu.com/discovery/item/6a39f690000000000702244b?app_platform=ios&app_version=9.38.1&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBB94AyhkoiU7aK-0jB0h-xdzBd6lKp2Q47MUwOiHNKvQ=&author_share=1&xhsshare=CopyLink&shareRedId=ODc0NzU-OUw2NzUyOTgwNjY0OTc9PEo6&apptime=1784297041&share_id=1098d8c4174b4622b856852498498592",
-      "last_checked": "2026-07-18T09:16:26.959Z",
+      "last_checked": "2026-07-18T10:30:37.703318+00:00",
       "last_count": 5,
-      "latest_comments": [
-        {
-          "id": "6a59f3db000000002b029faf",
-          "content": "请问3房什么价呢！",
-          "nickname": "刘晓晓🔅💫",
-          "xhs_user_id": "页面未提供",
-          "user_profile_id": "5a742a0511be1006929c6ccb",
-          "user_profile_url": "https://www.xiaohongshu.com/user/profile/5a742a0511be1006929c6ccb",
-          "time_ms": 1784280028000,
-          "time": "2026-07-17 17:20:28"
-        },
-        {
-          "id": "6a59f3d4000000002902e577",
-          "content": "2房有吗？",
-          "nickname": "暖吉",
-          "xhs_user_id": "页面未提供",
-          "user_profile_id": "6428ea870000000012013433",
-          "user_profile_url": "https://www.xiaohongshu.com/user/profile/6428ea870000000012013433",
-          "time_ms": 1784280021000,
-          "time": "2026-07-17 17:20:21"
-        }
-      ],
-      "seen_ids": [
-        "6a59f3db000000002b029faf",
-        "6a59f3d4000000002902e577",
-        "6a51bc600000000029025560",
-        "6a4db8750000000014038102",
-        "6a4b66cd000000001403a2ca"
-      ]
-    },
-    {
-      "title": "鼎龙湾新增监控帖子",
-      "url": "http://xhslink.com/o/5tHhvNAmmwK",
-      "category": "鼎龙湾",
-      "final_url": "https://www.xiaohongshu.com/discovery/item/69ae64e8000000000e00d3a2?app_platform=ios&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CB2C0jzylnWL9PNOFPCbjTqUtGlqXs7NvURKqVTtPhNrQ=&author_share=1&xhsshare=CopyLink&shareRedId=OD4zRElKOks2NzUyOTgwNjZIOTg0SUk6&apptime=1784357900&share_id=9069b854223b473ea2ea566802eaae2e",
-      "last_checked": "2026-07-18T09:16:26.959Z",
-      "last_count": 8,
-      "latest_comments": [],
-      "seen_ids": [
-        "6a4f13a90000000005017999",
-        "6a4b5e00000000002a0064c5",
-        "6a486fc900000000150007fc",
-        "6a23feb00000000028034bd5",
-        "6a223986000000002b029ba5",
-        "69e3071a000000001401e429",
-        "69cc72c0000000000503971a",
-        "69cb4a79000000001500cd2c"
-      ]
-    },
-    {
-      "title": "阳江海陵岛海景独栋别墅团建聚会",
-      "url": "http://xhslink.com/o/6VN3OAalxaY",
-      "category": "鼎龙湾",
-      "final_url": "https://www.xiaohongshu.com",
-      "last_checked": "2026-07-18T09:16:26.959Z",
-      "last_count": 0,
-      "latest_comments": [],
-      "seen_ids": []
-    },
-    {
-      "title": "鼎龙湾新增监控帖子",
-      "url": "http://xhslink.com/o/1sQxvNyyo6p",
-      "category": "鼎龙湾",
-      "final_url": "https://www.xiaohongshu.com/discovery/item/6a5b1db6000000000f028d75?app_platform=android&ignoreEngage=true&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=video&xsec_token=CBUrEtTbW42NhA5utYNEINlJO7B2WIWq5J8iXEFCLYabM%3D&author_share=1&shareRedId=OD9INzk4OkI2NzUyOTgwNjY1OTc1NTY5&apptime=1784358227&share_id=de7cb7e8f00e459784b1a874b490d3bb&share_channel=copy_link&appuid=69f763690000000002001000&xhsshare=CopyLink",
-      "last_checked": "2026-07-18T09:16:26.959Z",
-      "last_count": 0,
-      "latest_comments": [],
-      "seen_ids": []
+      "latest_comments": []
     }
   ],
   "new_comments": [],
   "alert_history": [
+    {
+      "title": "阳江📍泳池滑梯别墅娃住到不想走🔥",
+      "url": "http://xhslink.com/o/XMqglvWCn9",
+      "category": "海陵岛",
+      "id": "6a5b44f5000000000500a08e",
+      "content": "你好，想咨询一下房间怎么定",
+      "nickname": "奶奶叫橙子不叫橘子哦！",
+      "xhs_user_id": "页面未提供",
+      "user_profile_id": "62dfa69c000000001f014e27",
+      "user_profile_url": "https://www.xiaohongshu.com/user/profile/62dfa69c000000001f014e27",
+      "time_ms": 1784366325000,
+      "time": "2026-07-18 17:18:45"
+    },
+    {
+      "title": "阳江📍泳池滑梯别墅娃住到不想走🔥",
+      "url": "http://xhslink.com/o/XMqglvWCn9",
+      "category": "海陵岛",
+      "id": "6a5b448e0000000015009827",
+      "content": "斯你啦",
+      "nickname": "花海民宿2a5",
+      "xhs_user_id": "页面未提供",
+      "user_profile_id": "69b67b130000000034021348",
+      "user_profile_url": "https://www.xiaohongshu.com/user/profile/69b67b130000000034021348",
+      "time_ms": 1784366222000,
+      "time": "2026-07-18 17:17:02"
+    },
     {
       "title": "不敢相信！阳江海边整栋居然这么便宜",
       "url": "http://xhslink.com/o/2cbh7sBFx2P",
