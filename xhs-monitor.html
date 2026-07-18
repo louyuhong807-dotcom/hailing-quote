@@ -374,6 +374,7 @@
 
   <script src="./xhs-monitor-data.js"></script>
   <script>
+    const pageVersion = "2026-07-18-1336";
     const data = window.XHS_MONITOR_DATA || {};
     const pendingKey = "xhs-monitor-pending-links";
     const categories = (data.categories?.length ? data.categories : ["海陵岛", "鼎龙湾"]);
@@ -420,6 +421,14 @@
       const node = document.getElementById("linkMessage");
       node.textContent = text;
       node.className = `form-message ${type}`;
+    };
+    const savePendingLink = (url, category, status) => {
+      const pending = JSON.parse(localStorage.getItem(pendingKey) || "[]");
+      const next = [
+        { url, category, createdAt: new Date().toISOString(), status },
+        ...pending.filter((item) => normalizeLink(item.url).toLowerCase() !== url.toLowerCase())
+      ];
+      localStorage.setItem(pendingKey, JSON.stringify(next.slice(0, 20)));
     };
     const renderPendingLinks = () => {
       const pending = JSON.parse(localStorage.getItem(pendingKey) || "[]");
@@ -503,7 +512,7 @@
       }
       button.disabled = true;
       button.textContent = "检查中";
-      setMessage("正在后台打开链接并校验重复，请稍等。", "");
+      setMessage(`正在后台打开链接并校验重复，请稍等。版本：${pageVersion}`, "");
       try {
         const controller = new AbortController();
         const timeout = setTimeout(() => controller.abort(), 45000);
@@ -522,20 +531,22 @@
           result = { error: raw.slice(0, 120) };
         }
         if (!response.ok) {
-          setMessage(result.error || "后台接入失败，请稍后再试。", "error");
+          savePendingLink(url, selectedCategory, "已保存到手机待接入");
+          setMessage(result.error ? `后台未完成：${result.error}。链接已先保存到手机待接入。` : "后台未完成：没有返回具体原因。链接已先保存到手机待接入。", "error");
+          renderPendingLinks();
           return;
         }
-        const pending = JSON.parse(localStorage.getItem(pendingKey) || "[]");
-        pending.unshift({ url, category: selectedCategory, createdAt: new Date().toISOString(), status: "已接入后台监控" });
-        localStorage.setItem(pendingKey, JSON.stringify(pending.slice(0, 20)));
+        savePendingLink(url, selectedCategory, "已接入后台监控");
         input.value = "";
         setMessage(result.message || "已接入后台监控。", "ok");
         renderPendingLinks();
       } catch (error) {
+        savePendingLink(url, selectedCategory, "已保存到手机待接入");
         const message = error && error.name === "AbortError"
-          ? "后台响应超时，请稍后再试；如果重复出现，需要检查 Vercel 后台环境变量。"
-          : "后台接口暂时不可用：请确认正在使用 Vercel 链接打开，并检查后台环境变量。";
+          ? "后台响应超时，链接已先保存到手机待接入；需要检查 Vercel 后台环境变量。"
+          : "后台接口暂时不可用，链接已先保存到手机待接入；请确认使用 Vercel 链接并检查后台环境变量。";
         setMessage(message, "error");
+        renderPendingLinks();
       } finally {
         button.disabled = false;
         button.textContent = "确认";
