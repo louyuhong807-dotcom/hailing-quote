@@ -5,6 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="format-detection" content="telephone=no">
   <title>小红书评论监控</title>
+  <script>
+    (function () {
+      var officialHost = "hailing-quote-x81y.vercel.app";
+      if (location.hostname !== officialHost) {
+        var target = new URL("https://" + officialHost + "/xhs-monitor");
+        var params = new URLSearchParams(location.search);
+        params.forEach(function (value, key) { target.searchParams.set(key, value); });
+        target.searchParams.set("v", "2026-07-18-1525");
+        location.replace(target.toString());
+      }
+    }());
+  </script>
   <style>
     :root {
       color-scheme: light;
@@ -415,7 +427,7 @@
 
   <script src="./xhs-monitor-data.js"></script>
   <script>
-    const pageVersion = "2026-07-18-1510";
+    const pageVersion = "2026-07-18-1525";
     const apiEndpoint = location.hostname === "hailing-quote-x81y.vercel.app"
       ? "/api/xhs-add"
       : "https://hailing-quote-x81y.vercel.app/api/xhs-add";
