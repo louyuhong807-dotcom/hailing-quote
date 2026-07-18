@@ -367,14 +367,14 @@
     <h2 class="section-title">监控列表</h2>
     <section id="posts"></section>
 
-    <div class="footer">
+    <div class="footer" id="pageFooter">
       说明：微信网页本身不能直接绕过小红书限制抓评论，数据来自监控服务的最近一次检查。页面只保留最近 24 小时评论，旧评论会自动清除。
     </div>
   </main>
 
   <script src="./xhs-monitor-data.js"></script>
   <script>
-    const pageVersion = "2026-07-18-1444";
+    const pageVersion = "2026-07-18-1450";
     const apiEndpoint = location.hostname === "hailing-quote-x81y.vercel.app"
       ? "/api/xhs-add"
       : "https://hailing-quote-x81y.vercel.app/api/xhs-add";
@@ -383,6 +383,7 @@
     const categories = (data.categories?.length ? data.categories : ["海陵岛", "鼎龙湾"]);
     let selectedCategory = new URLSearchParams(location.search).get("area") || categories[0] || "海陵岛";
     if (!categories.includes(selectedCategory)) selectedCategory = categories[0] || "海陵岛";
+    document.getElementById("pageFooter").textContent += ` 当前页面版本：${pageVersion}`;
     const fmt = (value) => {
       if (!value) return "暂无记录";
       const date = new Date(value);
@@ -459,6 +460,7 @@
       });
     };
     const postCategory = (item) => item.category || "鼎龙湾";
+    const categoryCode = () => selectedCategory === "海陵岛" ? "hailing" : "dinglong";
     const renderPage = () => {
       const currentPosts = (data.posts || []).filter((post) => postCategory(post) === selectedCategory);
       const currentAlerts = (data.new_comments?.length ? data.new_comments : (data.alert_history || []))
@@ -522,7 +524,7 @@
         const response = await fetch(apiEndpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ url, category: selectedCategory }),
+          body: JSON.stringify({ url, category: categoryCode() }),
           signal: controller.signal
         });
         clearTimeout(timeout);

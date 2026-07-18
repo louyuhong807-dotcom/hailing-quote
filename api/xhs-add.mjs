@@ -44,6 +44,8 @@ function safeTitle(value, category) {
 
 function cleanCategory(value) {
   const category = decodeText(value);
+  if (category === "hailing") return "海陵岛";
+  if (category === "dinglong") return "鼎龙湾";
   return category === "海陵岛" ? "海陵岛" : "鼎龙湾";
 }
 
