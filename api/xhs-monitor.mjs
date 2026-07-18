@@ -166,6 +166,15 @@ function encodeBase64(value) {
   return Buffer.from(String(value || ""), "utf8").toString("base64");
 }
 
+async function readJsonBody(req) {
+  if (req.body && typeof req.body === "object") return req.body;
+  if (typeof req.body === "string") return JSON.parse(req.body || "{}");
+  const chunks = [];
+  for await (const chunk of req) chunks.push(Buffer.from(chunk));
+  const raw = Buffer.concat(chunks).toString("utf8");
+  return raw ? JSON.parse(raw) : {};
+}
+
 async function readRepoFile(path) {
   const { branch } = repoInfo();
   const file = await githubRequest(`/contents/${path}?ref=${encodeURIComponent(branch)}`);
@@ -214,6 +223,14 @@ async function loadStore() {
   };
 }
 
+async function loadLinksOnly() {
+  const linksFile = await readRepoFile("xhs-monitor-links.json");
+  return {
+    linksFile,
+    links: JSON.parse(linksFile.text),
+  };
+}
+
 function cleanCategory(value) {
   const category = decodeText(value);
   return category === "海陵岛" ? "海陵岛" : "鼎龙湾";
@@ -248,41 +265,23 @@ function makePost(title, url, category, finalUrl, comments, now) {
 }
 
 async function addLink(req, res) {
-  const body = typeof req.body === "string" ? JSON.parse(req.body || "{}") : req.body || {};
+  const body = await readJsonBody(req);
   const url = normalizeUrl(body.url);
   if (!url || !isXhsUrl(url)) return jsonResponse(res, 400, { error: "请提交有效的小红书链接" });
   const title = decodeText(body.title) || "新监控小红书帖子";
   const category = cleanCategory(body.category);
-  const store = await loadStore();
+  const store = await loadLinksOnly();
   const inputKey = url.toLowerCase();
-  const knownKeys = [
-    ...(store.links || []).map((item) => normalizeUrl(item.url).toLowerCase()),
-    ...(store.data.posts || []).flatMap((post) => [normalizeUrl(post.url).toLowerCase(), normalizeUrl(post.final_url).toLowerCase()]),
-  ].filter(Boolean);
+  const knownKeys = (store.links || []).map((item) => normalizeUrl(item.url).toLowerCase()).filter(Boolean);
   if (knownKeys.includes(inputKey)) return jsonResponse(res, 409, { error: "这个链接已经在监控列表里，不能重复添加" });
 
-  const now = new Date().toISOString();
-  const nowMs = Date.parse(now);
   store.links.push({ title, url, category });
-  store.data.checked_at = now;
-  store.data.categories = collectCategories([...(store.data.posts || []), { category }]);
-  store.data.configured_count = store.links.length;
-  store.data.checked_count = store.links.length;
-  store.data.comment_retention_hours = 24;
-  store.data.new_comments = [];
-  store.data.alert_history = recentComments(store.data.alert_history || [], nowMs).slice(0, 30);
-  store.data.errors = [];
-  store.data.posts = [...(store.data.posts || []), {
-    ...makePost(title, url, category, url, [], now),
-    warning: "已接入后台，下一轮监控会补齐评论基线",
-  }];
-
   await writeRepoFile("xhs-monitor-links.json", store.linksFile.sha, JSON.stringify(store.links, null, 2) + "\n", `Add XHS monitor link: ${title}`);
-  await writeRepoFile("xhs-monitor-data.js", store.dataFile.sha, renderDataJs(store.data), `Initialize XHS monitor data: ${title}`);
   return jsonResponse(res, 200, {
     ok: true,
-    post: store.data.posts.at(-1),
-    message: "已接入后台监控，下一轮检查会补齐评论基线",
+    configured_count: store.links.length,
+    post: { title, url, category },
+    message: "已接入后台监控，下一轮检查后会显示在页面里",
   });
 }
 
