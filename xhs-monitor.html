@@ -426,14 +426,14 @@
     <section id="posts"></section>
 
     <div class="footer" id="pageFooter">
-      说明：微信网页本身不能直接绕过平台限制抓评论，数据来自监控服务的最近一次检查。页面只保留最近 24 小时评论，旧评论会自动清除。
+      说明：微信网页本身不能直接绕过平台限制抓评论，数据来自监控服务的最近一次检查。监控列表保留最近 24 小时评论，最新提醒只保留最近 4 小时并默认折叠。
     </div>
   </main>
 
   <script src="./xhs-monitor-data.js"></script>
   <script src="./douyin-monitor-data.js"></script>
   <script>
-    const pageVersion = "2026-07-18-1625";
+    const pageVersion = "2026-07-18-1635";
     const apiBase = location.hostname === "hailing-quote-x81y.vercel.app"
       ? ""
       : "https://hailing-quote-x81y.vercel.app";
@@ -476,6 +476,8 @@
     let selectedPlatform = params.get("platform") || "xhs";
     if (!platformConfigs[selectedPlatform]) selectedPlatform = "xhs";
     const hotAlertMs = 60 * 60 * 1000;
+    const alertRetentionMs = 4 * 60 * 60 * 1000;
+    const listRetentionMs = 24 * 60 * 60 * 1000;
     const activeConfig = () => platformConfigs[selectedPlatform];
     const activeData = () => dataByPlatform[selectedPlatform] || {};
     const activeCategories = () => {
@@ -499,7 +501,10 @@
       "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
     }[ch]));
     const commentMs = (comment) => Number(comment?.time_ms || 0);
-    const isHotComment = (comment) => commentMs(comment) && Date.now() - commentMs(comment) <= hotAlertMs;
+    const withinMs = (comment, ms) => commentMs(comment) && Date.now() - commentMs(comment) <= ms;
+    const isHotComment = (comment) => withinMs(comment, hotAlertMs);
+    const isRecentAlert = (comment) => withinMs(comment, alertRetentionMs);
+    const isRecentListComment = (comment) => withinMs(comment, listRetentionMs);
     const renderComment = (comment, options = {}) => `
       <div class="comment ${options.hot ? "hot-comment" : ""}">
         <strong>${escapeHtml(comment.nickname || "未知用户")}</strong>
@@ -613,9 +618,10 @@
       };
       [...(data.new_comments || []), ...(data.alert_history || [])]
         .filter((item) => postCategory(item) === selectedCategory)
+        .filter(isRecentAlert)
         .forEach(add);
       posts.forEach((post) => {
-        (post.latest_comments || []).forEach((comment) => add({
+        (post.latest_comments || []).filter(isRecentAlert).forEach((comment) => add({
           title: post.title,
           url: post.url,
           category: postCategory(post),
@@ -648,9 +654,9 @@
       document.getElementById("coverageCount").textContent = `${checkedCount}/${configuredCount} 条`;
       document.querySelector(".add-panel .post-title").textContent = `${config.addTitle} - ${selectedCategory}`;
       document.getElementById("alerts").innerHTML = currentAlerts.length ? `
-        <details class="alerts-panel" ${hotAlerts.length ? "open" : ""}>
+        <details class="alerts-panel">
           <summary>
-            <span>${escapeHtml(selectedCategory)}最新评论 ${currentAlerts.length} 条</span>
+            <span>${escapeHtml(selectedCategory)}最新提醒 ${currentAlerts.length} 条</span>
             <span class="${hotAlerts.length ? "hot-label" : ""}">${hotAlerts.length ? `1小时内 ${hotAlerts.length} 条` : "点击展开"}</span>
           </summary>
           <div class="alerts-body">
@@ -665,7 +671,7 @@
             `).join("")}
           </div>
         </details>
-      ` : `<div class="empty">${escapeHtml(selectedCategory)}当前没有可显示的客户评论。页面会保留最近一次检查状态，等有新评论时这里会置顶显示。</div>`;
+      ` : `<div class="empty">${escapeHtml(selectedCategory)}最近 4 小时没有新的客户评论提醒。监控列表仍保留最近 24 小时评论。</div>`;
 
       document.getElementById("posts").innerHTML = currentPosts.length ? currentPosts.map((post) => `
         <article class="card">
@@ -676,7 +682,7 @@
             <span class="pill">评论数：${escapeHtml(post.last_count ?? 0)}</span>
             <span class="pill">检查：${escapeHtml(fmt(post.last_checked))}</span>
           </div>
-          ${(post.latest_comments || []).slice(0, 2).map(renderComment).join("") || `<div class="comment"><p>暂无可显示评论</p></div>`}
+          ${(post.latest_comments || []).filter(isRecentListComment).slice(0, 2).map(renderComment).join("") || `<div class="comment"><p>最近 24 小时暂无可显示评论</p></div>`}
           <div class="link-row">
             <a class="button" href="${escapeHtml(post.url)}">打开帖子</a>
             <a class="button ghost" href="${escapeHtml(post.final_url || post.url)}">原始链接</a>
