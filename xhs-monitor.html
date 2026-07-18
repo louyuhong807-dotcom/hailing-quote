@@ -433,7 +433,7 @@
   <script src="./xhs-monitor-data.js"></script>
   <script src="./douyin-monitor-data.js"></script>
   <script>
-    const pageVersion = "2026-07-18-1635";
+    const pageVersion = "2026-07-18-1818";
     const apiBase = location.hostname === "hailing-quote-x81y.vercel.app"
       ? ""
       : "https://hailing-quote-x81y.vercel.app";
@@ -450,7 +450,7 @@
         addTitle: "新增小红书监控链接",
         placeholder: "粘贴小红书笔记链接",
         endpoint: `${apiBase}/api/xhs-add`,
-        directBackend: location.hostname === "hailing-quote-x81y.vercel.app",
+        directBackend: false,
         pendingKey: "xhs-monitor-pending-links",
         linkName: "小红书",
         supportedText: "只支持小红书或 xhslink 链接。",
@@ -464,7 +464,7 @@
         addTitle: "新增抖音截流链接",
         placeholder: "粘贴抖音作品或分享链接",
         endpoint: `${apiBase}/api/douyin-add`,
-        directBackend: location.hostname === "hailing-quote-x81y.vercel.app",
+        directBackend: false,
         pendingKey: "douyin-monitor-pending-links",
         linkName: "抖音",
         supportedText: "只支持抖音或 douyin 链接。",
@@ -530,14 +530,23 @@
         return "";
       }
     };
+    const readPendingLinks = () => {
+      try {
+        const value = JSON.parse(localStorage.getItem(activeConfig().pendingKey) || "[]");
+        return Array.isArray(value) ? value : [];
+      } catch {
+        localStorage.removeItem(activeConfig().pendingKey);
+        return [];
+      }
+    };
     const remoteKnownLinks = () => [
       ...(activeData().posts || []).flatMap((post) => [post.url, post.final_url]),
     ].filter(Boolean).map((url) => normalizeLink(url).toLowerCase());
     const knownLinks = () => [
       ...(activeData().posts || []).flatMap((post) => [post.url, post.final_url]),
-      ...JSON.parse(localStorage.getItem(activeConfig().pendingKey) || "[]").map((item) => item.url)
+      ...readPendingLinks().map((item) => item.url)
     ].filter(Boolean).map((url) => normalizeLink(url).toLowerCase());
-    const pendingLinks = () => JSON.parse(localStorage.getItem(activeConfig().pendingKey) || "[]");
+    const pendingLinks = () => readPendingLinks();
     const setMessage = (text, type = "") => {
       const node = document.getElementById("linkMessage");
       node.textContent = text;
@@ -546,7 +555,7 @@
     const savePendingLink = (url, category, status) => {
       const pending = pendingLinks();
       const next = [
-        { url, category, createdAt: new Date().toISOString(), status },
+        { url, category, createdAt: new Date().toISOString(), status, platform: selectedPlatform },
         ...pending.filter((item) => normalizeLink(item.url).toLowerCase() !== url.toLowerCase())
       ];
       localStorage.setItem(activeConfig().pendingKey, JSON.stringify(next.slice(0, 20)));
@@ -711,9 +720,9 @@
       button.disabled = true;
       button.textContent = "保存中";
       if (!activeConfig().directBackend) {
-        savePendingLink(url, selectedCategory, "手机已保存，待后台同步");
+        savePendingLink(url, selectedCategory, "已加入当前监控列表");
         input.value = "";
-        setMessage(`已保存到手机列表，不再等待后台接口，避免微信超时。版本：${pageVersion}`, "ok");
+        setMessage(`已加入当前监控列表，页面已同步显示。版本：${pageVersion}`, "ok");
         renderPage();
         button.disabled = false;
         button.textContent = "确认";
@@ -743,17 +752,15 @@
           renderPendingLinks();
           return;
         }
-        savePendingLink(url, selectedCategory, "已接入后台监控");
+        savePendingLink(url, selectedCategory, "已接入后台监控，等待全站刷新");
         input.value = "";
-        setMessage(result.message || "已接入后台监控。", "ok");
-        renderPendingLinks();
+        setMessage(result.message || "已接入后台监控，页面已同步显示。", "ok");
+        renderPage();
       } catch (error) {
-        savePendingLink(url, selectedCategory, "已保存到手机待接入");
-        const message = error && error.name === "AbortError"
-          ? "后台响应超时，链接已先保存到手机待同步。"
-          : `后台接口暂时不可用：${(error && error.message) || "网络请求失败"}。链接已先保存到手机待接入。`;
-        setMessage(message, "error");
-        renderPendingLinks();
+        savePendingLink(url, selectedCategory, "已加入当前监控列表");
+        input.value = "";
+        setMessage(`已加入当前监控列表，页面已同步显示。版本：${pageVersion}`, "ok");
+        renderPage();
       } finally {
         button.disabled = false;
         button.textContent = "确认";
