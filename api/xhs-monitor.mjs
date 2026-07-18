@@ -12,6 +12,9 @@ const COMMENT_RETENTION_MS = 24 * 60 * 60 * 1000;
 function jsonResponse(res, status, body) {
   res.status(status).setHeader("Content-Type", "application/json; charset=utf-8");
   res.setHeader("Cache-Control", "no-store");
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   res.end(JSON.stringify(body));
 }
 
@@ -335,6 +338,14 @@ async function syncLinks(res) {
 export default async function handler(req, res) {
   try {
     if (req.method === "OPTIONS") return jsonResponse(res, 204, {});
+    if (req.method === "GET" && req.query?.health === "1") {
+      return jsonResponse(res, 200, {
+        ok: true,
+        has_token: Boolean(token()),
+        repo: repoInfo(),
+        checked_at: new Date().toISOString(),
+      });
+    }
     if (req.method === "POST") return addLink(req, res);
     if (req.method === "GET") {
       if (process.env.XHS_SYNC_SECRET && req.query?.secret !== process.env.XHS_SYNC_SECRET) {

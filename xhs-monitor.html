@@ -374,7 +374,10 @@
 
   <script src="./xhs-monitor-data.js"></script>
   <script>
-    const pageVersion = "2026-07-18-1412";
+    const pageVersion = "2026-07-18-1424";
+    const apiEndpoint = location.hostname === "hailing-quote-x81y.vercel.app"
+      ? "/api/xhs-monitor"
+      : "https://hailing-quote-x81y.vercel.app/api/xhs-monitor";
     const data = window.XHS_MONITOR_DATA || {};
     const pendingKey = "xhs-monitor-pending-links";
     const categories = (data.categories?.length ? data.categories : ["海陵岛", "鼎龙湾"]);
@@ -516,7 +519,7 @@
       try {
         const controller = new AbortController();
         const timeout = setTimeout(() => controller.abort(), 45000);
-        const response = await fetch("/api/xhs-monitor", {
+        const response = await fetch(apiEndpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ url, category: selectedCategory }),
@@ -544,7 +547,7 @@
         savePendingLink(url, selectedCategory, "已保存到手机待接入");
         const message = error && error.name === "AbortError"
           ? "后台响应超时，链接已先保存到手机待接入；需要检查 Vercel 后台环境变量。"
-          : "后台接口暂时不可用，链接已先保存到手机待接入；请确认使用 Vercel 链接并检查后台环境变量。";
+          : `后台接口暂时不可用：${(error && error.message) || "网络请求失败"}。链接已先保存到手机待接入。`;
         setMessage(message, "error");
         renderPendingLinks();
       } finally {
