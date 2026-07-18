@@ -374,10 +374,10 @@
 
   <script src="./xhs-monitor-data.js"></script>
   <script>
-    const pageVersion = "2026-07-18-1424";
+    const pageVersion = "2026-07-18-1435";
     const apiEndpoint = location.hostname === "hailing-quote-x81y.vercel.app"
-      ? "/api/xhs-monitor"
-      : "https://hailing-quote-x81y.vercel.app/api/xhs-monitor";
+      ? "/api/xhs-add"
+      : "https://hailing-quote-x81y.vercel.app/api/xhs-add";
     const data = window.XHS_MONITOR_DATA || {};
     const pendingKey = "xhs-monitor-pending-links";
     const categories = (data.categories?.length ? data.categories : ["海陵岛", "鼎龙湾"]);
