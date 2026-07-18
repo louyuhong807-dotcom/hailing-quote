@@ -227,6 +227,36 @@
       background: linear-gradient(180deg, #fff9f5, #fffdf9);
     }
 
+    .alerts-panel {
+      border: 1px solid rgba(201,82,53,.24);
+      border-radius: 8px;
+      background: rgba(255,253,249,.82);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .alerts-panel summary {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 14px 15px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 900;
+      list-style: none;
+    }
+
+    .alerts-panel summary::-webkit-details-marker { display: none; }
+
+    .alerts-body {
+      padding: 0 15px 12px;
+    }
+
+    .hot-label {
+      color: #b3261e;
+      font-weight: 900;
+    }
+
     .post-title {
       margin: 0;
       font-size: 16px;
@@ -260,6 +290,17 @@
       border-radius: 8px;
       background: #f7faf8;
       border: 1px solid #dbe9e1;
+    }
+
+    .comment.hot-comment {
+      background: #fff1ef;
+      border-color: rgba(179,38,30,.42);
+      color: #8c1d18;
+    }
+
+    .comment.hot-comment .pill {
+      border-color: rgba(179,38,30,.28);
+      color: #8c1d18;
     }
 
     .comment strong {
@@ -374,12 +415,13 @@
 
   <script src="./xhs-monitor-data.js"></script>
   <script>
-    const pageVersion = "2026-07-18-1450";
+    const pageVersion = "2026-07-18-1510";
     const apiEndpoint = location.hostname === "hailing-quote-x81y.vercel.app"
       ? "/api/xhs-add"
       : "https://hailing-quote-x81y.vercel.app/api/xhs-add";
     const data = window.XHS_MONITOR_DATA || {};
     const pendingKey = "xhs-monitor-pending-links";
+    const hotAlertMs = 60 * 60 * 1000;
     const categories = (data.categories?.length ? data.categories : ["海陵岛", "鼎龙湾"]);
     let selectedCategory = new URLSearchParams(location.search).get("area") || categories[0] || "海陵岛";
     if (!categories.includes(selectedCategory)) selectedCategory = categories[0] || "海陵岛";
@@ -393,11 +435,14 @@
     const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (ch) => ({
       "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
     }[ch]));
-    const renderComment = (comment) => `
-      <div class="comment">
+    const commentMs = (comment) => Number(comment?.time_ms || 0);
+    const isHotComment = (comment) => commentMs(comment) && Date.now() - commentMs(comment) <= hotAlertMs;
+    const renderComment = (comment, options = {}) => `
+      <div class="comment ${options.hot ? "hot-comment" : ""}">
         <strong>${escapeHtml(comment.nickname || "未知用户")}</strong>
         <p>${escapeHtml(comment.content || "")}</p>
         <div class="meta">
+          ${options.hot ? `<span class="pill hot-label">1小时内新评论</span>` : ""}
           <span class="pill">时间：${escapeHtml(comment.time || "未知")}</span>
           <span class="pill">小红书号：${escapeHtml(comment.xhs_user_id || "页面未提供")}</span>
           <span class="pill">用户主页ID：${escapeHtml(comment.user_profile_id || comment.xhs_user_id || "页面未提供")}</span>
@@ -417,17 +462,21 @@
         return "";
       }
     };
+    const remoteKnownLinks = () => [
+      ...(data.posts || []).flatMap((post) => [post.url, post.final_url]),
+    ].filter(Boolean).map((url) => normalizeLink(url).toLowerCase());
     const knownLinks = () => [
       ...(data.posts || []).flatMap((post) => [post.url, post.final_url]),
       ...JSON.parse(localStorage.getItem(pendingKey) || "[]").map((item) => item.url)
     ].filter(Boolean).map((url) => normalizeLink(url).toLowerCase());
+    const pendingLinks = () => JSON.parse(localStorage.getItem(pendingKey) || "[]");
     const setMessage = (text, type = "") => {
       const node = document.getElementById("linkMessage");
       node.textContent = text;
       node.className = `form-message ${type}`;
     };
     const savePendingLink = (url, category, status) => {
-      const pending = JSON.parse(localStorage.getItem(pendingKey) || "[]");
+      const pending = pendingLinks();
       const next = [
         { url, category, createdAt: new Date().toISOString(), status },
         ...pending.filter((item) => normalizeLink(item.url).toLowerCase() !== url.toLowerCase())
@@ -435,7 +484,7 @@
       localStorage.setItem(pendingKey, JSON.stringify(next.slice(0, 20)));
     };
     const renderPendingLinks = () => {
-      const pending = JSON.parse(localStorage.getItem(pendingKey) || "[]");
+      const pending = pendingLinks();
       const current = pending.filter((item) => (item.category || selectedCategory) === selectedCategory);
       document.getElementById("pendingLinks").innerHTML = current.length ? current.map((item) => `
         <div class="pending-item">
@@ -461,31 +510,80 @@
     };
     const postCategory = (item) => item.category || "鼎龙湾";
     const categoryCode = () => selectedCategory === "海陵岛" ? "hailing" : "dinglong";
-    const renderPage = () => {
-      const currentPosts = (data.posts || []).filter((post) => postCategory(post) === selectedCategory);
-      const currentAlerts = (data.new_comments?.length ? data.new_comments : (data.alert_history || []))
+    const localPosts = () => pendingLinks()
+      .filter((item) => (item.category || selectedCategory) === selectedCategory && item.status === "已接入后台监控")
+      .filter((item) => !remoteKnownLinks().includes(normalizeLink(item.url).toLowerCase()))
+      .map((item) => ({
+        title: "新增监控帖子",
+        url: item.url,
+        final_url: item.url,
+        category: item.category || selectedCategory,
+        last_checked: item.createdAt,
+        last_count: 0,
+        latest_comments: [],
+        local_pending: true,
+      }));
+    const alertItems = (posts) => {
+      const byId = new Map();
+      const add = (item) => {
+        const id = item.id || `${item.url}-${item.content}-${item.time_ms}`;
+        if (!id || byId.has(id)) return;
+        byId.set(id, item);
+      };
+      [...(data.new_comments || []), ...(data.alert_history || [])]
         .filter((item) => postCategory(item) === selectedCategory)
-        .slice(0, 3);
+        .forEach(add);
+      posts.forEach((post) => {
+        (post.latest_comments || []).forEach((comment) => add({
+          title: post.title,
+          url: post.url,
+          category: postCategory(post),
+          ...comment,
+        }));
+      });
+      return [...byId.values()].sort((a, b) => commentMs(b) - commentMs(a));
+    };
+    const renderPage = () => {
+      const currentPosts = [
+        ...(data.posts || []).filter((post) => postCategory(post) === selectedCategory),
+        ...localPosts(),
+      ];
+      const currentAlerts = alertItems(currentPosts);
+      const hotAlerts = currentAlerts.filter(isHotComment);
       renderCategoryTabs();
       document.getElementById("checkedAt").textContent = fmt(data.checked_at);
       document.getElementById("postCount").textContent = `${currentPosts.length} 条`;
-      document.getElementById("coverageCount").textContent = `${data.checked_count ?? (data.posts || []).length}/${data.configured_count ?? (data.posts || []).length} 条`;
+      const localCount = localPosts().length;
+      const configuredCount = Number(data.configured_count ?? (data.posts || []).length) + localCount;
+      const checkedCount = Number(data.checked_count ?? (data.posts || []).length);
+      document.getElementById("coverageCount").textContent = `${checkedCount}/${configuredCount} 条`;
       document.querySelector(".add-panel .post-title").textContent = `新增${selectedCategory}监控链接`;
-      document.getElementById("alerts").innerHTML = currentAlerts.length ? currentAlerts.map((item) => `
-        <article class="card alert-card">
-          <h3 class="post-title">${escapeHtml(item.title || "小红书帖子")}</h3>
-          ${renderComment(item)}
-          <div class="link-row">
-            <a class="button" href="${escapeHtml(item.url || "#")}">打开帖子</a>
+      document.getElementById("alerts").innerHTML = currentAlerts.length ? `
+        <details class="alerts-panel" ${hotAlerts.length ? "open" : ""}>
+          <summary>
+            <span>${escapeHtml(selectedCategory)}最新评论 ${currentAlerts.length} 条</span>
+            <span class="${hotAlerts.length ? "hot-label" : ""}">${hotAlerts.length ? `1小时内 ${hotAlerts.length} 条` : "点击展开"}</span>
+          </summary>
+          <div class="alerts-body">
+            ${currentAlerts.map((item) => `
+              <article class="card alert-card">
+                <h3 class="post-title">${escapeHtml(item.title || "小红书帖子")}</h3>
+                ${renderComment(item, { hot: isHotComment(item) })}
+                <div class="link-row">
+                  <a class="button" href="${escapeHtml(item.url || "#")}">打开帖子</a>
+                </div>
+              </article>
+            `).join("")}
           </div>
-        </article>
-      `).join("") : `<div class="empty">${escapeHtml(selectedCategory)}当前没有新的客户评论。页面会保留最近一次检查状态，等有新评论时这里会置顶显示。</div>`;
+        </details>
+      ` : `<div class="empty">${escapeHtml(selectedCategory)}当前没有可显示的客户评论。页面会保留最近一次检查状态，等有新评论时这里会置顶显示。</div>`;
 
       document.getElementById("posts").innerHTML = currentPosts.length ? currentPosts.map((post) => `
         <article class="card">
           <h3 class="post-title">${escapeHtml(post.title)}</h3>
           <div class="meta">
             <span class="pill">${escapeHtml(postCategory(post))}</span>
+            ${post.local_pending ? `<span class="pill hot-label">已接入，待下一轮检查</span>` : ""}
             <span class="pill">评论数：${escapeHtml(post.last_count ?? 0)}</span>
             <span class="pill">检查：${escapeHtml(fmt(post.last_checked))}</span>
           </div>
