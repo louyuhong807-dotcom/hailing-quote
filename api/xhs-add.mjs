@@ -33,6 +33,15 @@ function decodeText(value) {
   return String(value || "").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/\\\//g, "/").trim();
 }
 
+function safeTitle(value, category) {
+  const text = decodeText(value).replace(/[\u2028\u2029\r\n\t]+/g, " ").trim();
+  const fallback = `${category}新增监控帖子`;
+  if (!text) return fallback;
+  const beforeUrl = text.split(/https?:\/\//i)[0].trim();
+  const title = (beforeUrl || text).replace(/[^\u4e00-\u9fa5a-zA-Z0-9 ，。！？、｜|/()+-]/g, "").trim();
+  return title ? title.slice(0, 40) : fallback;
+}
+
 function cleanCategory(value) {
   const category = decodeText(value);
   return category === "海陵岛" ? "海陵岛" : "鼎龙湾";
@@ -97,7 +106,7 @@ async function writeLinksFile(previousSha, links, title) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       branch,
-      message: `Add XHS monitor link: ${title}`,
+      message: "Add XHS monitor link",
       sha: previousSha,
       content: encodeBase64(JSON.stringify(links, null, 2) + "\n"),
     }),
@@ -113,8 +122,8 @@ export default async function handler(req, res) {
     const url = normalizeUrl(body.url);
     if (!url || !isXhsUrl(url)) return jsonResponse(res, 400, { error: "请提交有效的小红书链接" });
 
-    const title = decodeText(body.title) || "新监控小红书帖子";
     const category = cleanCategory(body.category);
+    const title = safeTitle(body.title, category);
     const file = await readLinksFile();
     const inputKey = url.toLowerCase();
     const knownKeys = (file.links || []).map((item) => normalizeUrl(item.url).toLowerCase()).filter(Boolean);
