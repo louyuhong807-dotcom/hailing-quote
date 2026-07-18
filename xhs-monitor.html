@@ -241,6 +241,17 @@
       background: linear-gradient(180deg, #fff9f5, #fffdf9);
     }
 
+    .alert-card.alert-warning {
+      border-color: rgba(194,137,24,.38);
+      background: linear-gradient(180deg, #fffbed, #fffef9);
+    }
+
+    .alert-card.alert-muted {
+      border-color: #d7dcdb;
+      background: #f7f8f8;
+      box-shadow: none;
+    }
+
     .alerts-panel {
       border: 1px solid rgba(201,82,53,.24);
       border-radius: 8px;
@@ -315,6 +326,29 @@
     .comment.hot-comment .pill {
       border-color: rgba(179,38,30,.28);
       color: #8c1d18;
+    }
+
+    .comment.warning-comment {
+      background: #fff8e5;
+      border-color: rgba(181,126,16,.42);
+      color: #745000;
+    }
+
+    .comment.warning-comment .pill {
+      border-color: rgba(181,126,16,.3);
+      color: #745000;
+    }
+
+    .comment.muted-comment {
+      background: #f2f4f4;
+      border-color: #d4dada;
+      color: #657171;
+    }
+
+    .comment.muted-comment .pill {
+      border-color: #d4dada;
+      color: #657171;
+      background: #fff;
     }
 
     .comment strong {
@@ -426,14 +460,14 @@
     <section id="posts"></section>
 
     <div class="footer" id="pageFooter">
-      说明：微信网页本身不能直接绕过平台限制抓评论，数据来自监控服务的最近一次检查。监控列表保留最近 24 小时评论，最新提醒只保留最近 4 小时并默认折叠。
+      说明：微信网页本身不能直接绕过平台限制抓评论，数据来自监控服务的最近一次检查。评论和提醒均保留最近 24 小时并默认折叠：1 小时内红色、1 至 4 小时黄色、4 小时以上灰色。
     </div>
   </main>
 
   <script src="./xhs-monitor-data.js"></script>
   <script src="./douyin-monitor-data.js"></script>
   <script>
-    const pageVersion = "2026-07-18-1844";
+    const pageVersion = "2026-07-18-1908";
     const refreshIntervalMs = 60 * 1000;
     const apiBase = location.hostname === "hailing-quote-x81y.vercel.app"
       ? ""
@@ -477,7 +511,7 @@
     let selectedPlatform = params.get("platform") || "xhs";
     if (!platformConfigs[selectedPlatform]) selectedPlatform = "xhs";
     const hotAlertMs = 60 * 60 * 1000;
-    const alertRetentionMs = 4 * 60 * 60 * 1000;
+    const alertRetentionMs = 24 * 60 * 60 * 1000;
     const listRetentionMs = 24 * 60 * 60 * 1000;
     const activeConfig = () => platformConfigs[selectedPlatform];
     const activeData = () => dataByPlatform[selectedPlatform] || {};
@@ -510,12 +544,23 @@
     const isHotComment = (comment) => withinMs(comment, hotAlertMs);
     const isRecentAlert = (comment) => withinMs(comment, alertRetentionMs);
     const isRecentListComment = (comment) => withinMs(comment, listRetentionMs);
+    const alertSeverity = (comment) => {
+      const ageMs = Math.max(0, Date.now() - commentMs(comment));
+      if (ageMs <= hotAlertMs) return "hot";
+      if (ageMs < 4 * 60 * 60 * 1000) return "warning";
+      return "muted";
+    };
+    const severityLabel = (severity) => ({
+      hot: "1小时内新评论",
+      warning: "1至4小时提醒",
+      muted: "4小时以上提醒",
+    }[severity] || "评论提醒");
     const renderComment = (comment, options = {}) => `
-      <div class="comment ${options.hot ? "hot-comment" : ""}">
+      <div class="comment ${options.severity === "hot" || options.hot ? "hot-comment" : ""} ${options.severity === "warning" ? "warning-comment" : ""} ${options.severity === "muted" ? "muted-comment" : ""}">
         <strong>${escapeHtml(comment.nickname || "未知用户")}</strong>
         <p>${escapeHtml(comment.content || "")}</p>
         <div class="meta">
-          ${options.hot ? `<span class="pill hot-label">1小时内新评论</span>` : ""}
+          ${options.severity ? `<span class="pill ${options.severity === "hot" ? "hot-label" : ""}">${severityLabel(options.severity)}</span>` : options.hot ? `<span class="pill hot-label">1小时内新评论</span>` : ""}
           <span class="pill">时间：${escapeHtml(comment.time || "未知")}</span>
           <span class="pill">小红书号：${escapeHtml(comment.xhs_user_id || "页面未提供")}</span>
           <span class="pill">用户主页ID：${escapeHtml(comment.user_profile_id || comment.xhs_user_id || "页面未提供")}</span>
@@ -653,7 +698,10 @@
         ...localPosts(selectedCategory),
       ];
       const currentAlerts = alertItems(currentPosts);
-      const hotAlerts = currentAlerts.filter(isHotComment);
+      const alertCounts = currentAlerts.reduce((counts, item) => {
+        counts[alertSeverity(item)] += 1;
+        return counts;
+      }, { hot: 0, warning: 0, muted: 0 });
       renderPlatformTabs();
       renderCategoryTabs();
       document.getElementById("eyebrowText").textContent = config.eyebrow;
@@ -673,18 +721,21 @@
         <details class="alerts-panel">
           <summary>
             <span>${escapeHtml(selectedCategory)}最新提醒 ${currentAlerts.length} 条</span>
-            <span class="${hotAlerts.length ? "hot-label" : ""}">${hotAlerts.length ? `1小时内 ${hotAlerts.length} 条` : "点击展开"}</span>
+            <span class="${alertCounts.hot ? "hot-label" : ""}">${alertCounts.hot ? `红 ${alertCounts.hot} · 黄 ${alertCounts.warning} · 灰 ${alertCounts.muted}` : `黄 ${alertCounts.warning} · 灰 ${alertCounts.muted}`}</span>
           </summary>
           <div class="alerts-body">
-            ${currentAlerts.map((item) => `
-              <article class="card alert-card">
+            ${currentAlerts.map((item) => {
+              const severity = alertSeverity(item);
+              return `
+              <article class="card alert-card ${severity === "warning" ? "alert-warning" : ""} ${severity === "muted" ? "alert-muted" : ""}">
                 <h3 class="post-title">${escapeHtml(item.title || `${config.linkName}帖子`)}</h3>
-                ${renderComment(item, { hot: isHotComment(item) })}
+                ${renderComment(item, { severity })}
                 <div class="link-row">
                   <a class="button" href="${escapeHtml(item.url || "#")}">打开帖子</a>
                 </div>
               </article>
-            `).join("")}
+            `;
+            }).join("")}
           </div>
         </details>
       ` : `<div class="empty">${escapeHtml(selectedCategory)}最近 4 小时没有新的客户评论提醒。监控列表仍保留最近 24 小时评论。</div>`;
