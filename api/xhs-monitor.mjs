@@ -8,13 +8,14 @@ const OWNER_REPLY_TEXTS = new Set([
   "私您啦[飞吻R]",
 ]);
 const COMMENT_RETENTION_MS = 24 * 60 * 60 * 1000;
+import { requirePermission } from "./_lib/auth.mjs";
 
 function jsonResponse(res, status, body) {
   res.status(status).setHeader("Content-Type", "application/json; charset=utf-8");
   res.setHeader("Cache-Control", "no-store");
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Request-Id");
   res.end(JSON.stringify(body));
 }
 
@@ -346,7 +347,11 @@ export default async function handler(req, res) {
         checked_at: new Date().toISOString(),
       });
     }
-    if (req.method === "POST") return addLink(req, res);
+    if (req.method === "POST") {
+      const user = requirePermission(req, res, "monitor:add");
+      if (!user) return;
+      return addLink(req, res);
+    }
     if (req.method === "GET") {
       if (process.env.XHS_SYNC_SECRET && req.query?.secret !== process.env.XHS_SYNC_SECRET) {
         return jsonResponse(res, 401, { error: "Unauthorized" });

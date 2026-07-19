@@ -206,6 +206,65 @@
     .form-message.error { color: #b3261e; font-weight: 800; }
     .form-message.ok { color: var(--green); font-weight: 800; }
 
+    .auth-panel {
+      padding: 16px;
+      margin: 10px 0 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .auth-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .auth-grid input,
+    .user-grid input,
+    .user-grid select {
+      width: 100%;
+      min-height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0 12px;
+      background: #fff;
+      color: var(--ink);
+      font: inherit;
+    }
+
+    .account-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 8px 0 14px;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+
+    .account-actions { display: flex; gap: 8px; }
+    .account-actions button { min-height: 38px; padding: 0 12px; }
+
+    .user-panel {
+      margin: 0 0 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      overflow: hidden;
+    }
+
+    .user-panel summary { padding: 13px 14px; cursor: pointer; font-weight: 900; }
+    .user-panel-body { padding: 0 14px 14px; }
+    .user-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+    .user-grid button { grid-column: 1 / -1; }
+    .user-list { display: grid; gap: 7px; margin-top: 12px; }
+    .user-row { padding: 9px 10px; border: 1px solid var(--line); border-radius: 8px; font-size: 13px; }
+
     .sync-note {
       margin-top: 8px;
       color: var(--muted);
@@ -412,6 +471,9 @@
       .link-row { flex-direction: column; }
       a.button { width: 100%; }
       .page { padding-left: 12px; padding-right: 12px; }
+      .auth-grid, .user-grid { grid-template-columns: 1fr; }
+      .user-grid button { grid-column: auto; }
+      .account-bar { align-items: flex-start; flex-direction: column; }
     }
   </style>
 </head>
@@ -422,6 +484,41 @@
       <h1 id="heroTitle">新客户评论提醒</h1>
       <p class="sub" id="heroSub">手机微信可打开查看。页面显示最近一次监控结果，发现新评论时会在“最新提醒”里置顶。</p>
     </section>
+
+    <section id="loginPanel" class="auth-panel">
+      <h2 class="post-title">管理账号登录</h2>
+      <div class="auth-grid">
+        <input id="loginUsername" autocomplete="username" placeholder="账号">
+        <input id="loginPassword" type="password" autocomplete="current-password" placeholder="密码">
+        <button id="loginButton" type="button">登录</button>
+      </div>
+      <div id="loginMessage" class="form-message">登录后按账号权限开放查看、添加和账号管理功能。</div>
+    </section>
+
+    <div id="monitorApp" hidden>
+    <section class="account-bar">
+      <div><strong id="accountName">管理账号</strong><div class="label" id="accountRole"></div></div>
+      <div class="account-actions"><button id="logoutButton" class="ghost" type="button">退出</button></div>
+    </section>
+
+    <details id="userPanel" class="user-panel" hidden>
+      <summary>账号与权限管理</summary>
+      <div class="user-panel-body">
+        <div class="user-grid">
+          <input id="userUsername" placeholder="新账号（英文或数字）">
+          <input id="userDisplayName" placeholder="显示名称">
+          <select id="userRole">
+            <option value="operator">运营：查看和新增</option>
+            <option value="viewer">只读：仅查看</option>
+            <option value="admin">管理员：全部权限</option>
+          </select>
+          <input id="userPassword" type="password" autocomplete="new-password" placeholder="初始密码（至少8位）">
+          <button id="saveUserButton" type="button">创建账号</button>
+        </div>
+        <div id="userMessage" class="form-message"></div>
+        <div id="userList" class="user-list"></div>
+      </div>
+    </details>
 
     <section id="platformTabs" class="platform-tabs" aria-label="监控平台"></section>
 
@@ -462,16 +559,23 @@
     <div class="footer" id="pageFooter">
       说明：微信网页本身不能直接绕过平台限制抓评论，数据来自监控服务的最近一次检查。评论和提醒均保留最近 24 小时并默认折叠：1 小时内红色、1 至 4 小时黄色、4 小时以上灰色。
     </div>
+    </div>
   </main>
 
   <script src="./xhs-monitor-data.js"></script>
   <script src="./douyin-monitor-data.js"></script>
   <script>
-    const pageVersion = "2026-07-18-2038";
-    const refreshIntervalMs = 60 * 1000;
+    const pageVersion = "2026-07-19-account-v1";
+    const refreshIntervalMs = 30 * 1000;
     const apiBase = location.hostname === "hailing-quote-x81y.vercel.app"
       ? ""
       : "https://hailing-quote-x81y.vercel.app";
+    const authStorageKey = "monitor-management-session-v1";
+    let session = (() => {
+      try { return JSON.parse(localStorage.getItem(authStorageKey) || "null"); }
+      catch { return null; }
+    })();
+    const serverStateByPlatform = { xhs: null, douyin: null };
     const dataByPlatform = {
       xhs: window.XHS_MONITOR_DATA || {},
       douyin: window.DOUYIN_MONITOR_DATA || {},
@@ -505,6 +609,48 @@
         supportedText: "只支持抖音或 douyin 链接。",
         hostOk: (host) => /(^|\.)douyin\.com$/i.test(host) || /(^|\.)iesdouyin\.com$/i.test(host),
       },
+    };
+    const roleLabels = { admin: "管理员", operator: "运营账号", viewer: "只读账号" };
+    const hasPermission = (permission) => Boolean(session?.user?.permissions?.includes(permission));
+    const requestId = () => `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
+    const apiFetch = async (path, options = {}, retries = 2) => {
+      let lastError;
+      for (let attempt = 0; attempt <= retries; attempt += 1) {
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 30000);
+        try {
+          const response = await fetch(path, {
+            ...options,
+            cache: "no-store",
+            headers: {
+              ...(options.body ? { "Content-Type": "application/json" } : {}),
+              ...(session?.token ? { Authorization: `Bearer ${session.token}` } : {}),
+              "X-Request-Id": options.requestId || requestId(),
+              ...(options.headers || {}),
+            },
+            signal: controller.signal,
+          });
+          clearTimeout(timeout);
+          if (response.status === 401) {
+            localStorage.removeItem(authStorageKey);
+            session = null;
+            updateAuthView();
+          }
+          if (response.status >= 500 && attempt < retries) {
+            await new Promise((resolve) => setTimeout(resolve, 700 * (attempt + 1)));
+            continue;
+          }
+          return response;
+        } catch (error) {
+          clearTimeout(timeout);
+          lastError = error;
+          if (attempt < retries) {
+            await new Promise((resolve) => setTimeout(resolve, 700 * (attempt + 1)));
+            continue;
+          }
+        }
+      }
+      throw lastError || new Error("网络连接失败");
     };
     const platformKeys = Object.keys(platformConfigs);
     const params = new URLSearchParams(location.search);
@@ -591,6 +737,7 @@
     };
     const remoteKnownLinks = () => [
       ...(activeData().posts || []).flatMap((post) => [post.url, post.final_url]),
+      ...((serverStateByPlatform[selectedPlatform]?.links || []).map((post) => post.url)),
     ].filter(Boolean).map((url) => normalizeLink(url).toLowerCase());
     const knownLinks = () => [
       ...(activeData().posts || []).flatMap((post) => [post.url, post.final_url]),
@@ -621,6 +768,11 @@
         </div>
       `).join("") : "";
     };
+    const reconcilePendingLinks = () => {
+      const remote = new Set(remoteKnownLinks());
+      const next = pendingLinks().filter((item) => !remote.has(normalizeLink(item.url).toLowerCase()));
+      localStorage.setItem(activeConfig().pendingKey, JSON.stringify(next));
+    };
     const renderCategoryTabs = () => {
       const categories = activeCategories();
       document.getElementById("categoryTabs").innerHTML = categories.map((category) => `
@@ -649,6 +801,7 @@
           url.searchParams.set("area", selectedCategory);
           history.replaceState(null, "", url);
           renderPage();
+          refreshServerState();
         });
       });
     };
@@ -708,11 +861,13 @@
       document.getElementById("heroTitle").textContent = config.title;
       document.getElementById("heroSub").textContent = config.sub;
       document.getElementById("newLinkInput").placeholder = config.placeholder;
+      document.querySelector(".add-panel").hidden = !hasPermission("monitor:add");
       document.getElementById("checkedAt").textContent = fmt(data.checked_at);
       const localCount = pendingLinks()
         .filter((item) => !remoteKnownLinks().includes(normalizeLink(item.url).toLowerCase()))
         .length;
-      const configuredCount = Number(data.configured_count ?? (data.posts || []).length) + localCount;
+      const serverCount = serverStateByPlatform[selectedPlatform]?.configured_count;
+      const configuredCount = Number(serverCount ?? data.configured_count ?? (data.posts || []).length) + localCount;
       const checkedCount = Number(data.checked_count ?? (data.posts || []).length);
       document.getElementById("postCount").textContent = `${configuredCount} 条`;
       document.getElementById("coverageCount").textContent = `${checkedCount}/${configuredCount} 条`;
@@ -738,7 +893,7 @@
             }).join("")}
           </div>
         </details>
-      ` : `<div class="empty">${escapeHtml(selectedCategory)}最近 4 小时没有新的客户评论提醒。监控列表仍保留最近 24 小时评论。</div>`;
+      ` : `<div class="empty">${escapeHtml(selectedCategory)}最近 24 小时没有新的客户评论提醒。</div>`;
 
       document.getElementById("posts").innerHTML = currentPosts.length ? currentPosts.map((post) => `
         <article class="card">
@@ -758,6 +913,109 @@
       `).join("") : `<div class="empty">${escapeHtml(selectedCategory)}还没有监控帖子。</div>`;
       renderPendingLinks();
     };
+    const updateAuthView = () => {
+      const loggedIn = Boolean(session?.token && session?.user);
+      document.getElementById("loginPanel").hidden = loggedIn;
+      document.getElementById("monitorApp").hidden = !loggedIn;
+      if (!loggedIn) return;
+      document.getElementById("accountName").textContent = session.user.displayName || session.user.username;
+      document.getElementById("accountRole").textContent = `${roleLabels[session.user.role] || session.user.role} · ${session.user.username}`;
+      document.getElementById("userPanel").hidden = !hasPermission("users:manage");
+      renderPage();
+    };
+    const readJsonResponse = async (response) => {
+      const raw = await response.text();
+      try { return raw ? JSON.parse(raw) : {}; }
+      catch { return { error: "后台返回内容无法识别" }; }
+    };
+    const login = async () => {
+      const username = document.getElementById("loginUsername").value.trim();
+      const password = document.getElementById("loginPassword").value;
+      const button = document.getElementById("loginButton");
+      const message = document.getElementById("loginMessage");
+      if (!username || !password) {
+        message.textContent = "请输入账号和密码。";
+        message.className = "form-message error";
+        return;
+      }
+      button.disabled = true;
+      button.textContent = "登录中";
+      try {
+        const response = await apiFetch(`${apiBase}/api/auth`, {
+          method: "POST",
+          body: JSON.stringify({ username, password }),
+        }, 1);
+        const result = await readJsonResponse(response);
+        if (!response.ok) throw new Error(result.error || "登录失败");
+        session = { token: result.token, user: result.user };
+        localStorage.setItem(authStorageKey, JSON.stringify(session));
+        document.getElementById("loginPassword").value = "";
+        updateAuthView();
+        await refreshServerState();
+        await loadUsers();
+      } catch (error) {
+        message.textContent = error.name === "AbortError" ? "登录服务响应超时，请检查网络后重试。" : String(error.message || error);
+        message.className = "form-message error";
+      } finally {
+        button.disabled = false;
+        button.textContent = "登录";
+      }
+    };
+    document.getElementById("loginButton").addEventListener("click", login);
+    document.getElementById("loginPassword").addEventListener("keydown", (event) => {
+      if (event.key === "Enter") login();
+    });
+    document.getElementById("logoutButton").addEventListener("click", () => {
+      localStorage.removeItem(authStorageKey);
+      session = null;
+      updateAuthView();
+    });
+
+    const loadUsers = async () => {
+      if (!hasPermission("users:manage")) return;
+      try {
+        const response = await apiFetch(`${apiBase}/api/users`, {}, 1);
+        const result = await readJsonResponse(response);
+        if (!response.ok) throw new Error(result.error || "账号列表读取失败");
+        document.getElementById("userList").innerHTML = (result.users || []).map((user) => `
+          <div class="user-row"><strong>${escapeHtml(user.displayName)}</strong> · ${escapeHtml(user.username)} · ${escapeHtml(roleLabels[user.role] || user.role)} · ${user.active ? "已启用" : "已停用"}</div>
+        `).join("") || `<div class="label">暂时没有额外账号。</div>`;
+      } catch (error) {
+        document.getElementById("userMessage").textContent = String(error.message || error);
+        document.getElementById("userMessage").className = "form-message error";
+      }
+    };
+    document.getElementById("userPanel").addEventListener("toggle", (event) => {
+      if (event.target.open) loadUsers();
+    });
+    document.getElementById("saveUserButton").addEventListener("click", async () => {
+      const button = document.getElementById("saveUserButton");
+      const message = document.getElementById("userMessage");
+      const payload = {
+        username: document.getElementById("userUsername").value.trim(),
+        displayName: document.getElementById("userDisplayName").value.trim(),
+        role: document.getElementById("userRole").value,
+        password: document.getElementById("userPassword").value,
+      };
+      button.disabled = true;
+      try {
+        const response = await apiFetch(`${apiBase}/api/users`, { method: "POST", body: JSON.stringify(payload) }, 1);
+        const result = await readJsonResponse(response);
+        if (!response.ok) throw new Error(result.error || "账号创建失败");
+        message.textContent = `账号 ${result.user.username} 已创建。`;
+        message.className = "form-message ok";
+        document.getElementById("userUsername").value = "";
+        document.getElementById("userDisplayName").value = "";
+        document.getElementById("userPassword").value = "";
+        await loadUsers();
+      } catch (error) {
+        message.textContent = String(error.message || error);
+        message.className = "form-message error";
+      } finally {
+        button.disabled = false;
+      }
+    });
+
     document.getElementById("addLinkButton").addEventListener("click", async () => {
       const input = document.getElementById("newLinkInput");
       const button = document.getElementById("addLinkButton");
@@ -776,35 +1034,36 @@
         return;
       }
       button.disabled = true;
-      button.textContent = "保存中";
-      setMessage(`正在接入后台，请稍等。版本：${pageVersion}`, "");
+      button.textContent = "接入中";
+      setMessage("正在写入并核验后台监控列表，请稍等。", "");
       try {
-        const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 10000);
-        const response = await fetch(activeConfig().endpoint, {
+        const id = requestId();
+        const response = await apiFetch(activeConfig().endpoint, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ url, category: categoryCode() }),
-          signal: controller.signal
-        });
-        clearTimeout(timeout);
-        const raw = await response.text();
-        let result = {};
-        try {
-          result = raw ? JSON.parse(raw) : {};
-        } catch {
-          result = { error: raw.slice(0, 120) };
-        }
-        if (!response.ok) {
-          setMessage("暂时未能接入共享监控，请稍后重新提交。", "error");
-          return;
-        }
-        savePendingLink(url, selectedCategory, "已接入后台监控，等待全站刷新");
+          body: JSON.stringify({ url, title: input.value, category: categoryCode() }),
+          requestId: id,
+        }, 2);
+        const result = await readJsonResponse(response);
+        if (!response.ok) throw new Error(result.error || "后台接入失败");
+        serverStateByPlatform[selectedPlatform] = {
+          ...(serverStateByPlatform[selectedPlatform] || {}),
+          configured_count: result.configured_count,
+          links: [
+            ...(serverStateByPlatform[selectedPlatform]?.links || []),
+            result.post,
+          ],
+        };
+        savePendingLink(url, selectedCategory, "后台已确认接入");
+        reconcilePendingLinks();
         input.value = "";
-        setMessage(result.message || "已接入后台监控，页面已同步显示。", "ok");
+        setMessage(`${result.message || "已接入后台监控"}，当前共 ${result.configured_count} 条。`, "ok");
         renderPage();
       } catch (error) {
-        setMessage("暂时无法连接共享监控，请稍后重新提交。", "error");
+        const message = error.name === "AbortError"
+          ? "后台响应较慢，本次未确认接入，请勿重复提交，页面将自动核验。"
+          : String(error.message || error);
+        setMessage(message, "error");
+        await refreshServerState();
       } finally {
         button.disabled = false;
         button.textContent = "确认";
@@ -831,13 +1090,30 @@
         // Keep the current screen stable if the phone network blocks one refresh.
       }
     };
+    const refreshServerState = async () => {
+      if (!session?.token) return;
+      const platform = selectedPlatform;
+      try {
+        const response = await apiFetch(platformConfigs[platform].endpoint, {}, 1);
+        const result = await readJsonResponse(response);
+        if (!response.ok) throw new Error(result.error || "监控数量核验失败");
+        serverStateByPlatform[platform] = result;
+        reconcilePendingLinks();
+        renderPage();
+      } catch (error) {
+        if (session?.token) setMessage("监控服务正在自动重连，当前页面数据仍可查看。", "");
+      }
+    };
     setInterval(refreshRemoteData, refreshIntervalMs);
+    setInterval(refreshServerState, refreshIntervalMs);
     document.addEventListener("visibilitychange", () => {
       if (!document.hidden) refreshRemoteData();
     });
     window.addEventListener("focus", refreshRemoteData);
+    updateAuthView();
     renderPage();
     refreshRemoteData();
+    refreshServerState();
   </script>
 </body>
 </html>

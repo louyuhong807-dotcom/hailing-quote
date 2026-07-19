@@ -1,9 +1,11 @@
+import { requirePermission } from "./_lib/auth.mjs";
+
 function jsonResponse(res, status, body) {
   res.status(status).setHeader("Content-Type", "application/json; charset=utf-8");
   res.setHeader("Cache-Control", "no-store");
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST,OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Request-Id");
   res.end(JSON.stringify(body));
 }
 
@@ -89,7 +91,11 @@ async function githubRequest(path, options = {}) {
     },
   });
   const data = await response.json().catch(() => ({}));
-  if (!response.ok) throw new Error(data.message || `GitHub 请求失败：${response.status}`);
+  if (!response.ok) {
+    const error = new Error(data.message || `GitHub 请求失败：${response.status}`);
+    error.status = response.status;
+    throw error;
+  }
   return data;
 }
 
@@ -116,9 +122,38 @@ async function writeLinksFile(previousSha, links, title) {
   });
 }
 
+async function addLinkWithRetry(url, title, category) {
+  for (let attempt = 0; attempt < 4; attempt += 1) {
+    const file = await readLinksFile();
+    const inputKey = url.toLowerCase();
+    const existing = (file.links || []).find((item) => normalizeUrl(item.url).toLowerCase() === inputKey);
+    if (existing) return { links: file.links, post: existing, existing: true };
+    const links = [...file.links, { title, url, category }];
+    try {
+      await writeLinksFile(file.sha, links, title);
+      return { links, post: { title, url, category }, existing: false };
+    } catch (error) {
+      if (error.status !== 409 || attempt === 3) throw error;
+      await new Promise((resolve) => setTimeout(resolve, 200 * (attempt + 1)));
+    }
+  }
+  throw new Error("写入监控列表失败");
+}
+
 export default async function handler(req, res) {
   try {
     if (req.method === "OPTIONS") return jsonResponse(res, 204, {});
+    const user = requirePermission(req, res, req.method === "GET" ? "monitor:view" : "monitor:add");
+    if (!user) return;
+    if (req.method === "GET") {
+      const file = await readLinksFile();
+      return jsonResponse(res, 200, {
+        ok: true,
+        configured_count: file.links.length,
+        links: file.links,
+        checked_at: new Date().toISOString(),
+      });
+    }
     if (req.method !== "POST") return jsonResponse(res, 405, { error: "Method not allowed" });
 
     const body = await readJsonBody(req);
@@ -127,18 +162,14 @@ export default async function handler(req, res) {
 
     const category = cleanCategory(body.category);
     const title = safeTitle(body.title, category);
-    const file = await readLinksFile();
-    const inputKey = url.toLowerCase();
-    const knownKeys = (file.links || []).map((item) => normalizeUrl(item.url).toLowerCase()).filter(Boolean);
-    if (knownKeys.includes(inputKey)) return jsonResponse(res, 409, { error: "这个链接已经在监控列表里，不能重复添加" });
-
-    const links = [...file.links, { title, url, category }];
-    await writeLinksFile(file.sha, links, title);
+    const result = await addLinkWithRetry(url, title, category);
     return jsonResponse(res, 200, {
       ok: true,
-      configured_count: links.length,
-      post: { title, url, category },
-      message: "已接入后台监控，下一轮检查后会显示在页面里",
+      existing: result.existing,
+      configured_count: result.links.length,
+      post: result.post,
+      request_id: String(req.headers?.["x-request-id"] || ""),
+      message: result.existing ? "该链接已在监控列表中" : "已接入后台监控",
     });
   } catch (error) {
     return jsonResponse(res, 500, { error: String(error.message || error).slice(0, 220) });
