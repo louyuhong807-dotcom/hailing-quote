@@ -1,11 +1,11 @@
 window.XHS_MONITOR_DATA = {
-  "checked_at": "2026-07-19T05:34:10.131064+00:00",
+  "checked_at": "2026-07-19T06:31:09.091304+00:00",
   "categories": [
     "海陵岛",
     "鼎龙湾"
   ],
   "configured_count": 35,
-  "checked_count": 35,
+  "checked_count": 5,
   "comment_retention_hours": 24,
   "posts": [
     {
@@ -13,7 +13,7 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/3nIIPuJHoTU",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/69e057ae000000001b023ee5?app_platform=android&ignoreEngage=true&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBKjGdZjJ8b1rKNhzBg-kFZ8t3xEPm-4RYDGeb97XeTOs%3D&author_share=1&shareRedId=OD9INzk4OkI2NzUyOTgwNjY1OTc1NTY5&apptime=1784193787&share_id=87b224485dc94dfaa5be281d0093c86b&share_channel=copy_link&appuid=69f763690000000002001000&xhsshare=CopyLink",
-      "last_checked": "2026-07-19T05:34:10.131064+00:00",
+      "last_checked": "2026-07-19T06:31:09.091304+00:00",
       "last_count": 7,
       "latest_comments": []
     },
@@ -22,7 +22,7 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/nIGivy4HIG",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/6985facc000000001a01eed6?app_platform=android&ignoreEngage=true&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBdIHw2OXFxKPIRFmGCe-jBlfgZDvC9u7QCbVzXP6WmDU%3D&author_share=1&shareRedId=OD9INzk4OkI2NzUyOTgwNjY1OTc1NTY5&apptime=1784193932&share_id=a2692baad3614ef28d9692adb574e9ae&share_channel=copy_link&appuid=69f763690000000002001000&xhsshare=CopyLink",
-      "last_checked": "2026-07-19T05:34:10.131064+00:00",
+      "last_checked": "2026-07-19T06:31:09.091304+00:00",
       "last_count": 12,
       "latest_comments": [
         {
@@ -52,7 +52,7 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/Wc3e1Mw4ue",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/69c0f555000000001f000995?app_platform=android&ignoreEngage=true&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBgLm3SG0WJClIoJL2lkmJGnruvxmQeBtoMX0VUnw4nhM%3D&author_share=1&shareRedId=OD9INzk4OkI2NzUyOTgwNjY1OTc1NTY5&apptime=1784193994&share_id=b143d38854084066814360a1dfdbc8c2&share_channel=copy_link&appuid=69f763690000000002001000&xhsshare=CopyLink",
-      "last_checked": "2026-07-19T05:34:10.131064+00:00",
+      "last_checked": "2026-07-19T06:31:09.091304+00:00",
       "last_count": 6,
       "latest_comments": []
     },
@@ -61,7 +61,7 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/52MdMkGiitF",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/69c4f2300000000021039ff6?app_platform=android&ignoreEngage=true&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBgb-LPcin1CtAlKmtQbkKUHLOM3VEW-Cd0-WgidH7VAM%3D&author_share=1&shareRedId=OD9INzk4OkI2NzUyOTgwNjY1OTc1NTY5&apptime=1784194127&share_id=1a6ceaedc41a46a8bba4694f47f27193&share_channel=copy_link&appuid=69f763690000000002001000&xhsshare=CopyLink",
-      "last_checked": "2026-07-19T05:34:10.131064+00:00",
+      "last_checked": "2026-07-19T06:31:09.091304+00:00",
       "last_count": 8,
       "latest_comments": []
     },
@@ -70,7 +70,7 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/1dqExFsf8dW",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/691d8f08000000001e004cc4?app_platform=android&ignoreEngage=true&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBQWIbkKpWMwrjfkvaAw7CNMAnITM8ly_wZ1OobQrKfi8%3D&author_share=1&shareRedId=OD9INzk4OkI2NzUyOTgwNjY1OTc1NTY5&apptime=1784194210&share_id=6cae60846bac4fa2b5b503015a607ad0&share_channel=copy_link&appuid=69f763690000000002001000&xhsshare=CopyLink",
-      "last_checked": "2026-07-19T05:34:10.131064+00:00",
+      "last_checked": "2026-07-19T06:31:09.091304+00:00",
       "last_count": 6,
       "latest_comments": []
     },
@@ -428,21 +428,7 @@ window.XHS_MONITOR_DATA = {
       "latest_comments": []
     }
   ],
-  "new_comments": [
-    {
-      "title": "不敢相信！阳江海边整栋居然这么便宜",
-      "url": "http://xhslink.com/o/2cbh7sBFx2P",
-      "category": "海陵岛",
-      "id": "6a5c618d000000002902d69b",
-      "content": "斯你啦",
-      "nickname": "洛瑶壹墅壹聚",
-      "xhs_user_id": "页面未提供",
-      "user_profile_id": "69d8a878000000003402e67f",
-      "user_profile_url": "https://www.xiaohongshu.com/user/profile/69d8a878000000003402e67f",
-      "time_ms": 1784439182000,
-      "time": "2026-07-19 13:33:02"
-    }
-  ],
+  "new_comments": [],
   "alert_history": [
     {
       "title": "不敢相信！阳江海边整栋居然这么便宜",
@@ -523,5 +509,156 @@ window.XHS_MONITOR_DATA = {
       "time": "2026-07-18 17:17:02"
     }
   ],
-  "errors": []
+  "errors": [
+    {
+      "title": "湛江新开业📍出门即沙滩de小院～明天有房",
+      "url": "http://xhslink.com/o/7vybkdSccrh",
+      "error": "The read operation timed out"
+    },
+    {
+      "title": "湛江度假✅鼎龙湾6房12床，泳池KTV全配齐！",
+      "url": "http://xhslink.com/o/RdlyGfwZFa",
+      "error": "HTTP Error 503: Service Unavailable"
+    },
+    {
+      "title": "吴川！海边小院（29号开始空）淡季值哭😭谁懂",
+      "url": "http://xhslink.com/o/6DH1XEsnHzj",
+      "error": "HTTP Error 503: Service Unavailable"
+    },
+    {
+      "title": "湛江鼎龙湾📍7房泳池别墅✅已住不踩雷",
+      "url": "http://xhslink.com/o/3QWgOpKlS6f",
+      "error": "HTTP Error 503: Service Unavailable"
+    },
+    {
+      "title": "多人出游✅10房独栋别墅+海景+泳池谁不爱！",
+      "url": "http://xhslink.com/o/9PWSBIfQeCs",
+      "error": "HTTP Error 503: Service Unavailable"
+    },
+    {
+      "title": "湛江📍新开的!!出门即沙滩的小院!",
+      "url": "http://xhslink.com/o/ANHIzFgbCUm",
+      "error": "HTTP Error 503: Service Unavailable"
+    },
+    {
+      "title": "鼎龙湾新增监控帖子",
+      "url": "http://xhslink.com/o/5tHhvNAmmwK",
+      "error": "HTTP Error 503: Service Unavailable"
+    },
+    {
+      "title": "阳江海陵岛海景独栋别墅团建聚会",
+      "url": "http://xhslink.com/o/6VN3OAalxaY",
+      "error": "HTTP Error 503: Service Unavailable"
+    },
+    {
+      "title": "鼎龙湾新增监控帖子",
+      "url": "http://xhslink.com/o/1sQxvNyyo6p",
+      "error": "HTTP Error 503: Service Unavailable"
+    },
+    {
+      "title": "阳江海陵岛📍新开！直接锁死这家🔥",
+      "url": "http://xhslink.com/o/21m6uIhTKaO",
+      "error": "HTTP Error 503: Service Unavailable"
+    },
+    {
+      "title": "不敢相信！阳江海边整栋居然这么便宜",
+      "url": "http://xhslink.com/o/2cbh7sBFx2P",
+      "error": "HTTP Error 503: Service Unavailable"
+    },
+    {
+      "title": "阳江📍出门就是海，就在沙滩边上",
+      "url": "http://xhslink.com/o/828sbFz2jag",
+      "error": "HTTP Error 503: Service Unavailable"
+    },
+    {
+      "title": "阳江！连住3晚的独栋海边小院～7🈷️有房",
+      "url": "http://xhslink.com/o/5RChcA3aynh",
+      "error": "HTTP Error 503: Service Unavailable"
+    },
+    {
+      "title": "阳江📍泳池滑梯别墅娃住到不想走🔥",
+      "url": "http://xhslink.com/o/XMqglvWCn9",
+      "error": "HTTP Error 503: Service Unavailable"
+    },
+    {
+      "title": "阳江海陵岛📍终于住到了4房6床海边小别墅",
+      "url": "http://xhslink.com/o/9wPrhq817IL",
+      "error": "HTTP Error 503: Service Unavailable"
+    },
+    {
+      "title": "湛江鼎龙湾✅4房7床独栋花园别墅，全套房！",
+      "url": "http://xhslink.com/o/2wL2XeDWJGN",
+      "error": "HTTP Error 503: Service Unavailable"
+    },
+    {
+      "title": "湛江还有这样的好去处 五一假期",
+      "url": "http://xhslink.com/o/2PlP6zQaz9t",
+      "error": "HTTP Error 503: Service Unavailable"
+    },
+    {
+      "title": "吴川真的很好拍 广东小众宝藏！在吴川鼎龙湾",
+      "url": "http://xhslink.com/o/AjQMXYCpHFS",
+      "error": "HTTP Error 503: Service Unavailable"
+    },
+    {
+      "title": "吐槽湛江吴川鼎龙湾",
+      "url": "http://xhslink.com/o/4ihJDu10VlH",
+      "error": "HTTP Error 503: Service Unavailable"
+    },
+    {
+      "title": "东北人嫁吴川～远嫁新娘的出门选择之鼎龙湾",
+      "url": "http://xhslink.com/o/pIJ7t3zk8M",
+      "error": "HTTP Error 503: Service Unavailable"
+    },
+    {
+      "title": "吴川鼎龙湾2天1晚游玩",
+      "url": "http://xhslink.com/o/AO6zNIKJHib",
+      "error": "HTTP Error 503: Service Unavailable"
+    },
+    {
+      "title": "湛江鼎龙湾住进一线海景别墅直达沙滩",
+      "url": "http://xhslink.com/o/8hFbNplWw7Y",
+      "error": "HTTP Error 503: Service Unavailable"
+    },
+    {
+      "title": "湛江新开业📍出门即沙滩de小院",
+      "url": "http://xhslink.com/o/25o9Ru81Uui",
+      "error": "HTTP Error 503: Service Unavailable"
+    },
+    {
+      "title": "鼎龙湾的别墅坑有点大",
+      "url": "http://xhslink.com/o/8FddHawsBYM",
+      "error": "HTTP Error 503: Service Unavailable"
+    },
+    {
+      "title": "广东小三亚✨湛江鼎龙湾海景民宿赢麻了",
+      "url": "http://xhslink.com/o/2WYRs93uOP8",
+      "error": "HTTP Error 503: Service Unavailable"
+    },
+    {
+      "title": "吴川鼎龙湾｜当海景别墅遇上私汤温泉",
+      "url": "http://xhslink.com/o/jebIaEIhON",
+      "error": "HTTP Error 503: Service Unavailable"
+    },
+    {
+      "title": "去过M次鼎龙湾了❗️必住这家别墅",
+      "url": "http://xhslink.com/o/A4zXpVoIgtc",
+      "error": "HTTP Error 503: Service Unavailable"
+    },
+    {
+      "title": "鼎龙湾新增监控帖子",
+      "url": "http://xhslink.com/o/ApqukXUDS1k",
+      "error": "HTTP Error 503: Service Unavailable"
+    },
+    {
+      "title": "海陵岛新增监控帖子",
+      "url": "http://xhslink.com/o/2b1RXdUBDvV",
+      "error": "HTTP Error 503: Service Unavailable"
+    },
+    {
+      "title": "鼎龙湾新增监控帖子",
+      "url": "http://xhslink.com/o/2hj2Lo2aOMB",
+      "error": "HTTP Error 503: Service Unavailable"
+    }
+  ]
 };
