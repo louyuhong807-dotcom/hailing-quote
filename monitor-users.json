@@ -1,4 +1,16 @@
 {
   "version": 1,
-  "users": []
+  "users": [
+    {
+      "username": "ny030329",
+      "displayName": "聂毅",
+      "role": "admin",
+      "active": true,
+      "salt": "6bba5423b84b208d3774d74f0adca8b1",
+      "passwordHash": "f24410cf8962da1127f1e188865214caa3af72bb8bca4c061e432d2f09af353ea7fc3b0619a27fb6d33a0e9197ea60372be7a18a4226313ab158da060a792c51",
+      "createdAt": "2026-07-19T08:54:31.128Z",
+      "updatedAt": "2026-07-19T08:54:31.128Z",
+      "updatedBy": "louyuhong"
+    }
+  ]
 }
