@@ -272,6 +272,13 @@
       line-height: 1.6;
     }
 
+    .fallback-submit {
+      display: none;
+      margin-top: 10px;
+    }
+
+    .fallback-submit.visible { display: flex; }
+
     .pending-list {
       display: grid;
       gap: 8px;
@@ -496,7 +503,7 @@
     </section>
 
     <div id="monitorApp" hidden>
-    <section class="account-bar">
+    <section id="accountBar" class="account-bar">
       <div><strong id="accountName">管理账号</strong><div class="label" id="accountRole"></div></div>
       <div class="account-actions"><button id="logoutButton" class="ghost" type="button">退出</button></div>
     </section>
@@ -546,6 +553,7 @@
         <button id="addLinkButton" type="button">确认</button>
       </div>
       <div id="linkMessage" class="form-message"></div>
+      <div id="fallbackSubmit" class="fallback-submit link-row"></div>
       <div class="sync-note">手机微信提交后会立即显示在当前列表；页面会自动刷新最新监控数据，不展示后台错误内容。</div>
       <div id="pendingLinks" class="pending-list"></div>
     </section>
@@ -665,6 +673,10 @@
       xhs: "./xhs-monitor-data.js",
       douyin: "./douyin-monitor-data.js",
     };
+    const linksFileByPlatform = {
+      xhs: "./xhs-monitor-links.json",
+      douyin: "./douyin-monitor-links.json",
+    };
     const activeCategories = () => {
       const data = activeData();
       return data.categories?.length ? data.categories : ["海陵岛", "鼎龙湾"];
@@ -748,6 +760,22 @@
       const node = document.getElementById("linkMessage");
       node.textContent = text;
       node.className = `form-message ${type}`;
+    };
+    const clearFallbackSubmit = () => {
+      const node = document.getElementById("fallbackSubmit");
+      node.className = "fallback-submit link-row";
+      node.innerHTML = "";
+    };
+    const githubFallbackUrl = (url, category) => {
+      const platform = selectedPlatform === "xhs" ? "小红书" : "抖音";
+      const title = `[监控接入] ${platform} - ${category}`;
+      const body = `平台：${platform}\n分组：${category}\n链接：${url}\n\n由手机监控页面提交，请保留以上三行。`;
+      return `https://github.com/louyuhong807-dotcom/hailing-quote/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
+    };
+    const showFallbackSubmit = (url, category) => {
+      const node = document.getElementById("fallbackSubmit");
+      node.className = "fallback-submit visible link-row";
+      node.innerHTML = `<a class="button" href="${escapeHtml(githubFallbackUrl(url, category))}">打开安全备用提交</a>`;
     };
     const savePendingLink = (url, category, status) => {
       const pending = pendingLinks();
@@ -861,7 +889,7 @@
       document.getElementById("heroTitle").textContent = config.title;
       document.getElementById("heroSub").textContent = config.sub;
       document.getElementById("newLinkInput").placeholder = config.placeholder;
-      document.querySelector(".add-panel").hidden = !hasPermission("monitor:add");
+      document.querySelector(".add-panel").hidden = Boolean(session && !hasPermission("monitor:add"));
       document.getElementById("checkedAt").textContent = fmt(data.checked_at);
       const localCount = pendingLinks()
         .filter((item) => !remoteKnownLinks().includes(normalizeLink(item.url).toLowerCase()))
@@ -916,11 +944,15 @@
     const updateAuthView = () => {
       const loggedIn = Boolean(session?.token && session?.user);
       document.getElementById("loginPanel").hidden = loggedIn;
-      document.getElementById("monitorApp").hidden = !loggedIn;
-      if (!loggedIn) return;
+      document.getElementById("monitorApp").hidden = false;
+      document.getElementById("accountBar").hidden = !loggedIn;
+      document.getElementById("userPanel").hidden = !loggedIn || !hasPermission("users:manage");
+      if (!loggedIn) {
+        renderPage();
+        return;
+      }
       document.getElementById("accountName").textContent = session.user.displayName || session.user.username;
       document.getElementById("accountRole").textContent = `${roleLabels[session.user.role] || session.user.role} · ${session.user.username}`;
-      document.getElementById("userPanel").hidden = !hasPermission("users:manage");
       renderPage();
     };
     const readJsonResponse = async (response) => {
@@ -1035,6 +1067,7 @@
       }
       button.disabled = true;
       button.textContent = "接入中";
+      clearFallbackSubmit();
       setMessage("正在写入并核验后台监控列表，请稍等。", "");
       try {
         const id = requestId();
@@ -1063,6 +1096,9 @@
           ? "后台响应较慢，本次未确认接入，请勿重复提交，页面将自动核验。"
           : String(error.message || error);
         setMessage(message, "error");
+        savePendingLink(url, selectedCategory, "等待安全备用提交");
+        showFallbackSubmit(url, selectedCategory);
+        renderPage();
         await refreshServerState();
       } finally {
         button.disabled = false;
@@ -1104,8 +1140,28 @@
         if (session?.token) setMessage("监控服务正在自动重连，当前页面数据仍可查看。", "");
       }
     };
+    const refreshConfiguredLinks = async () => {
+      if (location.protocol === "file:") return;
+      const platform = selectedPlatform;
+      try {
+        const response = await fetch(`${linksFileByPlatform[platform]}?t=${Date.now()}`, { cache: "no-store" });
+        if (!response.ok) return;
+        const links = await response.json();
+        if (!Array.isArray(links)) return;
+        serverStateByPlatform[platform] = {
+          ...(serverStateByPlatform[platform] || {}),
+          configured_count: links.length,
+          links,
+        };
+        reconcilePendingLinks();
+        renderPage();
+      } catch {
+        // The last confirmed list remains visible during a temporary mobile network interruption.
+      }
+    };
     setInterval(refreshRemoteData, refreshIntervalMs);
     setInterval(refreshServerState, refreshIntervalMs);
+    setInterval(refreshConfiguredLinks, refreshIntervalMs);
     document.addEventListener("visibilitychange", () => {
       if (!document.hidden) refreshRemoteData();
     });
@@ -1113,6 +1169,7 @@
     updateAuthView();
     renderPage();
     refreshRemoteData();
+    refreshConfiguredLinks();
     refreshServerState();
   </script>
 </body>
