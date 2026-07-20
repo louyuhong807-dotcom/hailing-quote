@@ -1,11 +1,11 @@
 window.XHS_MONITOR_DATA = {
-  "checked_at": "2026-07-20T17:07:41.180048+00:00",
+  "checked_at": "2026-07-20T17:22:13.644786+00:00",
   "categories": [
     "海陵岛",
     "鼎龙湾"
   ],
   "configured_count": 39,
-  "checked_count": 39,
+  "checked_count": 0,
   "comment_retention_hours": 24,
   "posts": [
     {
@@ -54,16 +54,6 @@ window.XHS_MONITOR_DATA = {
           "user_profile_url": "https://www.xiaohongshu.com/user/profile/573b17fd5e87e761a41dca33",
           "time_ms": 1784508248000,
           "time": "2026-07-20 08:44:08"
-        },
-        {
-          "id": "6a5d06bb000000000802d77c",
-          "content": "什么价格",
-          "nickname": "财神爷的小闺女",
-          "xhs_user_id": "页面未提供",
-          "user_profile_id": "67ffac5b000000000e01d8cd",
-          "user_profile_url": "https://www.xiaohongshu.com/user/profile/67ffac5b000000000e01d8cd",
-          "time_ms": 1784481468000,
-          "time": "2026-07-20 01:17:48"
         }
       ]
     },
@@ -349,18 +339,7 @@ window.XHS_MONITOR_DATA = {
       "final_url": "https://www.xiaohongshu.com/discovery/item/68516b9100000000230159f4?app_platform=ios&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CB6EP4iW7omCv9HInx0HZKikJ17o_alDZaiYGOqdwqCyA=&author_share=1&xhsshare=CopyLink&shareRedId=OD4zRElKOks2NzUyOTgwNjZIOTg0SUk6&apptime=1784379545&share_id=1250e6290cfe408f98c412361f66219f",
       "last_checked": "2026-07-20T17:07:41.180048+00:00",
       "last_count": 6,
-      "latest_comments": [
-        {
-          "id": "6a5d065f000000000802cc96",
-          "content": "有别墅联系方式吗",
-          "nickname": "财神爷的小闺女",
-          "xhs_user_id": "页面未提供",
-          "user_profile_id": "67ffac5b000000000e01d8cd",
-          "user_profile_url": "https://www.xiaohongshu.com/user/profile/67ffac5b000000000e01d8cd",
-          "time_ms": 1784481375000,
-          "time": "2026-07-20 01:16:15"
-        }
-      ]
+      "latest_comments": []
     },
     {
       "title": "吐槽湛江吴川鼎龙湾",
@@ -557,19 +536,6 @@ window.XHS_MONITOR_DATA = {
       "time": "2026-07-20 08:44:08"
     },
     {
-      "title": "鼎龙湾zui美的别墅🏡",
-      "url": "http://xhslink.com/o/nIGivy4HIG",
-      "category": "鼎龙湾",
-      "id": "6a5d06bb000000000802d77c",
-      "content": "什么价格",
-      "nickname": "财神爷的小闺女",
-      "xhs_user_id": "页面未提供",
-      "user_profile_id": "67ffac5b000000000e01d8cd",
-      "user_profile_url": "https://www.xiaohongshu.com/user/profile/67ffac5b000000000e01d8cd",
-      "time_ms": 1784481468000,
-      "time": "2026-07-20 01:17:48"
-    },
-    {
       "title": "湛江鼎龙湾📍7房泳池别墅✅已住不踩雷",
       "url": "http://xhslink.com/o/3QWgOpKlS6f",
       "category": "鼎龙湾",
@@ -687,19 +653,6 @@ window.XHS_MONITOR_DATA = {
       "time": "2026-07-20 14:26:30"
     },
     {
-      "title": "吴川真的很好拍 广东小众宝藏！在吴川鼎龙湾",
-      "url": "http://xhslink.com/o/AjQMXYCpHFS",
-      "category": "鼎龙湾",
-      "id": "6a5d065f000000000802cc96",
-      "content": "有别墅联系方式吗",
-      "nickname": "财神爷的小闺女",
-      "xhs_user_id": "页面未提供",
-      "user_profile_id": "67ffac5b000000000e01d8cd",
-      "user_profile_url": "https://www.xiaohongshu.com/user/profile/67ffac5b000000000e01d8cd",
-      "time_ms": 1784481375000,
-      "time": "2026-07-20 01:16:15"
-    },
-    {
       "title": "海陵岛新增监控帖子",
       "url": "http://xhslink.com/o/2b1RXdUBDvV",
       "category": "海陵岛",
@@ -726,5 +679,201 @@ window.XHS_MONITOR_DATA = {
       "time": "2026-07-20 07:05:18"
     }
   ],
-  "errors": []
+  "errors": [
+    {
+      "title": "多人出游✅10房独栋别墅+海景+泳池谁不爱！",
+      "url": "http://xhslink.com/o/3nIIPuJHoTU",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "鼎龙湾zui美的别墅🏡",
+      "url": "http://xhslink.com/o/nIGivy4HIG",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "湛江鼎龙湾｜步行直达的海边别墅",
+      "url": "http://xhslink.com/o/Wc3e1Mw4ue",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "吴川！海边小院（29号开始空）",
+      "url": "http://xhslink.com/o/52MdMkGiitF",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "湛江团建 / 家庭游！全海景别墅",
+      "url": "http://xhslink.com/o/1dqExFsf8dW",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "湛江新开业📍出门即沙滩de小院～明天有房",
+      "url": "http://xhslink.com/o/7vybkdSccrh",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "湛江度假✅鼎龙湾6房12床，泳池KTV全配齐！",
+      "url": "http://xhslink.com/o/RdlyGfwZFa",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "吴川！海边小院（29号开始空）淡季值哭😭谁懂",
+      "url": "http://xhslink.com/o/6DH1XEsnHzj",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "湛江鼎龙湾📍7房泳池别墅✅已住不踩雷",
+      "url": "http://xhslink.com/o/3QWgOpKlS6f",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "多人出游✅10房独栋别墅+海景+泳池谁不爱！",
+      "url": "http://xhslink.com/o/9PWSBIfQeCs",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "湛江📍新开的!!出门即沙滩的小院!",
+      "url": "http://xhslink.com/o/ANHIzFgbCUm",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "鼎龙湾新增监控帖子",
+      "url": "http://xhslink.com/o/5tHhvNAmmwK",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "阳江海陵岛海景独栋别墅团建聚会",
+      "url": "http://xhslink.com/o/6VN3OAalxaY",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "鼎龙湾新增监控帖子",
+      "url": "http://xhslink.com/o/1sQxvNyyo6p",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "阳江海陵岛📍新开！直接锁死这家🔥",
+      "url": "http://xhslink.com/o/21m6uIhTKaO",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "不敢相信！阳江海边整栋居然这么便宜",
+      "url": "http://xhslink.com/o/2cbh7sBFx2P",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "阳江📍出门就是海，就在沙滩边上",
+      "url": "http://xhslink.com/o/828sbFz2jag",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "阳江！连住3晚的独栋海边小院～7🈷️有房",
+      "url": "http://xhslink.com/o/5RChcA3aynh",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "阳江📍泳池滑梯别墅娃住到不想走🔥",
+      "url": "http://xhslink.com/o/XMqglvWCn9",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "阳江海陵岛📍终于住到了4房6床海边小别墅",
+      "url": "http://xhslink.com/o/9wPrhq817IL",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "湛江鼎龙湾✅4房7床独栋花园别墅，全套房！",
+      "url": "http://xhslink.com/o/2wL2XeDWJGN",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "湛江还有这样的好去处 五一假期",
+      "url": "http://xhslink.com/o/2PlP6zQaz9t",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "吴川真的很好拍 广东小众宝藏！在吴川鼎龙湾",
+      "url": "http://xhslink.com/o/AjQMXYCpHFS",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "吐槽湛江吴川鼎龙湾",
+      "url": "http://xhslink.com/o/4ihJDu10VlH",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "东北人嫁吴川～远嫁新娘的出门选择之鼎龙湾",
+      "url": "http://xhslink.com/o/pIJ7t3zk8M",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "吴川鼎龙湾2天1晚游玩",
+      "url": "http://xhslink.com/o/AO6zNIKJHib",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "湛江鼎龙湾住进一线海景别墅直达沙滩",
+      "url": "http://xhslink.com/o/8hFbNplWw7Y",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "湛江新开业📍出门即沙滩de小院",
+      "url": "http://xhslink.com/o/25o9Ru81Uui",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "鼎龙湾的别墅坑有点大",
+      "url": "http://xhslink.com/o/8FddHawsBYM",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "广东小三亚✨湛江鼎龙湾海景民宿赢麻了",
+      "url": "http://xhslink.com/o/2WYRs93uOP8",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "吴川鼎龙湾｜当海景别墅遇上私汤温泉",
+      "url": "http://xhslink.com/o/jebIaEIhON",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "去过M次鼎龙湾了❗️必住这家别墅",
+      "url": "http://xhslink.com/o/A4zXpVoIgtc",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "鼎龙湾新增监控帖子",
+      "url": "http://xhslink.com/o/ApqukXUDS1k",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "海陵岛新增监控帖子",
+      "url": "http://xhslink.com/o/2b1RXdUBDvV",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "鼎龙湾新增监控帖子",
+      "url": "http://xhslink.com/o/2hj2Lo2aOMB",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "湛江是个很chill的海边城市 鼎龙湾别墅度假",
+      "url": "http://xhslink.com/o/Aeh999uhGRs",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "湛江鼎龙湾4房7床藏在海边的浪漫私墅 终于挖",
+      "url": "http://xhslink.com/o/29XQFIBlOGY",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "鼎龙湾度假大力推荐这家轻奢风别墅 姐妹们！DeepSee",
+      "url": "http://xhslink.com/o/9JxlP3k6Z2R",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+      "title": "湛江鼎龙湾私藏别墅！推开窗就是玻璃海！！ 在这躺着",
+      "url": "http://xhslink.com/o/1MRRVRFZM4d",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    }
+  ]
 };
