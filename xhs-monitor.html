@@ -569,11 +569,12 @@
   <script src="./xhs-monitor-data.js"></script>
   <script src="./douyin-monitor-data.js"></script>
   <script>
-    const pageVersion = "2026-07-19-account-v1";
+    const pageVersion = "2026-07-21-fast-intake-v1";
     const refreshIntervalMs = 30 * 1000;
     const apiBase = location.hostname === "hailing-quote-x81y.vercel.app"
       ? ""
       : "https://hailing-quote-x81y.vercel.app";
+    const usesGithubPages = location.hostname === "louyuhong807-dotcom.github.io";
     const authStorageKey = "monitor-management-session-v1";
     let session = (() => {
       try { return JSON.parse(localStorage.getItem(authStorageKey) || "null"); }
@@ -789,6 +790,9 @@
           <strong>${escapeHtml(item.status || "待接入后台监控")}</strong>
           <span>${escapeHtml(item.url)}</span>
           <span>提交时间：${escapeHtml(fmt(item.createdAt))}</span>
+          <div class="link-row">
+            <a class="button ghost" href="${escapeHtml(githubFallbackUrl(item.url, item.category || selectedCategory))}">继续安全接入</a>
+          </div>
         </div>
       `).join("") : "";
     };
@@ -1056,6 +1060,13 @@
       }
       if (knownLinks().includes(url.toLowerCase())) {
         setMessage("这个链接已经在监控列表或待接入列表里，不能重复添加。", "error");
+        return;
+      }
+      if (usesGithubPages) {
+        savePendingLink(url, selectedCategory, "等待在安全接入页确认");
+        setMessage("正在打开安全接入页，确认提交后系统会自动写入监控。", "ok");
+        renderPage();
+        location.assign(githubFallbackUrl(url, selectedCategory));
         return;
       }
       button.disabled = true;
