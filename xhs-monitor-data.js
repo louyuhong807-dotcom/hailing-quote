@@ -673,6 +673,19 @@ window.XHS_MONITOR_DATA = {
       "time": "2026-07-29 19:14:42"
     },
     {
+      "title": "湛江是个很chill的海边城市 鼎龙湾别墅度假",
+      "url": "http://xhslink.com/o/Aeh999uhGRs",
+      "category": "鼎龙湾",
+      "id": "6a69df89000000000b03a43c",
+      "content": "6房什么价位",
+      "nickname": "携手同行",
+      "xhs_user_id": "页面未提供",
+      "user_profile_id": "5c570db9000000001a023179",
+      "user_profile_url": "https://www.xiaohongshu.com/user/profile/5c570db9000000001a023179",
+      "time_ms": 1785323402000,
+      "time": "2026-07-29 19:10:02"
+    },
+    {
       "title": "阳江海陵岛📍新开！直接锁死这家🔥",
       "url": "http://xhslink.com/o/21m6uIhTKaO",
       "category": "海陵岛",
@@ -843,6 +856,19 @@ window.XHS_MONITOR_DATA = {
     }
   ],
   "alert_history": [
+    {
+      "title": "湛江是个很chill的海边城市 鼎龙湾别墅度假",
+      "url": "http://xhslink.com/o/Aeh999uhGRs",
+      "category": "鼎龙湾",
+      "id": "6a69df89000000000b03a43c",
+      "content": "6房什么价位",
+      "nickname": "携手同行",
+      "xhs_user_id": "页面未提供",
+      "user_profile_id": "5c570db9000000001a023179",
+      "user_profile_url": "https://www.xiaohongshu.com/user/profile/5c570db9000000001a023179",
+      "time_ms": 1785323402000,
+      "time": "2026-07-29 19:10:02"
+    },
     {
       "title": "湛江新开业📍出门即沙滩de小院～明天有房",
       "url": "http://xhslink.com/o/7vybkdSccrh",
