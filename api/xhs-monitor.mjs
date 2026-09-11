@@ -235,6 +235,7 @@ async function loadLinksOnly() {
 
 function cleanCategory(value) {
   const category = decodeText(value);
+  if (category === "hubei" || category === "湖北专升本") return "湖北专升本";
   return category === "海陵岛" ? "海陵岛" : "鼎龙湾";
 }
 
@@ -244,7 +245,7 @@ function collectCategories(posts) {
     const category = cleanCategory(post.category);
     if (!categories.includes(category)) categories.push(category);
   }
-  const preferred = ["海陵岛", "鼎龙湾"];
+  const preferred = ["海陵岛", "鼎龙湾", "湖北专升本"];
   const ordered = [
     ...preferred.filter((category) => categories.includes(category)),
     ...categories.filter((category) => !preferred.includes(category)),

@@ -48,6 +48,7 @@ function cleanCategory(value) {
   const category = decodeText(value);
   if (category === "hailing") return "海陵岛";
   if (category === "dinglong") return "鼎龙湾";
+  if (category === "hubei" || category === "湖北专升本") return "湖北专升本";
   return category === "海陵岛" ? "海陵岛" : "鼎龙湾";
 }
 

@@ -66,8 +66,8 @@
 
     h1 {
       margin: 14px 0 8px;
-      font-size: clamp(28px, 8vw, 44px);
-      line-height: 1.05;
+      font-size: 32px;
+      line-height: 1.2;
       letter-spacing: 0;
     }
 
@@ -127,6 +127,18 @@
 
     .platform-tabs {
       margin-top: 0;
+    }
+
+    .category-tabs {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .category-button {
+      min-width: 0;
+      padding: 10px 6px;
+      font-size: 15px;
+      overflow-wrap: anywhere;
     }
 
     .platform-button,
@@ -525,13 +537,15 @@
 
     <section id="platformTabs" class="platform-tabs" aria-label="监控平台"></section>
 
+    <section id="categoryTabs" class="category-tabs" aria-label="监控分组"></section>
+
     <section class="summary">
       <div class="metric">
         <div class="label">最近检查</div>
         <div class="value" id="checkedAt">读取中</div>
       </div>
       <div class="metric">
-        <div class="label">监控帖子</div>
+        <div class="label">本板块监控帖子</div>
         <div class="value" id="postCount">读取中</div>
       </div>
       <div class="metric">
@@ -539,8 +553,6 @@
         <div class="value" id="coverageCount">读取中</div>
       </div>
     </section>
-
-    <section id="categoryTabs" class="category-tabs" aria-label="监控分组"></section>
 
     <section class="add-panel">
       <h2 class="post-title">新增监控链接</h2>
@@ -569,7 +581,7 @@
   <script src="./xhs-monitor-data.js"></script>
   <script src="./douyin-monitor-data.js"></script>
   <script>
-    const pageVersion = "2026-07-21-fast-intake-v1";
+    const pageVersion = "2026-09-11-hubei-v1";
     const refreshIntervalMs = 30 * 1000;
     const apiBase = location.hostname === "hailing-quote-x81y.vercel.app"
       ? ""
@@ -674,10 +686,8 @@
       xhs: "./xhs-monitor-links.json",
       douyin: "./douyin-monitor-links.json",
     };
-    const activeCategories = () => {
-      const data = activeData();
-      return data.categories?.length ? data.categories : ["海陵岛", "鼎龙湾"];
-    };
+    const categoryCodes = { "海陵岛": "hailing", "鼎龙湾": "dinglong", "湖北专升本": "hubei" };
+    const activeCategories = () => Object.keys(categoryCodes);
     let selectedCategory = params.get("area") || activeCategories()[0] || "海陵岛";
     const normalizeSelectedCategory = () => {
       const categories = activeCategories();
@@ -735,24 +745,24 @@
         return "";
       }
     };
-    const readPendingLinks = () => {
+    const readPendingLinks = (platform = selectedPlatform) => {
       try {
-        const value = JSON.parse(localStorage.getItem(activeConfig().pendingKey) || "[]");
+        const value = JSON.parse(localStorage.getItem(platformConfigs[platform].pendingKey) || "[]");
         return Array.isArray(value) ? value : [];
       } catch {
-        localStorage.removeItem(activeConfig().pendingKey);
+        localStorage.removeItem(platformConfigs[platform].pendingKey);
         return [];
       }
     };
-    const remoteKnownLinks = () => [
-      ...(activeData().posts || []).flatMap((post) => [post.url, post.final_url]),
-      ...((serverStateByPlatform[selectedPlatform]?.links || []).map((post) => post.url)),
+    const remoteKnownLinks = (platform = selectedPlatform) => [
+      ...(dataByPlatform[platform]?.posts || []).flatMap((post) => [post.url, post.final_url]),
+      ...((serverStateByPlatform[platform]?.links || []).map((post) => post.url)),
     ].filter(Boolean).map((url) => normalizeLink(url).toLowerCase());
     const knownLinks = () => [
       ...(activeData().posts || []).flatMap((post) => [post.url, post.final_url]),
       ...readPendingLinks().map((item) => item.url)
     ].filter(Boolean).map((url) => normalizeLink(url).toLowerCase());
-    const pendingLinks = () => readPendingLinks();
+    const pendingLinks = (platform = selectedPlatform) => readPendingLinks(platform);
     const setMessage = (text, type = "") => {
       const node = document.getElementById("linkMessage");
       node.textContent = text;
@@ -774,17 +784,17 @@
       node.className = "fallback-submit visible link-row";
       node.innerHTML = `<a class="button" href="${escapeHtml(githubFallbackUrl(url, category))}">安全备用提交</a>`;
     };
-    const savePendingLink = (url, category, status) => {
-      const pending = pendingLinks();
+    const savePendingLink = (url, category, status, platform = selectedPlatform) => {
+      const pending = pendingLinks(platform);
       const next = [
-        { url, category, createdAt: new Date().toISOString(), status, platform: selectedPlatform },
+        { url, category, createdAt: new Date().toISOString(), status, platform },
         ...pending.filter((item) => normalizeLink(item.url).toLowerCase() !== url.toLowerCase())
       ];
-      localStorage.setItem(activeConfig().pendingKey, JSON.stringify(next.slice(0, 20)));
+      localStorage.setItem(platformConfigs[platform].pendingKey, JSON.stringify(next.slice(0, 20)));
     };
     const renderPendingLinks = () => {
       const pending = pendingLinks();
-      const current = pending.filter((item) => (item.category || selectedCategory) === selectedCategory);
+      const current = pending.filter((item) => postCategory(item) === selectedCategory);
       document.getElementById("pendingLinks").innerHTML = current.length ? current.map((item) => `
         <div class="pending-item">
           <strong>${escapeHtml(item.status || "待接入后台监控")}</strong>
@@ -796,15 +806,15 @@
         </div>
       `).join("") : "";
     };
-    const reconcilePendingLinks = () => {
-      const remote = new Set(remoteKnownLinks());
-      const next = pendingLinks().filter((item) => !remote.has(normalizeLink(item.url).toLowerCase()));
-      localStorage.setItem(activeConfig().pendingKey, JSON.stringify(next));
+    const reconcilePendingLinks = (platform = selectedPlatform) => {
+      const remote = new Set(remoteKnownLinks(platform));
+      const next = pendingLinks(platform).filter((item) => !remote.has(normalizeLink(item.url).toLowerCase()));
+      localStorage.setItem(platformConfigs[platform].pendingKey, JSON.stringify(next));
     };
     const renderCategoryTabs = () => {
       const categories = activeCategories();
       document.getElementById("categoryTabs").innerHTML = categories.map((category) => `
-        <button class="category-button ${category === selectedCategory ? "active" : ""}" type="button" data-category="${escapeHtml(category)}">${escapeHtml(category)}</button>
+        <button class="category-button ${category === selectedCategory ? "active" : ""}" type="button" aria-pressed="${category === selectedCategory}" data-category="${escapeHtml(category)}">${escapeHtml(category)}</button>
       `).join("");
       document.querySelectorAll(".category-button").forEach((button) => {
         button.addEventListener("click", () => {
@@ -812,6 +822,8 @@
           const url = new URL(location.href);
           url.searchParams.set("area", selectedCategory);
           history.replaceState(null, "", url);
+          setMessage("");
+          clearFallbackSubmit();
           renderPage();
         });
       });
@@ -828,15 +840,28 @@
           url.searchParams.set("platform", selectedPlatform);
           url.searchParams.set("area", selectedCategory);
           history.replaceState(null, "", url);
+          setMessage("");
+          clearFallbackSubmit();
           renderPage();
+          refreshRemoteData();
+          refreshConfiguredLinks();
           refreshServerState();
         });
       });
     };
     const postCategory = (item) => item.category || "鼎龙湾";
-    const categoryCode = () => selectedCategory === "海陵岛" ? "hailing" : "dinglong";
+    const configuredPosts = () => {
+      const data = activeData();
+      const links = serverStateByPlatform[selectedPlatform]?.links;
+      if (!Array.isArray(links)) return data.posts || [];
+      const byUrl = new Map((data.posts || []).map((post) => [normalizeLink(post.url).toLowerCase(), post]));
+      return links.map((link) => ({
+        ...(byUrl.get(normalizeLink(link.url).toLowerCase()) || {}),
+        ...link,
+      }));
+    };
     const localPosts = (category = selectedCategory) => pendingLinks()
-      .filter((item) => (item.category || category) === category)
+      .filter((item) => postCategory(item) === category)
       .filter((item) => !remoteKnownLinks().includes(normalizeLink(item.url).toLowerCase()))
       .map((item) => ({
         title: "新增监控帖子",
@@ -848,6 +873,19 @@
         latest_comments: [],
         local_pending: true,
       }));
+    const categoryStats = () => {
+      const data = activeData();
+      const links = serverStateByPlatform[selectedPlatform]?.links;
+      if (!Array.isArray(links)) return null;
+      const key = (url) => normalizeLink(url).toLowerCase();
+      const configured = new Set(links.filter((post) => postCategory(post) === selectedCategory).map((post) => key(post.url)).filter(Boolean));
+      const failed = new Set((data.errors || []).map((post) => key(post.url)));
+      const checked = new Set((data.posts || [])
+        .filter((post) => postCategory(post) === selectedCategory && configured.has(key(post.url)))
+        .filter((post) => data.checked_at && post.last_checked === data.checked_at && !failed.has(key(post.url)))
+        .map((post) => key(post.url)));
+      return { configured: configured.size, checked: checked.size };
+    };
     const alertItems = (posts) => {
       const data = activeData();
       const byId = new Map();
@@ -875,7 +913,7 @@
       const config = activeConfig();
       const data = activeData();
       const currentPosts = [
-        ...(data.posts || []).filter((post) => postCategory(post) === selectedCategory),
+        ...configuredPosts().filter((post) => postCategory(post) === selectedCategory),
         ...localPosts(selectedCategory),
       ];
       const currentAlerts = alertItems(currentPosts);
@@ -886,16 +924,15 @@
       renderPlatformTabs();
       renderCategoryTabs();
       document.getElementById("eyebrowText").textContent = config.eyebrow;
-      document.getElementById("heroTitle").textContent = config.title;
+      document.getElementById("heroTitle").textContent = `${selectedCategory}截流`;
+      document.title = `${selectedCategory}截流 - ${config.linkName}`;
       document.getElementById("heroSub").textContent = config.sub;
       document.getElementById("newLinkInput").placeholder = config.placeholder;
       document.querySelector(".add-panel").hidden = Boolean(session && !hasPermission("monitor:add"));
-      document.getElementById("checkedAt").textContent = fmt(data.checked_at);
-      const serverCount = serverStateByPlatform[selectedPlatform]?.configured_count;
-      const configuredCount = Number(serverCount ?? data.configured_count ?? (data.posts || []).length);
-      const checkedCount = Number(data.checked_count ?? (data.posts || []).length);
-      document.getElementById("postCount").textContent = `${configuredCount} 条`;
-      document.getElementById("coverageCount").textContent = `${checkedCount}/${configuredCount} 条`;
+      document.getElementById("checkedAt").textContent = fmt(currentPosts.some((post) => !post.local_pending && post.last_checked) ? data.checked_at : null);
+      const stats = categoryStats();
+      document.getElementById("postCount").textContent = stats ? `${stats.configured} 条` : "核验中";
+      document.getElementById("coverageCount").textContent = stats ? `${stats.checked}/${stats.configured} 条` : "核验中";
       document.querySelector(".add-panel .post-title").textContent = `${config.addTitle} - ${selectedCategory}`;
       document.getElementById("alerts").innerHTML = currentAlerts.length ? `
         <details class="alerts-panel">
@@ -1048,6 +1085,9 @@
     document.getElementById("addLinkButton").addEventListener("click", async () => {
       const input = document.getElementById("newLinkInput");
       const button = document.getElementById("addLinkButton");
+      const platform = selectedPlatform;
+      const category = selectedCategory;
+      const isCurrentSection = () => selectedPlatform === platform && selectedCategory === category;
       const url = normalizeLink(input.value);
       if (!url) {
         setMessage("链接格式不对，请粘贴完整的小红书链接。", "error");
@@ -1075,33 +1115,37 @@
       setMessage("正在写入并核验后台监控列表，请稍等。", "");
       try {
         const id = requestId();
-        const response = await apiFetch(activeConfig().endpoint, {
+        const response = await apiFetch(platformConfigs[platform].endpoint, {
           method: "POST",
-          body: JSON.stringify({ url, title: input.value, category: categoryCode() }),
+          body: JSON.stringify({ url, title: input.value, category: categoryCodes[category] }),
           requestId: id,
         }, 2);
         const result = await readJsonResponse(response);
         if (!response.ok) throw new Error(result.error || "后台接入失败");
-        serverStateByPlatform[selectedPlatform] = {
-          ...(serverStateByPlatform[selectedPlatform] || {}),
+        serverStateByPlatform[platform] = {
+          ...(serverStateByPlatform[platform] || {}),
           configured_count: result.configured_count,
           links: [
-            ...(serverStateByPlatform[selectedPlatform]?.links || []),
+            ...(serverStateByPlatform[platform]?.links || []),
             result.post,
           ],
         };
-        savePendingLink(url, selectedCategory, "后台已确认接入");
-        reconcilePendingLinks();
-        input.value = "";
-        setMessage(`${result.message || "已接入后台监控"}，当前共 ${result.configured_count} 条。`, "ok");
+        savePendingLink(url, category, "后台已确认接入", platform);
+        reconcilePendingLinks(platform);
+        if (isCurrentSection()) {
+          input.value = "";
+          setMessage(result.message || "已接入后台监控", "ok");
+        }
         renderPage();
       } catch (error) {
         const message = error.name === "AbortError"
           ? "直连接口超时，请使用下方安全备用提交；系统将在下一轮自动接入。"
           : String(error.message || error);
-        setMessage(message, "error");
-        savePendingLink(url, selectedCategory, "等待安全备用提交");
-        showFallbackSubmit(url, selectedCategory);
+        savePendingLink(url, category, "等待安全备用提交", platform);
+        if (isCurrentSection()) {
+          setMessage(message, "error");
+          showFallbackSubmit(url, category);
+        }
         renderPage();
         await refreshServerState();
       } finally {
@@ -1118,13 +1162,14 @@
     };
     const refreshRemoteData = async () => {
       if (location.protocol === "file:") return;
-      const url = `${dataFileByPlatform[selectedPlatform]}?t=${Date.now()}`;
+      const platform = selectedPlatform;
+      const url = `${dataFileByPlatform[platform]}?t=${Date.now()}`;
       try {
         const response = await fetch(url, { cache: "no-store" });
         if (!response.ok) return;
-        const payload = parseMonitorPayload(selectedPlatform, await response.text());
+        const payload = parseMonitorPayload(platform, await response.text());
         if (!payload) return;
-        dataByPlatform[selectedPlatform] = payload;
+        dataByPlatform[platform] = payload;
         renderPage();
       } catch {
         // Keep the current screen stable if the phone network blocks one refresh.
@@ -1138,7 +1183,7 @@
         const result = await readJsonResponse(response);
         if (!response.ok) throw new Error(result.error || "监控数量核验失败");
         serverStateByPlatform[platform] = result;
-        reconcilePendingLinks();
+        reconcilePendingLinks(platform);
         renderPage();
       } catch (error) {
         if (session?.token) setMessage("监控服务正在自动重连，当前页面数据仍可查看。", "");
@@ -1157,7 +1202,7 @@
           configured_count: links.length,
           links,
         };
-        reconcilePendingLinks();
+        reconcilePendingLinks(platform);
         renderPage();
       } catch {
         // The last confirmed list remains visible during a temporary mobile network interruption.
