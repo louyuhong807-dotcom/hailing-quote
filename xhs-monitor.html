@@ -610,7 +610,7 @@
         pendingKey: "xhs-monitor-pending-links",
         linkName: "小红书",
         supportedText: "只支持小红书或 xhslink 链接。",
-        hostOk: (host) => /(^|\.)xiaohongshu\.com$/i.test(host) || /(^|\.)xhslink\.com$/i.test(host),
+        hostOk: (host) => /(^|\.)xiaohongshu\.com$/i.test(host) || /(^|\.)xhslink\.(com|cn)$/i.test(host),
       },
       douyin: {
         label: "抖音截流",
@@ -963,10 +963,10 @@
           <div class="meta">
             <span class="pill">${escapeHtml(postCategory(post))}</span>
             ${post.local_pending ? `<span class="pill hot-label">手机已保存，待后台同步</span>` : ""}
-            <span class="pill">评论数：${escapeHtml(post.last_count ?? 0)}</span>
+            <span class="pill">评论数：${escapeHtml(post.last_count ?? "待检查")}</span>
             <span class="pill">检查：${escapeHtml(fmt(post.last_checked))}</span>
           </div>
-          ${(post.latest_comments || []).filter(isRecentListComment).slice(0, 2).map(renderComment).join("") || `<div class="comment"><p>最近 24 小时暂无可显示评论</p></div>`}
+          ${(post.latest_comments || []).filter(isRecentListComment).slice(0, 2).map(renderComment).join("") || `<div class="comment"><p>${post.last_checked ? "最近 24 小时暂无可显示评论" : "等待首次评论检查"}</p></div>`}
           <div class="link-row">
             <a class="button" href="${escapeHtml(post.url)}">打开帖子</a>
             <a class="button ghost" href="${escapeHtml(post.final_url || post.url)}">原始链接</a>

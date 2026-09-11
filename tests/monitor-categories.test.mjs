@@ -70,6 +70,21 @@ test("scan preserves each category and baselines new posts before alerts", async
   assert.equal(second.body.new_comments[0].category, hubei);
 });
 
+for (const [name, handler] of [["xhs", addXhs], ["legacy xhs", monitorXhs]]) {
+  test(`${name}: accepts cn share links without accepting lookalike domains`, async (t) => {
+    const files = { "xhs-monitor-links.json": "[]" };
+    const writes = setup(t, files);
+    const url = "https://xhslink.cn/o/test";
+    const result = await invoke(handler, { url, category: "hubei" });
+    assert.equal(result.code, 200);
+    assert.equal(result.body.post.category, hubei);
+    assert.equal(result.body.post.url, url);
+    const rejected = await invoke(handler, { url: "https://xhslink.cn.example.com/o/test", category: "hubei" });
+    assert.equal(rejected.code, 400);
+    assert.deepEqual(writes, ["xhs-monitor-links.json"]);
+  });
+}
+
 for (const [name, handler, file, url] of [
   ["xhs", addXhs, "xhs-monitor-links.json", "https://www.xiaohongshu.com/explore/test"],
   ["douyin", addDouyin, "douyin-monitor-links.json", "https://www.douyin.com/video/test"],

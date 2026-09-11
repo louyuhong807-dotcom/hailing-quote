@@ -101,7 +101,7 @@ async function main() {
     assert.match(await page.locator("#posts").textContent(), /hailing-post/);
     assert.doesNotMatch(await page.locator("#posts").textContent(), /hubei-post|dinglong-post|pending/);
     await page.locator(`[data-category="${hubei}"]`).click();
-    await page.locator("#newLinkInput").fill("https://xhslink.com/o/new-test");
+    await page.locator("#newLinkInput").fill("https://xhslink.cn/o/new-test");
     await page.locator("#addLinkButton").click();
     await page.locator('[data-platform="douyin"]').click();
     await page.waitForFunction(() => !document.getElementById("addLinkButton").disabled);
@@ -113,6 +113,7 @@ async function main() {
     await page.waitForFunction(() => !document.getElementById("addLinkButton").disabled);
     assert.equal(await page.locator("#postCount").textContent(), "1 \u6761");
     assert.equal(await page.locator("#coverageCount").textContent(), "0/1 \u6761");
+    assert.ok((await page.locator("#posts").textContent()).includes("\u7b49\u5f85\u9996\u6b21\u8bc4\u8bba\u68c0\u67e5"));
     assert.equal(submitted.length, 2);
 
     await page.goto(`https://louyuhong807-dotcom.github.io/xhs-monitor.html?platform=xhs&area=${encodeURIComponent(hubei)}`);

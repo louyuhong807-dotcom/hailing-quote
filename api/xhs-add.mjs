@@ -25,7 +25,7 @@ function normalizeUrl(value) {
 function isXhsUrl(value) {
   try {
     const host = new URL(value).hostname.toLowerCase();
-    return host === "xhslink.com" || host.endsWith(".xhslink.com") || host === "xiaohongshu.com" || host.endsWith(".xiaohongshu.com");
+    return host === "xhslink.com" || host.endsWith(".xhslink.com") || host === "xhslink.cn" || host.endsWith(".xhslink.cn") || host === "xiaohongshu.com" || host.endsWith(".xiaohongshu.com");
   } catch {
     return false;
   }

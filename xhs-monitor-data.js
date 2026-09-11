@@ -2,9 +2,10 @@ window.XHS_MONITOR_DATA = {
   "checked_at": "2026-09-11T01:03:50.571Z",
   "categories": [
     "海陵岛",
-    "鼎龙湾"
+    "鼎龙湾",
+    "湖北专升本"
   ],
-  "configured_count": 39,
+  "configured_count": 43,
   "checked_count": 39,
   "comment_retention_hours": 24,
   "posts": [
