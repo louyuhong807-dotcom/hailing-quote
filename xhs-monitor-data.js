@@ -1,5 +1,5 @@
 window.XHS_MONITOR_DATA = {
-  "checked_at": "2026-09-14T01:04:51.656Z",
+  "checked_at": "2026-09-15T00:43:33.025Z",
   "categories": [
     "海陵岛",
     "鼎龙湾",
@@ -13,8 +13,8 @@ window.XHS_MONITOR_DATA = {
       "title": "多人出游✅10房独栋别墅+海景+泳池谁不爱！",
       "url": "http://xhslink.com/o/3nIIPuJHoTU",
       "category": "鼎龙湾",
-      "final_url": "https://www.xiaohongshu.com/404/sec_VjiMjqly?source=xhs_sec_server&originalUrl=http%3A%2F%2Fwww.xiaohongshu.com%2Fdiscovery%2Fitem%2F69e057ae000000001b023ee5%3Fapp_platform%3Dandroid%26ignoreEngage%3Dtrue%26app_version%3D9.33.4%26share_from_user_hidden%3Dtrue%26xsec_source%3Dapp_share%26type%3Dnormal%26xsec_token%3DCBKjGdZjJ8b1rKNhzBg-kFZ8t3xEPm-4RYDGeb97XeTOs%253D%26author_share%3D1%26shareRedId%3DOD9INzk4OkI2NzUyOTgwNjY1OTc1NTY5%26apptime%3D1784193787%26share_id%3D87b224485dc94dfaa5be281d0093c86b%26share_channel%3Dcopy_link%26appuid%3D69f763690000000002001000%26xhsshare%3DCopyLink",
-      "last_checked": "2026-09-14T01:04:51.656Z",
+      "final_url": "https://www.xiaohongshu.com/404/sec_cjQZxqIC?source=xhs_sec_server&originalUrl=http%3A%2F%2Fwww.xiaohongshu.com%2Fdiscovery%2Fitem%2F69e057ae000000001b023ee5%3Fapp_platform%3Dandroid%26ignoreEngage%3Dtrue%26app_version%3D9.33.4%26share_from_user_hidden%3Dtrue%26xsec_source%3Dapp_share%26type%3Dnormal%26xsec_token%3DCBKjGdZjJ8b1rKNhzBg-kFZ8t3xEPm-4RYDGeb97XeTOs%253D%26author_share%3D1%26shareRedId%3DOD9INzk4OkI2NzUyOTgwNjY1OTc1NTY5%26apptime%3D1784193787%26share_id%3D87b224485dc94dfaa5be281d0093c86b%26share_channel%3Dcopy_link%26appuid%3D69f763690000000002001000%26xhsshare%3DCopyLink",
+      "last_checked": "2026-09-15T00:43:33.025Z",
       "last_count": 0,
       "latest_comments": [],
       "seen_ids": []
@@ -23,8 +23,8 @@ window.XHS_MONITOR_DATA = {
       "title": "鼎龙湾zui美的别墅🏡",
       "url": "http://xhslink.com/o/nIGivy4HIG",
       "category": "鼎龙湾",
-      "final_url": "https://www.xiaohongshu.com/404/sec_nwQhsTAF?source=xhs_sec_server&originalUrl=http%3A%2F%2Fwww.xiaohongshu.com%2Fdiscovery%2Fitem%2F6985facc000000001a01eed6%3Fapp_platform%3Dandroid%26ignoreEngage%3Dtrue%26app_version%3D9.33.4%26share_from_user_hidden%3Dtrue%26xsec_source%3Dapp_share%26type%3Dnormal%26xsec_token%3DCBdIHw2OXFxKPIRFmGCe-jBlfgZDvC9u7QCbVzXP6WmDU%253D%26author_share%3D1%26shareRedId%3DOD9INzk4OkI2NzUyOTgwNjY1OTc1NTY5%26apptime%3D1784193932%26share_id%3Da2692baad3614ef28d9692adb574e9ae%26share_channel%3Dcopy_link%26appuid%3D69f763690000000002001000%26xhsshare%3DCopyLink",
-      "last_checked": "2026-09-14T01:04:51.656Z",
+      "final_url": "https://www.xiaohongshu.com/404/sec_VkFCWQZB?source=xhs_sec_server&originalUrl=http%3A%2F%2Fwww.xiaohongshu.com%2Fdiscovery%2Fitem%2F6985facc000000001a01eed6%3Fapp_platform%3Dandroid%26ignoreEngage%3Dtrue%26app_version%3D9.33.4%26share_from_user_hidden%3Dtrue%26xsec_source%3Dapp_share%26type%3Dnormal%26xsec_token%3DCBdIHw2OXFxKPIRFmGCe-jBlfgZDvC9u7QCbVzXP6WmDU%253D%26author_share%3D1%26shareRedId%3DOD9INzk4OkI2NzUyOTgwNjY1OTc1NTY5%26apptime%3D1784193932%26share_id%3Da2692baad3614ef28d9692adb574e9ae%26share_channel%3Dcopy_link%26appuid%3D69f763690000000002001000%26xhsshare%3DCopyLink",
+      "last_checked": "2026-09-15T00:43:33.025Z",
       "last_count": 0,
       "latest_comments": [],
       "seen_ids": []
@@ -33,8 +33,8 @@ window.XHS_MONITOR_DATA = {
       "title": "湛江鼎龙湾｜步行直达的海边别墅",
       "url": "http://xhslink.com/o/Wc3e1Mw4ue",
       "category": "鼎龙湾",
-      "final_url": "https://www.xiaohongshu.com/404/sec_gUGuuZiQ?source=xhs_sec_server&originalUrl=http%3A%2F%2Fwww.xiaohongshu.com%2Fdiscovery%2Fitem%2F69c0f555000000001f000995%3Fapp_platform%3Dandroid%26ignoreEngage%3Dtrue%26app_version%3D9.33.4%26share_from_user_hidden%3Dtrue%26xsec_source%3Dapp_share%26type%3Dnormal%26xsec_token%3DCBgLm3SG0WJClIoJL2lkmJGnruvxmQeBtoMX0VUnw4nhM%253D%26author_share%3D1%26shareRedId%3DOD9INzk4OkI2NzUyOTgwNjY1OTc1NTY5%26apptime%3D1784193994%26share_id%3Db143d38854084066814360a1dfdbc8c2%26share_channel%3Dcopy_link%26appuid%3D69f763690000000002001000%26xhsshare%3DCopyLink",
-      "last_checked": "2026-09-14T01:04:51.656Z",
+      "final_url": "https://www.xiaohongshu.com/404/sec_DIRTGFrD?source=xhs_sec_server&originalUrl=http%3A%2F%2Fwww.xiaohongshu.com%2Fdiscovery%2Fitem%2F69c0f555000000001f000995%3Fapp_platform%3Dandroid%26ignoreEngage%3Dtrue%26app_version%3D9.33.4%26share_from_user_hidden%3Dtrue%26xsec_source%3Dapp_share%26type%3Dnormal%26xsec_token%3DCBgLm3SG0WJClIoJL2lkmJGnruvxmQeBtoMX0VUnw4nhM%253D%26author_share%3D1%26shareRedId%3DOD9INzk4OkI2NzUyOTgwNjY1OTc1NTY5%26apptime%3D1784193994%26share_id%3Db143d38854084066814360a1dfdbc8c2%26share_channel%3Dcopy_link%26appuid%3D69f763690000000002001000%26xhsshare%3DCopyLink",
+      "last_checked": "2026-09-15T00:43:33.025Z",
       "last_count": 0,
       "latest_comments": [],
       "seen_ids": []
@@ -43,8 +43,8 @@ window.XHS_MONITOR_DATA = {
       "title": "吴川！海边小院（29号开始空）",
       "url": "http://xhslink.com/o/52MdMkGiitF",
       "category": "鼎龙湾",
-      "final_url": "https://www.xiaohongshu.com/404/sec_WJwdtshc?source=xhs_sec_server&originalUrl=http%3A%2F%2Fwww.xiaohongshu.com%2Fdiscovery%2Fitem%2F69c4f2300000000021039ff6%3Fapp_platform%3Dandroid%26ignoreEngage%3Dtrue%26app_version%3D9.33.4%26share_from_user_hidden%3Dtrue%26xsec_source%3Dapp_share%26type%3Dnormal%26xsec_token%3DCBgb-LPcin1CtAlKmtQbkKUHLOM3VEW-Cd0-WgidH7VAM%253D%26author_share%3D1%26shareRedId%3DOD9INzk4OkI2NzUyOTgwNjY1OTc1NTY5%26apptime%3D1784194127%26share_id%3D1a6ceaedc41a46a8bba4694f47f27193%26share_channel%3Dcopy_link%26appuid%3D69f763690000000002001000%26xhsshare%3DCopyLink",
-      "last_checked": "2026-09-14T01:04:51.656Z",
+      "final_url": "https://www.xiaohongshu.com/404/sec_xAMjkZFy?source=xhs_sec_server&originalUrl=http%3A%2F%2Fwww.xiaohongshu.com%2Fdiscovery%2Fitem%2F69c4f2300000000021039ff6%3Fapp_platform%3Dandroid%26ignoreEngage%3Dtrue%26app_version%3D9.33.4%26share_from_user_hidden%3Dtrue%26xsec_source%3Dapp_share%26type%3Dnormal%26xsec_token%3DCBgb-LPcin1CtAlKmtQbkKUHLOM3VEW-Cd0-WgidH7VAM%253D%26author_share%3D1%26shareRedId%3DOD9INzk4OkI2NzUyOTgwNjY1OTc1NTY5%26apptime%3D1784194127%26share_id%3D1a6ceaedc41a46a8bba4694f47f27193%26share_channel%3Dcopy_link%26appuid%3D69f763690000000002001000%26xhsshare%3DCopyLink",
+      "last_checked": "2026-09-15T00:43:33.025Z",
       "last_count": 0,
       "latest_comments": [],
       "seen_ids": []
@@ -53,8 +53,8 @@ window.XHS_MONITOR_DATA = {
       "title": "湛江团建 / 家庭游！全海景别墅",
       "url": "http://xhslink.com/o/1dqExFsf8dW",
       "category": "鼎龙湾",
-      "final_url": "https://www.xiaohongshu.com/404/sec_MSEXOinn?source=xhs_sec_server&originalUrl=http%3A%2F%2Fwww.xiaohongshu.com%2Fdiscovery%2Fitem%2F691d8f08000000001e004cc4%3Fapp_platform%3Dandroid%26ignoreEngage%3Dtrue%26app_version%3D9.33.4%26share_from_user_hidden%3Dtrue%26xsec_source%3Dapp_share%26type%3Dnormal%26xsec_token%3DCBQWIbkKpWMwrjfkvaAw7CNMAnITM8ly_wZ1OobQrKfi8%253D%26author_share%3D1%26shareRedId%3DOD9INzk4OkI2NzUyOTgwNjY1OTc1NTY5%26apptime%3D1784194210%26share_id%3D6cae60846bac4fa2b5b503015a607ad0%26share_channel%3Dcopy_link%26appuid%3D69f763690000000002001000%26xhsshare%3DCopyLink",
-      "last_checked": "2026-09-14T01:04:51.656Z",
+      "final_url": "https://www.xiaohongshu.com/404/sec_xRElPdxm?source=xhs_sec_server&originalUrl=http%3A%2F%2Fwww.xiaohongshu.com%2Fdiscovery%2Fitem%2F691d8f08000000001e004cc4%3Fapp_platform%3Dandroid%26ignoreEngage%3Dtrue%26app_version%3D9.33.4%26share_from_user_hidden%3Dtrue%26xsec_source%3Dapp_share%26type%3Dnormal%26xsec_token%3DCBQWIbkKpWMwrjfkvaAw7CNMAnITM8ly_wZ1OobQrKfi8%253D%26author_share%3D1%26shareRedId%3DOD9INzk4OkI2NzUyOTgwNjY1OTc1NTY5%26apptime%3D1784194210%26share_id%3D6cae60846bac4fa2b5b503015a607ad0%26share_channel%3Dcopy_link%26appuid%3D69f763690000000002001000%26xhsshare%3DCopyLink",
+      "last_checked": "2026-09-15T00:43:33.025Z",
       "last_count": 0,
       "latest_comments": [],
       "seen_ids": []
@@ -63,85 +63,48 @@ window.XHS_MONITOR_DATA = {
       "title": "湛江新开业📍出门即沙滩de小院～明天有房",
       "url": "http://xhslink.com/o/7vybkdSccrh",
       "category": "鼎龙湾",
-      "final_url": "https://www.xiaohongshu.com/discovery/item/6a2fa1260000000021008b00?app_platform=android&ignoreEngage=true&app_version=9.35.0&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBWbrTgYBiZYijm0Y2dn411eC0raOGw0CAmL20smxZJo4%3D&author_share=1&xhsshare=CopyLink&shareRedId=OD86MUk8ODk2NzUyOTgwNjg0OTk5OD1A&apptime=1784299069&share_id=95251d51c21f4105b2d83257603548ff&share_channel=copy_link",
-      "last_checked": "2026-09-14T01:04:51.656Z",
-      "last_count": 11,
+      "final_url": "https://www.xiaohongshu.com/404/sec_OQduDHbk?source=xhs_sec_server&originalUrl=http%3A%2F%2Fwww.xiaohongshu.com%2Fdiscovery%2Fitem%2F6a2fa1260000000021008b00%3Fapp_platform%3Dandroid%26ignoreEngage%3Dtrue%26app_version%3D9.35.0%26share_from_user_hidden%3Dtrue%26xsec_source%3Dapp_share%26type%3Dnormal%26xsec_token%3DCBWbrTgYBiZYijm0Y2dn411eC0raOGw0CAmL20smxZJo4%253D%26author_share%3D1%26xhsshare%3DCopyLink%26shareRedId%3DOD86MUk8ODk2NzUyOTgwNjg0OTk5OD1A%26apptime%3D1784299069%26share_id%3D95251d51c21f4105b2d83257603548ff%26share_channel%3Dcopy_link",
+      "last_checked": "2026-09-15T00:43:33.025Z",
+      "last_count": 0,
       "latest_comments": [],
-      "seen_ids": [
-        "6a807b02000000002a02544b",
-        "6a79ac79000000002a006487",
-        "6a79aab2000000002a0041ce",
-        "6a79aa70000000002a0072e4",
-        "6a79aa6000000000290258ca",
-        "6a787d4b00000000140152e4",
-        "6a787c2600000000070140bf",
-        "6a7871d0000000002a0251da",
-        "6a77099c000000002902e1e3",
-        "6a71b5a6000000002a02d477",
-        "6a715f6e000000002a031361"
-      ]
+      "seen_ids": []
     },
     {
       "title": "湛江度假✅鼎龙湾6房12床，泳池KTV全配齐！",
       "url": "http://xhslink.com/o/RdlyGfwZFa",
       "category": "鼎龙湾",
-      "final_url": "https://www.xiaohongshu.com/discovery/item/69e07d25000000002301db02?app_platform=android&ignoreEngage=true&app_version=9.35.0&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CB-xSZq-pYnjFWY9jyO1E3_UZoE1LFYl8TlwzpMUWapsA%3D&author_share=1&xhsshare=CopyLink&shareRedId=OD86MUk8ODk2NzUyOTgwNjg0OTk5OD1A&apptime=1784299156&share_id=7b0374c8a2f4464a8b80357a31d31f42&share_channel=copy_link",
-      "last_checked": "2026-09-14T01:04:51.656Z",
-      "last_count": 6,
+      "final_url": "https://www.xiaohongshu.com/404/sec_NbbjLyyH?source=xhs_sec_server&originalUrl=http%3A%2F%2Fwww.xiaohongshu.com%2Fdiscovery%2Fitem%2F69e07d25000000002301db02%3Fapp_platform%3Dandroid%26ignoreEngage%3Dtrue%26app_version%3D9.35.0%26share_from_user_hidden%3Dtrue%26xsec_source%3Dapp_share%26type%3Dnormal%26xsec_token%3DCB-xSZq-pYnjFWY9jyO1E3_UZoE1LFYl8TlwzpMUWapsA%253D%26author_share%3D1%26xhsshare%3DCopyLink%26shareRedId%3DOD86MUk8ODk2NzUyOTgwNjg0OTk5OD1A%26apptime%3D1784299156%26share_id%3D7b0374c8a2f4464a8b80357a31d31f42%26share_channel%3Dcopy_link",
+      "last_checked": "2026-09-15T00:43:33.025Z",
+      "last_count": 0,
       "latest_comments": [],
-      "seen_ids": [
-        "6a55c143000000002b0257c1",
-        "6a54a15100000000150043d3",
-        "6a5454e00000000004039e99",
-        "6a532c9200000000040399de",
-        "6a17c2f7000000002803fc28",
-        "6a17c2c4000000002803194d"
-      ]
+      "seen_ids": []
     },
     {
       "title": "吴川！海边小院（29号开始空）淡季值哭😭谁懂",
       "url": "http://xhslink.com/o/6DH1XEsnHzj",
       "category": "鼎龙湾",
-      "final_url": "https://www.xiaohongshu.com/discovery/item/69c4f2300000000021039ff6?app_platform=android&ignoreEngage=true&app_version=9.35.0&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBvBkTzBjX_EXhb39O2QRGnx4vTfqgpFn8ecuE0_h3axg%3D&author_share=1&xhsshare=CopyLink&shareRedId=OD86MUk8ODk2NzUyOTgwNjg0OTk5OD1A&apptime=1784299297&share_id=cad6a0af68b84f72a41727ee9a4c8ed2&share_channel=copy_link",
-      "last_checked": "2026-09-14T01:04:51.656Z",
-      "last_count": 10,
+      "final_url": "https://www.xiaohongshu.com/404/sec_jEhyaAwF?source=xhs_sec_server&originalUrl=http%3A%2F%2Fwww.xiaohongshu.com%2Fdiscovery%2Fitem%2F69c4f2300000000021039ff6%3Fapp_platform%3Dandroid%26ignoreEngage%3Dtrue%26app_version%3D9.35.0%26share_from_user_hidden%3Dtrue%26xsec_source%3Dapp_share%26type%3Dnormal%26xsec_token%3DCBvBkTzBjX_EXhb39O2QRGnx4vTfqgpFn8ecuE0_h3axg%253D%26author_share%3D1%26xhsshare%3DCopyLink%26shareRedId%3DOD86MUk8ODk2NzUyOTgwNjg0OTk5OD1A%26apptime%3D1784299297%26share_id%3Dcad6a0af68b84f72a41727ee9a4c8ed2%26share_channel%3Dcopy_link",
+      "last_checked": "2026-09-15T00:43:33.025Z",
+      "last_count": 0,
       "latest_comments": [],
-      "seen_ids": [
-        "6a9fe37c00000000150059c8",
-        "6a9e2d2c000000000b01cd44",
-        "6a9e0fba0000000015000023",
-        "6a9d2b52000000001303df56",
-        "6a9a3841000000000a01fe25",
-        "6a8dee6f00000000150033b4",
-        "6a866d5e0000000002011047",
-        "6a6df17200000000290355c5",
-        "6a6de2050000000015006fc3",
-        "6a6c02ad000000002a027eca"
-      ]
+      "seen_ids": []
     },
     {
       "title": "湛江鼎龙湾📍7房泳池别墅✅已住不踩雷",
       "url": "http://xhslink.com/o/3QWgOpKlS6f",
       "category": "鼎龙湾",
-      "final_url": "https://www.xiaohongshu.com/discovery/item/6a5604f3000000002003b2a0?app_platform=android&ignoreEngage=true&app_version=9.35.0&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBcWAZidzWE7H4czg_qBas-E7IZE6f7-n2zNwU5zr17b0%3D&author_share=1&xhsshare=CopyLink&shareRedId=OD86MUk8ODk2NzUyOTgwNjg0OTk5OD1A&apptime=1784299383&share_id=73f82d4f19954a099b351720c6911205&share_channel=copy_link",
-      "last_checked": "2026-09-14T01:04:51.656Z",
-      "last_count": 6,
+      "final_url": "https://www.xiaohongshu.com/404/sec_rUAJWDzj?source=xhs_sec_server&originalUrl=http%3A%2F%2Fwww.xiaohongshu.com%2Fdiscovery%2Fitem%2F6a5604f3000000002003b2a0%3Fapp_platform%3Dandroid%26ignoreEngage%3Dtrue%26app_version%3D9.35.0%26share_from_user_hidden%3Dtrue%26xsec_source%3Dapp_share%26type%3Dnormal%26xsec_token%3DCBcWAZidzWE7H4czg_qBas-E7IZE6f7-n2zNwU5zr17b0%253D%26author_share%3D1%26xhsshare%3DCopyLink%26shareRedId%3DOD86MUk8ODk2NzUyOTgwNjg0OTk5OD1A%26apptime%3D1784299383%26share_id%3D73f82d4f19954a099b351720c6911205%26share_channel%3Dcopy_link",
+      "last_checked": "2026-09-15T00:43:33.025Z",
+      "last_count": 0,
       "latest_comments": [],
-      "seen_ids": [
-        "6a7ed41c000000002b026e66",
-        "6a7eb5190000000014025eef",
-        "6a7725890000000029036739",
-        "6a731e0d0000000014005893",
-        "6a5a3aa000000000050141f7",
-        "6a571d45000000002a0065f1"
-      ]
+      "seen_ids": []
     },
     {
       "title": "多人出游✅10房独栋别墅+海景+泳池谁不爱！",
       "url": "http://xhslink.com/o/9PWSBIfQeCs",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/69e057ae000000001b023ee5?app_platform=ios&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBNJ4jxaG9EdjV-9hpB0yvXEu6fa1ydxZAXh53av4UDE0=&author_share=1&xhsshare=CopyLink&shareRedId=OD4zRElKOks2NzUyOTgwNjZIOTg0SUk6&apptime=1784379593&share_id=3adf0a7e56aa48a8bc924a0c8fca5b3b",
-      "last_checked": "2026-09-14T01:04:51.656Z",
+      "last_checked": "2026-09-15T00:43:33.025Z",
       "last_count": 9,
       "latest_comments": [],
       "seen_ids": [
@@ -161,7 +124,7 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/ANHIzFgbCUm",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/6a111fe8000000003503a2bc?app_platform=ios&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&noteAttributes=goods&xsec_token=CBspAoRWlvM24xgO19113KWQ6kZWYhZ-C0qnFPLWa1pp0=&author_share=1&back_chain_id=goods_note_share&xhsshare=CopyLink&shareRedId=OD4zRElKOks2NzUyOTgwNjZIOTg0SUk6&apptime=1784357812&share_id=f488fcd339b245e5a59517c2489b9e1e",
-      "last_checked": "2026-09-14T01:04:51.656Z",
+      "last_checked": "2026-09-15T00:43:33.025Z",
       "last_count": 13,
       "latest_comments": [],
       "seen_ids": [
@@ -184,166 +147,68 @@ window.XHS_MONITOR_DATA = {
       "title": "阳江海陵岛📍新开！直接锁死这家🔥",
       "url": "http://xhslink.com/o/21m6uIhTKaO",
       "category": "海陵岛",
-      "final_url": "https://www.xiaohongshu.com/discovery/item/69e5cae70000000023006e76?app_platform=ios&app_version=9.38.1&share_from_user_hidden=true&xsec_source=app_share&type=normal&noteAttributes=goods&xsec_token=CBpnJe_i8CmMeNJLn0makvt_BpYXi1tGbxlaeUXzIhubA=&author_share=1&back_chain_id=goods_note_share&xhsshare=CopyLink&shareRedId=ODc0NzU-OUw2NzUyOTgwNjY0OTc9PEo6&apptime=1784296193&share_id=4c26c653f20542d4b2018f514c8cc8b7",
-      "last_checked": "2026-09-14T01:04:51.656Z",
-      "last_count": 11,
+      "final_url": "https://www.xiaohongshu.com/404/sec_sgeTUwRb?source=xhs_sec_server&originalUrl=http%3A%2F%2Fwww.xiaohongshu.com%2Fdiscovery%2Fitem%2F69e5cae70000000023006e76%3Fapp_platform%3Dios%26app_version%3D9.38.1%26share_from_user_hidden%3Dtrue%26xsec_source%3Dapp_share%26type%3Dnormal%26noteAttributes%3Dgoods%26xsec_token%3DCBpnJe_i8CmMeNJLn0makvt_BpYXi1tGbxlaeUXzIhubA%3D%26author_share%3D1%26back_chain_id%3Dgoods_note_share%26xhsshare%3DCopyLink%26shareRedId%3DODc0NzU-OUw2NzUyOTgwNjY0OTc9PEo6%26apptime%3D1784296193%26share_id%3D4c26c653f20542d4b2018f514c8cc8b7",
+      "last_checked": "2026-09-15T00:43:33.025Z",
+      "last_count": 0,
       "latest_comments": [],
-      "seen_ids": [
-        "6aa0bbe0000000000a025b2c",
-        "6a9dd3e8000000000b01899a",
-        "6a9cc2e800000000150009b9",
-        "6a9c30300000000015013c71",
-        "6a98d06700000000150159c1",
-        "6a984672000000000a026690",
-        "6a97f0f90000000015016967",
-        "6a97a1fb0000000014001985",
-        "6a5ae984000000002901b1a8",
-        "6a5addd3000000001500b400",
-        "6a5a11b3000000002a025c6e"
-      ]
+      "seen_ids": []
     },
     {
       "title": "不敢相信！阳江海边整栋居然这么便宜",
       "url": "http://xhslink.com/o/2cbh7sBFx2P",
       "category": "海陵岛",
-      "final_url": "https://www.xiaohongshu.com/discovery/item/6a06e9cc000000003700d23a?app_platform=ios&app_version=9.38.1&share_from_user_hidden=true&xsec_source=app_share&type=normal&noteAttributes=goods&xsec_token=CBrft0c4I4NR45z08btwtDqaSIzoyNZZaWQdyrgKgQsPw=&author_share=1&back_chain_id=goods_note_share&xhsshare=CopyLink&shareRedId=ODc0NzU-OUw2NzUyOTgwNjY0OTc9PEo6&apptime=1784296894&share_id=c35a2ce17151420b921022731e2ed3d2",
-      "last_checked": "2026-09-14T01:04:51.656Z",
-      "last_count": 15,
-      "latest_comments": [
-        {
-          "id": "6aa73b17000000000200cd48",
-          "content": "两房的价格，亲",
-          "nickname": "lingcuo32",
-          "xhs_user_id": "页面未提供",
-          "user_profile_id": "5f179aa6000000000101c25f",
-          "user_profile_url": "https://www.xiaohongshu.com/user/profile/5f179aa6000000000101c25f",
-          "time_ms": 1789344535000,
-          "time": "2026-09-14 08:08:55"
-        }
-      ],
-      "seen_ids": [
-        "6aa73b17000000000200cd48",
-        "6a8c0e8f000000000b01d9b9",
-        "6a8be1c3000000000b0130ad",
-        "6a8bd997000000000b01d193",
-        "6a8bd982000000000b0137eb",
-        "6a8bb024000000000a025786",
-        "6a8ba248000000001500622e",
-        "6a8ba1b300000000010089b7",
-        "6a8b91950000000014000483",
-        "6a71acd2000000002a02d4a8",
-        "6a71a59e000000000300b5a1",
-        "6a51a3fb000000002b0010f9",
-        "6a50f10d000000002b024145",
-        "6a504fed000000002a02c9a5",
-        "6a5031dc000000000802efdf"
-      ]
+      "final_url": "https://www.xiaohongshu.com/404/sec_IoNWvJBD?source=xhs_sec_server&originalUrl=http%3A%2F%2Fwww.xiaohongshu.com%2Fdiscovery%2Fitem%2F6a06e9cc000000003700d23a%3Fapp_platform%3Dios%26app_version%3D9.38.1%26share_from_user_hidden%3Dtrue%26xsec_source%3Dapp_share%26type%3Dnormal%26noteAttributes%3Dgoods%26xsec_token%3DCBrft0c4I4NR45z08btwtDqaSIzoyNZZaWQdyrgKgQsPw%3D%26author_share%3D1%26back_chain_id%3Dgoods_note_share%26xhsshare%3DCopyLink%26shareRedId%3DODc0NzU-OUw2NzUyOTgwNjY0OTc9PEo6%26apptime%3D1784296894%26share_id%3Dc35a2ce17151420b921022731e2ed3d2",
+      "last_checked": "2026-09-15T00:43:33.025Z",
+      "last_count": 0,
+      "latest_comments": [],
+      "seen_ids": []
     },
     {
       "title": "阳江📍出门就是海，就在沙滩边上",
       "url": "http://xhslink.com/o/828sbFz2jag",
       "category": "海陵岛",
-      "final_url": "https://www.xiaohongshu.com/discovery/item/69e9c9d7000000001f002b94?app_platform=ios&app_version=9.38.1&share_from_user_hidden=true&xsec_source=app_share&type=normal&noteAttributes=goods&xsec_token=CBaEvEolwNyMtrL0i2GyLPG8yN-pmBhWxO2YPV2KHgiec=&author_share=1&back_chain_id=goods_note_share&xhsshare=CopyLink&shareRedId=ODc0NzU-OUw2NzUyOTgwNjY0OTc9PEo6&apptime=1784296915&share_id=51b1ee6c837441f5a1ee05de6ef9bfa5",
-      "last_checked": "2026-09-14T01:04:51.656Z",
-      "last_count": 13,
-      "latest_comments": [
-        {
-          "id": "6aa601e1000000001403aee9",
-          "content": "斯你啦",
-          "nickname": "绮玄丨玩乐无忧",
-          "xhs_user_id": "页面未提供",
-          "user_profile_id": "69cde3db000000003202ae87",
-          "user_profile_url": "https://www.xiaohongshu.com/user/profile/69cde3db000000003202ae87",
-          "time_ms": 1789264354000,
-          "time": "2026-09-13 09:52:34"
-        }
-      ],
-      "seen_ids": [
-        "6aa601e1000000001403aee9",
-        "6aa543b7000000001303d382",
-        "6aa0bdcf00000000150114ab",
-        "6a9f7e150000000002029db8",
-        "6a9a90ca000000001303f5d5",
-        "6a9a31f8000000000201086c",
-        "6a8581ed0000000002013d80",
-        "6a8578600000000014031f92",
-        "6a851fa70000000002029837",
-        "6a850e93000000001501270d",
-        "6a84667a000000001500d376",
-        "6a82656000000000290378b4",
-        "6a81dff5000000002a0043d2"
-      ]
+      "final_url": "https://www.xiaohongshu.com/404/sec_LITgAcYi?source=xhs_sec_server&originalUrl=http%3A%2F%2Fwww.xiaohongshu.com%2Fdiscovery%2Fitem%2F69e9c9d7000000001f002b94%3Fapp_platform%3Dios%26app_version%3D9.38.1%26share_from_user_hidden%3Dtrue%26xsec_source%3Dapp_share%26type%3Dnormal%26noteAttributes%3Dgoods%26xsec_token%3DCBaEvEolwNyMtrL0i2GyLPG8yN-pmBhWxO2YPV2KHgiec%3D%26author_share%3D1%26back_chain_id%3Dgoods_note_share%26xhsshare%3DCopyLink%26shareRedId%3DODc0NzU-OUw2NzUyOTgwNjY0OTc9PEo6%26apptime%3D1784296915%26share_id%3D51b1ee6c837441f5a1ee05de6ef9bfa5",
+      "last_checked": "2026-09-15T00:43:33.025Z",
+      "last_count": 0,
+      "latest_comments": [],
+      "seen_ids": []
     },
     {
       "title": "阳江！连住3晚的独栋海边小院～7🈷️有房",
       "url": "http://xhslink.com/o/5RChcA3aynh",
       "category": "海陵岛",
-      "final_url": "https://www.xiaohongshu.com/discovery/item/6a44d71e000000000702b657?app_platform=ios&app_version=9.38.1&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBffLWXOQeE7sSR_ijkP-z2cfcGyB1JU0q0cEVeVs-Pec=&author_share=1&xhsshare=CopyLink&shareRedId=ODc0NzU-OUw2NzUyOTgwNjY0OTc9PEo6&apptime=1784296954&share_id=a8f9a08722bc407e92d4fddbadf4d7aa",
-      "last_checked": "2026-09-14T01:04:51.656Z",
-      "last_count": 10,
+      "final_url": "https://www.xiaohongshu.com/404/sec_ytgquYee?source=xhs_sec_server&originalUrl=http%3A%2F%2Fwww.xiaohongshu.com%2Fdiscovery%2Fitem%2F6a44d71e000000000702b657%3Fapp_platform%3Dios%26app_version%3D9.38.1%26share_from_user_hidden%3Dtrue%26xsec_source%3Dapp_share%26type%3Dnormal%26xsec_token%3DCBffLWXOQeE7sSR_ijkP-z2cfcGyB1JU0q0cEVeVs-Pec%3D%26author_share%3D1%26xhsshare%3DCopyLink%26shareRedId%3DODc0NzU-OUw2NzUyOTgwNjY0OTc9PEo6%26apptime%3D1784296954%26share_id%3Da8f9a08722bc407e92d4fddbadf4d7aa",
+      "last_checked": "2026-09-15T00:43:33.025Z",
+      "last_count": 0,
       "latest_comments": [],
-      "seen_ids": [
-        "6a587622000000002a030b79",
-        "6a58682d000000000403b6d2",
-        "6a57a821000000002a033705",
-        "6a5798680000000029025c48",
-        "6a4ca4a2000000002a031de0",
-        "6a4ca08b000000002a004c14",
-        "6a4637cc000000002a02d35e",
-        "6a463314000000000802c101",
-        "6a4611ee00000000290241a3",
-        "6a460573000000002901b863"
-      ]
+      "seen_ids": []
     },
     {
       "title": "阳江📍泳池滑梯别墅娃住到不想走🔥",
       "url": "http://xhslink.com/o/XMqglvWCn9",
       "category": "海陵岛",
-      "final_url": "https://www.xiaohongshu.com/discovery/item/69c36b02000000001d018790?app_platform=ios&app_version=9.38.1&share_from_user_hidden=true&xsec_source=app_share&type=normal&noteAttributes=goods&xsec_token=CBdwKBlV2nAaOpQshySd1BPxARRrI-U0UEbPv3jCyI0e0=&author_share=1&back_chain_id=goods_note_share&xhsshare=CopyLink&shareRedId=ODc0NzU-OUw2NzUyOTgwNjY0OTc9PEo6&apptime=1784297001&share_id=9d6bbfb693f94f99b032f9f63c46d990",
-      "last_checked": "2026-09-14T01:04:51.656Z",
-      "last_count": 12,
+      "final_url": "https://www.xiaohongshu.com/404/sec_tMboXGMo?source=xhs_sec_server&originalUrl=http%3A%2F%2Fwww.xiaohongshu.com%2Fdiscovery%2Fitem%2F69c36b02000000001d018790%3Fapp_platform%3Dios%26app_version%3D9.38.1%26share_from_user_hidden%3Dtrue%26xsec_source%3Dapp_share%26type%3Dnormal%26noteAttributes%3Dgoods%26xsec_token%3DCBdwKBlV2nAaOpQshySd1BPxARRrI-U0UEbPv3jCyI0e0%3D%26author_share%3D1%26back_chain_id%3Dgoods_note_share%26xhsshare%3DCopyLink%26shareRedId%3DODc0NzU-OUw2NzUyOTgwNjY0OTc9PEo6%26apptime%3D1784297001%26share_id%3D9d6bbfb693f94f99b032f9f63c46d990",
+      "last_checked": "2026-09-15T00:43:33.025Z",
+      "last_count": 0,
       "latest_comments": [],
-      "seen_ids": [
-        "6a8268440000000014027da2",
-        "6a818bb10000000014015cf1",
-        "6a7c0b610000000010012c26",
-        "6a7c0ac1000000002902c497",
-        "6a75a5f7000000001400a532",
-        "6a7593520000000010012ade",
-        "69eec667000000002701c137",
-        "69db99610000000035026ef9",
-        "69d66f88000000001d00962d",
-        "69d1db16000000000d03477b",
-        "69c63f2e000000001400b4ee",
-        "69c5f20d000000001500266f"
-      ]
+      "seen_ids": []
     },
     {
       "title": "阳江海陵岛📍终于住到了4房6床海边小别墅",
       "url": "http://xhslink.com/o/9wPrhq817IL",
       "category": "海陵岛",
-      "final_url": "https://www.xiaohongshu.com/discovery/item/6a39f690000000000702244b?app_platform=ios&app_version=9.38.1&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBB94AyhkoiU7aK-0jB0h-xdzBd6lKp2Q47MUwOiHNKvQ=&author_share=1&xhsshare=CopyLink&shareRedId=ODc0NzU-OUw2NzUyOTgwNjY0OTc9PEo6&apptime=1784297041&share_id=1098d8c4174b4622b856852498498592",
-      "last_checked": "2026-09-14T01:04:51.656Z",
-      "last_count": 9,
+      "final_url": "https://www.xiaohongshu.com/404/sec_nIGZCGlQ?source=xhs_sec_server&originalUrl=http%3A%2F%2Fwww.xiaohongshu.com%2Fdiscovery%2Fitem%2F6a39f690000000000702244b%3Fapp_platform%3Dios%26app_version%3D9.38.1%26share_from_user_hidden%3Dtrue%26xsec_source%3Dapp_share%26type%3Dnormal%26xsec_token%3DCBB94AyhkoiU7aK-0jB0h-xdzBd6lKp2Q47MUwOiHNKvQ%3D%26author_share%3D1%26xhsshare%3DCopyLink%26shareRedId%3DODc0NzU-OUw2NzUyOTgwNjY0OTc9PEo6%26apptime%3D1784297041%26share_id%3D1098d8c4174b4622b856852498498592",
+      "last_checked": "2026-09-15T00:43:33.025Z",
+      "last_count": 0,
       "latest_comments": [],
-      "seen_ids": [
-        "6a9ab3a300000000150135e1",
-        "6a993264000000000a020368",
-        "6a9834cc000000000b016988",
-        "6a97d65a000000000a01e0b0",
-        "6a61ce1a00000000050086b9",
-        "6a617e830000000009014ed6",
-        "6a5eba470000000009017655",
-        "6a5dbf95000000002a027965",
-        "6a5b72c3000000002901b8b6"
-      ]
+      "seen_ids": []
     },
     {
       "title": "鼎龙湾新增监控帖子",
       "url": "http://xhslink.com/o/5tHhvNAmmwK",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/69ae64e8000000000e00d3a2?app_platform=ios&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CB2C0jzylnWL9PNOFPCbjTqUtGlqXs7NvURKqVTtPhNrQ=&author_share=1&xhsshare=CopyLink&shareRedId=OD4zRElKOks2NzUyOTgwNjZIOTg0SUk6&apptime=1784379616&share_id=85adf7e764b24ffa9f769984d71a4be4",
-      "last_checked": "2026-09-14T01:04:51.656Z",
+      "last_checked": "2026-09-15T00:43:33.025Z",
       "last_count": 9,
       "latest_comments": [],
       "seen_ids": [
@@ -363,7 +228,7 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/6VN3OAalxaY",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com",
-      "last_checked": "2026-09-14T01:04:51.656Z",
+      "last_checked": "2026-09-15T00:43:33.025Z",
       "last_count": 0,
       "latest_comments": [],
       "seen_ids": []
@@ -373,7 +238,7 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/1sQxvNyyo6p",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/6a5b1db6000000000f028d75?app_platform=android&ignoreEngage=true&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=video&xsec_token=CBUrEtTbW42NhA5utYNEINlJO7B2WIWq5J8iXEFCLYabM%3D&author_share=1&shareRedId=OD9INzk4OkI2NzUyOTgwNjY1OTc1NTY5&apptime=1784358227&share_id=de7cb7e8f00e459784b1a874b490d3bb&share_channel=copy_link&appuid=69f763690000000002001000&xhsshare=CopyLink",
-      "last_checked": "2026-09-14T01:04:51.656Z",
+      "last_checked": "2026-09-15T00:43:33.025Z",
       "last_count": 0,
       "latest_comments": [],
       "seen_ids": []
@@ -383,7 +248,7 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/ApqukXUDS1k",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/69c0f555000000001f000995?app_platform=ios&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBhj6eB06KqnBLg4iu0o3m2TBAw_9-qodTlSJ51z8CQWA=&author_share=1&xhsshare=CopyLink&shareRedId=OD4zRElKOks2NzUyOTgwNjZIOTg0SUk6&apptime=1784369555&share_id=69bfdd7bde1e49c08f5b5713b6f68234",
-      "last_checked": "2026-09-14T01:04:51.656Z",
+      "last_checked": "2026-09-15T00:43:33.025Z",
       "last_count": 7,
       "latest_comments": [],
       "seen_ids": [
@@ -401,7 +266,7 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/2b1RXdUBDvV",
       "category": "海陵岛",
       "final_url": "https://www.xiaohongshu.com/discovery/item/6a169a40000000003700fc84?app_platform=ios&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CB33B7RNxD5X7AA5kIGgJ4n4KSvUzEk-SCV_2tAvtAdcI=&author_share=1&xhsshare=CopyLink&shareRedId=OD4zRElKOks2NzUyOTgwNjZIOTg0SUk6&apptime=1784369664&share_id=59569fd8cc244566bc8eaa71ef8f9f3b",
-      "last_checked": "2026-09-14T01:04:51.656Z",
+      "last_checked": "2026-09-15T00:43:33.025Z",
       "last_count": 12,
       "latest_comments": [],
       "seen_ids": [
@@ -424,7 +289,7 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/2hj2Lo2aOMB",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/69e08d86000000001f00559f?app_platform=ios&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBNJ4jxaG9EdjV-9hpB0yvXBbeiBLg4U7VvLMWU5_sNWk=&author_share=1&xhsshare=CopyLink&shareRedId=OD4zRElKOks2NzUyOTgwNjZIOTg0SUk6&apptime=1784379569&share_id=76274a75c1984eca81bedcf7c697396f",
-      "last_checked": "2026-09-14T01:04:51.656Z",
+      "last_checked": "2026-09-15T00:43:33.025Z",
       "last_count": 5,
       "latest_comments": [],
       "seen_ids": [
@@ -440,7 +305,7 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/2wL2XeDWJGN",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/69f317b00000000022027cbe?app_platform=ios&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBoflbyrgBD9o79qX9hYqCqSmnCfyZZntV4mOB8-08l6M=&author_share=1&xhsshare=CopyLink&shareRedId=OD4zRElKOks2NzUyOTgwNjZIOTg0SUk6&apptime=1784379512&share_id=d69c9c7d638e4fab92727dece7a80336",
-      "last_checked": "2026-09-14T01:04:51.656Z",
+      "last_checked": "2026-09-15T00:43:33.025Z",
       "last_count": 5,
       "latest_comments": [],
       "seen_ids": [
@@ -456,7 +321,7 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/2PlP6zQaz9t",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/69f8b10100000000230078fd?app_platform=ios&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBfxx4bhHHqG0jFhIWHMuA3bA7v1tGjTcYrcbtmU2vvjM=&author_share=1&xhsshare=CopyLink&shareRedId=OD4zRElKOks2NzUyOTgwNjZIOTg0SUk6&apptime=1784379582&share_id=40924a92f43e486e8ff153dadfc57562",
-      "last_checked": "2026-09-14T01:04:51.656Z",
+      "last_checked": "2026-09-15T00:43:33.025Z",
       "last_count": 12,
       "latest_comments": [],
       "seen_ids": [
@@ -479,7 +344,7 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/AjQMXYCpHFS",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/68516b9100000000230159f4?app_platform=ios&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CB6EP4iW7omCv9HInx0HZKikJ17o_alDZaiYGOqdwqCyA=&author_share=1&xhsshare=CopyLink&shareRedId=OD4zRElKOks2NzUyOTgwNjZIOTg0SUk6&apptime=1784379545&share_id=1250e6290cfe408f98c412361f66219f",
-      "last_checked": "2026-09-14T01:04:51.656Z",
+      "last_checked": "2026-09-15T00:43:33.025Z",
       "last_count": 6,
       "latest_comments": [],
       "seen_ids": [
@@ -496,7 +361,7 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/4ihJDu10VlH",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/68a1d3bb000000001c00e5b6?app_platform=ios&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBoD2UMEoa4H83kw-OJiBOoGD4bn-8Uc3ydllft-K5OLs=&author_share=1&xhsshare=CopyLink&shareRedId=OD4zRElKOks2NzUyOTgwNjZIOTg0SUk6&apptime=1784379558&share_id=e8e339343af946099d7524782a910d24",
-      "last_checked": "2026-09-14T01:04:51.656Z",
+      "last_checked": "2026-09-15T00:43:33.025Z",
       "last_count": 20,
       "latest_comments": [],
       "seen_ids": [
@@ -527,7 +392,7 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/pIJ7t3zk8M",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/68f66e24000000000301f5a3?app_platform=ios&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBqpoOCsmXFaomxpDpDtyiww5cgyM_0dICFC33F5C9ih0=&author_share=1&xhsshare=CopyLink&shareRedId=OD4zRElKOks2NzUyOTgwNjZIOTg0SUk6&apptime=1784379604&share_id=b60f000603554998abc2b96f2bdff423",
-      "last_checked": "2026-09-14T01:04:51.656Z",
+      "last_checked": "2026-09-15T00:43:33.025Z",
       "last_count": 16,
       "latest_comments": [],
       "seen_ids": [
@@ -554,7 +419,7 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/AO6zNIKJHib",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/678f94b70000000029027817?app_platform=ios&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CB0EWa65GfNoJq9wfcPc5VF2BdLlJ9DUbO8bBgng143A4=&author_share=1&xhsshare=CopyLink&shareRedId=OD4zRElKOks2NzUyOTgwNjZIOTg0SUk6&apptime=1784379629&share_id=7e424c06c0774090a0ed58744277c89c",
-      "last_checked": "2026-09-14T01:04:51.656Z",
+      "last_checked": "2026-09-15T00:43:33.025Z",
       "last_count": 13,
       "latest_comments": [],
       "seen_ids": [
@@ -578,7 +443,7 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/8hFbNplWw7Y",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/69b3c0dc0000000022024689?app_platform=ios&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBuDoyGD4jmuHJcqkNgCIw7QU65_JWK3jafqi3fjKX1KQ=&author_share=1&xhsshare=CopyLink&shareRedId=OD4zRElKOks2NzUyOTgwNjZIOTg0SUk6&apptime=1784379643&share_id=a520548ccbd94a929273d93b55794e29",
-      "last_checked": "2026-09-14T01:04:51.656Z",
+      "last_checked": "2026-09-15T00:43:33.025Z",
       "last_count": 6,
       "latest_comments": [],
       "seen_ids": [
@@ -595,7 +460,7 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/25o9Ru81Uui",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/6a2fa1260000000021008b00?app_platform=ios&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBwaFDnl8nCe8BhRHHutrgtgO6-k7_KcclloqsMDV6avw=&author_share=1&xhsshare=CopyLink&shareRedId=OD4zRElKOks2NzUyOTgwNjZIOTg0SUk6&apptime=1784379652&share_id=1dcf3dd177384a08abc3f14286892ef0",
-      "last_checked": "2026-09-14T01:04:51.656Z",
+      "last_checked": "2026-09-15T00:43:33.025Z",
       "last_count": 11,
       "latest_comments": [],
       "seen_ids": [
@@ -617,7 +482,7 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/8FddHawsBYM",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/65ba4f650000000002020c57?app_platform=ios&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CB_F4xPrO4BfaFag573Hw1cjHO4IZExFeHeSW6aNISGYo=&author_share=1&xhsshare=CopyLink&shareRedId=OD4zRElKOks2NzUyOTgwNjZIOTg0SUk6&apptime=1784379669&share_id=bf065f2e45094fcaa9ed37045685d561",
-      "last_checked": "2026-09-14T01:04:51.656Z",
+      "last_checked": "2026-09-15T00:43:33.025Z",
       "last_count": 15,
       "latest_comments": [],
       "seen_ids": [
@@ -643,7 +508,7 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/2WYRs93uOP8",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/69b28bec000000000803034c?app_platform=ios&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBUruCSWLmMUP48juF4LUyO_6saJ7CgQGtje_un9yL7p4=&author_share=1&xhsshare=CopyLink&shareRedId=OD4zRElKOks2NzUyOTgwNjZIOTg0SUk6&apptime=1784379680&share_id=b69492483d2c4fcf80e836e5580c736b",
-      "last_checked": "2026-09-14T01:04:51.656Z",
+      "last_checked": "2026-09-15T00:43:33.025Z",
       "last_count": 10,
       "latest_comments": [],
       "seen_ids": [
@@ -664,7 +529,7 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/jebIaEIhON",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/696f51f0000000000e03e450?app_platform=ios&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBkd6Ij7BMDgmNe8hVUu07JR-tBzZilsN_dqiNmqvC2MA=&author_share=1&xhsshare=CopyLink&shareRedId=OD4zRElKOks2NzUyOTgwNjZIOTg0SUk6&apptime=1784379698&share_id=0137bd0cd8b9427b978afca26038c145",
-      "last_checked": "2026-09-14T01:04:51.656Z",
+      "last_checked": "2026-09-15T00:43:33.025Z",
       "last_count": 14,
       "latest_comments": [],
       "seen_ids": [
@@ -689,7 +554,7 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/A4zXpVoIgtc",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/66de65920000000012011332?app_platform=ios&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBWwVgtrTmYERZxLMu5yrpMg11sGRUP6ge5Xt3bZydwdc=&author_share=1&xhsshare=CopyLink&shareRedId=OD4zRElKOks2NzUyOTgwNjZIOTg0SUk6&apptime=1784379707&share_id=1883604f057641df97ec7e4a1437ea3b",
-      "last_checked": "2026-09-14T01:04:51.656Z",
+      "last_checked": "2026-09-15T00:43:33.025Z",
       "last_count": 12,
       "latest_comments": [],
       "seen_ids": [
@@ -712,7 +577,7 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/Aeh999uhGRs",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/6a422c9d0000000007028da3?app_platform=ios&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CB_jQJKQLnsKC23xGvSFsfK796R6ej97iqZXvQre7w6go=&author_share=1&xhsshare=CopyLink&shareRedId=OD4zRElKOks2NzUyOTgwNjZIOTg0SUk6&apptime=1784563845&share_id=f93a099a9e574c84a9c4a329dfce7ec4",
-      "last_checked": "2026-09-14T01:04:51.656Z",
+      "last_checked": "2026-09-15T00:43:33.025Z",
       "last_count": 14,
       "latest_comments": [],
       "seen_ids": [
@@ -737,7 +602,7 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/29XQFIBlOGY",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/6a59a46f000000001c00e94a?app_platform=ios&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBLX_fMVUOQeev-QSAQqDQQ_KO4WFC3A3LEG90NDVimFw=&author_share=1&xhsshare=CopyLink&shareRedId=OD4zRElKOks2NzUyOTgwNjZIOTg0SUk6&apptime=1784563875&share_id=3954b44883554412a2e88d8b241155d4",
-      "last_checked": "2026-09-14T01:04:51.656Z",
+      "last_checked": "2026-09-15T00:43:33.025Z",
       "last_count": 5,
       "latest_comments": [],
       "seen_ids": [
@@ -753,7 +618,7 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/9JxlP3k6Z2R",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/67a64ba5000000002803630e?app_platform=ios&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBHfB85rGzNgmRWQ1I_2nsfNXOXhFkxlOtbDVQxobcBuI=&author_share=1&xhsshare=CopyLink&shareRedId=OD4zRElKOks2NzUyOTgwNjZIOTg0SUk6&apptime=1784563906&share_id=128d1b9166b64043a9a706fc7b7548b0",
-      "last_checked": "2026-09-14T01:04:51.656Z",
+      "last_checked": "2026-09-15T00:43:33.025Z",
       "last_count": 18,
       "latest_comments": [],
       "seen_ids": [
@@ -782,7 +647,7 @@ window.XHS_MONITOR_DATA = {
       "url": "http://xhslink.com/o/1MRRVRFZM4d",
       "category": "鼎龙湾",
       "final_url": "https://www.xiaohongshu.com/discovery/item/68aeadd2000000001c030bac?app_platform=ios&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CB_kYpqdUsuZy8OIoG9t2-R9mHM7UhOqZXiU_bLdWvEzw=&author_share=1&xhsshare=CopyLink&shareRedId=OD4zRElKOks2NzUyOTgwNjZIOTg0SUk6&apptime=1784563927&share_id=6ddc78c6d18949de8775cb4366fdd87f",
-      "last_checked": "2026-09-14T01:04:51.656Z",
+      "last_checked": "2026-09-15T00:43:33.025Z",
       "last_count": 5,
       "latest_comments": [],
       "seen_ids": [
@@ -798,7 +663,7 @@ window.XHS_MONITOR_DATA = {
       "url": "https://xhslink.cn/o/6pagdLmlw7M",
       "category": "湖北专升本",
       "final_url": "https://www.xiaohongshu.com/discovery/item/6a9ab6cf000000002900e742?app_platform=ios&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBSvIg7XdPKalYFAl2bH_cSQI3x4XVKU5-DEfF-IzMJmI=&author_share=1&xhsshare=CopyLink&shareRedId=OD4zRElKOks2NzUyOTgwNjZIOTg0SUk6&apptime=1789114067&share_id=0fbde39bb9a44587bd26ee4099ecc8dd",
-      "last_checked": "2026-09-14T01:04:51.656Z",
+      "last_checked": "2026-09-15T00:43:33.025Z",
       "last_count": 0,
       "latest_comments": [],
       "seen_ids": []
@@ -808,50 +673,9 @@ window.XHS_MONITOR_DATA = {
       "url": "https://xhslink.cn/o/4Q1WN0DQ5JU",
       "category": "湖北专升本",
       "final_url": "https://www.xiaohongshu.com/discovery/item/6a9e5da9000000002802e128?app_platform=android&ignoreEngage=true&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CB2vFLCHsjbB6W8a2bqbdhVHSRqU8W-SJNEaebDqhpl5M%3D&author_share=1&xhsshare=CopyLink&shareRedId=OD9INzk4OkI2NzUyOTgwNjY1OTc1NTY5&apptime=1789116845&share_id=5be765f14b664e1593d68d33519c53d7&share_channel=copy_link&track_code=4Q1WN0DQ5JU",
-      "last_checked": "2026-09-14T01:04:51.656Z",
+      "last_checked": "2026-09-15T00:43:33.025Z",
       "last_count": 5,
-      "latest_comments": [
-        {
-          "id": "6aa738bf0000000015021211",
-          "content": "报班学稳",
-          "nickname": "小喵躲猫猫",
-          "xhs_user_id": "页面未提供",
-          "user_profile_id": "63d77fff00000000260075b3",
-          "user_profile_url": "https://www.xiaohongshu.com/user/profile/63d77fff00000000260075b3",
-          "time_ms": 1789343935000,
-          "time": "2026-09-14 07:58:55"
-        },
-        {
-          "id": "6aa6b2040000000014003c2f",
-          "content": "背诵内容喜欢通篇朗读记忆，不去检验自身实际掌握程度，全方位提供自检背诵方法，复述内容检验真实记忆效果",
-          "nickname": "小唐.",
-          "xhs_user_id": "页面未提供",
-          "user_profile_id": "6133746a000000000201a6d0",
-          "user_profile_url": "https://www.xiaohongshu.com/user/profile/6133746a000000000201a6d0",
-          "time_ms": 1789309444000,
-          "time": "2026-09-13 22:24:04"
-        },
-        {
-          "id": "6aa6919d000000000f02e087",
-          "content": "各位学长学姐你们好我现在是大专大一播音专业想要专升本，考四级但我不知道怎么开始现在很迷茫有没有大佬们能帮帮我的[哭惹R]",
-          "nickname": "小红薯6A7D4A79",
-          "xhs_user_id": "页面未提供",
-          "user_profile_id": "6a7c37050000000013021801",
-          "user_profile_url": "https://www.xiaohongshu.com/user/profile/6a7c37050000000013021801",
-          "time_ms": 1789301149000,
-          "time": "2026-09-13 20:05:49"
-        },
-        {
-          "id": "6aa60a5f000000001303dcbe",
-          "content": "想稳妥一些，建议报机构",
-          "nickname": "带你专升本的小鹤老师🌟",
-          "xhs_user_id": "页面未提供",
-          "user_profile_id": "61487e15000000000201fa1c",
-          "user_profile_url": "https://www.xiaohongshu.com/user/profile/61487e15000000000201fa1c",
-          "time_ms": 1789266528000,
-          "time": "2026-09-13 10:28:48"
-        }
-      ],
+      "latest_comments": [],
       "seen_ids": [
         "6aa738bf0000000015021211",
         "6aa6b2040000000014003c2f",
@@ -865,57 +689,60 @@ window.XHS_MONITOR_DATA = {
       "url": "https://xhslink.cn/o/5P4CLbiRL81",
       "category": "湖北专升本",
       "final_url": "https://www.xiaohongshu.com/discovery/item/6aa369960000000027009de9?app_platform=android&ignoreEngage=true&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CB6JNDO4171wNdIYYyXRCjUQMIaE4iMeOJJE5ty3O9RZ8%3D&author_share=1&xhsshare=CopyLink&shareRedId=OD9INzk4OkI2NzUyOTgwNjY1OTc1NTY5&apptime=1789117256&share_id=9bb2e16ef5a045ee83c27bf40dff741d&share_channel=copy_link&track_code=5P4CLbiRL81",
-      "last_checked": "2026-09-14T01:04:51.656Z",
-      "last_count": 11,
+      "last_checked": "2026-09-15T00:43:33.025Z",
+      "last_count": 14,
       "latest_comments": [
         {
-          "id": "6aa697ba000000000202852e",
-          "content": "我的是线下的所以比较贵，总体感觉老师还不错",
-          "nickname": "1.",
+          "id": "6aa7b3340000000014030053",
+          "content": "我现在在机构试课，你呢",
+          "nickname": "浅墨",
           "xhs_user_id": "页面未提供",
-          "user_profile_id": "64834bdd000000000f0078cc",
-          "user_profile_url": "https://www.xiaohongshu.com/user/profile/64834bdd000000000f0078cc",
-          "time_ms": 1789302715000,
-          "time": "2026-09-13 20:31:55"
+          "user_profile_id": "5d5bc2600000000001019560",
+          "user_profile_url": "https://www.xiaohongshu.com/user/profile/5d5bc2600000000001019560",
+          "time_ms": 1789375284000,
+          "time": "2026-09-14 16:41:24"
         },
         {
-          "id": "6aa697840000000015020498",
-          "content": "13000的线上会不会太贵了[捂脸R]",
-          "nickname": "周一",
+          "id": "6aa7b2150000000015000937",
+          "content": "可以一起",
+          "nickname": "木熙熙比河",
           "xhs_user_id": "页面未提供",
-          "user_profile_id": "6a465bcb000000000f038c02",
-          "user_profile_url": "https://www.xiaohongshu.com/user/profile/6a465bcb000000000f038c02",
-          "time_ms": 1789302660000,
-          "time": "2026-09-13 20:31:00"
+          "user_profile_id": "5e08a3ff0000000001000f94",
+          "user_profile_url": "https://www.xiaohongshu.com/user/profile/5e08a3ff0000000001000f94",
+          "time_ms": 1789374997000,
+          "time": "2026-09-14 16:36:37"
         },
         {
-          "id": "6aa68f150000000015017c29",
-          "content": "我报的13000左右",
-          "nickname": "1.",
+          "id": "6aa7b06a000000001403868a",
+          "content": "报机构了吗？",
+          "nickname": "浅墨",
           "xhs_user_id": "页面未提供",
-          "user_profile_id": "64834bdd000000000f0078cc",
-          "user_profile_url": "https://www.xiaohongshu.com/user/profile/64834bdd000000000f0078cc",
-          "time_ms": 1789300501000,
-          "time": "2026-09-13 19:55:01"
+          "user_profile_id": "5d5bc2600000000001019560",
+          "user_profile_url": "https://www.xiaohongshu.com/user/profile/5d5bc2600000000001019560",
+          "time_ms": 1789374571000,
+          "time": "2026-09-14 16:29:31"
         },
         {
-          "id": "6aa644c7000000000100b8f2",
-          "content": "专业课哪里有线上的线上都特别水",
-          "nickname": "想上岸",
+          "id": "6aa74ac3000000001500e6f6",
+          "content": "我报的10800英语和专业课一起的",
+          "nickname": "小喵躲猫猫",
           "xhs_user_id": "页面未提供",
-          "user_profile_id": "5eeeb8aa0000000001006006",
-          "user_profile_url": "https://www.xiaohongshu.com/user/profile/5eeeb8aa0000000001006006",
-          "time_ms": 1789281480000,
-          "time": "2026-09-13 14:38:00"
+          "user_profile_id": "63d77fff00000000260075b3",
+          "user_profile_url": "https://www.xiaohongshu.com/user/profile/63d77fff00000000260075b3",
+          "time_ms": 1789348547000,
+          "time": "2026-09-14 09:15:47"
         }
       ],
       "seen_ids": [
+        "6aa7b3340000000014030053",
+        "6aa7b2150000000015000937",
+        "6aa7b06a000000001403868a",
+        "6aa74ac3000000001500e6f6",
         "6aa697ba000000000202852e",
         "6aa697840000000015020498",
         "6aa68f150000000015017c29",
-        "6aa644c7000000000100b8f2",
-        "6aa42364000000000b01de53",
         "6aa3bee80000000015010b1c",
+        "6aa3b337000000000202a0f9",
         "6aa38bd8000000001402c839",
         "6aa37a600000000014002c20",
         "6aa373380000000015009456",
@@ -928,7 +755,7 @@ window.XHS_MONITOR_DATA = {
       "url": "https://xhslink.cn/o/uYJGGLNNwh",
       "category": "湖北专升本",
       "final_url": "https://www.xiaohongshu.com/discovery/item/6a9d33e10000000029011008?app_platform=android&ignoreEngage=true&app_version=9.33.4&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CB0LOxjGoBlSTQA3TfE10A8A7HHrfb1K7mkn9zVxQI3fo%3D&author_share=1&xhsshare=CopyLink&shareRedId=OD9INzk4OkI2NzUyOTgwNjY1OTc1NTY5&apptime=1789117352&share_id=f842039037c34e07805f67df267b0634&share_channel=copy_link&track_code=uYJGGLNNwh",
-      "last_checked": "2026-09-14T01:04:51.656Z",
+      "last_checked": "2026-09-15T00:43:33.025Z",
       "last_count": 5,
       "latest_comments": [],
       "seen_ids": [
@@ -940,137 +767,112 @@ window.XHS_MONITOR_DATA = {
       ]
     }
   ],
-  "new_comments": [],
-  "alert_history": [
+  "new_comments": [
     {
-      "title": "不敢相信！阳江海边整栋居然这么便宜",
-      "url": "http://xhslink.com/o/2cbh7sBFx2P",
-      "category": "海陵岛",
-      "id": "6aa73b17000000000200cd48",
-      "content": "两房的价格，亲",
-      "nickname": "lingcuo32",
-      "xhs_user_id": "页面未提供",
-      "user_profile_id": "5f179aa6000000000101c25f",
-      "user_profile_url": "https://www.xiaohongshu.com/user/profile/5f179aa6000000000101c25f",
-      "time_ms": 1789344535000,
-      "time": "2026-09-14 08:08:55"
-    },
-    {
-      "title": "阳江📍出门就是海，就在沙滩边上",
-      "url": "http://xhslink.com/o/828sbFz2jag",
-      "category": "海陵岛",
-      "id": "6aa601e1000000001403aee9",
-      "content": "斯你啦",
-      "nickname": "绮玄丨玩乐无忧",
-      "xhs_user_id": "页面未提供",
-      "user_profile_id": "69cde3db000000003202ae87",
-      "user_profile_url": "https://www.xiaohongshu.com/user/profile/69cde3db000000003202ae87",
-      "time_ms": 1789264354000,
-      "time": "2026-09-13 09:52:34"
-    },
-    {
-      "title": "考虑了很多不知道要不要去机构专升本 有没有好的建议",
-      "url": "https://xhslink.cn/o/4Q1WN0DQ5JU",
+      "title": "湖北专升本线上课 有没有报了班的同学呀，都是什么价...",
+      "url": "https://xhslink.cn/o/5P4CLbiRL81",
       "category": "湖北专升本",
-      "id": "6aa738bf0000000015021211",
-      "content": "报班学稳",
+      "id": "6aa7b3340000000014030053",
+      "content": "我现在在机构试课，你呢",
+      "nickname": "浅墨",
+      "xhs_user_id": "页面未提供",
+      "user_profile_id": "5d5bc2600000000001019560",
+      "user_profile_url": "https://www.xiaohongshu.com/user/profile/5d5bc2600000000001019560",
+      "time_ms": 1789375284000,
+      "time": "2026-09-14 16:41:24"
+    },
+    {
+      "title": "湖北专升本线上课 有没有报了班的同学呀，都是什么价...",
+      "url": "https://xhslink.cn/o/5P4CLbiRL81",
+      "category": "湖北专升本",
+      "id": "6aa7b2150000000015000937",
+      "content": "可以一起",
+      "nickname": "木熙熙比河",
+      "xhs_user_id": "页面未提供",
+      "user_profile_id": "5e08a3ff0000000001000f94",
+      "user_profile_url": "https://www.xiaohongshu.com/user/profile/5e08a3ff0000000001000f94",
+      "time_ms": 1789374997000,
+      "time": "2026-09-14 16:36:37"
+    },
+    {
+      "title": "湖北专升本线上课 有没有报了班的同学呀，都是什么价...",
+      "url": "https://xhslink.cn/o/5P4CLbiRL81",
+      "category": "湖北专升本",
+      "id": "6aa7b06a000000001403868a",
+      "content": "报机构了吗？",
+      "nickname": "浅墨",
+      "xhs_user_id": "页面未提供",
+      "user_profile_id": "5d5bc2600000000001019560",
+      "user_profile_url": "https://www.xiaohongshu.com/user/profile/5d5bc2600000000001019560",
+      "time_ms": 1789374571000,
+      "time": "2026-09-14 16:29:31"
+    },
+    {
+      "title": "湖北专升本线上课 有没有报了班的同学呀，都是什么价...",
+      "url": "https://xhslink.cn/o/5P4CLbiRL81",
+      "category": "湖北专升本",
+      "id": "6aa74ac3000000001500e6f6",
+      "content": "我报的10800英语和专业课一起的",
       "nickname": "小喵躲猫猫",
       "xhs_user_id": "页面未提供",
       "user_profile_id": "63d77fff00000000260075b3",
       "user_profile_url": "https://www.xiaohongshu.com/user/profile/63d77fff00000000260075b3",
-      "time_ms": 1789343935000,
-      "time": "2026-09-14 07:58:55"
-    },
+      "time_ms": 1789348547000,
+      "time": "2026-09-14 09:15:47"
+    }
+  ],
+  "alert_history": [
     {
-      "title": "考虑了很多不知道要不要去机构专升本 有没有好的建议",
-      "url": "https://xhslink.cn/o/4Q1WN0DQ5JU",
+      "title": "湖北专升本线上课 有没有报了班的同学呀，都是什么价...",
+      "url": "https://xhslink.cn/o/5P4CLbiRL81",
       "category": "湖北专升本",
-      "id": "6aa6b2040000000014003c2f",
-      "content": "背诵内容喜欢通篇朗读记忆，不去检验自身实际掌握程度，全方位提供自检背诵方法，复述内容检验真实记忆效果",
-      "nickname": "小唐.",
+      "id": "6aa7b3340000000014030053",
+      "content": "我现在在机构试课，你呢",
+      "nickname": "浅墨",
       "xhs_user_id": "页面未提供",
-      "user_profile_id": "6133746a000000000201a6d0",
-      "user_profile_url": "https://www.xiaohongshu.com/user/profile/6133746a000000000201a6d0",
-      "time_ms": 1789309444000,
-      "time": "2026-09-13 22:24:04"
-    },
-    {
-      "title": "考虑了很多不知道要不要去机构专升本 有没有好的建议",
-      "url": "https://xhslink.cn/o/4Q1WN0DQ5JU",
-      "category": "湖北专升本",
-      "id": "6aa6919d000000000f02e087",
-      "content": "各位学长学姐你们好我现在是大专大一播音专业想要专升本，考四级但我不知道怎么开始现在很迷茫有没有大佬们能帮帮我的[哭惹R]",
-      "nickname": "小红薯6A7D4A79",
-      "xhs_user_id": "页面未提供",
-      "user_profile_id": "6a7c37050000000013021801",
-      "user_profile_url": "https://www.xiaohongshu.com/user/profile/6a7c37050000000013021801",
-      "time_ms": 1789301149000,
-      "time": "2026-09-13 20:05:49"
-    },
-    {
-      "title": "考虑了很多不知道要不要去机构专升本 有没有好的建议",
-      "url": "https://xhslink.cn/o/4Q1WN0DQ5JU",
-      "category": "湖北专升本",
-      "id": "6aa60a5f000000001303dcbe",
-      "content": "想稳妥一些，建议报机构",
-      "nickname": "带你专升本的小鹤老师🌟",
-      "xhs_user_id": "页面未提供",
-      "user_profile_id": "61487e15000000000201fa1c",
-      "user_profile_url": "https://www.xiaohongshu.com/user/profile/61487e15000000000201fa1c",
-      "time_ms": 1789266528000,
-      "time": "2026-09-13 10:28:48"
+      "user_profile_id": "5d5bc2600000000001019560",
+      "user_profile_url": "https://www.xiaohongshu.com/user/profile/5d5bc2600000000001019560",
+      "time_ms": 1789375284000,
+      "time": "2026-09-14 16:41:24"
     },
     {
       "title": "湖北专升本线上课 有没有报了班的同学呀，都是什么价...",
       "url": "https://xhslink.cn/o/5P4CLbiRL81",
       "category": "湖北专升本",
-      "id": "6aa697ba000000000202852e",
-      "content": "我的是线下的所以比较贵，总体感觉老师还不错",
-      "nickname": "1.",
+      "id": "6aa7b2150000000015000937",
+      "content": "可以一起",
+      "nickname": "木熙熙比河",
       "xhs_user_id": "页面未提供",
-      "user_profile_id": "64834bdd000000000f0078cc",
-      "user_profile_url": "https://www.xiaohongshu.com/user/profile/64834bdd000000000f0078cc",
-      "time_ms": 1789302715000,
-      "time": "2026-09-13 20:31:55"
+      "user_profile_id": "5e08a3ff0000000001000f94",
+      "user_profile_url": "https://www.xiaohongshu.com/user/profile/5e08a3ff0000000001000f94",
+      "time_ms": 1789374997000,
+      "time": "2026-09-14 16:36:37"
     },
     {
       "title": "湖北专升本线上课 有没有报了班的同学呀，都是什么价...",
       "url": "https://xhslink.cn/o/5P4CLbiRL81",
       "category": "湖北专升本",
-      "id": "6aa697840000000015020498",
-      "content": "13000的线上会不会太贵了[捂脸R]",
-      "nickname": "周一",
+      "id": "6aa7b06a000000001403868a",
+      "content": "报机构了吗？",
+      "nickname": "浅墨",
       "xhs_user_id": "页面未提供",
-      "user_profile_id": "6a465bcb000000000f038c02",
-      "user_profile_url": "https://www.xiaohongshu.com/user/profile/6a465bcb000000000f038c02",
-      "time_ms": 1789302660000,
-      "time": "2026-09-13 20:31:00"
+      "user_profile_id": "5d5bc2600000000001019560",
+      "user_profile_url": "https://www.xiaohongshu.com/user/profile/5d5bc2600000000001019560",
+      "time_ms": 1789374571000,
+      "time": "2026-09-14 16:29:31"
     },
     {
       "title": "湖北专升本线上课 有没有报了班的同学呀，都是什么价...",
       "url": "https://xhslink.cn/o/5P4CLbiRL81",
       "category": "湖北专升本",
-      "id": "6aa68f150000000015017c29",
-      "content": "我报的13000左右",
-      "nickname": "1.",
+      "id": "6aa74ac3000000001500e6f6",
+      "content": "我报的10800英语和专业课一起的",
+      "nickname": "小喵躲猫猫",
       "xhs_user_id": "页面未提供",
-      "user_profile_id": "64834bdd000000000f0078cc",
-      "user_profile_url": "https://www.xiaohongshu.com/user/profile/64834bdd000000000f0078cc",
-      "time_ms": 1789300501000,
-      "time": "2026-09-13 19:55:01"
-    },
-    {
-      "title": "湖北专升本线上课 有没有报了班的同学呀，都是什么价...",
-      "url": "https://xhslink.cn/o/5P4CLbiRL81",
-      "category": "湖北专升本",
-      "id": "6aa644c7000000000100b8f2",
-      "content": "专业课哪里有线上的线上都特别水",
-      "nickname": "想上岸",
-      "xhs_user_id": "页面未提供",
-      "user_profile_id": "5eeeb8aa0000000001006006",
-      "user_profile_url": "https://www.xiaohongshu.com/user/profile/5eeeb8aa0000000001006006",
-      "time_ms": 1789281480000,
-      "time": "2026-09-13 14:38:00"
+      "user_profile_id": "63d77fff00000000260075b3",
+      "user_profile_url": "https://www.xiaohongshu.com/user/profile/63d77fff00000000260075b3",
+      "time_ms": 1789348547000,
+      "time": "2026-09-14 09:15:47"
     }
   ],
   "errors": []
